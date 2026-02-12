@@ -1,0 +1,12 @@
+/* EE 5340 Custom Styles */
+
+:root {
+    --md-primary-fg-color: #7b1fa2;
+    --md-primary-fg-color--light: #ae52d4;
+    --md-primary-fg-color--dark: #4a0072;
+    --md-accent-fg-color: #448aff;
+}
+
+[data-md-color-scheme="default"] {
+    --md-typeset-a-color: var(--md-primary-fg-color);
+}

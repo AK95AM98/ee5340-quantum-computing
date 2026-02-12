@@ -1,0 +1,83 @@
+site_name: EE 5340 - Quantum Computing and Physical Basics of Computing
+site_description: 'An intelligent textbook for UMN EE 5340: Introduction to Quantum Computing and Physical Basics of Computing. Covers physical limits of computing, information theory, beyond-CMOS devices, reversible computing, quantum computing, and stochastic computing.'
+site_author: 'Sharat B'
+repo_name: 'GitHub Repo'
+site_url: 'https://AK95AM98.github.io/ee5340-quantum-computing/'
+repo_url: 'https://github.com/AK95AM98/ee5340-quantum-computing'
+edit_uri: 'blob/main/docs'
+
+nav:
+  - Home: index.md
+  - Course Description: course-description.md
+  - Chapters:
+    - chapters/index.md
+    - 1. Mathematical Foundations: chapters/01-mathematical-foundations/index.md
+    - 2. Physical Limits: chapters/02-physical-limits/index.md
+    - 3. Information Theory: chapters/03-information-theory/index.md
+    - 4. Classical Computing: chapters/04-classical-computing/index.md
+    - 5. Beyond-CMOS Devices: chapters/05-beyond-cmos-devices/index.md
+    - 6. Reversible Computing: chapters/06-reversible-computing/index.md
+    - 7. Quantum Mechanics: chapters/07-quantum-mechanics/index.md
+    - 8. Qubits and States: chapters/08-qubits-and-states/index.md
+    - 9. Quantum Gates: chapters/09-quantum-gates/index.md
+    - 10. Quantum Algorithms: chapters/10-quantum-algorithms/index.md
+    - 11. Error Correction: chapters/11-quantum-error-correction/index.md
+    - 12. Quantum Hardware: chapters/12-quantum-hardware/index.md
+    - 13. Stochastic Computing: chapters/13-stochastic-computing/index.md
+    - 14. Hybrid Computing: chapters/14-hybrid-computing/index.md
+    - 15. Energy-Efficient Computing: chapters/15-energy-efficient-computing/index.md
+    - 16. Future of Computing: chapters/16-future-of-computing/index.md
+  - Learning Graph:
+    - Introduction: learning-graph/index.md
+    - Course Description Assessment: learning-graph/course-description-assessment.md
+    - Concept List: learning-graph/concept-list.md
+    - Concept Taxonomy: learning-graph/concept-taxonomy.md
+    - Graph Quality Analysis: learning-graph/quality-metrics.md
+    - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
+  - MicroSims:
+    - sims/index.md
+  - Prompts:
+    - prompts/index.md
+
+theme:
+  name: material
+  logo: img/logo.png
+  favicon: img/favicon.ico
+  custom_dir: docs
+  palette:
+    primary: custom
+  accent: 'indigo'
+  include_sidebar: true
+  features:
+    - content.code.copy
+    - navigation.expand
+    - navigation.path
+    - navigation.prune
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    - navigation.footer
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - css/extra.css
+
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  schema: https://dmccreary.github.io/intelligent-textbooks/ns/textbook/v1
