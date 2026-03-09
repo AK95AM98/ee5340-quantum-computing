@@ -1,0 +1,3654 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Major quantum algorithms including Deutsch-Jozsa, QFT, Shor's factoring, and Grover's search with rigorous mathematical derivations">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/10-quantum-algorithms/">
+      
+      
+        <link rel="prev" href="../09-quantum-gates/">
+      
+      
+        <link rel="next" href="../11-quantum-error-correction/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Quantum Algorithms - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quantum-algorithms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quantum Algorithms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Parallelism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equal-superposition-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equal Superposition State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantum-parallel-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Parallel Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Oracle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Oracle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Oracle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Oracle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deutschs-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deutsch&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deutschs-algorithm-after-hadamard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm: After Hadamard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deutschs-algorithm-final-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm: Final State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deutsch-jozsa-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deutsch-Jozsa Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deutsch-jozsa-final-state-amplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa: Final State Amplitude
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deutsch-jozsa-measurement-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa: Measurement Probability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-deutsch-jozsa-algorithm-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Deutsch-Jozsa Algorithm Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bernstein-vazirani-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein-Vazirani Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bernstein-Vazirani Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bernstein-vazirani-amplitude-collapse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein-Vazirani: Amplitude Collapse
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simons-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simon's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simon&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simons-algorithm-post-hadamard-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simon's Algorithm: Post-Hadamard State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-fourier-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Fourier Transform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Fourier Transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qft-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qft-product-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Product Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qft-gate-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Gate Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-kickback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Kickback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Kickback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-kickback-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Kickback Derivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-phase-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Phase Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Phase Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qpe-after-controlled-unitaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE: After Controlled Unitaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpe-after-inverse-qft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE: After Inverse QFT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpe-precision-requirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE Precision Requirement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-phase-estimation-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Phase Estimation Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Finding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Order Finding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-multiplication-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Multiplication Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shors-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor's Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-exponentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Exponentiation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modular Exponentiation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controlled-modular-exponentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled Modular Exponentiation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continued-fractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continued Fractions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continued Fractions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continued Fraction Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grovers-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grover&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grover-initial-state-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover: Initial State Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplitude-amplification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Amplification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amplitude Amplification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grover-rotation-angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover Rotation Angle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimal-grover-iterations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimal Grover Iterations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grover-diffusion-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover Diffusion Operator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grover Diffusion Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffusion-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diffusion Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inversion-about-the-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inversion About the Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-grovers-algorithm-amplitude-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Grover's Algorithm Amplitude Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quadratic-speedup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quadratic Speedup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quadratic Speedup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bbbv-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BBBV Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-walk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Walk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Walk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantum-walk-step-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Walk Step Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time-walk-propagator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous-Time Walk Propagator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-classical-vs-quantum-walk-spreading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Classical vs Quantum Walk Spreading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm-complexity-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Complexity Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithm Complexity Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-algorithm-speedup-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Algorithm Speedup Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-parallelism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Parallelism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Parallelism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#equal-superposition-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equal Superposition State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantum-parallel-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Parallel Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Oracle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Oracle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Oracle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-oracle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Oracle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deutschs-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deutsch&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deutschs-algorithm-after-hadamard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm: After Hadamard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deutschs-algorithm-final-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch's Algorithm: Final State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deutsch-jozsa-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deutsch-Jozsa Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deutsch-jozsa-final-state-amplitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa: Final State Amplitude
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deutsch-jozsa-measurement-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deutsch-Jozsa: Measurement Probability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-deutsch-jozsa-algorithm-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Deutsch-Jozsa Algorithm Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bernstein-vazirani-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein-Vazirani Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bernstein-Vazirani Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bernstein-vazirani-amplitude-collapse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernstein-Vazirani: Amplitude Collapse
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simons-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simon's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simon&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simons-algorithm-post-hadamard-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simon's Algorithm: Post-Hadamard State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-fourier-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Fourier Transform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Fourier Transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qft-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qft-product-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Product Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qft-gate-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QFT Gate Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-kickback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Kickback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Kickback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-kickback-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Kickback Derivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-phase-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Phase Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Phase Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qpe-after-controlled-unitaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE: After Controlled Unitaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpe-after-inverse-qft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE: After Inverse QFT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qpe-precision-requirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QPE Precision Requirement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-phase-estimation-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Phase Estimation Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Finding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Order Finding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#order-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-multiplication-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Multiplication Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shors-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor's Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-exponentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Exponentiation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modular Exponentiation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controlled-modular-exponentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled Modular Exponentiation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continued-fractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continued Fractions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continued Fractions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continued Fraction Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grovers-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover's Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grover&#39;s Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grover-initial-state-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover: Initial State Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplitude-amplification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Amplification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amplitude Amplification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grover-rotation-angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover Rotation Angle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimal-grover-iterations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimal Grover Iterations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grover-diffusion-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grover Diffusion Operator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Grover Diffusion Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffusion-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diffusion Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inversion-about-the-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inversion About the Mean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-grovers-algorithm-amplitude-evolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Grover's Algorithm Amplitude Evolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quadratic-speedup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quadratic Speedup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quadratic Speedup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bbbv-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BBBV Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-walk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Walk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Walk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantum-walk-step-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Walk Step Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuous-time-walk-propagator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous-Time Walk Propagator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-classical-vs-quantum-walk-spreading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Classical vs Quantum Walk Spreading
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithm-complexity-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Complexity Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithm Complexity Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-algorithm-speedup-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Algorithm Speedup Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/10-quantum-algorithms/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="quantum-algorithms">Quantum Algorithms</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter presents the major quantum algorithms with step-by-step mathematical derivations. We develop quantum parallelism and oracle-based computation, derive the Deutsch-Jozsa, Bernstein-Vazirani, and Simon's algorithms, construct the quantum Fourier transform circuit, prove phase estimation bounds, present Shor's factoring algorithm through period finding and continued fractions, and derive Grover's search algorithm with its optimal quadratic speedup proof.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 18 concepts:</p>
+<ol>
+<li>Quantum Parallelism</li>
+<li>Quantum Oracle</li>
+<li>Deutsch's Algorithm</li>
+<li>Deutsch-Jozsa Algorithm</li>
+<li>Bernstein-Vazirani Algorithm</li>
+<li>Simon's Algorithm</li>
+<li>Quantum Fourier Transform</li>
+<li>Phase Kickback</li>
+<li>Quantum Phase Estimation</li>
+<li>Order Finding</li>
+<li>Shor's Algorithm</li>
+<li>Modular Exponentiation</li>
+<li>Continued Fractions</li>
+<li>Grover's Algorithm</li>
+<li>Amplitude Amplification</li>
+<li>Grover Diffusion Operator</li>
+<li>Quadratic Speedup</li>
+<li>Quantum Walk</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../07-quantum-mechanics/">Chapter 7: Quantum Mechanics Foundations</a></li>
+<li><a href="../08-qubits-and-states/">Chapter 8: Qubits and Quantum States</a></li>
+<li><a href="../09-quantum-gates/">Chapter 9: Quantum Gates and Circuits</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In previous chapters, we constructed the mathematical framework for quantum computation: Hilbert spaces and Dirac notation (Chapter 7), qubits and entanglement (Chapter 8), and the universal gate model (Chapter 9). We now demonstrate why this machinery is computationally powerful by presenting the canonical quantum algorithms that achieve provable speedups over their best known classical counterparts. These algorithms are not merely theoretical curiosities; Shor's factoring algorithm threatens the security of RSA cryptography, and Grover's search algorithm provides a universal quadratic speedup for unstructured search problems. Understanding the mathematical structure of these algorithms---how superposition enables parallelism, how interference amplifies correct answers, and how entanglement correlates registers---is essential for designing new quantum algorithms and assessing the computational landscape of the quantum era.</p>
+<p>We organize the chapter by increasing algorithmic complexity. We begin with the foundational concepts of quantum parallelism and oracle-based computation, proceed through the "black-box" algorithms (Deutsch, Deutsch-Jozsa, Bernstein-Vazirani, Simon) that demonstrate exponential query advantages, develop the quantum Fourier transform as the central subroutine for Shor's algorithm, and conclude with Grover's amplitude amplification framework and its optimality. Throughout, we emphasize rigorous derivations using Dirac notation, with every step made explicit.</p>
+<h2 id="quantum-parallelism">Quantum Parallelism</h2>
+<p><strong>Quantum parallelism</strong> is the ability of a quantum computer to evaluate a function <span class="arithmatex">\(f\)</span> on all inputs simultaneously by exploiting superposition. Classically, evaluating <span class="arithmatex">\(f\)</span> on <span class="arithmatex">\(N = 2^n\)</span> inputs requires <span class="arithmatex">\(N\)</span> separate function calls. A quantum computer achieves this evaluation in a single application of a unitary operator.</p>
+<p>Consider an <span class="arithmatex">\(n\)</span>-qubit input register initialized in the equal superposition state (obtained by applying <span class="arithmatex">\(H^{\otimes n}\)</span> to <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span>):</p>
+<h4 id="equal-superposition-state">Equal Superposition State</h4>
+<div class="arithmatex">\[
+H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}}\sum_{x=0}^{2^n - 1}|x\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(H\)</span> is the Hadamard gate</li>
+<li><span class="arithmatex">\(|x\rangle\)</span> denotes the <span class="arithmatex">\(n\)</span>-qubit computational basis state encoding integer <span class="arithmatex">\(x\)</span></li>
+<li>The sum runs over all <span class="arithmatex">\(2^n\)</span> possible <span class="arithmatex">\(n\)</span>-bit strings</li>
+</ul>
+<p>Applying the unitary operator <span class="arithmatex">\(U_f\)</span> (encoding a classical function <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}^m\)</span>) to this superposition yields:</p>
+<h4 id="quantum-parallel-evaluation">Quantum Parallel Evaluation</h4>
+<div class="arithmatex">\[
+U_f\left(\frac{1}{\sqrt{2^n}}\sum_{x}|x\rangle|0\rangle^{\otimes m}\right) = \frac{1}{\sqrt{2^n}}\sum_{x}|x\rangle|f(x)\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle\)</span> with <span class="arithmatex">\(\oplus\)</span> denoting bitwise XOR</li>
+<li>The function <span class="arithmatex">\(f\)</span> has been evaluated on all <span class="arithmatex">\(2^n\)</span> inputs simultaneously</li>
+</ul>
+<p>The critical subtlety is that quantum parallelism alone does not provide a computational advantage. Measuring the output register yields a single random value <span class="arithmatex">\(f(x_0)\)</span> for a uniformly random <span class="arithmatex">\(x_0\)</span>, which is no better than classical random sampling. The power of quantum algorithms lies in combining parallelism with <strong>interference</strong> to extract global properties of <span class="arithmatex">\(f\)</span> (such as periodicity or balance) without needing to learn individual values.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Classical Evaluation</th>
+<th>Quantum Parallel Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function calls required</td>
+<td><span class="arithmatex">\(2^n\)</span> (for all inputs)</td>
+<td>1 (single <span class="arithmatex">\(U_f\)</span> application)</td>
+</tr>
+<tr>
+<td>State after evaluation</td>
+<td>One output <span class="arithmatex">\(f(x)\)</span> per call</td>
+<td>Superposition <span class="arithmatex">\(\sum_x \|x\rangle\|f(x)\rangle\)</span></td>
+</tr>
+<tr>
+<td>Extractable information</td>
+<td>Individual <span class="arithmatex">\(f(x)\)</span> values</td>
+<td>Global properties of <span class="arithmatex">\(f\)</span> via interference</td>
+</tr>
+<tr>
+<td>Measurement outcome</td>
+<td>Deterministic <span class="arithmatex">\(f(x)\)</span></td>
+<td>Random <span class="arithmatex">\((x_0, f(x_0))\)</span> pair</td>
+</tr>
+<tr>
+<td>Useful advantage</td>
+<td>None without further processing</td>
+<td>Requires interference to exploit</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quantum-oracle">Quantum Oracle</h2>
+<p>A <strong>quantum oracle</strong> (also called a black-box or query operator) is a unitary transformation that encodes a Boolean or integer-valued function while preserving reversibility. The standard oracle model defines two variants.</p>
+<p>The <strong>standard oracle</strong> for <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}^m\)</span> acts as:</p>
+<h4 id="standard-oracle">Standard Oracle</h4>
+<div class="arithmatex">\[
+O_f|x\rangle|y\rangle = |x\rangle|y \oplus f(x)\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|x\rangle\)</span> is the <span class="arithmatex">\(n\)</span>-qubit input register</li>
+<li><span class="arithmatex">\(|y\rangle\)</span> is the <span class="arithmatex">\(m\)</span>-qubit output (ancilla) register</li>
+<li><span class="arithmatex">\(\oplus\)</span> is bitwise addition modulo 2</li>
+</ul>
+<p>The <strong>phase oracle</strong> for <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}\)</span> encodes the function value as a phase:</p>
+<h4 id="phase-oracle">Phase Oracle</h4>
+<div class="arithmatex">\[
+O_f^{(\text{phase})}|x\rangle = (-1)^{f(x)}|x\rangle
+\]</div>
+<p>The phase oracle is obtained from the standard oracle by preparing the ancilla in the <span class="arithmatex">\(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\)</span> state. This construction exploits the <strong>phase kickback</strong> mechanism (derived in detail later in this chapter): when the target qubit is in <span class="arithmatex">\(|-\rangle\)</span>, the XOR operation produces <span class="arithmatex">\(|f(x) \oplus 0\rangle - |f(x) \oplus 1\rangle = (-1)^{f(x)}(|0\rangle - |1\rangle)\)</span>, and the <span class="arithmatex">\((-1)^{f(x)}\)</span> factor "kicks back" to the control register.</p>
+<p>Oracle-based algorithms are analyzed in terms of <strong>query complexity</strong>: the number of oracle calls required to determine some property of <span class="arithmatex">\(f\)</span>. This model separates the algorithmic structure from implementation details and provides provable separation results between classical and quantum computation.</p>
+<h2 id="deutschs-algorithm">Deutsch's Algorithm</h2>
+<p><strong>Deutsch's algorithm</strong> (1985) is the simplest demonstration of a quantum computational advantage. Given a function <span class="arithmatex">\(f:\{0,1\} \to \{0,1\}\)</span>, determine whether <span class="arithmatex">\(f\)</span> is <strong>constant</strong> (<span class="arithmatex">\(f(0) = f(1)\)</span>) or <strong>balanced</strong> (<span class="arithmatex">\(f(0) \neq f(1)\)</span>). Classically, this requires two queries (evaluate both <span class="arithmatex">\(f(0)\)</span> and <span class="arithmatex">\(f(1)\)</span>). Deutsch's algorithm requires only one.</p>
+<p><strong>Circuit.</strong> Prepare two qubits in <span class="arithmatex">\(|0\rangle|1\rangle\)</span>, apply <span class="arithmatex">\(H \otimes H\)</span>, apply <span class="arithmatex">\(U_f\)</span>, apply <span class="arithmatex">\(H\)</span> to the first qubit, and measure the first qubit.</p>
+<p><strong>Derivation.</strong> The initial state is <span class="arithmatex">\(|\psi_0\rangle = |0\rangle|1\rangle\)</span>. After <span class="arithmatex">\(H \otimes H\)</span>:</p>
+<h4 id="deutschs-algorithm-after-hadamard">Deutsch's Algorithm: After Hadamard</h4>
+<div class="arithmatex">\[
+|\psi_1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) \otimes \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |+\rangle|-\rangle
+\]</div>
+<p>Applying the oracle <span class="arithmatex">\(U_f\)</span> with the second qubit in <span class="arithmatex">\(|-\rangle\)</span> produces the phase kickback:</p>
+<div class="arithmatex">\[
+|\psi_2\rangle = \frac{1}{\sqrt{2}}\big((-1)^{f(0)}|0\rangle + (-1)^{f(1)}|1\rangle\big)|-\rangle
+\]</div>
+<p>Factoring out <span class="arithmatex">\((-1)^{f(0)}\)</span>:</p>
+<div class="arithmatex">\[
+|\psi_2\rangle = (-1)^{f(0)}\frac{1}{\sqrt{2}}\big(|0\rangle + (-1)^{f(0)\oplus f(1)}|1\rangle\big)|-\rangle
+\]</div>
+<p>Applying <span class="arithmatex">\(H\)</span> to the first qubit and using <span class="arithmatex">\(H|+\rangle = |0\rangle\)</span>, <span class="arithmatex">\(H|-\rangle = |1\rangle\)</span>:</p>
+<h4 id="deutschs-algorithm-final-state">Deutsch's Algorithm: Final State</h4>
+<div class="arithmatex">\[
+|\psi_3\rangle = (-1)^{f(0)}|f(0) \oplus f(1)\rangle|-\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li>Measuring the first qubit yields <span class="arithmatex">\(|0\rangle\)</span> if <span class="arithmatex">\(f(0) \oplus f(1) = 0\)</span> (constant)</li>
+<li>Measuring the first qubit yields <span class="arithmatex">\(|1\rangle\)</span> if <span class="arithmatex">\(f(0) \oplus f(1) = 1\)</span> (balanced)</li>
+<li>The global phase <span class="arithmatex">\((-1)^{f(0)}\)</span> is unobservable</li>
+</ul>
+<p>The algorithm determines a global property of <span class="arithmatex">\(f\)</span> using a single query, versus the two queries required classically. While the advantage here is modest (one query versus two), it establishes the paradigm that quantum interference can extract global function properties more efficiently than classical computation.</p>
+<h2 id="deutsch-jozsa-algorithm">Deutsch-Jozsa Algorithm</h2>
+<p>The <strong>Deutsch-Jozsa algorithm</strong> (1992) generalizes Deutsch's algorithm to <span class="arithmatex">\(n\)</span>-bit inputs. Given <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}\)</span> promised to be either constant (same output for all inputs) or balanced (output 0 for exactly half the inputs and 1 for the other half), determine which case holds. Classically, in the worst case, <span class="arithmatex">\(2^{n-1} + 1\)</span> queries are needed. The quantum algorithm requires exactly one query.</p>
+<p><strong>Derivation.</strong> The initial state is <span class="arithmatex">\(|0\rangle^{\otimes n}|1\rangle\)</span>. After applying <span class="arithmatex">\(H^{\otimes (n+1)}\)</span>:</p>
+<div class="arithmatex">\[
+|\psi_1\rangle = \frac{1}{\sqrt{2^n}}\sum_{x \in \{0,1\}^n}|x\rangle \otimes |-\rangle
+\]</div>
+<p>Applying the oracle with the phase kickback technique:</p>
+<div class="arithmatex">\[
+|\psi_2\rangle = \frac{1}{\sqrt{2^n}}\sum_{x}(-1)^{f(x)}|x\rangle \otimes |-\rangle
+\]</div>
+<p>Applying <span class="arithmatex">\(H^{\otimes n}\)</span> to the first register and using the identity <span class="arithmatex">\(H^{\otimes n}|x\rangle = \frac{1}{\sqrt{2^n}}\sum_{z}(-1)^{x \cdot z}|z\rangle\)</span>:</p>
+<h4 id="deutsch-jozsa-final-state-amplitude">Deutsch-Jozsa: Final State Amplitude</h4>
+<div class="arithmatex">\[
+|\psi_3\rangle = \sum_{z \in \{0,1\}^n}\left(\frac{1}{2^n}\sum_{x}(-1)^{f(x) + x \cdot z}\right)|z\rangle \otimes |-\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x \cdot z = \sum_i x_i z_i \pmod{2}\)</span> is the bitwise inner product</li>
+<li>The amplitude of <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> is <span class="arithmatex">\(\frac{1}{2^n}\sum_x (-1)^{f(x)}\)</span></li>
+</ul>
+<p>The probability of measuring <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> is:</p>
+<h4 id="deutsch-jozsa-measurement-probability">Deutsch-Jozsa: Measurement Probability</h4>
+<div class="arithmatex">\[
+P(0^n) = \left|\frac{1}{2^n}\sum_{x=0}^{2^n-1}(-1)^{f(x)}\right|^2
+\]</div>
+<p>where:</p>
+<ul>
+<li>If <span class="arithmatex">\(f\)</span> is constant: all terms have the same sign, so <span class="arithmatex">\(P(0^n) = 1\)</span></li>
+<li>If <span class="arithmatex">\(f\)</span> is balanced: exactly half the terms are <span class="arithmatex">\(+1\)</span> and half are <span class="arithmatex">\(-1\)</span>, so <span class="arithmatex">\(P(0^n) = 0\)</span></li>
+</ul>
+<p>Therefore, measuring <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> with certainty indicates a constant function, and any other outcome indicates a balanced function. The algorithm achieves an exponential separation in query complexity: 1 quantum query versus <span class="arithmatex">\(\Omega(2^n)\)</span> classical queries (deterministic).</p>
+<h4 id="diagram-deutsch-jozsa-algorithm-circuit">Diagram: Deutsch-Jozsa Algorithm Circuit</h4>
+<iframe src="../../sims/deutsch-jozsa-circuit/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Deutsch-Jozsa Algorithm Circuit Visualization</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: execute, demonstrate</p>
+<p>Learning Objective: Students can trace the quantum state through each stage of the Deutsch-Jozsa algorithm for small <span class="arithmatex">\(n\)</span>, observing how constant and balanced oracles produce different interference patterns leading to deterministic outcomes.</p>
+<p>Instructional Rationale: A step-by-step circuit animation is appropriate for an Apply-level objective because students must execute the algorithm mentally at each stage, connecting the abstract derivation to concrete state evolution. Toggling between constant and balanced oracles builds understanding of how the oracle type determines the measurement outcome.</p>
+<p>Visual elements:
+- Quantum circuit diagram showing <span class="arithmatex">\(n+1\)</span> qubit wires with <span class="arithmatex">\(H\)</span>, oracle, and <span class="arithmatex">\(H\)</span> gates
+- State vector display at each stage (<span class="arithmatex">\(|\psi_0\rangle\)</span> through <span class="arithmatex">\(|\psi_3\rangle\)</span>)
+- Amplitude bar chart showing all <span class="arithmatex">\(2^n\)</span> amplitudes evolving through the circuit
+- Highlighted measurement outcome</p>
+<p>Interactive controls:
+- Dropdown: Number of input qubits <span class="arithmatex">\(n\)</span> (1, 2, 3, 4)
+- Radio buttons: Oracle type (constant-0, constant-1, balanced-example-1, balanced-example-2)
+- Button: "Step forward" (advance one gate layer)
+- Button: "Run all" (animate through entire circuit)
+- Button: "Reset"</p>
+<p>Behavior:
+- State vector amplitudes update at each step with animation
+- For constant oracles, the final state concentrates entirely on <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span>
+- For balanced oracles, the final <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> amplitude is exactly zero
+- Amplitude bars show constructive/destructive interference patterns</p>
+<p>Canvas layout:
+- Top (35%): Quantum circuit diagram with current gate highlighted
+- Bottom (65%): Amplitude bar chart and state vector display</p>
+<p>Implementation: p5.js with responsive design. Amplitude bars animate smoothly between steps.</p>
+</details>
+<h2 id="bernstein-vazirani-algorithm">Bernstein-Vazirani Algorithm</h2>
+<p>The <strong>Bernstein-Vazirani algorithm</strong> (1993) determines a hidden bit string <span class="arithmatex">\(s \in \{0,1\}^n\)</span> encoded in the function <span class="arithmatex">\(f_s(x) = s \cdot x \pmod{2}\)</span>. Classically, determining <span class="arithmatex">\(s\)</span> requires <span class="arithmatex">\(n\)</span> queries (one per bit of <span class="arithmatex">\(s\)</span>, using the standard basis vectors <span class="arithmatex">\(e_1, \ldots, e_n\)</span>). The quantum algorithm requires a single query.</p>
+<p><strong>Derivation.</strong> The algorithm uses the identical circuit to Deutsch-Jozsa. The amplitude of <span class="arithmatex">\(|z\rangle\)</span> in the final state is:</p>
+<div class="arithmatex">\[
+\alpha_z = \frac{1}{2^n}\sum_{x}(-1)^{s \cdot x + x \cdot z} = \frac{1}{2^n}\sum_{x}(-1)^{x \cdot (s \oplus z)}
+\]</div>
+<p>Using the identity <span class="arithmatex">\(\sum_{x \in \{0,1\}^n}(-1)^{x \cdot y} = 2^n \delta_{y, 0^n}\)</span> (which follows from the orthogonality of characters of <span class="arithmatex">\(\mathbb{Z}_2^n\)</span>):</p>
+<h4 id="bernstein-vazirani-amplitude-collapse">Bernstein-Vazirani: Amplitude Collapse</h4>
+<div class="arithmatex">\[
+\alpha_z = \frac{1}{2^n} \cdot 2^n \cdot \delta_{s \oplus z, 0^n} = \delta_{z, s}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\delta_{z,s}\)</span> is the Kronecker delta</li>
+<li>The only nonzero amplitude occurs at <span class="arithmatex">\(|z\rangle = |s\rangle\)</span></li>
+</ul>
+<p>Therefore, measurement yields <span class="arithmatex">\(s\)</span> with certainty in a single query, achieving an <span class="arithmatex">\(n\)</span>-fold speedup over classical computation. The Bernstein-Vazirani algorithm exemplifies how the Hadamard transform implements a Fourier transform over <span class="arithmatex">\(\mathbb{Z}_2^n\)</span>, converting a function defined by inner products into a delta function in the Fourier-conjugate basis.</p>
+<h2 id="simons-algorithm">Simon's Algorithm</h2>
+<p><strong>Simon's algorithm</strong> (1994) solves a problem with provable exponential quantum speedup, predating and inspiring Shor's algorithm. Given <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}^n\)</span> with the promise that there exists <span class="arithmatex">\(s \in \{0,1\}^n\)</span> such that <span class="arithmatex">\(f(x) = f(y)\)</span> if and only if <span class="arithmatex">\(x = y\)</span> or <span class="arithmatex">\(x = y \oplus s\)</span>, determine <span class="arithmatex">\(s\)</span>. The function is two-to-one if <span class="arithmatex">\(s \neq 0^n\)</span> and one-to-one if <span class="arithmatex">\(s = 0^n\)</span>. Classically, finding <span class="arithmatex">\(s\)</span> requires <span class="arithmatex">\(\Omega(2^{n/2})\)</span> queries (by a birthday-paradox argument). Simon's algorithm requires <span class="arithmatex">\(O(n)\)</span> queries.</p>
+<p><strong>Derivation.</strong> Starting from <span class="arithmatex">\(|0\rangle^{\otimes n}|0\rangle^{\otimes n}\)</span>, apply <span class="arithmatex">\(H^{\otimes n}\)</span> to the first register and then the oracle:</p>
+<div class="arithmatex">\[
+\frac{1}{\sqrt{2^n}}\sum_{x}|x\rangle|f(x)\rangle
+\]</div>
+<p>Measuring the second register yields some value <span class="arithmatex">\(f(x_0)\)</span>, collapsing the first register to an equal superposition of the two preimages:</p>
+<div class="arithmatex">\[
+\frac{1}{\sqrt{2}}(|x_0\rangle + |x_0 \oplus s\rangle)
+\]</div>
+<p>Applying <span class="arithmatex">\(H^{\otimes n}\)</span> to this state:</p>
+<h4 id="simons-algorithm-post-hadamard-state">Simon's Algorithm: Post-Hadamard State</h4>
+<div class="arithmatex">\[
+H^{\otimes n}\frac{1}{\sqrt{2}}(|x_0\rangle + |x_0 \oplus s\rangle) = \frac{1}{\sqrt{2^{n+1}}}\sum_{z}\left((-1)^{x_0 \cdot z} + (-1)^{(x_0 \oplus s) \cdot z}\right)|z\rangle
+\]</div>
+<div class="arithmatex">\[
+= \frac{1}{\sqrt{2^{n+1}}}\sum_{z}(-1)^{x_0 \cdot z}\left(1 + (-1)^{s \cdot z}\right)|z\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li>The factor <span class="arithmatex">\((1 + (-1)^{s \cdot z})\)</span> equals 2 when <span class="arithmatex">\(s \cdot z = 0\)</span> and 0 when <span class="arithmatex">\(s \cdot z = 1\)</span></li>
+<li>Measurement yields a uniformly random <span class="arithmatex">\(z\)</span> satisfying <span class="arithmatex">\(s \cdot z = 0 \pmod{2}\)</span></li>
+</ul>
+<p>Each run of the algorithm produces one linear equation <span class="arithmatex">\(s \cdot z_i = 0\)</span> over <span class="arithmatex">\(\mathbb{F}_2\)</span>. After <span class="arithmatex">\(O(n)\)</span> runs, we accumulate <span class="arithmatex">\(n-1\)</span> linearly independent equations, from which <span class="arithmatex">\(s\)</span> can be determined by Gaussian elimination. The total query complexity is <span class="arithmatex">\(O(n)\)</span>, an exponential improvement over the classical <span class="arithmatex">\(\Omega(2^{n/2})\)</span>.</p>
+<p>Simon's algorithm established the first provable exponential separation between quantum and classical query complexity for a total (non-partial) function, and the hidden subgroup structure it exploits is the prototype for Shor's period-finding algorithm over cyclic groups.</p>
+<h2 id="quantum-fourier-transform">Quantum Fourier Transform</h2>
+<p>The <strong>quantum Fourier transform</strong> (QFT) is the quantum analogue of the discrete Fourier transform (DFT) and is the central subroutine in Shor's algorithm, phase estimation, and many other quantum algorithms. Acting on the computational basis of an <span class="arithmatex">\(n\)</span>-qubit register, the QFT maps:</p>
+<h4 id="qft-definition">QFT Definition</h4>
+<div class="arithmatex">\[
+\text{QFT}|j\rangle = \frac{1}{\sqrt{2^n}}\sum_{k=0}^{2^n - 1} e^{2\pi i jk/2^n}|k\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(j, k \in \{0, 1, \ldots, 2^n - 1\}\)</span> are integers represented in binary</li>
+<li><span class="arithmatex">\(\omega = e^{2\pi i/2^n}\)</span> is the primitive <span class="arithmatex">\(2^n\)</span>-th root of unity</li>
+<li>The QFT is a unitary transformation (the columns of the DFT matrix, normalized by <span class="arithmatex">\(1/\sqrt{2^n}\)</span>, are orthonormal)</li>
+</ul>
+<p><strong>Product representation.</strong> The QFT output admits a tensor product decomposition that enables an efficient circuit. Writing <span class="arithmatex">\(j\)</span> in binary as <span class="arithmatex">\(j = j_1 2^{n-1} + j_2 2^{n-2} + \cdots + j_n 2^0\)</span> and using the binary fraction notation <span class="arithmatex">\(0.j_l j_{l+1}\cdots j_m = j_l/2 + j_{l+1}/4 + \cdots + j_m/2^{m-l+1}\)</span>:</p>
+<h4 id="qft-product-form">QFT Product Form</h4>
+<div class="arithmatex">\[
+\text{QFT}|j_1 j_2 \cdots j_n\rangle = \frac{1}{\sqrt{2^n}}\bigotimes_{l=1}^{n}\left(|0\rangle + e^{2\pi i \cdot 0.j_{n-l+1}\cdots j_n}|1\rangle\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li>Each qubit's phase depends only on the qubits to its right in the binary expansion</li>
+<li>The <span class="arithmatex">\(l\)</span>-th tensor factor involves a phase determined by the last <span class="arithmatex">\(l\)</span> bits of <span class="arithmatex">\(j\)</span></li>
+</ul>
+<p><strong>Circuit construction.</strong> The product form reveals that the QFT can be implemented using only Hadamard gates and controlled phase rotations:</p>
+<div class="arithmatex">\[
+R_k = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{2\pi i/2^k} \end{pmatrix}
+\]</div>
+<p>The circuit applies, for each qubit <span class="arithmatex">\(l\)</span> from 1 to <span class="arithmatex">\(n\)</span>: a Hadamard gate on qubit <span class="arithmatex">\(l\)</span>, followed by controlled-<span class="arithmatex">\(R_k\)</span> gates from qubits <span class="arithmatex">\(l+1, l+2, \ldots, n\)</span> (with <span class="arithmatex">\(k = 2, 3, \ldots, n-l+1\)</span>), and a final reversal of qubit ordering via SWAP gates.</p>
+<h4 id="qft-gate-count">QFT Gate Count</h4>
+<div class="arithmatex">\[
+\text{Gates} = n \text{ Hadamards} + \frac{n(n-1)}{2} \text{ controlled rotations} + \lfloor n/2 \rfloor \text{ SWAPs} = O(n^2)
+\]</div>
+<p>where:</p>
+<ul>
+<li>The classical FFT requires <span class="arithmatex">\(O(n \cdot 2^n)\)</span> operations</li>
+<li>The QFT circuit uses only <span class="arithmatex">\(O(n^2)\)</span> gates, an exponential reduction</li>
+<li>However, the QFT output cannot be directly read out (measurement collapses the superposition), so the speedup is useful only when the QFT output feeds into further quantum processing</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Classical DFT</th>
+<th>Classical FFT</th>
+<th>Quantum Fourier Transform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operations</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td><span class="arithmatex">\(O(N \log N)\)</span></td>
+<td><span class="arithmatex">\(O((\log N)^2)\)</span></td>
+</tr>
+<tr>
+<td>Input</td>
+<td><span class="arithmatex">\(N\)</span> complex numbers</td>
+<td><span class="arithmatex">\(N\)</span> complex numbers</td>
+<td><span class="arithmatex">\(\log_2 N\)</span> qubits in superposition</td>
+</tr>
+<tr>
+<td>Output</td>
+<td><span class="arithmatex">\(N\)</span> complex numbers</td>
+<td><span class="arithmatex">\(N\)</span> complex numbers</td>
+<td><span class="arithmatex">\(\log_2 N\)</span> qubits in superposition</td>
+</tr>
+<tr>
+<td>Readout</td>
+<td>Direct</td>
+<td>Direct</td>
+<td>Measurement (probabilistic)</td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>Signal processing</td>
+<td>Signal processing</td>
+<td>Subroutine in quantum algorithms</td>
+</tr>
+</tbody>
+</table>
+<h2 id="phase-kickback">Phase Kickback</h2>
+<p><strong>Phase kickback</strong> is a fundamental mechanism in quantum computing where a controlled operation transfers phase information from the target qubit to the control qubit. This seemingly paradoxical phenomenon arises from the entangling nature of controlled gates acting on eigenstates.</p>
+<p>Consider a controlled-<span class="arithmatex">\(U\)</span> gate where the target qubit is in an eigenstate <span class="arithmatex">\(|u\rangle\)</span> of <span class="arithmatex">\(U\)</span> with eigenvalue <span class="arithmatex">\(e^{2\pi i\phi}\)</span>:</p>
+<h4 id="phase-kickback-derivation">Phase Kickback Derivation</h4>
+<div class="arithmatex">\[
+\text{C-}U\big((\alpha|0\rangle + \beta|1\rangle) \otimes |u\rangle\big) = \alpha|0\rangle|u\rangle + \beta \cdot e^{2\pi i\phi}|1\rangle|u\rangle
+\]</div>
+<div class="arithmatex">\[
+= \big(\alpha|0\rangle + \beta e^{2\pi i\phi}|1\rangle\big) \otimes |u\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U|u\rangle = e^{2\pi i\phi}|u\rangle\)</span> is the eigenvalue equation</li>
+<li>The target register remains unchanged in <span class="arithmatex">\(|u\rangle\)</span></li>
+<li>The eigenvalue phase <span class="arithmatex">\(e^{2\pi i\phi}\)</span> has "kicked back" to the control qubit</li>
+<li>The control qubit acquires a relative phase of <span class="arithmatex">\(e^{2\pi i\phi}\)</span> on its <span class="arithmatex">\(|1\rangle\)</span> component</li>
+</ul>
+<p>Phase kickback is the engine that powers the phase oracle construction, the quantum phase estimation algorithm, and, by extension, the entire family of algorithms based on period finding. The standard oracle with the ancilla in <span class="arithmatex">\(|-\rangle\)</span> is a special case: <span class="arithmatex">\(X|-\rangle = -|-\rangle\)</span>, so <span class="arithmatex">\((-1)^{f(x)} = e^{i\pi f(x)}\)</span> kicks back to the input register.</p>
+<h2 id="quantum-phase-estimation">Quantum Phase Estimation</h2>
+<p><strong>Quantum phase estimation</strong> (QPE) is the algorithm that extracts the eigenvalue phase of a unitary operator to arbitrary precision. Given a unitary <span class="arithmatex">\(U\)</span> and an eigenstate <span class="arithmatex">\(|u\rangle\)</span> with <span class="arithmatex">\(U|u\rangle = e^{2\pi i\phi}|u\rangle\)</span>, QPE estimates <span class="arithmatex">\(\phi\)</span> using <span class="arithmatex">\(t\)</span> ancilla qubits to <span class="arithmatex">\(t\)</span> bits of precision.</p>
+<p><strong>Circuit.</strong> The algorithm uses two registers: a <span class="arithmatex">\(t\)</span>-qubit "counting" register initialized to <span class="arithmatex">\(|0\rangle^{\otimes t}\)</span> and an eigenstate register containing <span class="arithmatex">\(|u\rangle\)</span>.</p>
+<p><strong>Step 1: Create superposition.</strong> Apply <span class="arithmatex">\(H^{\otimes t}\)</span> to the counting register.</p>
+<p><strong>Step 2: Controlled unitary applications.</strong> Apply controlled-<span class="arithmatex">\(U^{2^j}\)</span> from the <span class="arithmatex">\(j\)</span>-th counting qubit (for <span class="arithmatex">\(j = 0, 1, \ldots, t-1\)</span>) to the eigenstate register. By phase kickback:</p>
+<h4 id="qpe-after-controlled-unitaries">QPE: After Controlled Unitaries</h4>
+<div class="arithmatex">\[
+|\psi\rangle = \frac{1}{\sqrt{2^t}}\sum_{k=0}^{2^t - 1} e^{2\pi i\phi k}|k\rangle \otimes |u\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li>The counting register encodes the phase information in the amplitudes</li>
+<li>The eigenstate register remains in <span class="arithmatex">\(|u\rangle\)</span> throughout (by repeated phase kickback)</li>
+<li><span class="arithmatex">\(k = k_{t-1}2^{t-1} + \cdots + k_0 2^0\)</span> is the binary representation</li>
+</ul>
+<p><strong>Step 3: Inverse QFT.</strong> Applying <span class="arithmatex">\(\text{QFT}^{-1}\)</span> to the counting register:</p>
+<h4 id="qpe-after-inverse-qft">QPE: After Inverse QFT</h4>
+<div class="arithmatex">\[
+\text{QFT}^{-1}\left(\frac{1}{\sqrt{2^t}}\sum_{k=0}^{2^t-1}e^{2\pi i\phi k}|k\rangle\right) = |\tilde{\phi}\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\tilde{\phi}\)</span> is the best <span class="arithmatex">\(t\)</span>-bit approximation to <span class="arithmatex">\(2^t\phi\)</span></li>
+<li>If <span class="arithmatex">\(2^t\phi\)</span> is an exact integer, the estimation is exact: <span class="arithmatex">\(\tilde{\phi} = 2^t\phi\)</span></li>
+<li>If <span class="arithmatex">\(2^t\phi\)</span> is not an integer, the probability of the nearest <span class="arithmatex">\(t\)</span>-bit approximation satisfies <span class="arithmatex">\(P \geq 4/\pi^2 \approx 0.405\)</span></li>
+</ul>
+<p><strong>Precision bound.</strong> To achieve <span class="arithmatex">\(|\hat{\phi} - \phi| \leq 2^{-t}\)</span> with probability at least <span class="arithmatex">\(1 - \epsilon\)</span>, one needs:</p>
+<h4 id="qpe-precision-requirement">QPE Precision Requirement</h4>
+<div class="arithmatex">\[
+t = n + \left\lceil\log_2\left(\frac{1}{2\epsilon}\right)\right\rceil
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> is the number of desired bits of precision in <span class="arithmatex">\(\phi\)</span></li>
+<li><span class="arithmatex">\(\epsilon\)</span> is the allowed failure probability</li>
+<li>The additional <span class="arithmatex">\(\lceil\log_2(1/(2\epsilon))\rceil\)</span> qubits account for the spectral leakage when <span class="arithmatex">\(2^t\phi\)</span> is non-integer</li>
+</ul>
+<h4 id="diagram-quantum-phase-estimation-circuit">Diagram: Quantum Phase Estimation Circuit</h4>
+<iframe src="../../sims/phase-estimation-circuit/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum Phase Estimation Step-by-Step</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: trace, examine</p>
+<p>Learning Objective: Students can trace the quantum state through each stage of the phase estimation algorithm, examining how controlled unitaries encode phase information and how the inverse QFT concentrates amplitude on the binary representation of the phase.</p>
+<p>Instructional Rationale: An animated step-through of the QPE circuit is appropriate for an Analyze-level objective because students must decompose the algorithm into its constituent operations (Hadamard layer, controlled unitaries, inverse QFT) and examine the state vector at each intermediate point. Varying the eigenvalue phase <span class="arithmatex">\(\phi\)</span> shows how the algorithm adapts.</p>
+<p>Visual elements:
+- Circuit diagram showing <span class="arithmatex">\(t\)</span> counting qubits and eigenstate register
+- State vector amplitude/phase display at each stage
+- Probability histogram of measurement outcomes on the counting register
+- Numerical display of estimated phase vs true phase</p>
+<p>Interactive controls:
+- Slider: True phase <span class="arithmatex">\(\phi\)</span> from 0 to 1 (default: 0.25)
+- Dropdown: Number of counting qubits <span class="arithmatex">\(t\)</span> (2, 3, 4, 5)
+- Button: "Step forward" (advance one gate layer)
+- Button: "Run all" (animate through entire circuit)
+- Button: "Reset"</p>
+<p>Behavior:
+- State vector amplitudes update at each step with smooth animation
+- After inverse QFT, probability histogram shows peak at nearest integer to <span class="arithmatex">\(2^t \phi\)</span>
+- For exact phases (e.g., <span class="arithmatex">\(\phi = 0.25\)</span> with <span class="arithmatex">\(t = 2\)</span>), single peak with probability 1
+- For non-exact phases, spectral leakage visible as secondary peaks
+- Estimated phase accuracy displayed with error metric</p>
+<p>Canvas layout:
+- Top (30%): Circuit diagram with highlighted current stage
+- Middle (40%): Amplitude and phase display for counting register
+- Bottom (30%): Probability histogram and phase estimate</p>
+<p>Implementation: p5.js with smooth amplitude bar animations. Responsive design.</p>
+</details>
+<h2 id="order-finding">Order Finding</h2>
+<p><strong>Order finding</strong> is the computational problem at the heart of Shor's factoring algorithm. Given integers <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(N\)</span> with <span class="arithmatex">\(\gcd(a, N) = 1\)</span>, find the smallest positive integer <span class="arithmatex">\(r\)</span> such that:</p>
+<h4 id="order-definition">Order Definition</h4>
+<div class="arithmatex">\[
+a^r \equiv 1 \pmod{N}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(r\)</span> is called the <strong>order</strong> (or period) of <span class="arithmatex">\(a\)</span> modulo <span class="arithmatex">\(N\)</span></li>
+<li><span class="arithmatex">\(r\)</span> divides <span class="arithmatex">\(\phi(N)\)</span> (Euler's totient function) by Lagrange's theorem</li>
+<li>Classically, the best known algorithms for order finding are sub-exponential but super-polynomial</li>
+</ul>
+<p>The quantum approach to order finding reduces it to phase estimation. Define the unitary operator:</p>
+<h4 id="modular-multiplication-operator">Modular Multiplication Operator</h4>
+<div class="arithmatex">\[
+U_a|x\rangle = |ax \bmod N\rangle \quad \text{for } 0 \leq x &lt; N
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U_a\)</span> is unitary because multiplication by <span class="arithmatex">\(a\)</span> modulo <span class="arithmatex">\(N\)</span> is a permutation (when <span class="arithmatex">\(\gcd(a, N) = 1\)</span>)</li>
+<li>The eigenstates of <span class="arithmatex">\(U_a\)</span> are:</li>
+</ul>
+<div class="arithmatex">\[
+|u_s\rangle = \frac{1}{\sqrt{r}}\sum_{k=0}^{r-1}e^{-2\pi i sk/r}|a^k \bmod N\rangle, \quad s = 0, 1, \ldots, r-1
+\]</div>
+<p>with eigenvalues <span class="arithmatex">\(U_a|u_s\rangle = e^{2\pi i s/r}|u_s\rangle\)</span>. Applying QPE to <span class="arithmatex">\(U_a\)</span> yields an estimate of <span class="arithmatex">\(s/r\)</span> for a random <span class="arithmatex">\(s\)</span>. Crucially, although the individual eigenstates <span class="arithmatex">\(|u_s\rangle\)</span> depend on <span class="arithmatex">\(r\)</span> (which is unknown), their equal superposition is simply:</p>
+<div class="arithmatex">\[
+\frac{1}{\sqrt{r}}\sum_{s=0}^{r-1}|u_s\rangle = |1\rangle
+\]</div>
+<p>which is easy to prepare. Phase estimation on <span class="arithmatex">\(U_a\)</span> with initial state <span class="arithmatex">\(|1\rangle\)</span> thus yields a random phase <span class="arithmatex">\(s/r\)</span> from which <span class="arithmatex">\(r\)</span> can be extracted using continued fractions.</p>
+<h2 id="shors-algorithm">Shor's Algorithm</h2>
+<p><strong>Shor's algorithm</strong> (1994) factors an integer <span class="arithmatex">\(N\)</span> in polynomial time on a quantum computer, providing an exponential speedup over the best known classical factoring algorithms. The algorithm reduces factoring to order finding via a classical reduction, then solves order finding using quantum phase estimation.</p>
+<p><strong>Classical reduction (factoring to order finding):</strong></p>
+<ol>
+<li>Choose random <span class="arithmatex">\(a\)</span> with <span class="arithmatex">\(1 &lt; a &lt; N\)</span></li>
+<li>Compute <span class="arithmatex">\(\gcd(a, N)\)</span>. If <span class="arithmatex">\(\gcd(a, N) &gt; 1\)</span>, we have found a nontrivial factor</li>
+<li>Use the quantum order-finding subroutine to find <span class="arithmatex">\(r = \text{ord}(a, N)\)</span></li>
+<li>If <span class="arithmatex">\(r\)</span> is odd, return to step 1</li>
+<li>Compute <span class="arithmatex">\(x = a^{r/2} \bmod N\)</span>. If <span class="arithmatex">\(x \equiv -1 \pmod{N}\)</span>, return to step 1</li>
+<li>Output <span class="arithmatex">\(\gcd(a^{r/2} \pm 1, N)\)</span> as nontrivial factors</li>
+</ol>
+<p><strong>Success probability.</strong> It can be shown that for a randomly chosen <span class="arithmatex">\(a\)</span>, the probability that <span class="arithmatex">\(r\)</span> is even and <span class="arithmatex">\(a^{r/2} \not\equiv -1 \pmod{N}\)</span> is at least <span class="arithmatex">\(1 - 1/2^{k-1}\)</span>, where <span class="arithmatex">\(k\)</span> is the number of distinct odd prime factors of <span class="arithmatex">\(N\)</span>. For <span class="arithmatex">\(N\)</span> with at least two distinct prime factors, this probability is at least <span class="arithmatex">\(1/2\)</span>, so <span class="arithmatex">\(O(1)\)</span> repetitions suffice.</p>
+<p><strong>Complexity analysis:</strong></p>
+<ul>
+<li>Classical preprocessing: <span class="arithmatex">\(O(\text{poly}(\log N))\)</span> arithmetic operations</li>
+<li>Quantum phase estimation: <span class="arithmatex">\(O(n^2)\)</span> gates for the QFT (where <span class="arithmatex">\(n = \lceil\log_2 N\rceil\)</span>) plus <span class="arithmatex">\(O(n^3)\)</span> gates for modular exponentiation</li>
+<li>Total gate count: <span class="arithmatex">\(O(n^3) = O((\log N)^3)\)</span></li>
+</ul>
+<p>This is exponentially faster than the best classical algorithm, the general number field sieve, which runs in <span class="arithmatex">\(O\big(\exp(c(\log N)^{1/3}(\log\log N)^{2/3})\big)\)</span> for a constant <span class="arithmatex">\(c\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Operation</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Random <span class="arithmatex">\(a\)</span> selection</td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>GCD computation (Euclidean algorithm)</td>
+<td><span class="arithmatex">\(O((\log N)^2)\)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Quantum order finding (QPE + modular exp)</td>
+<td><span class="arithmatex">\(O((\log N)^3)\)</span></td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>Classical post-processing</td>
+<td><span class="arithmatex">\(O((\log N)^2)\)</span></td>
+</tr>
+<tr>
+<td>Total</td>
+<td>End-to-end factoring</td>
+<td><span class="arithmatex">\(O((\log N)^3)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="modular-exponentiation">Modular Exponentiation</h2>
+<p><strong>Modular exponentiation</strong> is the most computationally expensive component of Shor's algorithm. The quantum circuit must implement the controlled operation:</p>
+<h4 id="controlled-modular-exponentiation">Controlled Modular Exponentiation</h4>
+<div class="arithmatex">\[
+|j\rangle|y\rangle \mapsto |j\rangle|y \cdot a^j \bmod N\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(j\)</span> ranges over the counting register values <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(2^t - 1\)</span></li>
+<li>The operation is decomposed as a sequence of controlled modular multiplications</li>
+</ul>
+<p>Using repeated squaring, the operation <span class="arithmatex">\(a^j \bmod N\)</span> for a <span class="arithmatex">\(t\)</span>-bit <span class="arithmatex">\(j = j_{t-1}2^{t-1} + \cdots + j_0\)</span> decomposes as:</p>
+<div class="arithmatex">\[
+a^j = a^{j_{t-1}2^{t-1}} \cdot a^{j_{t-2}2^{t-2}} \cdots a^{j_0}  \pmod{N}
+\]</div>
+<p>Each factor <span class="arithmatex">\(a^{2^k} \bmod N\)</span> is precomputed classically by repeated squaring (<span class="arithmatex">\(k\)</span> squarings). The quantum circuit implements controlled multiplication by <span class="arithmatex">\(a^{2^k} \bmod N\)</span>, conditioned on the <span class="arithmatex">\(k\)</span>-th counting qubit. Each controlled modular multiplication requires <span class="arithmatex">\(O(n^2)\)</span> gates (using quantum analogues of classical multiplication circuits), and there are <span class="arithmatex">\(t = O(n)\)</span> such multiplications, giving the total <span class="arithmatex">\(O(n^3)\)</span> gate count.</p>
+<p>The reversibility of modular multiplication (required for unitarity) is guaranteed because <span class="arithmatex">\(\gcd(a, N) = 1\)</span> implies <span class="arithmatex">\(a\)</span> has a multiplicative inverse modulo <span class="arithmatex">\(N\)</span>, so <span class="arithmatex">\(|y\rangle \mapsto |ay \bmod N\rangle\)</span> is a permutation and hence invertible.</p>
+<h2 id="continued-fractions">Continued Fractions</h2>
+<p>The <strong>continued fractions algorithm</strong> is the classical post-processing step that extracts the order <span class="arithmatex">\(r\)</span> from the QPE measurement outcome. Phase estimation yields a <span class="arithmatex">\(t\)</span>-bit approximation <span class="arithmatex">\(\tilde{\phi}\)</span> to some fraction <span class="arithmatex">\(s/r\)</span> where <span class="arithmatex">\(0 \leq s &lt; r\)</span>. The continued fraction expansion of <span class="arithmatex">\(\tilde{\phi}/2^t\)</span> reveals <span class="arithmatex">\(s/r\)</span> as a convergent.</p>
+<p><strong>Continued fraction expansion.</strong> Any real number <span class="arithmatex">\(\alpha\)</span> can be expressed as:</p>
+<h4 id="continued-fraction-representation">Continued Fraction Representation</h4>
+<div class="arithmatex">\[
+\alpha = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cfrac{1}{a_3 + \cdots}}}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(a_0 = \lfloor\alpha\rfloor\)</span> and the sequence is generated by <span class="arithmatex">\(\alpha_{k+1} = 1/(\alpha_k - a_k)\)</span>, <span class="arithmatex">\(a_{k+1} = \lfloor\alpha_{k+1}\rfloor\)</span></li>
+<li>The convergents <span class="arithmatex">\(p_k/q_k\)</span> are the best rational approximations with denominator <span class="arithmatex">\(\leq q_k\)</span></li>
+</ul>
+<p><strong>Application to Shor's algorithm.</strong> Given the QPE outcome <span class="arithmatex">\(\tilde{\phi}/2^t \approx s/r\)</span>, we compute the continued fraction expansion and test each convergent <span class="arithmatex">\(p_k/q_k\)</span>. If <span class="arithmatex">\(q_k &lt; N\)</span> and <span class="arithmatex">\(a^{q_k} \equiv 1 \pmod{N}\)</span>, then <span class="arithmatex">\(q_k\)</span> is the order <span class="arithmatex">\(r\)</span> (or a divisor thereof).</p>
+<p><strong>Theorem (convergent approximation).</strong> If <span class="arithmatex">\(|\alpha - p/q| &lt; 1/(2q^2)\)</span> with <span class="arithmatex">\(\gcd(p, q) = 1\)</span>, then <span class="arithmatex">\(p/q\)</span> is a convergent of the continued fraction expansion of <span class="arithmatex">\(\alpha\)</span>.</p>
+<p>Since QPE estimates <span class="arithmatex">\(s/r\)</span> to within <span class="arithmatex">\(\pm 1/2^{t+1}\)</span> with <span class="arithmatex">\(t = 2n + 1\)</span> (where <span class="arithmatex">\(n = \lceil\log_2 N\rceil\)</span>), and <span class="arithmatex">\(r &lt; N &lt; 2^n\)</span>, we have:</p>
+<div class="arithmatex">\[
+\left|\frac{\tilde{\phi}}{2^t} - \frac{s}{r}\right| &lt; \frac{1}{2^{t+1}} = \frac{1}{2 \cdot 2^{2n+1}} &lt; \frac{1}{2r^2}
+\]</div>
+<p>guaranteeing that <span class="arithmatex">\(s/r\)</span> appears as a convergent. If <span class="arithmatex">\(\gcd(s, r) = 1\)</span> (which occurs with probability <span class="arithmatex">\(\Omega(1/\log\log r)\)</span> by number-theoretic estimates), the convergent directly yields <span class="arithmatex">\(r\)</span>.</p>
+<h2 id="grovers-algorithm">Grover's Algorithm</h2>
+<p><strong>Grover's algorithm</strong> (1996) provides a quadratic speedup for unstructured search. Given a search space of <span class="arithmatex">\(N = 2^n\)</span> elements and a Boolean function <span class="arithmatex">\(f:\{0,1\}^n \to \{0,1\}\)</span> with exactly <span class="arithmatex">\(M\)</span> marked elements (satisfying <span class="arithmatex">\(f(x) = 1\)</span>), Grover's algorithm finds a marked element using <span class="arithmatex">\(O(\sqrt{N/M})\)</span> oracle queries, compared to <span class="arithmatex">\(O(N/M)\)</span> classically.</p>
+<p><strong>Setup.</strong> Define the uniform superposition <span class="arithmatex">\(|s\rangle = \frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}|x\rangle\)</span> and decompose the Hilbert space into the marked subspace <span class="arithmatex">\(|\alpha\rangle = \frac{1}{\sqrt{M}}\sum_{x:f(x)=1}|x\rangle\)</span> and the unmarked subspace <span class="arithmatex">\(|\beta\rangle = \frac{1}{\sqrt{N-M}}\sum_{x:f(x)=0}|x\rangle\)</span>. The initial state is:</p>
+<h4 id="grover-initial-state-decomposition">Grover: Initial State Decomposition</h4>
+<div class="arithmatex">\[
+|s\rangle = \sqrt{\frac{N-M}{N}}|\beta\rangle + \sqrt{\frac{M}{N}}|\alpha\rangle = \cos\frac{\theta}{2}|\beta\rangle + \sin\frac{\theta}{2}|\alpha\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\sin^2(\theta/2) = M/N\)</span> defines the angle <span class="arithmatex">\(\theta\)</span></li>
+<li>For <span class="arithmatex">\(M \ll N\)</span>: <span class="arithmatex">\(\theta/2 \approx \sqrt{M/N}\)</span></li>
+<li>The entire algorithm operates within the two-dimensional subspace spanned by <span class="arithmatex">\(|\alpha\rangle\)</span> and <span class="arithmatex">\(|\beta\rangle\)</span></li>
+</ul>
+<h2 id="amplitude-amplification">Amplitude Amplification</h2>
+<p><strong>Amplitude amplification</strong> is the geometric framework underlying Grover's algorithm. The Grover iteration <span class="arithmatex">\(G = D_s \cdot O_f\)</span> (where <span class="arithmatex">\(O_f\)</span> is the oracle and <span class="arithmatex">\(D_s\)</span> is the diffusion operator) performs a rotation in the <span class="arithmatex">\(|\alpha\rangle\)</span>-<span class="arithmatex">\(|\beta\rangle\)</span> plane.</p>
+<p>The oracle reflection <span class="arithmatex">\(O_f\)</span> negates the amplitude of marked states:</p>
+<div class="arithmatex">\[
+O_f = I - 2|\alpha\rangle\langle\alpha|
+\]</div>
+<p>This is a reflection about <span class="arithmatex">\(|\beta\rangle\)</span> in the two-dimensional subspace. The diffusion operator (derived below) performs a reflection about <span class="arithmatex">\(|s\rangle\)</span>. The composition of two reflections is a rotation:</p>
+<h4 id="grover-rotation-angle">Grover Rotation Angle</h4>
+<div class="arithmatex">\[
+G|s\rangle \text{ after } k \text{ iterations: } G^k|s\rangle = \cos\frac{(2k+1)\theta}{2}|\beta\rangle + \sin\frac{(2k+1)\theta}{2}|\alpha\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li>Each Grover iteration rotates the state by angle <span class="arithmatex">\(\theta\)</span> toward <span class="arithmatex">\(|\alpha\rangle\)</span></li>
+<li>After <span class="arithmatex">\(k\)</span> iterations, the angle from <span class="arithmatex">\(|\beta\rangle\)</span> is <span class="arithmatex">\((2k+1)\theta/2\)</span></li>
+<li>Maximum probability of measuring a marked state occurs when <span class="arithmatex">\((2k+1)\theta/2 \approx \pi/2\)</span></li>
+</ul>
+<p>The optimal number of iterations is:</p>
+<h4 id="optimal-grover-iterations">Optimal Grover Iterations</h4>
+<div class="arithmatex">\[
+k^* = \left\lfloor\frac{\pi}{2\theta}\right\rfloor \approx \frac{\pi}{4}\sqrt{\frac{N}{M}}
+\]</div>
+<p>where:</p>
+<ul>
+<li>For <span class="arithmatex">\(M = 1\)</span>: <span class="arithmatex">\(k^* \approx \frac{\pi}{4}\sqrt{N}\)</span></li>
+<li>The success probability after <span class="arithmatex">\(k^*\)</span> iterations is <span class="arithmatex">\(\sin^2\left(\frac{(2k^*+1)\theta}{2}\right) \geq 1 - M/N\)</span></li>
+<li><strong>Overshooting</strong> is possible: applying more than <span class="arithmatex">\(k^*\)</span> iterations rotates past the target and reduces success probability</li>
+</ul>
+<h2 id="grover-diffusion-operator">Grover Diffusion Operator</h2>
+<p>The <strong>Grover diffusion operator</strong> (also called the inversion about the mean) is the second reflection in the Grover iteration. It reflects the state about the equal superposition <span class="arithmatex">\(|s\rangle\)</span>:</p>
+<h4 id="diffusion-operator">Diffusion Operator</h4>
+<div class="arithmatex">\[
+D_s = 2|s\rangle\langle s| - I = H^{\otimes n}(2|0\rangle\langle 0| - I)H^{\otimes n}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|s\rangle = H^{\otimes n}|0\rangle^{\otimes n}\)</span> is the uniform superposition</li>
+<li><span class="arithmatex">\(2|0\rangle\langle 0| - I\)</span> flips the sign of all computational basis states except <span class="arithmatex">\(|0\rangle\)</span></li>
+<li>The decomposition shows that <span class="arithmatex">\(D_s\)</span> can be implemented using <span class="arithmatex">\(H^{\otimes n}\)</span>, a multi-controlled <span class="arithmatex">\(Z\)</span> gate (conditional phase flip on <span class="arithmatex">\(|0^n\rangle\)</span>), and <span class="arithmatex">\(H^{\otimes n}\)</span> again</li>
+</ul>
+<p><strong>Action on an arbitrary state.</strong> Let <span class="arithmatex">\(|\psi\rangle = \sum_x \alpha_x |x\rangle\)</span> with mean amplitude <span class="arithmatex">\(\bar{\alpha} = \frac{1}{N}\sum_x \alpha_x\)</span>. Then:</p>
+<h4 id="inversion-about-the-mean">Inversion About the Mean</h4>
+<div class="arithmatex">\[
+D_s|\psi\rangle = \sum_x (2\bar{\alpha} - \alpha_x)|x\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li>Each amplitude <span class="arithmatex">\(\alpha_x\)</span> is reflected about the mean <span class="arithmatex">\(\bar{\alpha}\)</span></li>
+<li>Amplitudes above the mean are decreased; amplitudes below the mean are increased</li>
+<li>After the oracle negates marked-state amplitudes (making them negative), the diffusion operator boosts them above the mean</li>
+</ul>
+<p>This geometric interpretation makes the amplitude amplification process intuitive: the oracle creates an asymmetry between marked and unmarked amplitudes, and the diffusion operator magnifies this asymmetry by reflecting about the mean.</p>
+<h4 id="diagram-grovers-algorithm-amplitude-evolution">Diagram: Grover's Algorithm Amplitude Evolution</h4>
+<iframe src="../../sims/grover-amplitude-evolution/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Grover's Algorithm Amplitude Visualization</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: trace, examine</p>
+<p>Learning Objective: Students can trace how the Grover iteration alternately applies the oracle reflection and the diffusion reflection to rotate the state vector toward the marked state, observing the amplitude bars for marked and unmarked states evolve over iterations.</p>
+<p>Instructional Rationale: A dual-view visualization (amplitude bars and geometric rotation) is appropriate for an Analyze-level objective because students must connect the algebraic amplitude evolution to the geometric rotation picture. Stepping through iterations builds intuition for why the quadratic speedup arises and why overshooting occurs.</p>
+<p>Visual elements:
+- Amplitude bar chart showing all <span class="arithmatex">\(N\)</span> basis state amplitudes (marked states highlighted in red)
+- 2D rotation diagram in the <span class="arithmatex">\(|\alpha\rangle\)</span>-<span class="arithmatex">\(|\beta\rangle\)</span> plane showing the state vector angle
+- Mean amplitude line on the bar chart
+- Iteration counter and success probability display</p>
+<p>Interactive controls:
+- Dropdown: Number of qubits <span class="arithmatex">\(n\)</span> (2, 3, 4, 5)
+- Slider: Number of marked elements <span class="arithmatex">\(M\)</span> (1 to <span class="arithmatex">\(N/2\)</span>)
+- Button: "Oracle step" (apply oracle reflection only)
+- Button: "Diffusion step" (apply diffusion operator only)
+- Button: "Full Grover iteration" (apply both)
+- Button: "Run to optimal" (apply <span class="arithmatex">\(k^*\)</span> iterations)
+- Button: "Reset"</p>
+<p>Behavior:
+- Amplitude bars animate smoothly during each step
+- After oracle: marked amplitudes flip sign (go negative), mean line shifts down
+- After diffusion: all amplitudes reflect about the new mean, marked amplitudes grow
+- Rotation diagram shows the state vector rotating by <span class="arithmatex">\(\theta\)</span> each full iteration
+- Success probability updates in real time
+- Running past optimal shows the overshoot effect</p>
+<p>Canvas layout:
+- Left (55%): Amplitude bar chart with mean line and oracle/diffusion step animation
+- Right (45%): 2D rotation diagram in <span class="arithmatex">\(|\alpha\rangle\)</span>-<span class="arithmatex">\(|\beta\rangle\)</span> plane, iteration count, success probability</p>
+<p>Implementation: p5.js with smooth bar animations. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="quadratic-speedup">Quadratic Speedup</h2>
+<p>The quadratic speedup of Grover's algorithm is not merely an empirical observation but a provable optimality result. The <strong>BBBV theorem</strong> (Bennett, Bernstein, Brassard, Vazirani, 1997) establishes a matching lower bound:</p>
+<h4 id="bbbv-lower-bound">BBBV Lower Bound</h4>
+<div class="arithmatex">\[
+\text{Any quantum algorithm solving unstructured search requires } \Omega\left(\sqrt{N/M}\right) \text{ queries}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span> is the size of the search space</li>
+<li><span class="arithmatex">\(M\)</span> is the number of marked elements</li>
+<li>The bound holds for any quantum algorithm, not just Grover's</li>
+</ul>
+<p><strong>Proof sketch (adversary method).</strong> The proof uses the hybrid argument. Consider two oracles <span class="arithmatex">\(O_f\)</span> and <span class="arithmatex">\(O_g\)</span> that differ on a single element <span class="arithmatex">\(x^*\)</span>. After <span class="arithmatex">\(T\)</span> queries, the state vectors produced by the two oracles have inner product at least <span class="arithmatex">\(1 - O(T^2/N)\)</span> (each query changes the state by at most <span class="arithmatex">\(O(1/\sqrt{N})\)</span> in norm, and <span class="arithmatex">\(T\)</span> queries accumulate at most <span class="arithmatex">\(O(T/\sqrt{N})\)</span> change). For the algorithm to distinguish <span class="arithmatex">\(f\)</span> from <span class="arithmatex">\(g\)</span> with constant probability, we need <span class="arithmatex">\(T^2/N = \Omega(1)\)</span>, giving <span class="arithmatex">\(T = \Omega(\sqrt{N})\)</span>.</p>
+<p>This establishes that the <span class="arithmatex">\(\sqrt{N}\)</span> query complexity is optimal. The quadratic speedup has profound implications:</p>
+<ul>
+<li><strong>Database search:</strong> Finding an item in an unsorted database of <span class="arithmatex">\(N\)</span> entries: <span class="arithmatex">\(O(\sqrt{N})\)</span> queries instead of <span class="arithmatex">\(O(N)\)</span></li>
+<li><strong>Satisfiability:</strong> Searching <span class="arithmatex">\(2^n\)</span> truth assignments: <span class="arithmatex">\(O(2^{n/2})\)</span> instead of <span class="arithmatex">\(O(2^n)\)</span></li>
+<li><strong>Collision finding:</strong> Combined with birthday paradox techniques: <span class="arithmatex">\(O(N^{1/3})\)</span> queries</li>
+<li><strong>Cryptographic impact:</strong> Grover's algorithm effectively halves the security parameter of symmetric key schemes (e.g., AES-128 provides only 64-bit security against quantum adversaries)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Classical Complexity</th>
+<th>Quantum Complexity</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unstructured search (<span class="arithmatex">\(M = 1\)</span>)</td>
+<td><span class="arithmatex">\(O(N)\)</span></td>
+<td><span class="arithmatex">\(O(\sqrt{N})\)</span></td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k\)</span>-SAT (<span class="arithmatex">\(2^n\)</span> assignments)</td>
+<td><span class="arithmatex">\(O(2^n)\)</span></td>
+<td><span class="arithmatex">\(O(2^{n/2})\)</span></td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td>Minimum finding</td>
+<td><span class="arithmatex">\(O(N)\)</span></td>
+<td><span class="arithmatex">\(O(\sqrt{N})\)</span></td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td>Collision finding</td>
+<td><span class="arithmatex">\(O(N^{1/2})\)</span> (birthday)</td>
+<td><span class="arithmatex">\(O(N^{1/3})\)</span></td>
+<td>Polynomial</td>
+</tr>
+<tr>
+<td>Symmetric key search (key length <span class="arithmatex">\(n\)</span>)</td>
+<td><span class="arithmatex">\(O(2^n)\)</span></td>
+<td><span class="arithmatex">\(O(2^{n/2})\)</span></td>
+<td>Quadratic</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quantum-walk">Quantum Walk</h2>
+<p><strong>Quantum walks</strong> are the quantum analogues of classical random walks and provide an alternative algorithmic framework that achieves speedups for a variety of graph-theoretic and search problems. There are two principal formulations: discrete-time and continuous-time quantum walks.</p>
+<p><strong>Discrete-time quantum walk on a line.</strong> The walker occupies a position on the integer lattice <span class="arithmatex">\(\mathbb{Z}\)</span> and carries an internal "coin" degree of freedom in <span class="arithmatex">\(\mathbb{C}^2\)</span>. Each step consists of a coin flip (unitary on the coin space) followed by a conditional shift:</p>
+<h4 id="quantum-walk-step-operator">Quantum Walk Step Operator</h4>
+<div class="arithmatex">\[
+S = \sum_{x \in \mathbb{Z}}\big(|x+1\rangle\langle x| \otimes |0\rangle\langle 0| + |x-1\rangle\langle x| \otimes |1\rangle\langle 1|\big)
+\]</div>
+<div class="arithmatex">\[
+W = S \cdot (I_{\text{position}} \otimes C)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(C\)</span> is the coin operator (typically the Hadamard gate <span class="arithmatex">\(H\)</span>)</li>
+<li><span class="arithmatex">\(S\)</span> is the conditional shift: move right if coin is <span class="arithmatex">\(|0\rangle\)</span>, left if coin is <span class="arithmatex">\(|1\rangle\)</span></li>
+<li><span class="arithmatex">\(W\)</span> is the full walk operator for one step</li>
+</ul>
+<p><strong>Spreading behavior.</strong> A classical random walk on the line after <span class="arithmatex">\(t\)</span> steps produces a binomial distribution with standard deviation <span class="arithmatex">\(\sigma \propto \sqrt{t}\)</span>. The quantum walk, by contrast, exhibits <strong>ballistic spreading</strong> with <span class="arithmatex">\(\sigma \propto t\)</span>. This quadratic enhancement in the spreading rate is the source of algorithmic speedups.</p>
+<p><strong>Continuous-time quantum walk.</strong> For a graph <span class="arithmatex">\(G\)</span> with adjacency matrix <span class="arithmatex">\(A\)</span>, the continuous-time quantum walk is defined by the Schrodinger equation:</p>
+<h4 id="continuous-time-walk-propagator">Continuous-Time Walk Propagator</h4>
+<div class="arithmatex">\[
+|\psi(t)\rangle = e^{-iAt}|\psi(0)\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A\)</span> is the adjacency matrix of the graph (or the graph Laplacian <span class="arithmatex">\(L = D - A\)</span>)</li>
+<li>The propagator <span class="arithmatex">\(e^{-iAt}\)</span> is unitary since <span class="arithmatex">\(A\)</span> is Hermitian</li>
+<li>The walk evolves continuously, without a coin degree of freedom</li>
+</ul>
+<p><strong>Algorithmic applications.</strong> Quantum walks achieve provable speedups for several important problems:</p>
+<ul>
+<li><strong>Element distinctness:</strong> Given a list of <span class="arithmatex">\(N\)</span> elements, determine if any two are equal: <span class="arithmatex">\(O(N^{2/3})\)</span> quantum walk queries versus <span class="arithmatex">\(\Theta(N)\)</span> classically</li>
+<li><strong>Triangle finding:</strong> Find a triangle in a graph with <span class="arithmatex">\(n\)</span> vertices: <span class="arithmatex">\(O(n^{5/4})\)</span> using quantum walks</li>
+<li><strong>Spatial search:</strong> Find a marked vertex on certain graphs in <span class="arithmatex">\(O(\sqrt{N})\)</span> steps, matching Grover's bound</li>
+<li><strong>NAND tree evaluation:</strong> Evaluate a balanced NAND tree of depth <span class="arithmatex">\(d\)</span> in <span class="arithmatex">\(O(2^{d/2})\)</span> queries, a quadratic speedup</li>
+</ul>
+<h4 id="diagram-classical-vs-quantum-walk-spreading">Diagram: Classical vs Quantum Walk Spreading</h4>
+<iframe src="../../sims/quantum-walk-comparison/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Classical vs Quantum Walk Probability Distributions</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: compare, differentiate</p>
+<p>Learning Objective: Students can compare the probability distributions of classical and quantum random walks on the integer line, differentiating the Gaussian spreading (<span class="arithmatex">\(\sigma \propto \sqrt{t}\)</span>) of the classical walk from the ballistic spreading (<span class="arithmatex">\(\sigma \propto t\)</span>) of the quantum walk, and identifying the role of quantum interference in creating the asymmetric two-peaked distribution.</p>
+<p>Instructional Rationale: A side-by-side time-stepped comparison is appropriate for an Analyze-level objective because students must differentiate two fundamentally different dynamical behaviors arising from the same graph structure. Observing the distributions evolve step by step reveals how quantum coherence transforms diffusive spreading into ballistic transport.</p>
+<p>Visual elements:
+- Two probability distribution plots side by side (classical and quantum) over position
+- Position axis from <span class="arithmatex">\(-t\)</span> to <span class="arithmatex">\(+t\)</span> with probability on the vertical axis
+- Classical distribution: symmetric binomial/Gaussian shape
+- Quantum distribution: asymmetric two-peaked shape (for Hadamard coin)
+- Standard deviation display for each walk
+- Step counter</p>
+<p>Interactive controls:
+- Button: "Step" (advance both walks by one step)
+- Button: "Run 10 steps"
+- Button: "Run to step <span class="arithmatex">\(t\)</span>" with slider for <span class="arithmatex">\(t\)</span> (5 to 100)
+- Dropdown: Coin operator (Hadamard, Y-rotation, balanced)
+- Button: "Reset"</p>
+<p>Behavior:
+- Classical distribution broadens as <span class="arithmatex">\(\sqrt{t}\)</span>
+- Quantum distribution broadens as <span class="arithmatex">\(t\)</span> with characteristic interference fringes
+- Standard deviation ratio (quantum/classical) grows as <span class="arithmatex">\(\sqrt{t}\)</span>
+- Changing coin operator alters the quantum distribution symmetry
+- Probability values update at each step</p>
+<p>Canvas layout:
+- Top (45%): Classical walk probability distribution
+- Bottom (45%): Quantum walk probability distribution
+- Right sidebar (10%): Step counter, standard deviations, coin selector</p>
+<p>Implementation: p5.js. Probability distributions rendered as filled area plots. Responsive design.</p>
+</details>
+<h2 id="algorithm-complexity-summary">Algorithm Complexity Summary</h2>
+<p>The following table summarizes the quantum algorithms presented in this chapter, their problem domains, and their query/gate complexity compared to classical approaches.</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Problem</th>
+<th>Classical Queries</th>
+<th>Quantum Queries</th>
+<th>Speedup Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deutsch</td>
+<td>1-bit function type</td>
+<td>2</td>
+<td>1</td>
+<td>Constant</td>
+</tr>
+<tr>
+<td>Deutsch-Jozsa</td>
+<td><span class="arithmatex">\(n\)</span>-bit constant vs balanced</td>
+<td><span class="arithmatex">\(2^{n-1}+1\)</span> (det.)</td>
+<td>1</td>
+<td>Exponential</td>
+</tr>
+<tr>
+<td>Bernstein-Vazirani</td>
+<td>Hidden string <span class="arithmatex">\(s\)</span></td>
+<td><span class="arithmatex">\(n\)</span></td>
+<td>1</td>
+<td>Linear</td>
+</tr>
+<tr>
+<td>Simon</td>
+<td>Hidden period (bitwise)</td>
+<td><span class="arithmatex">\(\Omega(2^{n/2})\)</span></td>
+<td><span class="arithmatex">\(O(n)\)</span></td>
+<td>Exponential</td>
+</tr>
+<tr>
+<td>Shor (order finding)</td>
+<td>Period of <span class="arithmatex">\(a^x \bmod N\)</span></td>
+<td>Sub-exponential</td>
+<td><span class="arithmatex">\(O((\log N)^3)\)</span></td>
+<td>Super-polynomial</td>
+</tr>
+<tr>
+<td>Grover</td>
+<td>Unstructured search</td>
+<td><span class="arithmatex">\(O(N)\)</span></td>
+<td><span class="arithmatex">\(O(\sqrt{N})\)</span></td>
+<td>Quadratic</td>
+</tr>
+</tbody>
+</table>
+<h4 id="diagram-algorithm-speedup-landscape">Diagram: Algorithm Speedup Landscape</h4>
+<iframe src="../../sims/algorithm-speedup-landscape/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum Algorithm Speedup Comparison</summary>
+<p>Type: infographic</p>
+<p>Bloom Taxonomy: Evaluate (L5)
+Bloom Verb: compare, assess</p>
+<p>Learning Objective: Students can compare the asymptotic complexity scaling of the major quantum algorithms against their classical counterparts, assessing which problem structures (periodicity, symmetry, unstructured search) admit different levels of quantum speedup.</p>
+<p>Instructional Rationale: A log-scale comparison chart is appropriate for an Evaluate-level objective because students must assess the relative magnitudes of speedups across qualitatively different problem types. Seeing exponential, super-polynomial, and quadratic speedups on the same axes helps students develop judgment about when quantum computing offers transformative versus incremental advantages.</p>
+<p>Visual elements:
+- Log-scale plot with problem size <span class="arithmatex">\(n\)</span> on horizontal axis and query complexity on vertical axis
+- Classical complexity curves (red) and quantum complexity curves (blue) for each algorithm
+- Shaded regions showing the speedup gap
+- Labels for exponential, super-polynomial, and quadratic speedup regions
+- Interactive tooltips showing exact complexity expressions</p>
+<p>Interactive controls:
+- Checkbox: Toggle each algorithm's curves on/off
+- Slider: Problem size range (<span class="arithmatex">\(n\)</span> from 2 to 30)
+- Toggle: Linear vs logarithmic scale on vertical axis</p>
+<p>Behavior:
+- Curves dynamically scale as problem size changes
+- Speedup gaps visually apparent on log scale
+- Hovering over a curve shows the complexity expression
+- Toggling algorithms allows focused comparison</p>
+<p>Canvas layout:
+- Main area (85%): Log-scale comparison plot
+- Right panel (15%): Algorithm toggles and scale selector</p>
+<p>Implementation: p5.js with dynamic axes. Responsive design.</p>
+</details>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This chapter established the major quantum algorithms and the mathematical principles underlying their speedups:</p>
+<ol>
+<li>
+<p><strong>Quantum parallelism</strong> enables a single oracle call to evaluate <span class="arithmatex">\(f\)</span> on all <span class="arithmatex">\(2^n\)</span> inputs simultaneously, but extracting useful information requires interference, not direct measurement.</p>
+</li>
+<li>
+<p><strong>Quantum oracles</strong> encode classical functions as unitary transformations, with the phase oracle variant exploiting phase kickback to embed function values in relative phases.</p>
+</li>
+<li>
+<p><strong>Deutsch's and the Deutsch-Jozsa algorithm</strong> demonstrate that quantum interference can determine global properties (constant vs balanced) of a function using exponentially fewer queries than any deterministic classical algorithm.</p>
+</li>
+<li>
+<p><strong>Bernstein-Vazirani</strong> recovers an <span class="arithmatex">\(n\)</span>-bit hidden string in one query versus <span class="arithmatex">\(n\)</span> classically, using the Fourier duality of the Hadamard transform over <span class="arithmatex">\(\mathbb{Z}_2^n\)</span>.</p>
+</li>
+<li>
+<p><strong>Simon's algorithm</strong> achieves the first provable exponential quantum speedup for a total function, exploiting hidden subgroup structure that directly inspired Shor's algorithm.</p>
+</li>
+<li>
+<p><strong>The quantum Fourier transform</strong> maps computational basis states to Fourier basis states using <span class="arithmatex">\(O(n^2)\)</span> gates, exponentially fewer than the classical FFT, and is the key subroutine in phase estimation and period finding.</p>
+</li>
+<li>
+<p><strong>Phase kickback</strong> transfers eigenvalue information from a target register to a control register, enabling phase estimation without destroying the eigenstate.</p>
+</li>
+<li>
+<p><strong>Quantum phase estimation</strong> extracts eigenvalue phases to <span class="arithmatex">\(t\)</span> bits of precision using <span class="arithmatex">\(O(t)\)</span> controlled unitary applications and an inverse QFT, with success probability controllable through additional ancilla qubits.</p>
+</li>
+<li>
+<p><strong>Shor's algorithm</strong> factors <span class="arithmatex">\(N\)</span> in <span class="arithmatex">\(O((\log N)^3)\)</span> gates by reducing factoring to order finding, solving order finding via phase estimation, and extracting the period via continued fractions---an exponential speedup over the best classical methods.</p>
+</li>
+<li>
+<p><strong>Grover's algorithm</strong> provides an optimal quadratic speedup for unstructured search using amplitude amplification, with the BBBV theorem proving that <span class="arithmatex">\(\Omega(\sqrt{N})\)</span> queries are necessary for any quantum algorithm.</p>
+</li>
+<li>
+<p><strong>Quantum walks</strong> offer an alternative algorithmic framework achieving polynomial speedups for graph problems, with ballistic spreading (<span class="arithmatex">\(\sigma \propto t\)</span>) replacing the classical diffusive spreading (<span class="arithmatex">\(\sigma \propto \sqrt{t}\)</span>).</p>
+</li>
+</ol>
+<details class="question">
+<summary>Concept Check: Why can't Grover's algorithm achieve more than a quadratic speedup?</summary>
+<p>The BBBV lower bound proves that <span class="arithmatex">\(\Omega(\sqrt{N})\)</span> queries are necessary for unstructured search by any quantum algorithm. The key insight is that each oracle query can change the state vector by at most <span class="arithmatex">\(O(1/\sqrt{N})\)</span> in norm (because the oracle marks only one of <span class="arithmatex">\(N\)</span> items). After <span class="arithmatex">\(T\)</span> queries, the total deviation from the initial state is bounded by <span class="arithmatex">\(O(T/\sqrt{N})\)</span>. To distinguish the marked case from the unmarked case with constant probability, we need <span class="arithmatex">\(T/\sqrt{N} = \Omega(1)\)</span>, giving <span class="arithmatex">\(T = \Omega(\sqrt{N})\)</span>. This argument relies on the lack of structure in the search problem; structured problems (like period finding in Shor's algorithm) can exploit additional mathematical structure to achieve exponential speedups.</p>
+</details>
+<details class="question">
+<summary>Concept Check: Why does Shor's algorithm use continued fractions rather than directly reading the phase estimate?</summary>
+<p>Phase estimation yields a <span class="arithmatex">\(t\)</span>-bit approximation <span class="arithmatex">\(\tilde{\phi}/2^t\)</span> to the rational number <span class="arithmatex">\(s/r\)</span>, where <span class="arithmatex">\(r\)</span> is the unknown order. The phase estimate is a ratio of two large integers (<span class="arithmatex">\(\tilde{\phi}\)</span> and <span class="arithmatex">\(2^t\)</span>), but we need the reduced fraction <span class="arithmatex">\(s/r\)</span> to extract <span class="arithmatex">\(r\)</span>. The continued fraction algorithm efficiently finds the best rational approximation with a small denominator, which is precisely <span class="arithmatex">\(s/r\)</span> when the phase estimate is sufficiently precise. Since <span class="arithmatex">\(t = 2n+1\)</span> bits ensures accuracy within <span class="arithmatex">\(1/(2r^2)\)</span>, the convergent approximation theorem guarantees that <span class="arithmatex">\(s/r\)</span> appears as a convergent. Direct inspection of <span class="arithmatex">\(\tilde{\phi}/2^t\)</span> as a fraction would give a denominator of <span class="arithmatex">\(2^t\)</span>, which is exponentially larger than <span class="arithmatex">\(r\)</span> and would not reveal the period structure.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../09-quantum-gates/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 9. Quantum Gates">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                9. Quantum Gates
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../11-quantum-error-correction/" class="md-footer__link md-footer__link--next" aria-label="Next: 11. Error Correction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                11. Error Correction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

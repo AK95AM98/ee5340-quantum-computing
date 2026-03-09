@@ -1,0 +1,3178 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The postulates and mathematical formalism of quantum mechanics including Dirac notation, Hilbert spaces, measurement theory, uncertainty relations, density matrices, time evolution, and the no-cloning theorem">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/07-quantum-mechanics/">
+      
+      
+        <link rel="prev" href="../06-reversible-computing/">
+      
+      
+        <link rel="next" href="../08-qubits-and-states/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Quantum Mechanics Foundations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quantum-mechanics-foundations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quantum Mechanics Foundations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wave-particle-duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave-Particle Duality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wave-Particle Duality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#photon-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Photon Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#de-broglie-wavelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Broglie Wavelength
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="De Broglie Wavelength">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-broglie-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Broglie Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#superposition-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superposition Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Superposition Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superposition-of-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superposition of States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirac Notation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dirac Notation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-in-dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product in Dirac Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeness-relation-resolution-of-the-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completeness Relation (Resolution of the Identity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hilbert-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hilbert Space
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hilbert Space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-axioms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product Axioms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Vector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#born-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Born Rule
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Born Rule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#born-rule_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Born Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wave-function-collapse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave Function Collapse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wave Function Collapse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projection-postulate-state-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projection Postulate (State Update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-measurement-and-collapse-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Measurement and Collapse Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heisenberg-uncertainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heisenberg Uncertainty
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heisenberg Uncertainty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalized-uncertainty-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized Uncertainty Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position-momentum-uncertainty-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Position-Momentum Uncertainty Principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commutator-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commutator Relations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commutator Relations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commutator-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commutator Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-commutation-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Commutation Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Density Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-for-pure-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix for Pure State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value-via-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value via Density Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-and-mixed-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure And Mixed States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure And Mixed States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mixed-state-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed State Density Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#von-neumann-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Von Neumann Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-evolution-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Evolution Operator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time Evolution Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-evolution-operator_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Evolution Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schrodinger Equation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schrodinger Equation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-dependent-schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-Dependent Schrodinger Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-independent-schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-Independent Schrodinger Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-time-evolution-of-quantum-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Time Evolution of Quantum States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-cloning-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No-Cloning Theorem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wave-particle-duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave-Particle Duality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wave-Particle Duality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#photon-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Photon Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#de-broglie-wavelength" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Broglie Wavelength
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="De Broglie Wavelength">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-broglie-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Broglie Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#superposition-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superposition Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Superposition Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#superposition-of-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Superposition of States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirac Notation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dirac Notation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-in-dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product in Dirac Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeness-relation-resolution-of-the-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completeness Relation (Resolution of the Identity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hilbert-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hilbert Space
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hilbert Space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-axioms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product Axioms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Vector
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#born-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Born Rule
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Born Rule">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#born-rule_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Born Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wave-function-collapse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave Function Collapse
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wave Function Collapse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#projection-postulate-state-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projection Postulate (State Update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-measurement-and-collapse-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Measurement and Collapse Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#heisenberg-uncertainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heisenberg Uncertainty
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Heisenberg Uncertainty">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalized-uncertainty-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized Uncertainty Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#position-momentum-uncertainty-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Position-Momentum Uncertainty Principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commutator-relations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commutator Relations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commutator Relations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commutator-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commutator Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-commutation-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Commutation Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Density Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-for-pure-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix for Pure State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value-via-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value via Density Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pure-and-mixed-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure And Mixed States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure And Mixed States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mixed-state-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed State Density Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#von-neumann-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Von Neumann Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-evolution-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Evolution Operator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time Evolution Operator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-evolution-operator_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time Evolution Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schrodinger Equation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schrodinger Equation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-dependent-schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-Dependent Schrodinger Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-independent-schrodinger-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-Independent Schrodinger Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-time-evolution-of-quantum-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Time Evolution of Quantum States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-cloning-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No-Cloning Theorem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/07-quantum-mechanics/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="quantum-mechanics-foundations">Quantum Mechanics Foundations</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter establishes the mathematical foundations of quantum mechanics needed for quantum computing. We present the postulates of quantum mechanics, develop Dirac notation and Hilbert space formalism, derive the Born rule for measurement probabilities, prove the uncertainty principle from commutation relations, introduce density matrices for mixed states, derive the Schrodinger equation and time evolution operator, and prove the no-cloning theorem.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 16 concepts:</p>
+<ol>
+<li>Wave-Particle Duality</li>
+<li>De Broglie Wavelength</li>
+<li>Superposition Principle</li>
+<li>Dirac Notation</li>
+<li>Hilbert Space</li>
+<li>State Vector</li>
+<li>Quantum Measurement</li>
+<li>Born Rule</li>
+<li>Wave Function Collapse</li>
+<li>Heisenberg Uncertainty</li>
+<li>Commutator Relations</li>
+<li>Density Matrix</li>
+<li>Pure And Mixed States</li>
+<li>Time Evolution Operator</li>
+<li>Schrodinger Equation</li>
+<li>No-Cloning Theorem</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Chapters 1 through 6 developed the classical mathematical and physical foundations of computing: linear algebra, thermodynamics, information theory, semiconductor devices, and reversible logic. We now cross the boundary into the quantum domain. This chapter is the critical bridge: it introduces the postulates, mathematical structures, and physical principles of quantum mechanics that underpin all of quantum computing.</p>
+<p>The presentation is self-contained but assumes fluency with the linear algebra of <a href="../01-mathematical-foundations/">Chapter 1</a>—complex vector spaces, inner products, eigenvalues, Hermitian and unitary matrices, the spectral decomposition, and tensor products. We will frequently reference those results here and cast them into the language of quantum mechanics.</p>
+<p>We begin with the physical motivations (wave-particle duality and matter waves) that forced a departure from classical physics, then build the mathematical formalism (Dirac notation, Hilbert spaces, state vectors) that quantum mechanics uses to describe nature. The middle sections develop measurement theory (the Born rule, wave function collapse, and the uncertainty principle) and the algebraic structure of observables (commutators). We then introduce the density matrix formalism for handling statistical mixtures and open quantum systems, derive the Schrodinger equation governing time evolution, and conclude with the no-cloning theorem—a uniquely quantum constraint with profound consequences for quantum information.</p>
+<p>By the end of this chapter, the reader will possess every piece of quantum mechanical formalism required to define qubits, quantum gates, and quantum algorithms in the chapters that follow.</p>
+<h2 id="wave-particle-duality">Wave-Particle Duality</h2>
+<p>Classical physics draws a sharp distinction between particles (localized objects with definite trajectories) and waves (extended disturbances exhibiting interference and diffraction). Quantum mechanics dissolves this boundary: every physical entity exhibits both particle-like and wave-like behavior, depending on the experimental context.</p>
+<p><strong>The double-slit experiment.</strong> The canonical demonstration of wave-particle duality proceeds as follows. A beam of electrons (or photons) is directed at a barrier containing two narrow slits. On a detection screen beyond the barrier, individual particles arrive one at a time, each producing a localized dot—clearly particle-like behavior. Yet after many particles have been detected, the accumulated pattern of dots forms an interference pattern of bright and dark fringes—a signature of wave-like behavior. This pattern matches exactly what one would predict for a wave passing through both slits simultaneously and interfering with itself.</p>
+<p>The critical observation is that the interference pattern appears even when the beam intensity is so low that only one particle traverses the apparatus at a time. Each particle interferes with itself, passing through both slits as a wave and arriving at the screen as a particle. If a detector is placed at one of the slits to determine which path the particle takes, the interference pattern vanishes and the distribution becomes the sum of two single-slit patterns. This is the essence of Bohr's <strong>complementarity principle</strong>: wave behavior (interference) and particle behavior (which-path information) are mutually exclusive. Any experimental arrangement that reveals one aspect necessarily obscures the other.</p>
+<p><strong>Photon behavior.</strong> For light, the particle nature is manifested in the photoelectric effect (Einstein, 1905). Light of frequency <span class="arithmatex">\(\nu\)</span> can eject electrons from a metal surface only if <span class="arithmatex">\(\nu\)</span> exceeds a threshold frequency <span class="arithmatex">\(\nu_0\)</span>, regardless of intensity. This is explained by treating light as a stream of photons, each carrying energy:</p>
+<h4 id="photon-energy">Photon Energy</h4>
+<div class="arithmatex">\[E = h\nu = \hbar\omega\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(h = 6.626 \times 10^{-34}\)</span> J<span class="arithmatex">\(\cdot\)</span>s is Planck's constant</li>
+<li><span class="arithmatex">\(\hbar = h/(2\pi)\)</span> is the reduced Planck constant</li>
+<li><span class="arithmatex">\(\nu\)</span> is the frequency and <span class="arithmatex">\(\omega = 2\pi\nu\)</span> is the angular frequency</li>
+</ul>
+<p>Each photon also carries momentum <span class="arithmatex">\(p = h/\lambda = \hbar k\)</span>, where <span class="arithmatex">\(\lambda\)</span> is the wavelength and <span class="arithmatex">\(k = 2\pi/\lambda\)</span> is the wave number. The photon is thus characterized by both wave parameters (<span class="arithmatex">\(\nu\)</span>, <span class="arithmatex">\(\lambda\)</span>) and particle parameters (<span class="arithmatex">\(E\)</span>, <span class="arithmatex">\(p\)</span>), linked by Planck's constant.</p>
+<table>
+<thead>
+<tr>
+<th>Experiment</th>
+<th>Reveals</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Photoelectric effect</td>
+<td>Particle nature of light</td>
+<td>Energy quantized as <span class="arithmatex">\(E = h\nu\)</span></td>
+</tr>
+<tr>
+<td>Compton scattering</td>
+<td>Particle nature of light</td>
+<td>Photon carries momentum <span class="arithmatex">\(p = h/\lambda\)</span></td>
+</tr>
+<tr>
+<td>Double-slit (low intensity)</td>
+<td>Wave nature of particles</td>
+<td>Single-particle interference</td>
+</tr>
+<tr>
+<td>Electron diffraction</td>
+<td>Wave nature of particles</td>
+<td>Bragg condition satisfied by matter waves</td>
+</tr>
+<tr>
+<td>Which-path detection</td>
+<td>Complementarity</td>
+<td>Interference destroyed by measurement</td>
+</tr>
+</tbody>
+</table>
+<p>Wave-particle duality is not merely a philosophical curiosity—it is the physical foundation of quantum superposition and interference, the two resources that quantum algorithms exploit.</p>
+<h2 id="de-broglie-wavelength">De Broglie Wavelength</h2>
+<p>In 1924, Louis de Broglie proposed that the wave-particle duality observed for photons extends to all matter. A particle with momentum <span class="arithmatex">\(p\)</span> has an associated wavelength:</p>
+<h4 id="de-broglie-relation">De Broglie Relation</h4>
+<div class="arithmatex">\[\lambda = \frac{h}{p}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda\)</span> is the de Broglie wavelength</li>
+<li><span class="arithmatex">\(h\)</span> is Planck's constant</li>
+<li><span class="arithmatex">\(p = mv\)</span> is the momentum (for a non-relativistic particle of mass <span class="arithmatex">\(m\)</span> and velocity <span class="arithmatex">\(v\)</span>)</li>
+</ul>
+<p><strong>Derivation from relativistic energy-momentum relations.</strong> For a photon, the energy-momentum relation gives <span class="arithmatex">\(E = pc\)</span>, and the Planck-Einstein relation gives <span class="arithmatex">\(E = h\nu = hc/\lambda\)</span>. Equating: <span class="arithmatex">\(pc = hc/\lambda\)</span>, so <span class="arithmatex">\(\lambda = h/p\)</span>. De Broglie's insight was to postulate that this same relation holds for massive particles.</p>
+<p>For a free particle with kinetic energy <span class="arithmatex">\(K\)</span>, the de Broglie wavelength becomes:</p>
+<div class="arithmatex">\[\lambda = \frac{h}{\sqrt{2mK}}\]</div>
+<p><strong>Connection to the momentum operator.</strong> In the position representation of quantum mechanics, the momentum operator is <span class="arithmatex">\(\hat{p} = -i\hbar \frac{d}{dx}\)</span>. A plane wave <span class="arithmatex">\(\psi(x) = e^{ikx}\)</span> is an eigenstate of this operator with eigenvalue <span class="arithmatex">\(\hbar k = h/\lambda = p\)</span>, confirming the de Broglie relation at the operator level. The wave function of a free particle with definite momentum <span class="arithmatex">\(p\)</span> is thus a plane wave with wavelength <span class="arithmatex">\(\lambda = h/p\)</span>.</p>
+<p><strong>Experimental confirmation.</strong> The Davisson-Germer experiment (1927) confirmed de Broglie's hypothesis by observing electron diffraction from a nickel crystal. The diffraction pattern matched the prediction for waves of wavelength <span class="arithmatex">\(\lambda = h/p\)</span>, with <span class="arithmatex">\(p\)</span> determined by the accelerating voltage.</p>
+<p><strong>Relevance to computing.</strong> The de Broglie wavelength sets a fundamental scale for quantum effects in solid-state devices. When the feature size of a transistor approaches the de Broglie wavelength of the charge carriers (<span class="arithmatex">\(\lambda \sim 10\)</span> nm for electrons in silicon at room temperature), quantum tunneling and confinement effects become significant—a fact discussed in the context of beyond-CMOS devices in earlier chapters.</p>
+<h2 id="superposition-principle">Superposition Principle</h2>
+<p>The <strong>superposition principle</strong> is the cornerstone of quantum mechanics and the primary resource for quantum computation. It states that if <span class="arithmatex">\(|\psi_1\rangle\)</span> and <span class="arithmatex">\(|\psi_2\rangle\)</span> are valid states of a quantum system, then any linear combination</p>
+<h4 id="superposition-of-states">Superposition of States</h4>
+<div class="arithmatex">\[|\psi\rangle = \alpha|\psi_1\rangle + \beta|\psi_2\rangle\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha, \beta \in \mathbb{C}\)</span> are complex amplitudes</li>
+<li><span class="arithmatex">\(|\alpha|^2 + |\beta|^2 = 1\)</span> enforces normalization (assuming <span class="arithmatex">\(|\psi_1\rangle\)</span> and <span class="arithmatex">\(|\psi_2\rangle\)</span> are orthonormal)</li>
+</ul>
+<p>is also a valid state of the system. More generally, for a countable orthonormal basis <span class="arithmatex">\(\{|n\rangle\}\)</span>, any state can be expanded as:</p>
+<div class="arithmatex">\[|\psi\rangle = \sum_n c_n |n\rangle, \qquad \sum_n |c_n|^2 = 1\]</div>
+<p>This is a direct consequence of the linearity of quantum mechanics: the state space is a vector space over <span class="arithmatex">\(\mathbb{C}\)</span> (as defined in <a href="../01-mathematical-foundations/#4-vector-spaces">Chapter 1, Section 4</a>), and all physical operations (time evolution, measurements) are linear maps on this space.</p>
+<p><strong>Interference effects.</strong> Superposition leads to interference because probabilities are computed from the squared modulus of amplitudes, not from the amplitudes themselves. Consider a system in state <span class="arithmatex">\(|\psi\rangle = \alpha|1\rangle + \beta|2\rangle\)</span> and a measurement that projects onto some state <span class="arithmatex">\(|f\rangle\)</span>. The probability of outcome <span class="arithmatex">\(f\)</span> is:</p>
+<div class="arithmatex">\[P(f) = |\langle f|\psi\rangle|^2 = |\alpha\langle f|1\rangle + \beta\langle f|2\rangle|^2 = |\alpha|^2|\langle f|1\rangle|^2 + |\beta|^2|\langle f|2\rangle|^2 + 2\operatorname{Re}[\alpha^*\beta\langle 1|f\rangle\langle f|2\rangle]\]</div>
+<p>The first two terms are the classical probabilities for each path. The third term is the <strong>interference term</strong>, which can be positive (constructive interference) or negative (destructive interference) depending on the relative phase between <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>. This interference term has no classical analogue and is the mechanism by which quantum algorithms amplify correct answers while suppressing incorrect ones.</p>
+<p><strong>Mathematical formulation.</strong> The superposition principle is formalized by requiring that the state space of a quantum system be a complex Hilbert space (see below). The linearity of the Schrodinger equation (Section 15) guarantees that superposition is preserved under time evolution.</p>
+<h2 id="dirac-notation">Dirac Notation</h2>
+<p><strong>Dirac notation</strong> (bra-ket notation) is the standard language of quantum mechanics and quantum computing. It provides a compact, basis-independent notation for states, dual vectors, inner products, and operators. It was introduced by Paul Dirac in 1939 and is built on the linear algebra of <a href="../01-mathematical-foundations/">Chapter 1</a>.</p>
+<p><strong>Kets.</strong> A quantum state is represented by a <strong>ket</strong> <span class="arithmatex">\(|\psi\rangle\)</span>, which is a vector in a complex Hilbert space <span class="arithmatex">\(\mathcal{H}\)</span>. In the finite-dimensional case (<span class="arithmatex">\(\mathcal{H} = \mathbb{C}^n\)</span>), a ket is a column vector:</p>
+<div class="arithmatex">\[|\psi\rangle = \begin{pmatrix} c_1 \\ c_2 \\ \vdots \\ c_n \end{pmatrix}\]</div>
+<p><strong>Bras.</strong> The <strong>bra</strong> <span class="arithmatex">\(\langle\psi|\)</span> is the dual vector (conjugate transpose) of <span class="arithmatex">\(|\psi\rangle\)</span>. If <span class="arithmatex">\(|\psi\rangle\)</span> is a column vector, <span class="arithmatex">\(\langle\psi|\)</span> is the corresponding row vector with complex conjugated entries:</p>
+<div class="arithmatex">\[\langle\psi| = (c_1^*, c_2^*, \ldots, c_n^*)\]</div>
+<p>The bra is an element of the dual space <span class="arithmatex">\(\mathcal{H}^*\)</span>, and the correspondence <span class="arithmatex">\(|\psi\rangle \mapsto \langle\psi|\)</span> is the antilinear map guaranteed by the Riesz representation theorem (see Section 5 below).</p>
+<p><strong>Bracket (inner product).</strong> The <strong>bracket</strong> <span class="arithmatex">\(\langle\phi|\psi\rangle\)</span> is the inner product of <span class="arithmatex">\(|\phi\rangle\)</span> and <span class="arithmatex">\(|\psi\rangle\)</span>, as defined in <a href="../01-mathematical-foundations/#6-inner-product">Chapter 1, Section 6</a>:</p>
+<h4 id="inner-product-in-dirac-notation">Inner Product in Dirac Notation</h4>
+<div class="arithmatex">\[\langle\phi|\psi\rangle = \sum_{k=1}^n a_k^* c_k\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|\phi\rangle = \sum_k a_k |k\rangle\)</span> and <span class="arithmatex">\(|\psi\rangle = \sum_k c_k |k\rangle\)</span> in an orthonormal basis <span class="arithmatex">\(\{|k\rangle\}\)</span></li>
+<li>The result is a complex scalar</li>
+<li><span class="arithmatex">\(\langle\psi|\psi\rangle = \sum_k |c_k|^2 \geq 0\)</span>, with equality only for <span class="arithmatex">\(|\psi\rangle = 0\)</span></li>
+</ul>
+<p><strong>Outer product.</strong> The <strong>outer product</strong> <span class="arithmatex">\(|\psi\rangle\langle\phi|\)</span> is an operator (linear map) on <span class="arithmatex">\(\mathcal{H}\)</span>, as introduced in <a href="../01-mathematical-foundations/#7-outer-product">Chapter 1, Section 7</a>. It acts on a ket <span class="arithmatex">\(|\chi\rangle\)</span> by:</p>
+<div class="arithmatex">\[(|\psi\rangle\langle\phi|)|\chi\rangle = |\psi\rangle(\langle\phi|\chi\rangle) = \langle\phi|\chi\rangle \cdot |\psi\rangle\]</div>
+<p>The outer product <span class="arithmatex">\(|k\rangle\langle k|\)</span> is the <strong>projection operator</strong> onto the state <span class="arithmatex">\(|k\rangle\)</span>.</p>
+<p><strong>Completeness relation.</strong> For any orthonormal basis <span class="arithmatex">\(\{|k\rangle\}_{k=1}^n\)</span> of <span class="arithmatex">\(\mathcal{H}\)</span>, the identity operator decomposes as:</p>
+<h4 id="completeness-relation-resolution-of-the-identity">Completeness Relation (Resolution of the Identity)</h4>
+<div class="arithmatex">\[I = \sum_{k=1}^n |k\rangle\langle k|\]</div>
+<p>where:</p>
+<ul>
+<li>Each <span class="arithmatex">\(|k\rangle\langle k|\)</span> is the projector onto the <span class="arithmatex">\(k\)</span>-th basis state</li>
+<li>This holds for any orthonormal basis, not just the computational basis</li>
+</ul>
+<p>The completeness relation is the fundamental tool for inserting identities, changing bases, and deriving matrix representations of operators. For an operator <span class="arithmatex">\(A\)</span>, its matrix elements in basis <span class="arithmatex">\(\{|k\rangle\}\)</span> are <span class="arithmatex">\(A_{jk} = \langle j|A|k\rangle\)</span>, and we can write:</p>
+<div class="arithmatex">\[A = \sum_{j,k} |j\rangle\langle j|A|k\rangle\langle k| = \sum_{j,k} A_{jk}\,|j\rangle\langle k|\]</div>
+<p><strong>Operator representation.</strong> Any linear operator <span class="arithmatex">\(A\)</span> on <span class="arithmatex">\(\mathcal{H}\)</span> can be expressed in terms of its eigenstates via the spectral decomposition (<a href="../01-mathematical-foundations/#14-spectral-decomposition">Chapter 1, Section 14</a>). If <span class="arithmatex">\(A\)</span> is Hermitian with eigenvalues <span class="arithmatex">\(\{a_k\}\)</span> and orthonormal eigenstates <span class="arithmatex">\(\{|a_k\rangle\}\)</span>:</p>
+<div class="arithmatex">\[A = \sum_k a_k |a_k\rangle\langle a_k|\]</div>
+<p>This representation connects the abstract Dirac notation to the spectral decomposition and is the basis for the measurement formalism developed later in this chapter.</p>
+<table>
+<thead>
+<tr>
+<th>Dirac Symbol</th>
+<th>Name</th>
+<th>Mathematical Object</th>
+<th>Matrix Representation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\|\psi\rangle\)</span></td>
+<td>Ket</td>
+<td>Vector in <span class="arithmatex">\(\mathcal{H}\)</span></td>
+<td>Column vector</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\langle\psi\|\)</span></td>
+<td>Bra</td>
+<td>Dual vector in <span class="arithmatex">\(\mathcal{H}^*\)</span></td>
+<td>Row vector (conjugate transpose)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\langle\phi\|\psi\rangle\)</span></td>
+<td>Bracket</td>
+<td>Inner product (scalar)</td>
+<td><span class="arithmatex">\(\phi^\dagger \psi\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\|\psi\rangle\langle\phi\|\)</span></td>
+<td>Outer product</td>
+<td>Operator on <span class="arithmatex">\(\mathcal{H}\)</span></td>
+<td><span class="arithmatex">\(\psi\phi^\dagger\)</span> (matrix)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\langle\psi\|A\|\phi\rangle\)</span></td>
+<td>Matrix element</td>
+<td>Scalar</td>
+<td><span class="arithmatex">\(\psi^\dagger A \phi\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="hilbert-space">Hilbert Space</h2>
+<p>A <strong>Hilbert space</strong> <span class="arithmatex">\(\mathcal{H}\)</span> is a complete inner product space over the complex numbers. It provides the mathematical arena in which quantum mechanics takes place. The concept extends the vector spaces of <a href="../01-mathematical-foundations/#4-vector-spaces">Chapter 1, Section 4</a> and the inner products of <a href="../01-mathematical-foundations/#6-inner-product">Chapter 1, Section 6</a> by adding the crucial requirement of completeness.</p>
+<p><strong>Definition.</strong> A Hilbert space is a complex vector space <span class="arithmatex">\(\mathcal{H}\)</span> equipped with an inner product <span class="arithmatex">\(\langle \cdot | \cdot \rangle : \mathcal{H} \times \mathcal{H} \to \mathbb{C}\)</span> that satisfies the following axioms:</p>
+<h4 id="inner-product-axioms">Inner Product Axioms</h4>
+<div class="arithmatex">\[\text{(i)}\ \langle\phi|\psi\rangle = \langle\psi|\phi\rangle^* \quad\text{(conjugate symmetry)}\]</div>
+<div class="arithmatex">\[\text{(ii)}\ \langle\phi|\alpha\psi_1 + \beta\psi_2\rangle = \alpha\langle\phi|\psi_1\rangle + \beta\langle\phi|\psi_2\rangle \quad\text{(linearity in second argument)}\]</div>
+<div class="arithmatex">\[\text{(iii)}\ \langle\psi|\psi\rangle \geq 0,\ \text{with equality iff}\ |\psi\rangle = 0 \quad\text{(positive definiteness)}\]</div>
+<p>where:</p>
+<ul>
+<li>Axioms (i) and (ii) together imply antilinearity in the first argument: <span class="arithmatex">\(\langle\alpha\phi|\psi\rangle = \alpha^*\langle\phi|\psi\rangle\)</span></li>
+<li>The norm is defined as <span class="arithmatex">\(\||\psi\rangle\| = \sqrt{\langle\psi|\psi\rangle}\)</span></li>
+<li>Note: the physics convention places linearity in the second (ket) argument, opposite to the mathematics convention</li>
+</ul>
+<p><strong>Completeness.</strong> The inner product induces a norm <span class="arithmatex">\(\|\cdot\|\)</span>, which in turn induces a metric <span class="arithmatex">\(d(|\psi\rangle, |\phi\rangle) = \||\psi\rangle - |\phi\rangle\|\)</span>. Completeness requires that every Cauchy sequence in <span class="arithmatex">\(\mathcal{H}\)</span> (with respect to this metric) converges to a limit in <span class="arithmatex">\(\mathcal{H}\)</span>. This technical condition ensures that infinite series of vectors (such as the expansion of a state in a countable basis) are well-defined.</p>
+<p><strong>Separability.</strong> A Hilbert space is <strong>separable</strong> if it admits a countable orthonormal basis. All Hilbert spaces encountered in non-relativistic quantum mechanics are separable.</p>
+<p><strong>Key examples:</strong></p>
+<ol>
+<li>
+<p><strong><span class="arithmatex">\(\mathbb{C}^n\)</span> (finite-dimensional).</strong> The Hilbert space of an <span class="arithmatex">\(n\)</span>-level quantum system. The inner product is <span class="arithmatex">\(\langle\phi|\psi\rangle = \sum_{k=1}^n \phi_k^* \psi_k\)</span>. For quantum computing, <span class="arithmatex">\(n = 2^N\)</span> where <span class="arithmatex">\(N\)</span> is the number of qubits. Completeness is automatic in finite dimensions.</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(L^2(\mathbb{R})\)</span> (infinite-dimensional).</strong> The Hilbert space of square-integrable functions on <span class="arithmatex">\(\mathbb{R}\)</span>, used for continuous-variable quantum mechanics (e.g., position and momentum of a particle). The inner product is <span class="arithmatex">\(\langle\phi|\psi\rangle = \int_{-\infty}^{\infty} \phi^*(x)\psi(x)\,dx\)</span>. Completeness is the content of the Riesz-Fischer theorem.</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\ell^2\)</span> (sequence space).</strong> The space of square-summable complex sequences <span class="arithmatex">\(\{c_n\}\)</span> with <span class="arithmatex">\(\sum_n |c_n|^2 &lt; \infty\)</span>. This is isomorphic to <span class="arithmatex">\(L^2(\mathbb{R})\)</span> via a choice of orthonormal basis.</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th><span class="arithmatex">\(\mathbb{C}^n\)</span></th>
+<th><span class="arithmatex">\(L^2(\mathbb{R})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimension</td>
+<td>Finite (<span class="arithmatex">\(n\)</span>)</td>
+<td>Countably infinite</td>
+</tr>
+<tr>
+<td>Basis</td>
+<td>${</td>
+<td>1\rangle, \ldots,</td>
+</tr>
+<tr>
+<td>Completeness</td>
+<td>Automatic</td>
+<td>Riesz-Fischer theorem</td>
+</tr>
+<tr>
+<td>Inner product</td>
+<td><span class="arithmatex">\(\sum_k \phi_k^* \psi_k\)</span></td>
+<td><span class="arithmatex">\(\int \phi^*(x)\psi(x)\,dx\)</span></td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Qubit systems</td>
+<td>Position/momentum of particles</td>
+</tr>
+<tr>
+<td>Relevance to QC</td>
+<td>Primary (discrete quantum computing)</td>
+<td>Secondary (continuous-variable QC)</td>
+</tr>
+</tbody>
+</table>
+<p>For the remainder of this textbook, we work almost exclusively with finite-dimensional Hilbert spaces <span class="arithmatex">\(\mathbb{C}^{2^N}\)</span>, where the linear algebra of <a href="../01-mathematical-foundations/">Chapter 1</a> applies directly without the analytic subtleties of infinite dimensions.</p>
+<h2 id="state-vector">State Vector</h2>
+<p>The first postulate of quantum mechanics specifies how physical states are represented mathematically.</p>
+<div class="admonition note">
+<p class="admonition-title">Postulate 1: State Space</p>
+<p>The state of a closed quantum system is described by a unit vector <span class="arithmatex">\(|\psi\rangle\)</span> in a complex Hilbert space <span class="arithmatex">\(\mathcal{H}\)</span>, called the <strong>state vector</strong> or <strong>state ket</strong>.</p>
+</div>
+<p><strong>Normalization.</strong> The state vector must satisfy:</p>
+<h4 id="normalization-condition">Normalization Condition</h4>
+<div class="arithmatex">\[\langle\psi|\psi\rangle = 1\]</div>
+<p>where:</p>
+<ul>
+<li>This ensures that the total probability of all measurement outcomes sums to 1 (via the Born rule)</li>
+<li>If a vector <span class="arithmatex">\(|\tilde{\psi}\rangle\)</span> is not normalized, the corresponding physical state is <span class="arithmatex">\(|\psi\rangle = |\tilde{\psi}\rangle / \||\tilde{\psi}\rangle\|\)</span></li>
+</ul>
+<p><strong>Ray equivalence.</strong> Two state vectors that differ by a global phase factor <span class="arithmatex">\(e^{i\gamma}\)</span> (<span class="arithmatex">\(\gamma \in \mathbb{R}\)</span>) represent the same physical state, because all measurable quantities (probabilities, expectation values) depend on <span class="arithmatex">\(|\psi\rangle\)</span> only through expressions of the form <span class="arithmatex">\(|\langle\phi|\psi\rangle|^2\)</span> or <span class="arithmatex">\(\langle\psi|A|\psi\rangle\)</span>, both of which are invariant under <span class="arithmatex">\(|\psi\rangle \to e^{i\gamma}|\psi\rangle\)</span>.</p>
+<p>Formally, a physical state corresponds not to a single vector but to a <strong>ray</strong> in Hilbert space:</p>
+<div class="arithmatex">\[\text{ray}(|\psi\rangle) = \{e^{i\gamma}|\psi\rangle : \gamma \in \mathbb{R}\}\]</div>
+<p><strong>Projective Hilbert space.</strong> The space of all physical states is thus the <strong>projective Hilbert space</strong> <span class="arithmatex">\(\mathbb{P}\mathcal{H}\)</span>, defined as the quotient of the unit sphere in <span class="arithmatex">\(\mathcal{H}\)</span> by the equivalence relation <span class="arithmatex">\(|\psi\rangle \sim e^{i\gamma}|\psi\rangle\)</span>. For a single qubit (<span class="arithmatex">\(\mathcal{H} = \mathbb{C}^2\)</span>), the unit sphere is <span class="arithmatex">\(S^3 \subset \mathbb{R}^4\)</span>, and the quotient <span class="arithmatex">\(S^3/U(1)\)</span> is the Bloch sphere <span class="arithmatex">\(S^2\)</span>, as developed in detail in <a href="../08-qubits-and-states/">Chapter 8</a>.</p>
+<p>For an <span class="arithmatex">\(n\)</span>-dimensional Hilbert space, the projective space <span class="arithmatex">\(\mathbb{CP}^{n-1}\)</span> has <span class="arithmatex">\(2(n-1)\)</span> real parameters: <span class="arithmatex">\(2n\)</span> real parameters from the complex amplitudes, minus 2 for normalization and global phase.</p>
+<h2 id="quantum-measurement">Quantum Measurement</h2>
+<p>Measurement in quantum mechanics is fundamentally different from classical measurement. A classical measurement passively reveals a pre-existing property; a quantum measurement actively transforms the state and yields a probabilistic outcome.</p>
+<div class="admonition note">
+<p class="admonition-title">Postulate 3: Quantum Measurement</p>
+<p>Quantum measurements are described by a collection <span class="arithmatex">\(\{M_m\}\)</span> of <strong>measurement operators</strong> acting on the state space, where the index <span class="arithmatex">\(m\)</span> labels the possible outcomes. The operators satisfy the completeness relation <span class="arithmatex">\(\sum_m M_m^\dagger M_m = I\)</span>.</p>
+</div>
+<p>For the important special case of <strong>projective measurement</strong> (also called von Neumann measurement), the measurement operators are orthogonal projectors. Given an observable <span class="arithmatex">\(A\)</span> with spectral decomposition <span class="arithmatex">\(A = \sum_m a_m P_m\)</span> (where <span class="arithmatex">\(a_m\)</span> are the distinct eigenvalues and <span class="arithmatex">\(P_m = \sum_{k \in \text{deg}(m)} |a_m^{(k)}\rangle\langle a_m^{(k)}|\)</span> are the projectors onto the corresponding eigenspaces), the measurement process is:</p>
+<ol>
+<li><strong>Outcome:</strong> The result of the measurement is one of the eigenvalues <span class="arithmatex">\(a_m\)</span>.</li>
+<li><strong>Probability:</strong> The probability of obtaining outcome <span class="arithmatex">\(a_m\)</span> is <span class="arithmatex">\(P(a_m) = \langle\psi|P_m|\psi\rangle\)</span>.</li>
+<li><strong>Post-measurement state:</strong> If outcome <span class="arithmatex">\(a_m\)</span> is obtained, the state immediately after measurement is <span class="arithmatex">\(P_m|\psi\rangle / \sqrt{P(a_m)}\)</span>.</li>
+</ol>
+<p>The eigenvalues of <span class="arithmatex">\(A\)</span> are real (because <span class="arithmatex">\(A\)</span> is Hermitian, as established in <a href="../01-mathematical-foundations/#12-hermitian-matrices">Chapter 1, Section 12</a>), ensuring that measurement outcomes are real numbers as required by physical observables.</p>
+<p><strong>Von Neumann measurement postulate.</strong> John von Neumann formalized the measurement process by requiring that observables correspond to Hermitian operators and that the measurement device projects the system state onto an eigenstate of the observable. This is the projective measurement described above. More general measurements (POVMs) exist but projective measurements suffice for the foundations and for the standard quantum circuit model.</p>
+<h2 id="born-rule">Born Rule</h2>
+<p>The <strong>Born rule</strong> is the bridge between the mathematical formalism of quantum mechanics and experimental predictions. It gives the probability of obtaining a particular measurement outcome.</p>
+<div class="admonition note">
+<p class="admonition-title">Postulate 2: Born Rule</p>
+<p>If a system is in state <span class="arithmatex">\(|\psi\rangle\)</span> and we measure an observable with eigenstate <span class="arithmatex">\(|\phi\rangle\)</span>, the probability of obtaining the corresponding outcome is <span class="arithmatex">\(P = |\langle\phi|\psi\rangle|^2\)</span>.</p>
+</div>
+<h4 id="born-rule_1">Born Rule</h4>
+<div class="arithmatex">\[P(\phi) = |\langle\phi|\psi\rangle|^2\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|\psi\rangle\)</span> is the current state of the system (normalized)</li>
+<li><span class="arithmatex">\(|\phi\rangle\)</span> is the eigenstate associated with the measurement outcome</li>
+<li><span class="arithmatex">\(\langle\phi|\psi\rangle\)</span> is the probability amplitude (a complex number)</li>
+<li><span class="arithmatex">\(|\cdot|^2\)</span> denotes the modulus squared</li>
+</ul>
+<p><strong>Derivation from the measurement postulate.</strong> For an observable <span class="arithmatex">\(A = \sum_m a_m |a_m\rangle\langle a_m|\)</span> (assuming non-degenerate eigenvalues for simplicity), the projector onto eigenvalue <span class="arithmatex">\(a_m\)</span> is <span class="arithmatex">\(P_m = |a_m\rangle\langle a_m|\)</span>. The probability of outcome <span class="arithmatex">\(a_m\)</span> is:</p>
+<div class="arithmatex">\[P(a_m) = \langle\psi|P_m|\psi\rangle = \langle\psi|a_m\rangle\langle a_m|\psi\rangle = |\langle a_m|\psi\rangle|^2\]</div>
+<p>This derivation shows that the Born rule is a direct consequence of the measurement postulate together with the properties of projection operators.</p>
+<p><strong>Expectation value.</strong> The average value of observable <span class="arithmatex">\(A\)</span> over many measurements on identically prepared states is:</p>
+<h4 id="expectation-value">Expectation Value</h4>
+<div class="arithmatex">\[\langle A \rangle = \langle\psi|A|\psi\rangle = \sum_m a_m |\langle a_m|\psi\rangle|^2\]</div>
+<p>where:</p>
+<ul>
+<li>The second equality follows from inserting the spectral decomposition <span class="arithmatex">\(A = \sum_m a_m |a_m\rangle\langle a_m|\)</span></li>
+<li>Each term <span class="arithmatex">\(a_m |\langle a_m|\psi\rangle|^2\)</span> is the eigenvalue weighted by the Born rule probability</li>
+</ul>
+<p><strong>Physical interpretation.</strong> The Born rule introduces fundamental indeterminacy into physics: even with complete knowledge of the quantum state <span class="arithmatex">\(|\psi\rangle\)</span>, one can only predict the probabilities of measurement outcomes, not which specific outcome will occur. This is not a limitation of our knowledge (as in classical statistical mechanics) but a feature of nature. The Born rule was introduced by Max Born in 1926 as an interpretation of Schrodinger's wave function, earning him the 1954 Nobel Prize.</p>
+<h2 id="wave-function-collapse">Wave Function Collapse</h2>
+<p>When a measurement is performed and a particular outcome is obtained, the quantum state changes discontinuously. This process is called <strong>wave function collapse</strong> (or state reduction).</p>
+<p><strong>State update rule.</strong> If a system in state <span class="arithmatex">\(|\psi\rangle\)</span> is subjected to a projective measurement of observable <span class="arithmatex">\(A = \sum_m a_m P_m\)</span> and outcome <span class="arithmatex">\(a_m\)</span> is obtained, the post-measurement state is:</p>
+<h4 id="projection-postulate-state-update">Projection Postulate (State Update)</h4>
+<div class="arithmatex">\[|\psi\rangle \xrightarrow{\text{outcome } a_m} \frac{P_m|\psi\rangle}{\sqrt{\langle\psi|P_m|\psi\rangle}}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(P_m\)</span> is the projector onto the eigenspace of <span class="arithmatex">\(a_m\)</span></li>
+<li>The denominator ensures normalization of the post-measurement state</li>
+<li>For non-degenerate eigenvalues, <span class="arithmatex">\(P_m = |a_m\rangle\langle a_m|\)</span> and the post-measurement state is simply <span class="arithmatex">\(|a_m\rangle\)</span> (up to global phase)</li>
+</ul>
+<p><strong>Non-unitary nature.</strong> Wave function collapse is fundamentally different from the unitary time evolution described by the Schrodinger equation. Time evolution is deterministic, linear, and reversible (unitary); collapse is probabilistic, nonlinear, and irreversible. Specifically, the projection <span class="arithmatex">\(|\psi\rangle \to P_m|\psi\rangle / \|P_m|\psi\rangle\|\)</span> is not a unitary operation because:</p>
+<ol>
+<li>It is not deterministic—different outcomes yield different post-measurement states.</li>
+<li>It is not reversible—the information about the pre-measurement amplitudes for other eigenvalues is lost.</li>
+<li>It does not preserve the inner product between distinct pre-measurement states.</li>
+</ol>
+<p><strong>Measurement back-action.</strong> Collapse means that measurement disturbs the system. After measuring <span class="arithmatex">\(A\)</span> and obtaining eigenvalue <span class="arithmatex">\(a_m\)</span>, the system is in eigenstate <span class="arithmatex">\(|a_m\rangle\)</span>. A subsequent measurement of a different observable <span class="arithmatex">\(B\)</span> that does not commute with <span class="arithmatex">\(A\)</span> (i.e., <span class="arithmatex">\([A, B] \neq 0\)</span>) will generally disturb the <span class="arithmatex">\(A\)</span>-eigenstate, so a follow-up measurement of <span class="arithmatex">\(A\)</span> may yield a different result. This measurement back-action is the physical content of the Heisenberg uncertainty principle, which we prove rigorously in Section 10.</p>
+<p><strong>Repeated measurements.</strong> An immediate consequence of the projection postulate is that repeated measurement of the same observable yields the same result: once <span class="arithmatex">\(|\psi\rangle\)</span> has collapsed to <span class="arithmatex">\(|a_m\rangle\)</span>, the probability of again obtaining <span class="arithmatex">\(a_m\)</span> is <span class="arithmatex">\(|\langle a_m|a_m\rangle|^2 = 1\)</span>. This property is called the <strong>reproducibility</strong> of quantum measurements.</p>
+<h4 id="diagram-quantum-measurement-and-collapse-simulator">Diagram: Quantum Measurement and Collapse Simulator</h4>
+<iframe src="../../sims/quantum-measurement-collapse/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Description</summary>
+<p>Type: MicroSim
+Learning objective: Students can observe how projective measurement collapses a superposition state onto an eigenstate of the measured observable, and how the Born rule governs the statistical distribution of outcomes over many trials.
+Visual elements: A Bloch sphere showing the pre-measurement state vector; an axis selector for the measurement basis (X, Y, or Z); an animated collapse of the state vector onto one of the two eigenstates along the chosen axis; a running histogram of measurement outcomes accumulated over many trials; a numerical display comparing the empirical frequencies with the Born rule predictions.
+Controls: Sliders for <span class="arithmatex">\(\theta\)</span> and <span class="arithmatex">\(\phi\)</span> to set the initial state on the Bloch sphere; dropdown to select measurement basis (X, Y, Z); button "Measure once" to perform a single measurement with animated collapse; button "Measure 100 times" to accumulate statistics; button "Reset" to clear the histogram.
+Behavior: Each measurement samples from the Born rule distribution for the chosen basis, animates the Bloch vector snapping to the resulting eigenstate, and adds a count to the histogram. The histogram converges to the theoretical probabilities as the number of trials increases. After each single measurement, the state remains collapsed (subsequent measurements in the same basis always give the same result) until the user resets.
+Implementation: p5.js with WEBGL for the 3D Bloch sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="heisenberg-uncertainty">Heisenberg Uncertainty</h2>
+<p>The <strong>Heisenberg uncertainty principle</strong> places a fundamental limit on the precision with which two non-commuting observables can be simultaneously known. It is not a statement about measurement apparatus limitations but about the intrinsic structure of quantum states.</p>
+<p><strong>Statement.</strong> For any two observables <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> and any state <span class="arithmatex">\(|\psi\rangle\)</span>:</p>
+<h4 id="generalized-uncertainty-relation">Generalized Uncertainty Relation</h4>
+<div class="arithmatex">\[\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle[A, B]\rangle|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\Delta A = \sqrt{\langle A^2\rangle - \langle A\rangle^2}\)</span> is the standard deviation of <span class="arithmatex">\(A\)</span> in state <span class="arithmatex">\(|\psi\rangle\)</span></li>
+<li><span class="arithmatex">\(\Delta B = \sqrt{\langle B^2\rangle - \langle B\rangle^2}\)</span> is the standard deviation of <span class="arithmatex">\(B\)</span> in state <span class="arithmatex">\(|\psi\rangle\)</span></li>
+<li><span class="arithmatex">\([A, B] = AB - BA\)</span> is the commutator (see Section 11)</li>
+<li><span class="arithmatex">\(\langle \cdot \rangle = \langle\psi|\cdot|\psi\rangle\)</span> denotes the expectation value in state <span class="arithmatex">\(|\psi\rangle\)</span></li>
+</ul>
+<p><strong>Proof from the Cauchy-Schwarz inequality.</strong> Define the shifted operators <span class="arithmatex">\(\bar{A} = A - \langle A\rangle I\)</span> and <span class="arithmatex">\(\bar{B} = B - \langle B\rangle I\)</span>, so that <span class="arithmatex">\((\Delta A)^2 = \langle \bar{A}^2\rangle\)</span> and <span class="arithmatex">\((\Delta B)^2 = \langle\bar{B}^2\rangle\)</span>. Note that <span class="arithmatex">\([\bar{A}, \bar{B}] = [A, B]\)</span>.</p>
+<p>Define vectors <span class="arithmatex">\(|f\rangle = \bar{A}|\psi\rangle\)</span> and <span class="arithmatex">\(|g\rangle = \bar{B}|\psi\rangle\)</span>. By the Cauchy-Schwarz inequality (a consequence of the inner product axioms from <a href="../01-mathematical-foundations/#6-inner-product">Chapter 1, Section 6</a>):</p>
+<div class="arithmatex">\[\langle f|f\rangle \langle g|g\rangle \geq |\langle f|g\rangle|^2\]</div>
+<p>The left side is <span class="arithmatex">\((\Delta A)^2 (\Delta B)^2\)</span>. For the right side, decompose <span class="arithmatex">\(\langle f|g\rangle = \langle\psi|\bar{A}\bar{B}|\psi\rangle\)</span> into its real and imaginary parts:</p>
+<div class="arithmatex">\[\langle\psi|\bar{A}\bar{B}|\psi\rangle = \frac{1}{2}\langle\psi|\{\bar{A},\bar{B}\}|\psi\rangle + \frac{1}{2}\langle\psi|[\bar{A},\bar{B}]|\psi\rangle\]</div>
+<p>where <span class="arithmatex">\(\{A, B\} = AB + BA\)</span> is the anticommutator. The first term is real (since <span class="arithmatex">\(\{\bar{A}, \bar{B}\}\)</span> is Hermitian) and the second is purely imaginary (since <span class="arithmatex">\([\bar{A}, \bar{B}]\)</span> is anti-Hermitian when <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are Hermitian, so <span class="arithmatex">\(\langle\psi|[\bar{A},\bar{B}]|\psi\rangle\)</span> is purely imaginary). Therefore:</p>
+<div class="arithmatex">\[|\langle f|g\rangle|^2 = \frac{1}{4}|\langle\{\bar{A},\bar{B}\}\rangle|^2 + \frac{1}{4}|\langle[\bar{A},\bar{B}]\rangle|^2 \geq \frac{1}{4}|\langle[A, B]\rangle|^2\]</div>
+<p>Combining: <span class="arithmatex">\((\Delta A)^2(\Delta B)^2 \geq \frac{1}{4}|\langle[A,B]\rangle|^2\)</span>, and taking the square root gives the generalized uncertainty relation. <span class="arithmatex">\(\square\)</span></p>
+<p><strong>Position-momentum uncertainty.</strong> For the canonical pair <span class="arithmatex">\(\hat{x}\)</span> and <span class="arithmatex">\(\hat{p}\)</span> with <span class="arithmatex">\([\hat{x}, \hat{p}] = i\hbar\)</span> (see Section 11):</p>
+<h4 id="position-momentum-uncertainty-principle">Position-Momentum Uncertainty Principle</h4>
+<div class="arithmatex">\[\Delta x \cdot \Delta p \geq \frac{\hbar}{2}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\hbar = 1.055 \times 10^{-34}\)</span> J<span class="arithmatex">\(\cdot\)</span>s</li>
+<li>This bound is saturated by Gaussian wave packets (coherent states)</li>
+</ul>
+<p>The position-momentum uncertainty relation has profound implications: it means there is no quantum state with simultaneously definite position and momentum. This is not a consequence of measurement disturbance but of the mathematical structure of the Hilbert space—the position and momentum eigenstates are simply incompatible bases.</p>
+<h2 id="commutator-relations">Commutator Relations</h2>
+<p>The <strong>commutator</strong> of two operators is a fundamental algebraic structure in quantum mechanics that determines whether observables can be simultaneously measured and quantifies the uncertainty relations.</p>
+<p><strong>Definition.</strong> For linear operators <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> on a Hilbert space:</p>
+<h4 id="commutator-definition">Commutator Definition</h4>
+<div class="arithmatex">\[[A, B] = AB - BA\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\([A, B] = 0\)</span> means <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> <strong>commute</strong></li>
+<li><span class="arithmatex">\([A, B] \neq 0\)</span> means <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are <strong>incompatible</strong> observables</li>
+</ul>
+<p><strong>Properties of the commutator:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antisymmetry</td>
+<td><span class="arithmatex">\([A, B] = -[B, A]\)</span></td>
+</tr>
+<tr>
+<td>Linearity</td>
+<td><span class="arithmatex">\([A, \alpha B + \beta C] = \alpha[A, B] + \beta[A, C]\)</span></td>
+</tr>
+<tr>
+<td>Leibniz (product) rule</td>
+<td><span class="arithmatex">\([A, BC] = [A, B]C + B[A, C]\)</span></td>
+</tr>
+<tr>
+<td>Jacobi identity</td>
+<td><span class="arithmatex">\([A, [B, C]] + [B, [C, A]] + [C, [A, B]] = 0\)</span></td>
+</tr>
+<tr>
+<td>Hermitian conjugate</td>
+<td><span class="arithmatex">\([A, B]^\dagger = [B^\dagger, A^\dagger]\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Canonical commutation relation.</strong> The position and momentum operators satisfy:</p>
+<h4 id="canonical-commutation-relation">Canonical Commutation Relation</h4>
+<div class="arithmatex">\[[\hat{x}, \hat{p}] = i\hbar\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\hat{x}\)</span> is the position operator</li>
+<li><span class="arithmatex">\(\hat{p} = -i\hbar \frac{d}{dx}\)</span> is the momentum operator (in position representation)</li>
+<li>This relation is the quantum analogue of the classical Poisson bracket <span class="arithmatex">\(\{x, p\} = 1\)</span></li>
+</ul>
+<p><strong>Verification.</strong> Acting on an arbitrary wave function <span class="arithmatex">\(\psi(x)\)</span>:</p>
+<div class="arithmatex">\[[\hat{x}, \hat{p}]\psi(x) = \hat{x}\hat{p}\psi - \hat{p}\hat{x}\psi = x\left(-i\hbar\frac{d\psi}{dx}\right) - \left(-i\hbar\frac{d}{dx}\right)(x\psi)\]</div>
+<div class="arithmatex">\[= -i\hbar x\frac{d\psi}{dx} + i\hbar\left(\psi + x\frac{d\psi}{dx}\right) = i\hbar\psi(x)\]</div>
+<p>Since this holds for all <span class="arithmatex">\(\psi(x)\)</span>, we have <span class="arithmatex">\([\hat{x}, \hat{p}] = i\hbar I\)</span>.</p>
+<p><strong>Implications for simultaneous measurability.</strong> Two observables <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> can be simultaneously measured with arbitrary precision if and only if <span class="arithmatex">\([A, B] = 0\)</span>. When the commutator vanishes, <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> share a common eigenbasis (this follows from the spectral theorem for commuting Hermitian operators), and a state can be prepared that is simultaneously an eigenstate of both. When <span class="arithmatex">\([A, B] \neq 0\)</span>, the generalized uncertainty relation (Section 10) imposes a nonzero lower bound on <span class="arithmatex">\(\Delta A \cdot \Delta B\)</span>, meaning no state exists with simultaneously sharp values for both observables.</p>
+<p><strong>Example: Pauli matrices.</strong> The Pauli operators, which are central to qubit physics in <a href="../08-qubits-and-states/">Chapter 8</a>, satisfy the commutation relations:</p>
+<div class="arithmatex">\[[X, Y] = 2iZ, \qquad [Y, Z] = 2iX, \qquad [Z, X] = 2iY\]</div>
+<p>or compactly <span class="arithmatex">\([\sigma_j, \sigma_k] = 2i\epsilon_{jkl}\sigma_l\)</span>, where <span class="arithmatex">\(\epsilon_{jkl}\)</span> is the Levi-Civita symbol. Since no two Pauli operators commute, the corresponding observables (spin components along the three axes) cannot be simultaneously sharp—a fact we will exploit in Chapter 8 when discussing qubit measurements in different bases.</p>
+<h2 id="density-matrix">Density Matrix</h2>
+<p>The <strong>density matrix</strong> (or density operator) formalism extends quantum mechanics to handle situations where the system state is not known with certainty. While the state vector formalism of Sections 6--9 describes <strong>pure states</strong> (maximal knowledge of the system), the density matrix can also describe <strong>mixed states</strong> (statistical uncertainty about which pure state the system is in).</p>
+<p><strong>Definition for pure states.</strong> A pure state <span class="arithmatex">\(|\psi\rangle\)</span> is equivalently described by the density matrix:</p>
+<h4 id="density-matrix-for-pure-state">Density Matrix for Pure State</h4>
+<div class="arithmatex">\[\rho = |\psi\rangle\langle\psi|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\rho\)</span> is a linear operator on <span class="arithmatex">\(\mathcal{H}\)</span> (an <span class="arithmatex">\(n \times n\)</span> matrix for <span class="arithmatex">\(\mathcal{H} = \mathbb{C}^n\)</span>)</li>
+<li>This is the outer product (projection operator) introduced in the Dirac notation section</li>
+</ul>
+<p><strong>Properties.</strong> The density matrix of any valid quantum state (pure or mixed) satisfies three properties:</p>
+<h4 id="density-matrix-properties">Density Matrix Properties</h4>
+<div class="arithmatex">\[\text{(i)}\ \rho^\dagger = \rho \quad\text{(Hermitian)}\]</div>
+<div class="arithmatex">\[\text{(ii)}\ \rho \geq 0 \quad\text{(positive semi-definite: all eigenvalues } \geq 0\text{)}\]</div>
+<div class="arithmatex">\[\text{(iii)}\ \operatorname{Tr}(\rho) = 1 \quad\text{(unit trace)}\]</div>
+<p>where:</p>
+<ul>
+<li>Hermiticity ensures that expectation values are real</li>
+<li>Positive semi-definiteness ensures that probabilities are non-negative</li>
+<li>Unit trace ensures that probabilities sum to 1</li>
+<li>Conversely, any operator satisfying (i)--(iii) is a valid density matrix</li>
+</ul>
+<p><strong>Proof for pure states.</strong> For <span class="arithmatex">\(\rho = |\psi\rangle\langle\psi|\)</span>:</p>
+<ul>
+<li>Hermiticity: <span class="arithmatex">\((|\psi\rangle\langle\psi|)^\dagger = |\psi\rangle\langle\psi|\)</span> (since <span class="arithmatex">\((|a\rangle\langle b|)^\dagger = |b\rangle\langle a|\)</span>).</li>
+<li>Positive semi-definiteness: <span class="arithmatex">\(\langle\phi|\rho|\phi\rangle = \langle\phi|\psi\rangle\langle\psi|\phi\rangle = |\langle\phi|\psi\rangle|^2 \geq 0\)</span> for all <span class="arithmatex">\(|\phi\rangle\)</span>.</li>
+<li>Unit trace: <span class="arithmatex">\(\operatorname{Tr}(\rho) = \sum_k \langle k|\psi\rangle\langle\psi|k\rangle = \sum_k |\langle k|\psi\rangle|^2 = \langle\psi|\psi\rangle = 1\)</span>.</li>
+</ul>
+<p><strong>Expectation values.</strong> The density matrix formulation of the Born rule is:</p>
+<h4 id="expectation-value-via-density-matrix">Expectation Value via Density Matrix</h4>
+<div class="arithmatex">\[\langle A \rangle = \operatorname{Tr}(\rho A)\]</div>
+<p>where:</p>
+<ul>
+<li>This formula holds for both pure and mixed states</li>
+<li>For a pure state: <span class="arithmatex">\(\operatorname{Tr}(|\psi\rangle\langle\psi|A) = \langle\psi|A|\psi\rangle\)</span>, recovering the standard formula</li>
+</ul>
+<p><strong>Proof.</strong> Expanding in an orthonormal basis:</p>
+<div class="arithmatex">\[\operatorname{Tr}(\rho A) = \sum_k \langle k|\rho A|k\rangle = \sum_k \langle k|\psi\rangle\langle\psi|A|k\rangle = \langle\psi|A\left(\sum_k |k\rangle\langle k|\right)|\psi\rangle = \langle\psi|A|\psi\rangle\]</div>
+<p>where we used the completeness relation in the last step.</p>
+<p><strong>Measurement probabilities.</strong> The probability of outcome <span class="arithmatex">\(m\)</span> in a projective measurement is:</p>
+<div class="arithmatex">\[P(m) = \operatorname{Tr}(\rho P_m) = \operatorname{Tr}(P_m \rho P_m)\]</div>
+<p>and the post-measurement state is:</p>
+<div class="arithmatex">\[\rho \to \frac{P_m \rho P_m}{\operatorname{Tr}(P_m \rho)}\]</div>
+<p>This generalizes the projection postulate of Section 9 to density matrices and will be the standard formulation used in quantum error correction (Chapter 11).</p>
+<h2 id="pure-and-mixed-states">Pure And Mixed States</h2>
+<p>The density matrix formalism reveals a fundamental distinction between two types of quantum states.</p>
+<p><strong>Pure states.</strong> A state is <strong>pure</strong> if there exists a state vector <span class="arithmatex">\(|\psi\rangle\)</span> such that <span class="arithmatex">\(\rho = |\psi\rangle\langle\psi|\)</span>. For a pure state, the density matrix is an idempotent projector: <span class="arithmatex">\(\rho^2 = \rho\)</span>. The system has maximum quantum coherence, and the state is determined as precisely as quantum mechanics allows.</p>
+<p><strong>Mixed states.</strong> A state is <strong>mixed</strong> if it cannot be written as a single outer product. Mixed states arise from classical (statistical) uncertainty about which pure state the system is in. A mixed state is described by a statistical ensemble <span class="arithmatex">\(\{(p_i, |\psi_i\rangle)\}\)</span>:</p>
+<h4 id="mixed-state-density-matrix">Mixed State Density Matrix</h4>
+<div class="arithmatex">\[\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p_i \geq 0\)</span> are classical probabilities with <span class="arithmatex">\(\sum_i p_i = 1\)</span></li>
+<li><span class="arithmatex">\(|\psi_i\rangle\)</span> are (not necessarily orthogonal) pure states</li>
+<li>The decomposition is not unique: different ensembles can produce the same <span class="arithmatex">\(\rho\)</span></li>
+</ul>
+<p><strong>Purity.</strong> The <strong>purity</strong> of a quantum state quantifies how close it is to a pure state:</p>
+<h4 id="purity">Purity</h4>
+<div class="arithmatex">\[\gamma = \operatorname{Tr}(\rho^2)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\gamma = 1\)</span> if and only if <span class="arithmatex">\(\rho\)</span> is pure (since <span class="arithmatex">\(\rho^2 = \rho\)</span> implies <span class="arithmatex">\(\operatorname{Tr}(\rho^2) = \operatorname{Tr}(\rho) = 1\)</span>)</li>
+<li><span class="arithmatex">\(1/d \leq \gamma \leq 1\)</span> for a <span class="arithmatex">\(d\)</span>-dimensional system</li>
+<li><span class="arithmatex">\(\gamma = 1/d\)</span> for the maximally mixed state <span class="arithmatex">\(\rho = I/d\)</span></li>
+</ul>
+<p><strong>Proof that <span class="arithmatex">\(\gamma = 1\)</span> implies pure state.</strong> Let <span class="arithmatex">\(\rho\)</span> have eigenvalues <span class="arithmatex">\(\{r_i\}\)</span> with <span class="arithmatex">\(\sum_i r_i = 1\)</span> and <span class="arithmatex">\(r_i \geq 0\)</span>. Then <span class="arithmatex">\(\operatorname{Tr}(\rho^2) = \sum_i r_i^2\)</span>. By convexity of <span class="arithmatex">\(x^2\)</span>, <span class="arithmatex">\(\sum_i r_i^2 \leq (\sum_i r_i)^2 = 1\)</span> with equality if and only if exactly one <span class="arithmatex">\(r_i = 1\)</span> and the rest are zero—i.e., <span class="arithmatex">\(\rho\)</span> is a rank-1 projector (pure state). <span class="arithmatex">\(\square\)</span></p>
+<p><strong>Von Neumann entropy.</strong> The quantum analogue of the Shannon entropy measures the degree of mixedness:</p>
+<h4 id="von-neumann-entropy">Von Neumann Entropy</h4>
+<div class="arithmatex">\[S(\rho) = -\operatorname{Tr}(\rho \ln \rho) = -\sum_i r_i \ln r_i\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(r_i\)</span> are the eigenvalues of <span class="arithmatex">\(\rho\)</span></li>
+<li><span class="arithmatex">\(S = 0\)</span> for pure states (all information is quantum)</li>
+<li><span class="arithmatex">\(S = \ln d\)</span> for the maximally mixed state in <span class="arithmatex">\(d\)</span> dimensions</li>
+<li>The convention <span class="arithmatex">\(0 \ln 0 = 0\)</span> is used</li>
+<li>When the base-2 logarithm is used, <span class="arithmatex">\(S\)</span> is measured in bits; with the natural logarithm, in nats</li>
+</ul>
+<p><strong>Statistical ensembles.</strong> Mixed states arise naturally in several physical situations:</p>
+<ol>
+<li><strong>Subsystem of an entangled state:</strong> Tracing over one part of an entangled bipartite state yields a mixed reduced density matrix (as detailed in <a href="../08-qubits-and-states/">Chapter 8</a>).</li>
+<li><strong>Imperfect state preparation:</strong> If a source produces state <span class="arithmatex">\(|\psi_i\rangle\)</span> with probability <span class="arithmatex">\(p_i\)</span>, the average description is the mixed state <span class="arithmatex">\(\rho = \sum_i p_i |\psi_i\rangle\langle\psi_i|\)</span>.</li>
+<li><strong>Decoherence:</strong> Interaction with the environment entangles the system with unobserved degrees of freedom, causing the system's state to become mixed.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Pure State</th>
+<th>Mixed State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Density matrix</td>
+<td><span class="arithmatex">\(\rho = \|\psi\rangle\langle\psi\|\)</span></td>
+<td><span class="arithmatex">\(\rho = \sum_i p_i \|\psi_i\rangle\langle\psi_i\|\)</span></td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>1</td>
+<td><span class="arithmatex">\(&gt; 1\)</span></td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td><span class="arithmatex">\(\rho^2 = \rho\)</span></td>
+<td><span class="arithmatex">\(\rho^2 \neq \rho\)</span></td>
+</tr>
+<tr>
+<td>Purity <span class="arithmatex">\(\operatorname{Tr}(\rho^2)\)</span></td>
+<td><span class="arithmatex">\(1\)</span></td>
+<td><span class="arithmatex">\(&lt; 1\)</span></td>
+</tr>
+<tr>
+<td>Von Neumann entropy</td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\(&gt; 0\)</span></td>
+</tr>
+<tr>
+<td>State vector description</td>
+<td>Yes (<span class="arithmatex">\(\|\psi\rangle\)</span>)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Bloch vector (qubit)</td>
+<td>On surface (<span class="arithmatex">\(\|\vec{n}\| = 1\)</span>)</td>
+<td>Interior (<span class="arithmatex">\(\|\vec{n}\| &lt; 1\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="time-evolution-operator">Time Evolution Operator</h2>
+<p>The dynamics of a closed quantum system are governed by a unitary operator that maps the state at one time to the state at a later time.</p>
+<div class="admonition note">
+<p class="admonition-title">Postulate 4: Time Evolution</p>
+<p>The evolution of a closed quantum system from time <span class="arithmatex">\(t_0\)</span> to time <span class="arithmatex">\(t\)</span> is described by a unitary operator <span class="arithmatex">\(U(t, t_0)\)</span> such that <span class="arithmatex">\(|\psi(t)\rangle = U(t, t_0)|\psi(t_0)\rangle\)</span>.</p>
+</div>
+<p>For a system with a <strong>time-independent Hamiltonian</strong> <span class="arithmatex">\(H\)</span>:</p>
+<h4 id="time-evolution-operator_1">Time Evolution Operator</h4>
+<div class="arithmatex">\[U(t) = e^{-iHt/\hbar}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(H\)</span> is the Hamiltonian (a Hermitian operator representing the total energy)</li>
+<li><span class="arithmatex">\(t\)</span> is the elapsed time (we set <span class="arithmatex">\(t_0 = 0\)</span> without loss of generality)</li>
+<li>The matrix exponential is defined by the power series: <span class="arithmatex">\(e^{-iHt/\hbar} = \sum_{n=0}^{\infty} \frac{1}{n!}\left(\frac{-iHt}{\hbar}\right)^n\)</span></li>
+</ul>
+<p><strong>Unitarity proof.</strong> We must show that <span class="arithmatex">\(U(t)^\dagger U(t) = I\)</span>. Using <span class="arithmatex">\(H^\dagger = H\)</span> (Hermiticity of the Hamiltonian, as established in <a href="../01-mathematical-foundations/#12-hermitian-matrices">Chapter 1, Section 12</a>):</p>
+<div class="arithmatex">\[U(t)^\dagger = \left(e^{-iHt/\hbar}\right)^\dagger = e^{(iHt/\hbar)^\dagger} = e^{-iH^\dagger t/\hbar \cdot (-1)} = e^{iHt/\hbar}\]</div>
+<p>Wait—more carefully, <span class="arithmatex">\((e^{A})^\dagger = e^{A^\dagger}\)</span> for any operator <span class="arithmatex">\(A\)</span>. Since <span class="arithmatex">\((-iHt/\hbar)^\dagger = (iH^\dagger t/\hbar) = iHt/\hbar\)</span>, we have:</p>
+<div class="arithmatex">\[U(t)^\dagger U(t) = e^{iHt/\hbar} e^{-iHt/\hbar} = e^{iHt/\hbar - iHt/\hbar} = e^0 = I\]</div>
+<p>where the third equality uses the fact that <span class="arithmatex">\(iHt/\hbar\)</span> and <span class="arithmatex">\(-iHt/\hbar\)</span> commute (any operator commutes with itself). Therefore <span class="arithmatex">\(U(t)\)</span> is unitary. <span class="arithmatex">\(\square\)</span></p>
+<p>The unitarity of time evolution has several profound consequences:</p>
+<ol>
+<li><strong>Probability conservation:</strong> Since <span class="arithmatex">\(\langle\psi(t)|\psi(t)\rangle = \langle\psi(0)|U^\dagger U|\psi(0)\rangle = \langle\psi(0)|\psi(0)\rangle = 1\)</span>, normalization is preserved.</li>
+<li><strong>Reversibility:</strong> The inverse evolution is <span class="arithmatex">\(U(t)^{-1} = U(t)^\dagger = e^{iHt/\hbar} = U(-t)\)</span>, corresponding to time reversal.</li>
+<li><strong>Inner product preservation:</strong> <span class="arithmatex">\(\langle\phi(t)|\psi(t)\rangle = \langle\phi(0)|U^\dagger U|\psi(0)\rangle = \langle\phi(0)|\psi(0)\rangle\)</span>, so the overlap between any two states is constant.</li>
+</ol>
+<p><strong>Spectral form.</strong> Using the spectral decomposition <span class="arithmatex">\(H = \sum_n E_n |E_n\rangle\langle E_n|\)</span>, the time evolution operator becomes:</p>
+<div class="arithmatex">\[U(t) = \sum_n e^{-iE_n t/\hbar} |E_n\rangle\langle E_n|\]</div>
+<p>This shows that time evolution multiplies each energy eigenstate by a phase <span class="arithmatex">\(e^{-iE_n t/\hbar}\)</span>. Different energy eigenstates accumulate phase at different rates, leading to time-dependent interference effects.</p>
+<p><strong>Time-dependent Hamiltonian.</strong> When <span class="arithmatex">\(H = H(t)\)</span> depends on time, the time evolution operator becomes:</p>
+<div class="arithmatex">\[U(t, t_0) = \mathcal{T}\exp\left(-\frac{i}{\hbar}\int_{t_0}^{t} H(t')\,dt'\right)\]</div>
+<p>where <span class="arithmatex">\(\mathcal{T}\)</span> denotes the <strong>time-ordering operator</strong>, which arranges operators at later times to the left. The time-ordering is necessary because <span class="arithmatex">\(H(t_1)\)</span> and <span class="arithmatex">\(H(t_2)\)</span> may not commute at different times. If <span class="arithmatex">\([H(t_1), H(t_2)] = 0\)</span> for all <span class="arithmatex">\(t_1, t_2\)</span>, the time-ordering becomes unnecessary and <span class="arithmatex">\(U\)</span> reduces to the ordinary exponential of the integrated Hamiltonian.</p>
+<h2 id="schrodinger-equation">Schrodinger Equation</h2>
+<p>The <strong>Schrodinger equation</strong> is the fundamental equation of motion for quantum mechanics, governing how the state of a system changes with time.</p>
+<p><strong>Time-dependent Schrodinger equation.</strong> Differentiating <span class="arithmatex">\(|\psi(t)\rangle = U(t)|\psi(0)\rangle = e^{-iHt/\hbar}|\psi(0)\rangle\)</span> with respect to <span class="arithmatex">\(t\)</span>:</p>
+<div class="arithmatex">\[\frac{d}{dt}|\psi(t)\rangle = \frac{-iH}{\hbar}e^{-iHt/\hbar}|\psi(0)\rangle = \frac{-iH}{\hbar}|\psi(t)\rangle\]</div>
+<p>Rearranging:</p>
+<h4 id="time-dependent-schrodinger-equation">Time-Dependent Schrodinger Equation</h4>
+<div class="arithmatex">\[i\hbar\frac{d}{dt}|\psi(t)\rangle = H|\psi(t)\rangle\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(H\)</span> is the Hamiltonian operator (total energy observable)</li>
+<li><span class="arithmatex">\(|\psi(t)\rangle\)</span> is the state vector at time <span class="arithmatex">\(t\)</span></li>
+<li>This is a first-order linear ordinary differential equation in <span class="arithmatex">\(t\)</span></li>
+<li>The initial condition <span class="arithmatex">\(|\psi(0)\rangle\)</span> uniquely determines the solution for all <span class="arithmatex">\(t\)</span></li>
+</ul>
+<p>The Schrodinger equation is the quantum analogue of Hamilton's equations in classical mechanics. Its linearity guarantees that the superposition principle is preserved under time evolution.</p>
+<p><strong>Time-independent Schrodinger equation.</strong> For a time-independent Hamiltonian, we seek solutions of the form <span class="arithmatex">\(|\psi(t)\rangle = e^{-iEt/\hbar}|\phi\rangle\)</span>, where <span class="arithmatex">\(|\phi\rangle\)</span> does not depend on <span class="arithmatex">\(t\)</span>. Substituting into the time-dependent equation:</p>
+<div class="arithmatex">\[i\hbar \cdot \frac{-iE}{\hbar} e^{-iEt/\hbar}|\phi\rangle = H e^{-iEt/\hbar}|\phi\rangle\]</div>
+<div class="arithmatex">\[E|\phi\rangle = H|\phi\rangle\]</div>
+<h4 id="time-independent-schrodinger-equation">Time-Independent Schrodinger Equation</h4>
+<div class="arithmatex">\[H|E_n\rangle = E_n|E_n\rangle\]</div>
+<p>where:</p>
+<ul>
+<li>This is the eigenvalue equation for the Hamiltonian (<a href="../01-mathematical-foundations/#9-eigenvalues">Chapter 1, Section 9</a>)</li>
+<li><span class="arithmatex">\(E_n\)</span> are the energy eigenvalues (the allowed energies of the system)</li>
+<li><span class="arithmatex">\(|E_n\rangle\)</span> are the corresponding energy eigenstates</li>
+</ul>
+<p><strong>Energy eigenstates and stationary states.</strong> The solutions <span class="arithmatex">\(|\psi_n(t)\rangle = e^{-iE_n t/\hbar}|E_n\rangle\)</span> are called <strong>stationary states</strong> because their probability distributions are time-independent:</p>
+<div class="arithmatex">\[P_n(m, t) = |\langle m|\psi_n(t)\rangle|^2 = |e^{-iE_n t/\hbar}|^2 |\langle m|E_n\rangle|^2 = |\langle m|E_n\rangle|^2\]</div>
+<p>The time-dependent phase factor <span class="arithmatex">\(e^{-iE_n t/\hbar}\)</span> is a global phase and has no observable effect. Stationary states are the quantum analogues of equilibrium states in classical mechanics.</p>
+<p><strong>General solution.</strong> By the superposition principle, the most general solution is a linear combination of stationary states:</p>
+<div class="arithmatex">\[|\psi(t)\rangle = \sum_n c_n e^{-iE_n t/\hbar}|E_n\rangle\]</div>
+<p>where <span class="arithmatex">\(c_n = \langle E_n|\psi(0)\rangle\)</span> are determined by the initial state. Unlike individual stationary states, a superposition of energy eigenstates with different energies exhibits time-dependent behavior because the relative phases <span class="arithmatex">\(e^{-i(E_n - E_m)t/\hbar}\)</span> between different components evolve at different rates.</p>
+<p><strong>Connection to quantum computing.</strong> In the quantum circuit model, time evolution is replaced by a sequence of discrete unitary gates <span class="arithmatex">\(U_1, U_2, \ldots, U_L\)</span>, each acting on a small number of qubits. The total evolution is <span class="arithmatex">\(U = U_L \cdots U_2 U_1\)</span>. While the Schrodinger equation governs continuous-time evolution of physical quantum systems, the circuit model discretizes this into elementary operations. The equivalence of these viewpoints is guaranteed by the Solovay-Kitaev theorem (Chapter 9), which shows that any unitary can be approximated to arbitrary precision by a finite sequence of gates from a universal gate set.</p>
+<h4 id="diagram-time-evolution-of-quantum-states">Diagram: Time Evolution of Quantum States</h4>
+<iframe src="../../sims/schrodinger-time-evolution/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Description</summary>
+<p>Type: MicroSim
+Learning objective: Students can observe how a superposition of energy eigenstates evolves in time under the Schrodinger equation, and how the relative phase differences between components produce observable dynamics while individual energy eigenstates remain stationary.
+Visual elements: A two-level system (qubit) visualized on the Bloch sphere, with the Hamiltonian defining the energy splitting between <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span>; a time slider showing the current time; the state vector precessing around the Bloch sphere; a plot of <span class="arithmatex">\(|\langle 0|\psi(t)\rangle|^2\)</span> and <span class="arithmatex">\(|\langle 1|\psi(t)\rangle|^2\)</span> versus time; a display of the instantaneous state <span class="arithmatex">\(|\psi(t)\rangle = c_0(t)|0\rangle + c_1(t)|1\rangle\)</span> with the complex amplitudes shown as rotating phasors.
+Controls: Slider for energy splitting <span class="arithmatex">\(\Delta E = E_1 - E_0\)</span> (controls precession rate); sliders for the initial state angles <span class="arithmatex">\(\theta\)</span> and <span class="arithmatex">\(\phi\)</span>; play/pause button for continuous time evolution; time slider for manual scrubbing; button to snap to an energy eigenstate (to demonstrate stationarity); speed control for the animation.
+Behavior: The Bloch vector precesses around the <span class="arithmatex">\(z\)</span>-axis at angular frequency <span class="arithmatex">\(\omega = \Delta E/\hbar\)</span>. When the initial state is an energy eigenstate (<span class="arithmatex">\(|0\rangle\)</span> or <span class="arithmatex">\(|1\rangle\)</span>, at the poles), the Bloch vector remains stationary. For any other initial state, the Bloch vector traces a circle at constant latitude, demonstrating that only the relative phase evolves. The probability plot shows sinusoidal oscillation (Rabi oscillation) for superposition states and flat lines for energy eigenstates.
+Implementation: p5.js with WEBGL for the 3D Bloch sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="no-cloning-theorem">No-Cloning Theorem</h2>
+<p>The <strong>no-cloning theorem</strong> is a fundamental result in quantum information theory stating that it is impossible to create an exact copy of an arbitrary unknown quantum state. This theorem, proved independently by Wootters and Zurek (1982) and by Dieks (1982), has no classical analogue—classical information can be freely copied—and has profound consequences for quantum computing and quantum communication.</p>
+<p><strong>Statement.</strong> There exists no unitary operator <span class="arithmatex">\(U\)</span> and no fixed initial state <span class="arithmatex">\(|s\rangle\)</span> (the "blank" state of the copy register) such that:</p>
+<div class="arithmatex">\[U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle\]</div>
+<p>for all states <span class="arithmatex">\(|\psi\rangle\)</span>.</p>
+<p><strong>Proof by contradiction using linearity and unitarity.</strong> Suppose such a <span class="arithmatex">\(U\)</span> exists. Let <span class="arithmatex">\(|\psi\rangle\)</span> and <span class="arithmatex">\(|\phi\rangle\)</span> be two arbitrary non-identical, non-orthogonal states. By assumption:</p>
+<div class="arithmatex">\[U(|\psi\rangle \otimes |s\rangle) = |\psi\rangle \otimes |\psi\rangle \tag{1}$$
+$$U(|\phi\rangle \otimes |s\rangle) = |\phi\rangle \otimes |\phi\rangle \tag{2}\]</div>
+<p>Take the inner product of equations (1) and (2). The left side gives:</p>
+<div class="arithmatex">\[\langle\psi|\phi\rangle \cdot \langle s|s\rangle = \langle\psi|\phi\rangle \cdot 1 = \langle\psi|\phi\rangle\]</div>
+<p>where we used the fact that unitary operators preserve inner products (<a href="../01-mathematical-foundations/#11-unitary-matrices">Chapter 1, Section 11</a>): <span class="arithmatex">\(\langle U\alpha|U\beta\rangle = \langle\alpha|\beta\rangle\)</span>.</p>
+<p>The right side gives:</p>
+<div class="arithmatex">\[(\langle\psi| \otimes \langle\psi|)(|\phi\rangle \otimes |\phi\rangle) = \langle\psi|\phi\rangle \cdot \langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2\]</div>
+<p>Equating left and right sides:</p>
+<div class="arithmatex">\[\langle\psi|\phi\rangle = \langle\psi|\phi\rangle^2\]</div>
+<p>Let <span class="arithmatex">\(x = \langle\psi|\phi\rangle\)</span>. Then <span class="arithmatex">\(x = x^2\)</span>, which implies <span class="arithmatex">\(x(x - 1) = 0\)</span>, so <span class="arithmatex">\(x = 0\)</span> or <span class="arithmatex">\(x = 1\)</span>. This means <span class="arithmatex">\(|\psi\rangle\)</span> and <span class="arithmatex">\(|\phi\rangle\)</span> are either orthogonal (<span class="arithmatex">\(\langle\psi|\phi\rangle = 0\)</span>) or identical (<span class="arithmatex">\(\langle\psi|\phi\rangle = 1\)</span>). Since we assumed they are neither, we have a contradiction. Therefore, no such <span class="arithmatex">\(U\)</span> exists. <span class="arithmatex">\(\square\)</span></p>
+<p><strong>Physical significance for quantum information.</strong> The no-cloning theorem has far-reaching consequences:</p>
+<ol>
+<li>
+<p><strong>Quantum error correction must be indirect.</strong> Classical error correction works by copying bits and using majority voting. Quantum error correction cannot copy qubits; instead, it encodes quantum information into entangled states of multiple qubits and uses syndrome measurements that extract error information without revealing the encoded state (Chapter 11).</p>
+</li>
+<li>
+<p><strong>Quantum cryptography is possible.</strong> The impossibility of cloning quantum states means that an eavesdropper cannot copy a quantum communication without disturbing it. This is the basis of quantum key distribution protocols like BB84 (Chapter 10).</p>
+</li>
+<li>
+<p><strong>No faster-than-light communication.</strong> If cloning were possible, it could be combined with entanglement to transmit information faster than light, violating special relativity. The no-cloning theorem prevents this.</p>
+</li>
+<li>
+<p><strong>Quantum information is fragile.</strong> Unlike classical bits, which can be backed up by copying, quantum states cannot be duplicated for safekeeping. Loss of a qubit means irreversible loss of the quantum information it carried.</p>
+</li>
+<li>
+<p><strong>Measurement limitations.</strong> A single copy of an unknown quantum state does not permit determination of the state. Full state tomography (as discussed in <a href="../08-qubits-and-states/">Chapter 8</a>) requires many identically prepared copies precisely because each measurement collapses the state, and the no-cloning theorem prevents generating additional copies from the original.</p>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">What No-Cloning Does NOT Forbid</p>
+<p>The no-cloning theorem forbids copying an <strong>unknown</strong> state. It does not prevent: (a) preparing multiple copies of a <strong>known</strong> state (since the preparation procedure can simply be repeated); (b) cloning states from an orthogonal set (since orthogonal states can be distinguished by measurement and then re-prepared); or (c) approximate cloning, which produces imperfect copies with fidelity bounded by <span class="arithmatex">\(F \leq (d+1)/(d+d)\)</span> for <span class="arithmatex">\(d\)</span>-dimensional states (the Buzek-Hillery optimal cloner).</p>
+</div>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This chapter established the complete quantum mechanical formalism required for quantum computing:</p>
+<ol>
+<li>
+<p><strong>Wave-particle duality</strong> reveals that quantum objects exhibit both particle and wave behavior, with the double-slit experiment demonstrating single-particle interference and Bohr's complementarity principle governing which aspect is observed.</p>
+</li>
+<li>
+<p>The <strong>de Broglie relation</strong> <span class="arithmatex">\(\lambda = h/p\)</span> associates a wavelength with every massive particle, connecting the wave and particle descriptions through Planck's constant.</p>
+</li>
+<li>
+<p>The <strong>superposition principle</strong> states that linear combinations of valid quantum states are also valid states, with the interference term <span class="arithmatex">\(2\operatorname{Re}[\alpha^*\beta\langle 1|f\rangle\langle f|2\rangle]\)</span> providing the mechanism for quantum computational advantage.</p>
+</li>
+<li>
+<p><strong>Dirac notation</strong> provides a compact formalism: kets <span class="arithmatex">\(|\psi\rangle\)</span> for states, bras <span class="arithmatex">\(\langle\psi|\)</span> for dual vectors, brackets <span class="arithmatex">\(\langle\phi|\psi\rangle\)</span> for inner products, outer products <span class="arithmatex">\(|\psi\rangle\langle\phi|\)</span> for operators, and the completeness relation <span class="arithmatex">\(I = \sum_k |k\rangle\langle k|\)</span>.</p>
+</li>
+<li>
+<p>The quantum state space is a <strong>Hilbert space</strong>—a complete inner product space over <span class="arithmatex">\(\mathbb{C}\)</span>. For quantum computing, the relevant spaces are <span class="arithmatex">\(\mathbb{C}^{2^N}\)</span> for <span class="arithmatex">\(N\)</span> qubits.</p>
+</li>
+<li>
+<p><strong>State vectors</strong> are unit vectors in Hilbert space, with physical states corresponding to rays (equivalence classes under global phase).</p>
+</li>
+<li>
+<p><strong>Quantum measurement</strong> is described by the projection postulate: measuring an observable <span class="arithmatex">\(A\)</span> yields eigenvalue <span class="arithmatex">\(a_m\)</span> with probability <span class="arithmatex">\(\langle\psi|P_m|\psi\rangle\)</span> and projects the state onto the corresponding eigenspace.</p>
+</li>
+<li>
+<p>The <strong>Born rule</strong> <span class="arithmatex">\(P = |\langle\phi|\psi\rangle|^2\)</span> provides the bridge between mathematical amplitudes and experimentally observed probabilities.</p>
+</li>
+<li>
+<p><strong>Wave function collapse</strong> is a non-unitary, irreversible state transformation triggered by measurement, fundamentally distinct from unitary time evolution.</p>
+</li>
+<li>
+<p>The <strong>Heisenberg uncertainty principle</strong> <span class="arithmatex">\(\Delta A \cdot \Delta B \geq \frac{1}{2}|\langle[A,B]\rangle|\)</span> is a mathematical theorem following from the Cauchy-Schwarz inequality, with the position-momentum case <span class="arithmatex">\(\Delta x \cdot \Delta p \geq \hbar/2\)</span> as the most celebrated instance.</p>
+</li>
+<li>
+<p><strong>Commutator relations</strong> <span class="arithmatex">\([A,B] = AB - BA\)</span> determine whether observables are compatible (<span class="arithmatex">\([A,B]=0\)</span>) or incompatible (<span class="arithmatex">\([A,B]\neq 0\)</span>), with the canonical relation <span class="arithmatex">\([\hat{x},\hat{p}] = i\hbar\)</span> underlying the position-momentum uncertainty.</p>
+</li>
+<li>
+<p>The <strong>density matrix</strong> <span class="arithmatex">\(\rho\)</span> provides a unified description of quantum states, with expectation values given by <span class="arithmatex">\(\langle A \rangle = \operatorname{Tr}(\rho A)\)</span> and measurement probabilities by <span class="arithmatex">\(P(m) = \operatorname{Tr}(\rho P_m)\)</span>.</p>
+</li>
+<li>
+<p><strong>Pure states</strong> (<span class="arithmatex">\(\rho^2 = \rho\)</span>, <span class="arithmatex">\(S = 0\)</span>) represent maximal knowledge; <strong>mixed states</strong> (<span class="arithmatex">\(\rho^2 \neq \rho\)</span>, <span class="arithmatex">\(S &gt; 0\)</span>) represent statistical uncertainty, quantified by purity <span class="arithmatex">\(\operatorname{Tr}(\rho^2)\)</span> and von Neumann entropy <span class="arithmatex">\(S = -\operatorname{Tr}(\rho \ln \rho)\)</span>.</p>
+</li>
+<li>
+<p>The <strong>time evolution operator</strong> <span class="arithmatex">\(U(t) = e^{-iHt/\hbar}\)</span> is unitary (proven from the Hermiticity of <span class="arithmatex">\(H\)</span>), preserving probabilities and inner products.</p>
+</li>
+<li>
+<p>The <strong>Schrodinger equation</strong> <span class="arithmatex">\(i\hbar \frac{d}{dt}|\psi\rangle = H|\psi\rangle\)</span> governs time evolution, with energy eigenstates <span class="arithmatex">\(H|E_n\rangle = E_n|E_n\rangle\)</span> serving as stationary states and general solutions built from superpositions of these eigenstates.</p>
+</li>
+<li>
+<p>The <strong>no-cloning theorem</strong> proves that no unitary operation can copy an arbitrary unknown quantum state, with consequences for error correction, cryptography, and the fundamental nature of quantum information.</p>
+</li>
+</ol>
+<details class="question">
+<summary>Concept Check: Why does the no-cloning theorem not contradict the ability to prepare many qubits in the same state?</summary>
+<p>The no-cloning theorem forbids copying an <strong>unknown</strong> state <span class="arithmatex">\(|\psi\rangle\)</span> by applying a universal unitary to <span class="arithmatex">\(|\psi\rangle \otimes |s\rangle\)</span>. It does not forbid preparing multiple copies of a <strong>known</strong> state. If you know that the desired state is, say, <span class="arithmatex">\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span>, you can prepare as many copies as you wish by applying the Hadamard gate to fresh <span class="arithmatex">\(|0\rangle\)</span> qubits. The distinction is between "copying a state you hold but do not know" (forbidden) and "preparing a state from a known classical description" (allowed).</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../06-reversible-computing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 6. Reversible Computing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                6. Reversible Computing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../08-qubits-and-states/" class="md-footer__link md-footer__link--next" aria-label="Next: 8. Qubits and States">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                8. Qubits and States
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

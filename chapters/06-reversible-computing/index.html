@@ -1,0 +1,3899 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Theory and practice of reversible computation from logical and physical reversibility through Toffoli/Fredkin gates, adiabatic circuits, and garbage bit management">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/06-reversible-computing/">
+      
+      
+        <link rel="prev" href="../05-beyond-cmos-devices/">
+      
+      
+        <link rel="next" href="../07-quantum-mechanics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Reversible Computing - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reversible-computing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reversible Computing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-reversibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Reversibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical Reversibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irreversible-classical-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Irreversible Classical Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversible-classical-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Classical Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reversible Classical Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-permutation-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Permutation Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-reversibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Reversibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Reversibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microscopic-reversibility-and-time-reversal-symmetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microscopic Reversibility and Time-Reversal Symmetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-thermodynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Thermodynamics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connection to Thermodynamics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-dissipation-in-reversible-vs-irreversible-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Dissipation in Reversible vs. Irreversible Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bennetts-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Proof
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bennett&#39;s Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-compute-copy-uncompute-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Compute-Copy-Uncompute Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Compute-Copy-Uncompute Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bennetts-reversible-computation-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Reversible Computation Scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexity-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#significance-for-thermodynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Significance for Thermodynamics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toffoli-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toffoli Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truth Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Representation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-irreversible-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding Irreversible Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuit-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fredkin-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fredkin Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fredkin Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#truth-table_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truth Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-representation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Representation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fredkin-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fredkin Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-logic-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Logic Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universality-and-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universality and Embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-of-universal-reversible-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison of Universal Reversible Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlled-swap-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled-SWAP Operation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controlled-SWAP Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-matrix-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Matrix Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposition-into-elementary-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decomposition into Elementary Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applications-of-controlled-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applications of Controlled-SWAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adiabatic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adiabatic Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adiabatic Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-energy-dissipation-problem-in-conventional-cmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Energy Dissipation Problem in Conventional CMOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Energy Dissipation Problem in Conventional CMOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventional-cmos-switching-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional CMOS Switching Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-adiabatic-charging-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Adiabatic Charging Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Adiabatic Charging Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adiabatic-charging-energy-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adiabatic Charging Energy Dissipation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-conventional-vs-adiabatic-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: Conventional vs. Adiabatic Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-adiabatic-vs-conventional-charging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Adiabatic vs Conventional Charging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-recovery-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy Recovery Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-clock-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Clock Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Clock Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-clock-energy-recovery-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Clock Energy Recovery Fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2n-2p-adiabatic-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2N-2P Adiabatic Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficient-charge-recovery-logic-ecrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Efficient Charge Recovery Logic (ECRL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#positive-feedback-adiabatic-logic-pfal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive Feedback Adiabatic Logic (PFAL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-recovery-logic-family-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery Logic Family Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversible-instruction-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Instruction Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reversible Instruction Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-janus-programming-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Janus Programming Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversible-processor-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Processor Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-inversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Program Inversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#garbage-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage Bits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-and-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition and Origin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition and Origin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#garbage-bit-count-for-embedded-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bit Count for Embedded Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-accumulation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Accumulation Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bennetts-garbage-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Garbage Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-overhead-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Space Overhead Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Space Overhead Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-checkpointing-space-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursive Checkpointing Space Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-bits-in-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bits in Quantum Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage Bits in Quantum Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bennett-compute-copy-uncompute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bennett Compute-Copy-Uncompute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-garbage-bit-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Garbage Bit Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversible-computing-and-the-path-to-quantum-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Computing and the Path to Quantum Computation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-reversibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Reversibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical Reversibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#irreversible-classical-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Irreversible Classical Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversible-classical-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Classical Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reversible Classical Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-permutation-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Permutation Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-reversibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Reversibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Reversibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#microscopic-reversibility-and-time-reversal-symmetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microscopic Reversibility and Time-Reversal Symmetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-thermodynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Thermodynamics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connection to Thermodynamics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-dissipation-in-reversible-vs-irreversible-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Dissipation in Reversible vs. Irreversible Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bennetts-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Proof
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bennett&#39;s Proof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-compute-copy-uncompute-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Compute-Copy-Uncompute Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Compute-Copy-Uncompute Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bennetts-reversible-computation-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Reversible Computation Scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complexity-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complexity Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#significance-for-thermodynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Significance for Thermodynamics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toffoli-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toffoli Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#truth-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truth Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Representation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-irreversible-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding Irreversible Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuit-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fredkin-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fredkin Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fredkin Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#truth-table_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Truth Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-representation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Representation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrix Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fredkin-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fredkin Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-logic-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Logic Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universality-and-embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universality and Embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-of-universal-reversible-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison of Universal Reversible Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controlled-swap-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled-SWAP Operation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controlled-SWAP Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explicit-matrix-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Matrix Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposition-into-elementary-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decomposition into Elementary Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applications-of-controlled-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applications of Controlled-SWAP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adiabatic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adiabatic Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adiabatic Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-energy-dissipation-problem-in-conventional-cmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Energy Dissipation Problem in Conventional CMOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Energy Dissipation Problem in Conventional CMOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conventional-cmos-switching-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventional CMOS Switching Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-adiabatic-charging-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Adiabatic Charging Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Adiabatic Charging Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adiabatic-charging-energy-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adiabatic Charging Energy Dissipation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-conventional-vs-adiabatic-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: Conventional vs. Adiabatic Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-adiabatic-vs-conventional-charging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Adiabatic vs Conventional Charging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-recovery-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy Recovery Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-clock-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Clock Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Power Clock Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#power-clock-energy-recovery-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Clock Energy Recovery Fraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2n-2p-adiabatic-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2N-2P Adiabatic Logic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#efficient-charge-recovery-logic-ecrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Efficient Charge Recovery Logic (ECRL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#positive-feedback-adiabatic-logic-pfal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive Feedback Adiabatic Logic (PFAL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#energy-recovery-logic-family-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Recovery Logic Family Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversible-instruction-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Instruction Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reversible Instruction Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-janus-programming-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Janus Programming Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reversible-processor-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Processor Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-inversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Program Inversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#garbage-bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bits
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage Bits">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-and-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition and Origin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition and Origin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#garbage-bit-count-for-embedded-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bit Count for Embedded Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-accumulation-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Accumulation Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bennetts-garbage-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bennett's Garbage Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-overhead-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Space Overhead Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Space Overhead Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-checkpointing-space-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursive Checkpointing Space Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garbage-bits-in-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garbage Bits in Quantum Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Garbage Bits in Quantum Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bennett-compute-copy-uncompute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bennett Compute-Copy-Uncompute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-garbage-bit-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Garbage Bit Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reversible-computing-and-the-path-to-quantum-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reversible Computing and the Path to Quantum Computation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/06-reversible-computing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="reversible-computing">Reversible Computing</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter develops the theory and practice of reversible computation. We distinguish logical from physical reversibility, present Bennett's proof that all computation can be made reversible, derive the matrix representations of the Toffoli and Fredkin gates, analyze adiabatic computing circuits and energy recovery logic, and discuss the management of garbage bits in reversible instruction sets.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 10 concepts:</p>
+<ol>
+<li>Logical Reversibility</li>
+<li>Physical Reversibility</li>
+<li>Bennett's Proof</li>
+<li>Toffoli Gate</li>
+<li>Fredkin Gate</li>
+<li>Controlled-SWAP Operation</li>
+<li>Adiabatic Computing</li>
+<li>Energy Recovery Logic</li>
+<li>Reversible Instruction Set</li>
+<li>Garbage Bits</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../02-physical-limits/">Chapter 2: Physical Limits of Computing</a></li>
+<li><a href="../04-classical-computing/">Chapter 4: Classical Computing Fundamentals</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In <a href="../02-physical-limits/">Chapter 2</a> we established one of the most profound connections between physics and computation: Landauer's principle, which states that erasing a single bit of information in a system at temperature <span class="arithmatex">\(T\)</span> dissipates at least <span class="arithmatex">\(k_B T \ln 2\)</span> of energy as heat. At room temperature (<span class="arithmatex">\(T = 300\)</span> K), this yields approximately <span class="arithmatex">\(2.85 \times 10^{-21}\)</span> J per bit erasure---a quantity that, while minuscule, represents a hard thermodynamic floor. As <a href="../04-classical-computing/">Chapter 4</a> demonstrated, conventional CMOS logic gates such as AND, OR, and NAND are fundamentally irreversible: they map multiple distinct inputs to a single output, destroying information in the process. Every such gate operation incurs the Landauer cost.</p>
+<p>The critical insight of this chapter is that <strong>Landauer's limit applies only to logically irreversible operations</strong>. If a computation can be performed without ever erasing information---that is, if every step is a bijection that can be uniquely inverted---then no fundamental thermodynamic lower bound on energy dissipation applies. This observation, first articulated by Rolf Landauer himself in 1961 and developed extensively by Charles Bennett, Edward Fredkin, and Tommaso Toffoli in the 1970s and 1980s, opens the theoretical possibility of computation with arbitrarily low energy dissipation.</p>
+<p>This chapter develops the mathematical and physical foundations of reversible computing. We begin by precisely defining logical and physical reversibility and their relationship to thermodynamics. We then present Bennett's constructive proof that any computation can be made logically reversible, introduce the universal reversible gate sets (Toffoli and Fredkin gates), and analyze the practical realization of near-reversible computation through adiabatic circuits and energy recovery logic. We conclude with reversible programming languages and the problem of garbage bit management.</p>
+<p>The material in this chapter serves as the essential bridge between the thermodynamic limits of classical computing (Chapter 2) and the quantum computing paradigm (Chapters 7--9). Quantum mechanics is inherently reversible---unitary evolution preserves information---and understanding classical reversible computing provides the conceptual foundation for quantum circuit design.</p>
+<h2 id="logical-reversibility">Logical Reversibility</h2>
+<p>A computation is <strong>logically reversible</strong> if and only if the function it computes is a bijection: given the output, one can uniquely reconstruct the input. Formally, a function <span class="arithmatex">\(f: \{0,1\}^n \to \{0,1\}^m\)</span> is logically reversible if and only if <span class="arithmatex">\(f\)</span> is injective (one-to-one), meaning:</p>
+<div class="arithmatex">\[
+f(x_1) = f(x_2) \implies x_1 = x_2
+\]</div>
+<p>For a function mapping <span class="arithmatex">\(n\)</span>-bit strings to <span class="arithmatex">\(m\)</span>-bit strings, injectivity requires <span class="arithmatex">\(m \geq n\)</span>. If additionally <span class="arithmatex">\(m = n\)</span>, then <span class="arithmatex">\(f\)</span> is a bijection (a permutation of <span class="arithmatex">\(\{0,1\}^n\)</span>), and the inverse <span class="arithmatex">\(f^{-1}\)</span> is also a function from <span class="arithmatex">\(\{0,1\}^n\)</span> to <span class="arithmatex">\(\{0,1\}^n\)</span>.</p>
+<h3 id="irreversible-classical-gates">Irreversible Classical Gates</h3>
+<p>The standard Boolean gates introduced in <a href="../04-classical-computing/">Chapter 4</a> are overwhelmingly irreversible. Consider the AND gate:</p>
+<div class="arithmatex">\[
+\text{AND}: \{0,1\}^2 \to \{0,1\}, \quad (a, b) \mapsto a \wedge b
+\]</div>
+<p>The AND gate maps four possible inputs to two possible outputs. Three distinct inputs---<span class="arithmatex">\((0,0)\)</span>, <span class="arithmatex">\((0,1)\)</span>, and <span class="arithmatex">\((1,0)\)</span>---all produce the output <span class="arithmatex">\(0\)</span>. Given an output of <span class="arithmatex">\(0\)</span>, we cannot determine which of these three inputs was applied. Information has been irreversibly lost. Specifically, <span class="arithmatex">\(\log_2 3 \approx 1.58\)</span> bits of information are destroyed when the output is <span class="arithmatex">\(0\)</span>, because two bits of input information have been compressed into one bit of output.</p>
+<p>The same analysis applies to OR, NAND, NOR, and XOR gates when viewed as maps from <span class="arithmatex">\(\{0,1\}^2\)</span> to <span class="arithmatex">\(\{0,1\}\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Input-output mapping</th>
+<th>Number of inputs mapping to 0</th>
+<th>Number of inputs mapping to 1</th>
+<th>Reversible?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND</td>
+<td><span class="arithmatex">\(\{0,1\}^2 \to \{0,1\}\)</span></td>
+<td>3</td>
+<td>1</td>
+<td>No</td>
+</tr>
+<tr>
+<td>OR</td>
+<td><span class="arithmatex">\(\{0,1\}^2 \to \{0,1\}\)</span></td>
+<td>1</td>
+<td>3</td>
+<td>No</td>
+</tr>
+<tr>
+<td>NAND</td>
+<td><span class="arithmatex">\(\{0,1\}^2 \to \{0,1\}\)</span></td>
+<td>1</td>
+<td>3</td>
+<td>No</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td><span class="arithmatex">\(\{0,1\}^2 \to \{0,1\}\)</span></td>
+<td>2</td>
+<td>2</td>
+<td>No</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td><span class="arithmatex">\(\{0,1\} \to \{0,1\}\)</span></td>
+<td>1</td>
+<td>1</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="reversible-classical-gates">Reversible Classical Gates</h3>
+<p>The NOT gate is the simplest reversible gate: it is a bijection from <span class="arithmatex">\(\{0,1\}\)</span> to <span class="arithmatex">\(\{0,1\}\)</span>. Its inverse is itself (NOT is an involution).</p>
+<p>A more interesting reversible gate is the <strong>controlled-NOT</strong> (CNOT) gate, which acts on two bits:</p>
+<div class="arithmatex">\[
+\text{CNOT}: (a, b) \mapsto (a, a \oplus b)
+\]</div>
+<p>where <span class="arithmatex">\(\oplus\)</span> denotes addition modulo 2 (XOR). The CNOT gate is a bijection on <span class="arithmatex">\(\{0,1\}^2\)</span>: given the output <span class="arithmatex">\((a, a \oplus b)\)</span>, we recover the input as <span class="arithmatex">\((a, a \oplus (a \oplus b)) = (a, b)\)</span>. Indeed, the CNOT gate is its own inverse.</p>
+<h4 id="cnot-permutation-matrix">CNOT Permutation Matrix</h4>
+<div class="arithmatex">\[
+\text{CNOT} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The rows and columns are indexed by the basis states <span class="arithmatex">\(00, 01, 10, 11\)</span></li>
+<li>The first bit <span class="arithmatex">\(a\)</span> is the control; the second bit <span class="arithmatex">\(b\)</span> is the target</li>
+<li>When <span class="arithmatex">\(a = 0\)</span>, the target is unchanged; when <span class="arithmatex">\(a = 1\)</span>, the target is flipped</li>
+<li>The matrix is a permutation matrix (exactly one 1 per row and column), confirming bijectivity</li>
+</ul>
+<p>The key principle connecting logical reversibility to thermodynamics is: <strong>a logically irreversible operation must erase information, and by Landauer's principle, information erasure dissipates at least <span class="arithmatex">\(k_B T \ln 2\)</span> per bit</strong>. A logically reversible operation, by contrast, preserves all input information in the output and therefore carries no fundamental thermodynamic cost of erasure. This does not mean that a reversible operation dissipates zero energy in practice---real implementations face friction, resistance, and other dissipative effects---but rather that the Landauer bound does not apply, and in principle the dissipation can be made arbitrarily small.</p>
+<h2 id="physical-reversibility">Physical Reversibility</h2>
+<p><strong>Physical reversibility</strong> is a stronger condition than logical reversibility. A physical process is reversible if, at every instant, the system remains arbitrarily close to thermodynamic equilibrium, so that the process can be reversed by an infinitesimal change in the driving forces. This is the thermodynamic concept of a <strong>quasistatic</strong> process.</p>
+<h3 id="microscopic-reversibility-and-time-reversal-symmetry">Microscopic Reversibility and Time-Reversal Symmetry</h3>
+<p>At the microscopic level, the fundamental laws of classical mechanics and quantum mechanics are time-reversal symmetric. Newton's equations of motion are invariant under the transformation <span class="arithmatex">\(t \to -t\)</span> (with simultaneous reversal of all momenta). Similarly, the Schrodinger equation:</p>
+<div class="arithmatex">\[
+i\hbar \frac{\partial}{\partial t}|\psi(t)\rangle = H|\psi(t)\rangle
+\]</div>
+<p>is invariant under the combined operation of time reversal and complex conjugation (assuming a time-reversal-invariant Hamiltonian). This means that for every allowed forward trajectory, the time-reversed trajectory is also a valid solution of the equations of motion.</p>
+<h3 id="connection-to-thermodynamics">Connection to Thermodynamics</h3>
+<p>The second law of thermodynamics appears to introduce an arrow of time: entropy increases (or remains constant) in isolated systems. However, the second law is a statistical statement about macroscopic ensembles, not a fundamental constraint on microscopic dynamics. The reconciliation is that irreversibility in macroscopic systems arises from coarse-graining: when we discard information about microstates (e.g., by measuring only temperature and pressure), the effective dynamics become irreversible.</p>
+<p>For computing, the connection is precise. A physically reversible computation must satisfy two conditions:</p>
+<ol>
+<li><strong>Logical reversibility:</strong> The computed function must be a bijection (necessary but not sufficient).</li>
+<li><strong>Quasistatic operation:</strong> The physical implementation must operate sufficiently slowly that the system remains near equilibrium at every step.</li>
+</ol>
+<p>The energy dissipated in a physical computation that is both logically reversible and operated quasistatically can be made arbitrarily small---in principle, zero in the limit of infinitely slow operation. This was demonstrated rigorously by Bennett (1982) and by Fredkin and Toffoli (1982).</p>
+<h4 id="energy-dissipation-in-reversible-vs-irreversible-operations">Energy Dissipation in Reversible vs. Irreversible Operations</h4>
+<div class="arithmatex">\[
+E_{\text{dissipated}} \geq \begin{cases} k_B T \ln 2 &amp; \text{per bit erased (irreversible operation)} \\ 0 &amp; \text{(reversible operation, quasistatic limit)} \end{cases}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(k_B = 1.381 \times 10^{-23}\)</span> J/K is the Boltzmann constant</li>
+<li><span class="arithmatex">\(T\)</span> is the environment temperature in kelvin</li>
+<li>The irreversible bound is Landauer's principle (Chapter 2)</li>
+<li>The reversible bound of zero is achievable only in the quasistatic (<span class="arithmatex">\(t \to \infty\)</span>) limit</li>
+</ul>
+<p>In practice, operating at finite speed always dissipates some energy (proportional to <span class="arithmatex">\(1/t\)</span> for switching time <span class="arithmatex">\(t\)</span>, as we will see in the section on adiabatic computing), but the crucial point is that there is <strong>no fundamental lower bound</strong> on energy dissipation for reversible operations.</p>
+<h2 id="bennetts-proof">Bennett's Proof</h2>
+<p>In 1973, Charles Bennett published a landmark result: <strong>any computation that can be performed by a Turing machine can also be performed by a logically reversible Turing machine</strong>, with at most a polynomial overhead in time and space. This result is of foundational importance because it shows that reversibility is not a restriction on computational power---it is possible to compute anything reversibly.</p>
+<h3 id="the-compute-copy-uncompute-strategy">The Compute-Copy-Uncompute Strategy</h3>
+<p>Bennett's proof is constructive. Given an irreversible computation <span class="arithmatex">\(f: x \mapsto f(x)\)</span>, the reversible simulation proceeds in three stages:</p>
+<p><strong>Stage 1 (Compute):</strong> Run the original computation forward, but instead of discarding intermediate results, store all of them on a "history tape." This makes the forward computation injective (every step is recorded and can be undone). After this stage, the work space contains the desired output <span class="arithmatex">\(f(x)\)</span> along with a large amount of intermediate data (garbage).</p>
+<p><strong>Stage 2 (Copy):</strong> Copy the final result <span class="arithmatex">\(f(x)\)</span> to a clean output register. This copy operation is itself reversible---it is a sequence of CNOT gates that XOR the result onto initially-zero output bits.</p>
+<p><strong>Stage 3 (Uncompute):</strong> Run the computation of Stage 1 in reverse, exactly undoing every step. Because all intermediate data was recorded, the reversal is deterministic. After uncomputation, the work space returns to its original clean state, and only the clean output register contains <span class="arithmatex">\(f(x)\)</span>.</p>
+<p>The overall transformation is:</p>
+<h4 id="bennetts-reversible-computation-scheme">Bennett's Reversible Computation Scheme</h4>
+<div class="arithmatex">\[
+|x\rangle|0\rangle|0\rangle \xrightarrow{\text{Compute}} |x\rangle|g\rangle|f(x)\rangle \xrightarrow{\text{Copy}} |x\rangle|g\rangle|f(x)\rangle \xrightarrow{\text{Uncompute}} |x\rangle|0\rangle|f(x)\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|x\rangle\)</span> is the input register (preserved throughout)</li>
+<li><span class="arithmatex">\(|0\rangle\)</span> is the initially clean work register; <span class="arithmatex">\(|g\rangle\)</span> denotes the garbage accumulated during computation</li>
+<li><span class="arithmatex">\(|f(x)\rangle\)</span> is the output, first computed into the work register, then copied to a separate output register</li>
+<li>The Uncompute stage exactly reverses Compute, returning the work register to <span class="arithmatex">\(|0\rangle\)</span></li>
+</ul>
+<p>The notation <span class="arithmatex">\(|x\rangle\)</span> here denotes a classical bit string register (using Dirac notation as a convenient formalism that will carry over naturally to the quantum setting in later chapters).</p>
+<h3 id="complexity-analysis">Complexity Analysis</h3>
+<p>Let <span class="arithmatex">\(T(n)\)</span> and <span class="arithmatex">\(S(n)\)</span> be the time and space complexity of the original irreversible computation on inputs of size <span class="arithmatex">\(n\)</span>. Bennett's reversible simulation has:</p>
+<ul>
+<li><strong>Time complexity:</strong> <span class="arithmatex">\(O(T(n))\)</span>---the computation is run forward once, a linear-time copy is performed, and the computation is run backward once. The total time is <span class="arithmatex">\(2T(n) + O(S(n))\)</span>, which is <span class="arithmatex">\(O(T(n))\)</span> since <span class="arithmatex">\(S(n) \leq T(n)\)</span>.</li>
+<li><strong>Space complexity:</strong> <span class="arithmatex">\(O(T(n))\)</span> in the naive version, because the history tape records every step of the computation.</li>
+</ul>
+<p>The space overhead is potentially severe: if the original computation runs for <span class="arithmatex">\(T(n)\)</span> steps, the history tape has <span class="arithmatex">\(T(n)\)</span> entries. Bennett (1989) later showed that the space overhead can be reduced to <span class="arithmatex">\(O(S(n) \log T(n))\)</span> by a more sophisticated recursive strategy that uncomputes intermediate checkpoints. The time cost of this space-efficient version is <span class="arithmatex">\(O(T(n)^{1+\epsilon})\)</span> for any <span class="arithmatex">\(\epsilon &gt; 0\)</span>.</p>
+<p>The following table summarizes the time-space tradeoffs for Bennett's reversible simulation strategies:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Time overhead</th>
+<th>Space overhead</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive (full history)</td>
+<td><span class="arithmatex">\(O(T)\)</span></td>
+<td><span class="arithmatex">\(O(T)\)</span></td>
+<td>Bennett 1973</td>
+</tr>
+<tr>
+<td>Checkpoint (recursive)</td>
+<td><span class="arithmatex">\(O(T^{1+\epsilon})\)</span></td>
+<td><span class="arithmatex">\(O(S \log T)\)</span></td>
+<td>Bennett 1989</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k\)</span>-level checkpointing</td>
+<td><span class="arithmatex">\(O(T \cdot (\log T)^k)\)</span></td>
+<td><span class="arithmatex">\(O(S \cdot k \cdot T^{1/k})\)</span></td>
+<td>Levine &amp; Sherman 1990</td>
+</tr>
+<tr>
+<td>Pebble games (optimal)</td>
+<td>Depends on graph</td>
+<td>Depends on graph</td>
+<td>Li &amp; Vitanyi 1996</td>
+</tr>
+</tbody>
+</table>
+<h3 id="significance-for-thermodynamics">Significance for Thermodynamics</h3>
+<p>Bennett's result has a direct thermodynamic implication. Since any computation can be made logically reversible, and logically reversible computations have no Landauer cost, <strong>there is no fundamental thermodynamic minimum energy cost per useful computational step</strong>. The Landauer cost of <span class="arithmatex">\(k_B T \ln 2\)</span> per bit applies only to bit erasure, and Bennett showed that bit erasure can always be avoided (at the cost of additional space and time).</p>
+<p>This resolves the apparent tension between the second law of thermodynamics and the possibility of efficient computation: the second law does not prevent energy-efficient computing, but it does demand that we preserve (rather than erase) information.</p>
+<h2 id="toffoli-gate">Toffoli Gate</h2>
+<p>The <strong>Toffoli gate</strong> (also called the controlled-controlled-NOT or CCNOT gate), introduced by Tommaso Toffoli in 1980, is a three-bit reversible gate that is universal for classical reversible computation. It takes three input bits <span class="arithmatex">\((a, b, c)\)</span> and produces three output bits <span class="arithmatex">\((a, b, c \oplus (a \wedge b))\)</span>: the first two bits pass through unchanged, and the third bit is flipped if and only if both control bits are 1.</p>
+<h3 id="truth-table">Truth Table</h3>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(a\)</span></th>
+<th><span class="arithmatex">\(b\)</span></th>
+<th><span class="arithmatex">\(c\)</span></th>
+<th><span class="arithmatex">\(a'\)</span></th>
+<th><span class="arithmatex">\(b'\)</span></th>
+<th><span class="arithmatex">\(c'\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The output is <span class="arithmatex">\((a, b, c \oplus (a \wedge b))\)</span>, which is a permutation of <span class="arithmatex">\(\{0,1\}^3\)</span>. Since there are 8 inputs and 8 distinct outputs, the gate is bijective and hence logically reversible. Moreover, the Toffoli gate is its own inverse: applying it twice returns to the original state, since <span class="arithmatex">\((c \oplus (a \wedge b)) \oplus (a \wedge b) = c\)</span>.</p>
+<h3 id="matrix-representation">Matrix Representation</h3>
+<p>The Toffoli gate can be represented as an <span class="arithmatex">\(8 \times 8\)</span> permutation matrix acting on the computational basis states <span class="arithmatex">\(|000\rangle, |001\rangle, \ldots, |111\rangle\)</span>:</p>
+<h4 id="toffoli-gate-matrix">Toffoli Gate Matrix</h4>
+<div class="arithmatex">\[
+T = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li>Rows and columns are indexed by <span class="arithmatex">\(|abc\rangle\)</span> in the order <span class="arithmatex">\(|000\rangle, |001\rangle, \ldots, |111\rangle\)</span></li>
+<li>The matrix is identical to the <span class="arithmatex">\(8 \times 8\)</span> identity except for the swap of the last two rows/columns</li>
+<li><span class="arithmatex">\(T\)</span> is both unitary and a permutation matrix: <span class="arithmatex">\(T = T^{-1} = T^\dagger\)</span></li>
+</ul>
+<h3 id="embedding-irreversible-gates">Embedding Irreversible Gates</h3>
+<p>The power of the Toffoli gate lies in its ability to <strong>embed</strong> any classical Boolean function into a reversible setting. By setting certain inputs to fixed values, the Toffoli gate can simulate irreversible gates:</p>
+<p><strong>AND gate:</strong> Set <span class="arithmatex">\(c = 0\)</span>. Then the output is <span class="arithmatex">\((a, b, a \wedge b)\)</span>. The third output line produces the AND of the first two inputs, while the first two inputs are preserved (providing the information needed for reversibility).</p>
+<p><strong>NOT gate:</strong> Set <span class="arithmatex">\(a = b = 1\)</span>. Then the output is <span class="arithmatex">\((1, 1, c \oplus 1) = (1, 1, \bar{c})\)</span>. The third output is the NOT of <span class="arithmatex">\(c\)</span>.</p>
+<p><strong>NAND gate:</strong> Set <span class="arithmatex">\(c = 1\)</span>. Then the output is <span class="arithmatex">\((a, b, 1 \oplus (a \wedge b)) = (a, b, \overline{a \wedge b})\)</span>. The third output is the NAND of the first two inputs.</p>
+<p>Since NAND is universal for classical Boolean logic (any Boolean function can be built from NAND gates), and the Toffoli gate can simulate NAND, the Toffoli gate is <strong>universal for classical reversible computation</strong>. Any Boolean circuit of <span class="arithmatex">\(g\)</span> gates can be simulated by a reversible circuit of <span class="arithmatex">\(O(g)\)</span> Toffoli gates, using one ancilla bit (initialized to the appropriate constant) per irreversible gate.</p>
+<h3 id="circuit-notation">Circuit Notation</h3>
+<p>In circuit diagrams, the Toffoli gate is drawn as two solid dots (on the control lines <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span>) connected by a vertical line to a <span class="arithmatex">\(\oplus\)</span> symbol (on the target line <span class="arithmatex">\(c\)</span>). This notation emphasizes the conditional nature of the gate: the target flips only when both controls are active.</p>
+<h2 id="fredkin-gate">Fredkin Gate</h2>
+<p>The <strong>Fredkin gate</strong> (controlled-SWAP gate), introduced by Edward Fredkin in 1982, is another fundamental three-bit reversible gate. It takes three input bits <span class="arithmatex">\((c, a, b)\)</span> and swaps <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> if and only if the control bit <span class="arithmatex">\(c\)</span> is 1:</p>
+<div class="arithmatex">\[
+\text{Fredkin}: (c, a, b) \mapsto \begin{cases} (c, a, b) &amp; \text{if } c = 0 \\ (c, b, a) &amp; \text{if } c = 1 \end{cases}
+\]</div>
+<h3 id="truth-table_1">Truth Table</h3>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(c\)</span></th>
+<th><span class="arithmatex">\(a\)</span></th>
+<th><span class="arithmatex">\(b\)</span></th>
+<th><span class="arithmatex">\(c'\)</span></th>
+<th><span class="arithmatex">\(a'\)</span></th>
+<th><span class="arithmatex">\(b'\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="matrix-representation_1">Matrix Representation</h3>
+<h4 id="fredkin-gate-matrix">Fredkin Gate Matrix</h4>
+<div class="arithmatex">\[
+F = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li>Rows and columns are indexed by <span class="arithmatex">\(|cab\rangle\)</span> in the order <span class="arithmatex">\(|000\rangle, |001\rangle, \ldots, |111\rangle\)</span></li>
+<li>The matrix swaps the rows/columns corresponding to <span class="arithmatex">\(|101\rangle\)</span> and <span class="arithmatex">\(|110\rangle\)</span></li>
+<li>Like the Toffoli matrix, <span class="arithmatex">\(F\)</span> is a permutation matrix and its own inverse: <span class="arithmatex">\(F^2 = I\)</span></li>
+</ul>
+<h3 id="conservative-logic-property">Conservative Logic Property</h3>
+<p>The Fredkin gate has a remarkable property that the Toffoli gate does not share: it is <strong>conservative</strong>, meaning it preserves the Hamming weight (number of 1s) of the input. For any input <span class="arithmatex">\((c, a, b)\)</span>:</p>
+<div class="arithmatex">\[
+c + a + b = c' + a' + b'
+\]</div>
+<p>This is evident from the truth table: when <span class="arithmatex">\(c = 0\)</span>, the outputs are unchanged; when <span class="arithmatex">\(c = 1\)</span>, <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> are merely swapped, which does not change their sum. The conservation of Hamming weight has a physical interpretation: if we associate each 1 with a "particle" (or unit of energy), then the Fredkin gate conserves the total number of particles. This makes conservative logic particularly natural for physical implementations where energy or charge is conserved.</p>
+<h3 id="universality-and-embedding">Universality and Embedding</h3>
+<p>Like the Toffoli gate, the Fredkin gate is universal for classical reversible computation. To embed irreversible gates:</p>
+<p><strong>AND gate:</strong> Set <span class="arithmatex">\(b = 0\)</span>. Then:</p>
+<ul>
+<li>If <span class="arithmatex">\(c = 0\)</span>: output is <span class="arithmatex">\((0, a, 0)\)</span></li>
+<li>If <span class="arithmatex">\(c = 1\)</span>: output is <span class="arithmatex">\((1, 0, a)\)</span></li>
+</ul>
+<p>The third output <span class="arithmatex">\(b' = c \wedge a\)</span> computes the AND function. More precisely, when <span class="arithmatex">\(b = 0\)</span>, we have <span class="arithmatex">\(a' = a \wedge \bar{c}\)</span> and <span class="arithmatex">\(b' = a \wedge c\)</span>, so the second output gives <span class="arithmatex">\(a \wedge c\)</span>.</p>
+<p><strong>NOT gate:</strong> Setting <span class="arithmatex">\(a = 1\)</span> and <span class="arithmatex">\(b = 0\)</span>:</p>
+<ul>
+<li>If <span class="arithmatex">\(c = 0\)</span>: output is <span class="arithmatex">\((0, 1, 0)\)</span></li>
+<li>If <span class="arithmatex">\(c = 1\)</span>: output is <span class="arithmatex">\((1, 0, 1)\)</span></li>
+</ul>
+<p>The third output <span class="arithmatex">\(b' = c\)</span> and <span class="arithmatex">\(a' = \bar{c}\)</span>, giving the NOT of <span class="arithmatex">\(c\)</span> on the second output line.</p>
+<p>Since AND and NOT together are universal for Boolean logic, the Fredkin gate is computationally universal.</p>
+<h3 id="comparison-of-universal-reversible-gates">Comparison of Universal Reversible Gates</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Toffoli (CCNOT)</th>
+<th>Fredkin (CSWAP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input/output bits</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Operation</td>
+<td>Conditional NOT</td>
+<td>Conditional SWAP</td>
+</tr>
+<tr>
+<td>Self-inverse</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Conservative (weight-preserving)</td>
+<td>No</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Embeds AND</td>
+<td><span class="arithmatex">\(c = 0\)</span>: <span class="arithmatex">\((a,b,a \wedge b)\)</span></td>
+<td><span class="arithmatex">\(b = 0\)</span>: <span class="arithmatex">\(b' = c \wedge a\)</span></td>
+</tr>
+<tr>
+<td>Embeds NOT</td>
+<td><span class="arithmatex">\(a = b = 1\)</span>: <span class="arithmatex">\(c' = \bar{c}\)</span></td>
+<td><span class="arithmatex">\(a = 1, b = 0\)</span>: <span class="arithmatex">\(a' = \bar{c}\)</span></td>
+</tr>
+<tr>
+<td>Universal for classical reversible logic</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Matrix representation</td>
+<td><span class="arithmatex">\(8 \times 8\)</span> permutation</td>
+<td><span class="arithmatex">\(8 \times 8\)</span> permutation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="controlled-swap-operation">Controlled-SWAP Operation</h2>
+<p>The <strong>controlled-SWAP</strong> (CSWAP) operation is formally identical to the Fredkin gate. We treat it here as a separate concept to emphasize its applications and its explicit matrix decomposition in terms of simpler gates, which is particularly relevant for quantum circuit synthesis.</p>
+<h3 id="explicit-matrix-form">Explicit Matrix Form</h3>
+<p>The controlled-SWAP operation on three bits <span class="arithmatex">\((c, a, b)\)</span> acts as:</p>
+<div class="arithmatex">\[
+\text{CSWAP}|c\rangle|a\rangle|b\rangle = |c\rangle \otimes \big[(1-c)|a\rangle|b\rangle + c|b\rangle|a\rangle\big]
+\]</div>
+<p>Expanding this in the computational basis, the <span class="arithmatex">\(8 \times 8\)</span> matrix is identical to the Fredkin matrix <span class="arithmatex">\(F\)</span> given above.</p>
+<h3 id="decomposition-into-elementary-gates">Decomposition into Elementary Gates</h3>
+<p>For circuit synthesis, it is useful to decompose the controlled-SWAP into a sequence of CNOT and Toffoli operations. The standard decomposition is:</p>
+<div class="arithmatex">\[
+\text{CSWAP}(c, a, b) = \text{CNOT}(b, a) \cdot \text{Toffoli}(c, a, b) \cdot \text{CNOT}(b, a)
+\]</div>
+<p>where <span class="arithmatex">\(\text{CNOT}(x, y)\)</span> means "use <span class="arithmatex">\(x\)</span> as control and <span class="arithmatex">\(y\)</span> as target." This can be verified by tracing through the three operations:</p>
+<ol>
+<li><span class="arithmatex">\(\text{CNOT}(b, a)\)</span>: <span class="arithmatex">\((c, a \oplus b, b)\)</span></li>
+<li><span class="arithmatex">\(\text{Toffoli}(c, a \oplus b, b)\)</span>: <span class="arithmatex">\((c, a \oplus b, b \oplus (c \wedge (a \oplus b)))\)</span></li>
+<li><span class="arithmatex">\(\text{CNOT}(b \oplus (c \wedge (a \oplus b)), a \oplus b)\)</span>: apply CNOT with the updated third bit as control on the second bit</li>
+</ol>
+<p>When <span class="arithmatex">\(c = 0\)</span>, no swap occurs (the Toffoli contributes nothing since <span class="arithmatex">\(c = 0\)</span>). When <span class="arithmatex">\(c = 1\)</span>, the Toffoli flips <span class="arithmatex">\(b\)</span> conditioned on <span class="arithmatex">\(a \oplus b\)</span>, effectively routing <span class="arithmatex">\(a\)</span>'s value to the <span class="arithmatex">\(b\)</span> position and vice versa through the surrounding CNOTs.</p>
+<h3 id="applications-of-controlled-swap">Applications of Controlled-SWAP</h3>
+<p>The controlled-SWAP operation has several important applications:</p>
+<ol>
+<li>
+<p><strong>Reversible multiplexing:</strong> CSWAP can route data between two registers conditioned on a control bit, implementing a reversible 2-to-1 multiplexer without information loss.</p>
+</li>
+<li>
+<p><strong>Comparison operations:</strong> By applying CSWAP to two registers and examining the control bit, one can implement reversible comparison circuits for sorting networks.</p>
+</li>
+<li>
+<p><strong>Quantum algorithms:</strong> The SWAP test in quantum computing uses the controlled-SWAP to estimate the inner product <span class="arithmatex">\(|\langle\psi|\phi\rangle|^2\)</span> between two quantum states, a primitive used in quantum machine learning and state discrimination.</p>
+</li>
+<li>
+<p><strong>Reversible arithmetic:</strong> Controlled-SWAP operations are building blocks for reversible adders and multipliers, where conditional data routing replaces the irreversible carry logic of conventional circuits.</p>
+</li>
+</ol>
+<h2 id="adiabatic-computing">Adiabatic Computing</h2>
+<p><strong>Adiabatic computing</strong> is the primary practical approach to realizing physically reversible (or near-reversible) computation. The term "adiabatic" is borrowed from thermodynamics, where an adiabatic process is one that exchanges no heat with the environment. In the computing context, adiabatic circuits charge and discharge capacitive loads gradually through resistive paths, recovering most of the energy that conventional CMOS circuits dissipate as heat.</p>
+<h3 id="the-energy-dissipation-problem-in-conventional-cmos">The Energy Dissipation Problem in Conventional CMOS</h3>
+<p>In conventional CMOS logic (as analyzed in <a href="../04-classical-computing/">Chapter 4</a>), switching a node capacitance <span class="arithmatex">\(C\)</span> from voltage <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(V_{DD}\)</span> through a transistor with on-resistance <span class="arithmatex">\(R\)</span> dissipates:</p>
+<h4 id="conventional-cmos-switching-energy">Conventional CMOS Switching Energy</h4>
+<div class="arithmatex">\[
+E_{\text{conv}} = \frac{1}{2}CV_{DD}^2
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(C\)</span> is the load capacitance</li>
+<li><span class="arithmatex">\(V_{DD}\)</span> is the supply voltage</li>
+<li>This energy is dissipated as heat in the transistor's channel resistance, regardless of how slowly the transition occurs</li>
+<li>The factor <span class="arithmatex">\(1/2\)</span> arises because exactly half the energy drawn from the constant-voltage supply is stored in the capacitor, and the other half is dissipated</li>
+</ul>
+<p>The fundamental problem is the use of a <strong>constant-voltage power supply</strong>. When a constant voltage source charges a capacitor through a resistor, the energy dissipated in the resistor equals the energy stored in the capacitor, regardless of the resistance value. This dissipation is not a consequence of Landauer's principle---it occurs even in logically reversible operations---but rather a consequence of the abrupt, non-quasistatic switching in conventional CMOS.</p>
+<h3 id="the-adiabatic-charging-principle">The Adiabatic Charging Principle</h3>
+<p>Adiabatic circuits replace the constant-voltage supply with a <strong>slowly ramping voltage source</strong> (a "power clock"). If the supply voltage ramps linearly from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(V_{DD}\)</span> over a time <span class="arithmatex">\(T\)</span>, the energy dissipated in charging a capacitance <span class="arithmatex">\(C\)</span> through resistance <span class="arithmatex">\(R\)</span> is:</p>
+<h4 id="adiabatic-charging-energy-dissipation">Adiabatic Charging Energy Dissipation</h4>
+<div class="arithmatex">\[
+E_{\text{adiabatic}} = \frac{RC}{T} \cdot CV_{DD}^2
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(R\)</span> is the resistance of the charging path (transistor on-resistance)</li>
+<li><span class="arithmatex">\(C\)</span> is the load capacitance</li>
+<li><span class="arithmatex">\(T\)</span> is the charging time (ramp duration)</li>
+<li><span class="arithmatex">\(V_{DD}\)</span> is the final voltage</li>
+</ul>
+<p><strong>Derivation.</strong> Consider a capacitor <span class="arithmatex">\(C\)</span> being charged through a resistance <span class="arithmatex">\(R\)</span> by a linearly ramping voltage <span class="arithmatex">\(V_s(t) = V_{DD} \cdot t/T\)</span> for <span class="arithmatex">\(0 \leq t \leq T\)</span>. The current through the resistor at time <span class="arithmatex">\(t\)</span> is:</p>
+<div class="arithmatex">\[
+i(t) = C \frac{dV_C}{dt} \approx C \frac{V_{DD}}{T}
+\]</div>
+<p>in the quasistatic limit where <span class="arithmatex">\(V_C(t) \approx V_s(t)\)</span> (valid when <span class="arithmatex">\(RC \ll T\)</span>). The instantaneous power dissipated in <span class="arithmatex">\(R\)</span> is:</p>
+<div class="arithmatex">\[
+P(t) = i(t)^2 R = R C^2 \frac{V_{DD}^2}{T^2}
+\]</div>
+<p>Integrating over the charging interval:</p>
+<div class="arithmatex">\[
+E_{\text{adiabatic}} = \int_0^T P(t)\, dt = \frac{RC^2 V_{DD}^2}{T^2} \cdot T = \frac{RC}{T} CV_{DD}^2
+\]</div>
+<p>The crucial insight is the factor <span class="arithmatex">\(RC/T\)</span>. In conventional CMOS, <span class="arithmatex">\(T\)</span> is comparable to <span class="arithmatex">\(RC\)</span> (a few gate delays), so <span class="arithmatex">\(RC/T \sim 1\)</span> and <span class="arithmatex">\(E \sim CV_{DD}^2\)</span> (matching the conventional result up to constant factors). But if we operate slowly, with <span class="arithmatex">\(T \gg RC\)</span>, the dissipated energy becomes:</p>
+<div class="arithmatex">\[
+E_{\text{adiabatic}} \ll CV_{DD}^2
+\]</div>
+<p>In the quasistatic limit <span class="arithmatex">\(T \to \infty\)</span>, the dissipated energy approaches zero. This is the adiabatic computing advantage: by spending more time, we can make the energy dissipation per operation arbitrarily small, well below the Landauer limit for irreversible operations.</p>
+<h3 id="comparison-conventional-vs-adiabatic-energy">Comparison: Conventional vs. Adiabatic Energy</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Conventional CMOS</th>
+<th>Adiabatic CMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Switching energy</td>
+<td><span class="arithmatex">\(\frac{1}{2}CV_{DD}^2\)</span></td>
+<td><span class="arithmatex">\(\frac{RC}{T}CV_{DD}^2\)</span></td>
+</tr>
+<tr>
+<td>Energy vs. speed</td>
+<td>Independent of speed</td>
+<td><span class="arithmatex">\(E \propto 1/T\)</span></td>
+</tr>
+<tr>
+<td>Minimum energy</td>
+<td><span class="arithmatex">\(\frac{1}{2}CV_{DD}^2\)</span> (fixed)</td>
+<td><span class="arithmatex">\(\to 0\)</span> as <span class="arithmatex">\(T \to \infty\)</span></td>
+</tr>
+<tr>
+<td>Power supply</td>
+<td>Constant <span class="arithmatex">\(V_{DD}\)</span></td>
+<td>Ramping "power clock"</td>
+</tr>
+<tr>
+<td>Energy recovery</td>
+<td>None (energy lost as heat)</td>
+<td>Possible (energy returned to supply)</td>
+</tr>
+<tr>
+<td>Practical regime</td>
+<td><span class="arithmatex">\(T \approx RC\)</span></td>
+<td><span class="arithmatex">\(T \gg RC\)</span> (factor of 10--100)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="energy-recovery">Energy Recovery</h3>
+<p>The other key advantage of adiabatic circuits is <strong>energy recovery</strong>. In conventional CMOS, the energy stored in a capacitor during charge-up (<span class="arithmatex">\(\frac{1}{2}CV_{DD}^2\)</span>) is dissipated as heat during discharge (to ground). In adiabatic circuits, the ramping power clock can also ramp <em>down</em> slowly, recovering most of the stored energy back into the power clock generator (typically an LC resonant circuit). The only energy permanently lost is the <span class="arithmatex">\(\frac{RC}{T}CV_{DD}^2\)</span> dissipated in the channel resistance during the ramp, which, as shown, can be made small.</p>
+<h4 id="diagram-adiabatic-vs-conventional-charging">Diagram: Adiabatic vs Conventional Charging</h4>
+<iframe src="../../sims/adiabatic-charging/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Comparison of energy dissipation during capacitor charging in conventional vs. adiabatic CMOS</summary>
+<p>Type: MicroSim
+Learning objective: Visualize how adiabatic (slow ramp) charging dramatically reduces energy dissipation compared to conventional (step voltage) charging, and understand the RC/T scaling law. Bloom level: Analyze.
+Visual elements: Two side-by-side RC circuit diagrams---left for conventional (step voltage source) and right for adiabatic (ramp voltage source). Animated current flow and heat dissipation (shown as glowing resistance). Time-domain plots of supply voltage <span class="arithmatex">\(V_s(t)\)</span>, capacitor voltage <span class="arithmatex">\(V_C(t)\)</span>, current <span class="arithmatex">\(i(t)\)</span>, and cumulative energy dissipated <span class="arithmatex">\(E(t)\)</span> for both circuits. A bar chart compares total energy dissipated.
+Controls: Resistance <span class="arithmatex">\(R\)</span> slider, capacitance <span class="arithmatex">\(C\)</span> slider, ramp time <span class="arithmatex">\(T\)</span> slider (for adiabatic), supply voltage <span class="arithmatex">\(V_{DD}\)</span> slider, play/pause, speed control, reset.
+Behavior: Conventional circuit shows instantaneous step response with exponential charging and fixed <span class="arithmatex">\(\frac{1}{2}CV_{DD}^2\)</span> dissipation. Adiabatic circuit shows gradual ramp with current proportional to ramp rate. As <span class="arithmatex">\(T\)</span> increases, the adiabatic energy dissipation visibly decreases. A readout shows the ratio <span class="arithmatex">\(E_{\text{adiabatic}}/E_{\text{conv}} = 2RC/T\)</span>.
+Implementation: p5.js with animated circuit diagrams and real-time waveform plots.</p>
+</details>
+<h2 id="energy-recovery-logic">Energy Recovery Logic</h2>
+<p><strong>Energy recovery logic</strong> families are practical CMOS circuit topologies that implement adiabatic switching. Several families have been developed, each balancing circuit complexity against energy efficiency. The three most prominent are 2N-2P (Two N-Two P), ECRL (Efficient Charge Recovery Logic), and PFAL (Positive Feedback Adiabatic Logic).</p>
+<h3 id="power-clock-design">Power Clock Design</h3>
+<p>All adiabatic logic families require a multi-phase <strong>power clock</strong> <span class="arithmatex">\(\phi(t)\)</span> that ramps between ground and <span class="arithmatex">\(V_{DD}\)</span> (and back) in a controlled manner. The power clock replaces the static <span class="arithmatex">\(V_{DD}\)</span> rail of conventional CMOS. A typical four-phase trapezoidal power clock cycle has four stages:</p>
+<ol>
+<li><strong>Wait</strong> (<span class="arithmatex">\(\phi = 0\)</span>): outputs are at ground; circuit is idle.</li>
+<li><strong>Evaluate</strong> (<span class="arithmatex">\(\phi\)</span> ramps from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(V_{DD}\)</span>): inputs are stable; outputs charge adiabatically through logic transistors.</li>
+<li><strong>Hold</strong> (<span class="arithmatex">\(\phi = V_{DD}\)</span>): outputs are at their final values; results can be sampled by the next stage.</li>
+<li><strong>Recover</strong> (<span class="arithmatex">\(\phi\)</span> ramps from <span class="arithmatex">\(V_{DD}\)</span> to <span class="arithmatex">\(0\)</span>): charge flows back from output capacitances through the logic transistors into the power clock generator.</li>
+</ol>
+<p>The power clock is typically generated by an LC resonant circuit (an inductor <span class="arithmatex">\(L\)</span> in series with the total load capacitance <span class="arithmatex">\(C\)</span>), which produces a sinusoidal or trapezoidal waveform that naturally recovers energy. The quality factor <span class="arithmatex">\(Q = \frac{1}{R}\sqrt{L/C}\)</span> of the resonator determines the fraction of energy recovered per cycle:</p>
+<h4 id="power-clock-energy-recovery-fraction">Power Clock Energy Recovery Fraction</h4>
+<div class="arithmatex">\[
+\eta = 1 - \frac{\pi}{Q} \approx 1 - \pi R\sqrt{\frac{C}{L}}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\eta\)</span> is the fraction of energy recovered per cycle</li>
+<li><span class="arithmatex">\(Q\)</span> is the quality factor of the LC resonant power clock</li>
+<li><span class="arithmatex">\(R\)</span> is the effective series resistance of the circuit</li>
+<li>High <span class="arithmatex">\(Q\)</span> (low loss) yields high energy recovery; typical values of <span class="arithmatex">\(Q = 10\)</span>--<span class="arithmatex">\(100\)</span> recover 70--97% of the switching energy</li>
+</ul>
+<h3 id="2n-2p-adiabatic-logic">2N-2P Adiabatic Logic</h3>
+<p>The 2N-2P (Two N-transistor, Two P-transistor) logic family uses complementary NMOS and PMOS networks, similar to conventional CMOS, but powered by a ramping power clock instead of a static supply. Each logic stage consists of:</p>
+<ul>
+<li>An NMOS pull-down network implementing the desired logic function</li>
+<li>A PMOS pull-up network implementing the complementary function</li>
+<li>Dual-rail (true and complement) signal encoding</li>
+</ul>
+<p>During the evaluate phase, the power clock ramps up, and the logic function determines which output rail charges. During the recover phase, the power clock ramps down, and charge flows back through the same transistors. The energy dissipated is approximately <span class="arithmatex">\(\frac{RC}{T}CV_{DD}^2\)</span> per switching event.</p>
+<p>The main disadvantage of 2N-2P logic is that it is not fully adiabatic: when inputs change during the evaluate phase, there can be non-adiabatic charge sharing that dissipates energy abruptly.</p>
+<h3 id="efficient-charge-recovery-logic-ecrl">Efficient Charge Recovery Logic (ECRL)</h3>
+<p>ECRL improves on 2N-2P by using cross-coupled PMOS transistors as the pull-up network. The cross-coupling ensures that one output rail is always connected to the power clock through a low-resistance path, reducing non-adiabatic losses. The structure is:</p>
+<ul>
+<li>Cross-coupled PMOS pair: <span class="arithmatex">\(M_{p1}\)</span> gate connected to <span class="arithmatex">\(\overline{out}\)</span>, <span class="arithmatex">\(M_{p2}\)</span> gate connected to <span class="arithmatex">\(out\)</span></li>
+<li>NMOS logic network: implements the desired function between <span class="arithmatex">\(out\)</span> and ground (controlled by clock phase)</li>
+<li>Complementary NMOS network: implements the complement between <span class="arithmatex">\(\overline{out}\)</span> and ground</li>
+</ul>
+<p>ECRL achieves lower energy dissipation than 2N-2P because the cross-coupling provides a well-defined current path during both evaluate and recover phases, but it requires complementary logic networks, doubling the transistor count for the logic function.</p>
+<h3 id="positive-feedback-adiabatic-logic-pfal">Positive Feedback Adiabatic Logic (PFAL)</h3>
+<p>PFAL further improves energy efficiency by adding positive feedback through cross-coupled NMOS transistors in addition to the cross-coupled PMOS pair. This creates a latch-like structure that maintains output levels during the hold phase without requiring static current flow. The PFAL structure consists of:</p>
+<ul>
+<li>Cross-coupled PMOS pull-up pair (as in ECRL)</li>
+<li>Cross-coupled NMOS pair providing positive feedback</li>
+<li>Functional NMOS networks connected in parallel with the cross-coupled NMOS pair</li>
+</ul>
+<p>PFAL is considered one of the most energy-efficient adiabatic logic families. Simulations and measurements show energy dissipation reductions of 10x--100x compared to conventional CMOS at operating frequencies of 1--100 MHz.</p>
+<h3 id="energy-recovery-logic-family-comparison">Energy Recovery Logic Family Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>2N-2P</th>
+<th>ECRL</th>
+<th>PFAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pull-up structure</td>
+<td>Complementary PMOS</td>
+<td>Cross-coupled PMOS</td>
+<td>Cross-coupled PMOS + NMOS</td>
+</tr>
+<tr>
+<td>Fully adiabatic</td>
+<td>No</td>
+<td>Partially</td>
+<td>Nearly</td>
+</tr>
+<tr>
+<td>Transistor overhead</td>
+<td>~2x CMOS</td>
+<td>~2.5x CMOS</td>
+<td>~3x CMOS</td>
+</tr>
+<tr>
+<td>Energy savings vs. CMOS</td>
+<td>5--20x</td>
+<td>10--50x</td>
+<td>20--100x</td>
+</tr>
+<tr>
+<td>Maximum practical frequency</td>
+<td>~500 MHz</td>
+<td>~200 MHz</td>
+<td>~100 MHz</td>
+</tr>
+<tr>
+<td>Power clock phases</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Circuit complexity</td>
+<td>Low</td>
+<td>Moderate</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<p>The central trade-off in energy recovery logic is <strong>speed versus energy</strong>: higher energy savings require slower operation (larger <span class="arithmatex">\(T\)</span>), and the circuit overhead increases with the sophistication of the energy recovery mechanism. For applications where throughput is paramount (e.g., high-performance processors), adiabatic logic is impractical. For applications where energy is the dominant constraint (e.g., implantable medical devices, remote sensors, space electronics), adiabatic logic offers dramatic advantages.</p>
+<h2 id="reversible-instruction-set">Reversible Instruction Set</h2>
+<p>While reversible gates provide the hardware foundation, practical reversible computing also requires <strong>reversible programming models</strong> at the software level. A reversible instruction set architecture (ISA) ensures that every machine instruction has a unique inverse, so that programs can be run forward or backward without information loss.</p>
+<h3 id="the-janus-programming-language">The Janus Programming Language</h3>
+<p><strong>Janus</strong>, developed by Christopher Lutz and Howard Derby in 1986 and later formalized by Yokoyama and Gluck (2007), is the most well-known reversible programming language. Its key design principles are:</p>
+<ol>
+<li>
+<p><strong>Every statement has a unique inverse.</strong> The language provides paired constructs: increment (<span class="arithmatex">\(x\)</span> += <span class="arithmatex">\(e\)</span>) and decrement (<span class="arithmatex">\(x\)</span> -= <span class="arithmatex">\(e\)</span>); conditional entry and conditional exit; loop and inverse loop.</p>
+</li>
+<li>
+<p><strong>No irreversible operations.</strong> Assignment <span class="arithmatex">\(x = e\)</span> is forbidden because it destroys the previous value of <span class="arithmatex">\(x\)</span>. Instead, Janus uses reversible update operators: <span class="arithmatex">\(x\)</span> += <span class="arithmatex">\(e\)</span> (which adds <span class="arithmatex">\(e\)</span> to <span class="arithmatex">\(x\)</span>, invertible by <span class="arithmatex">\(x\)</span> -= <span class="arithmatex">\(e\)</span>) and <span class="arithmatex">\(x\)</span> ^= <span class="arithmatex">\(e\)</span> (XOR-update, self-inverse).</p>
+</li>
+<li>
+<p><strong>Structured control flow.</strong> Conditionals have the form <code>if (test) then S1 else S2 fi (assert)</code>, where the assertion at the exit must be derivable from the branch taken. This ensures that the direction of the conditional can be determined during backward execution.</p>
+</li>
+<li>
+<p><strong>Loop constructs.</strong> Loops have the form <code>from (assert) do S loop (test)</code>, where the entry assertion and exit test together determine the loop behavior in both forward and reverse directions.</p>
+</li>
+</ol>
+<p>A simple example in Janus: computing the factorial of <span class="arithmatex">\(n\)</span> and storing the result in <span class="arithmatex">\(f\)</span>, then uncomputing:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>// Forward: compute n! into f
+procedure factorial(int n, int f)
+    f += 1
+    from (f = 1) do
+        f *= n
+        n -= 1
+    loop (n = 0)
+</code></pre></div></td></tr></table></div>
+<p>The inverse of this procedure is automatically derivable by reversing the order of statements and replacing each statement with its inverse:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>// Backward: uncompute factorial
+procedure factorial_inv(int n, int f)
+    from (n = 0) do
+        n += 1
+        f /= n
+    loop (f = 1)
+    f -= 1
+</code></pre></div></td></tr></table></div>
+<h3 id="reversible-processor-architectures">Reversible Processor Architectures</h3>
+<p>Several reversible processor designs have been proposed that implement reversible ISAs in hardware:</p>
+<p><strong>Pendulum</strong> (Vieri et al., 1998): A reversible RISC processor with a register file, ALU supporting reversible arithmetic (add/subtract, XOR, rotate), and a program counter that can run forward or backward. All instructions are self-inverse or come in inverse pairs. The processor includes a "history stack" that records branch decisions to enable backward execution through conditionals.</p>
+<p><strong>Bob</strong> (Frank, 1999): A reversible processor designed for adiabatic CMOS implementation. It uses a "leapfrog" pipeline where data flows forward through logic stages and then backward for energy recovery, implementing the compute-copy-uncompute paradigm of Bennett at the hardware level.</p>
+<p>The key challenge in reversible processor design is <strong>managing control flow reversibility</strong>: branch decisions, function calls, and interrupts all require additional state (history bits) to be stored so that backward execution can follow the same path as the forward execution. This connects directly to the garbage bit problem discussed in the next section.</p>
+<h3 id="program-inversion">Program Inversion</h3>
+<p>A fundamental property of reversible programs is that any program <span class="arithmatex">\(P\)</span> has a well-defined <strong>inverse program</strong> <span class="arithmatex">\(P^{-1}\)</span> that undoes the computation:</p>
+<div class="arithmatex">\[
+P^{-1}(P(s)) = s \quad \text{for all states } s
+\]</div>
+<p>For Janus programs, <span class="arithmatex">\(P^{-1}\)</span> is obtained by the following mechanical transformation:</p>
+<ol>
+<li>Reverse the order of all statements in each block.</li>
+<li>Replace each statement with its inverse: <span class="arithmatex">\(x\)</span> += <span class="arithmatex">\(e\)</span> becomes <span class="arithmatex">\(x\)</span> -= <span class="arithmatex">\(e\)</span>; <code>if</code>/<code>fi</code> has its test and assertion swapped; <code>from</code>/<code>loop</code> has its assertion and test swapped.</li>
+</ol>
+<p>This property has applications beyond energy-efficient computing. Program inversion is used in:</p>
+<ul>
+<li><strong>Debugging:</strong> Running a program backward from a crash state to find the bug.</li>
+<li><strong>Cryptography:</strong> Reversible encryption naturally provides decryption.</li>
+<li><strong>Database rollback:</strong> Undoing transactions without storing separate undo logs.</li>
+<li><strong>Checkpointing:</strong> In combination with Bennett's technique, reversible programs enable memory-efficient checkpointing of long-running simulations.</li>
+</ul>
+<h2 id="garbage-bits">Garbage Bits</h2>
+<p>The most significant practical challenge in reversible computing is the accumulation of <strong>garbage bits</strong>---ancillary output bits that are produced to maintain reversibility but are not part of the desired computation result. Managing garbage bits is essential for both the efficiency of reversible circuits and their applicability to quantum computing.</p>
+<h3 id="definition-and-origin">Definition and Origin</h3>
+<p>When an irreversible function <span class="arithmatex">\(f: \{0,1\}^n \to \{0,1\}^m\)</span> with <span class="arithmatex">\(m &lt; n\)</span> is embedded into a reversible setting, the reversible version must have at least <span class="arithmatex">\(n\)</span> output bits (to be injective). The additional <span class="arithmatex">\(n - m\)</span> output bits constitute garbage. More precisely:</p>
+<h4 id="garbage-bit-count-for-embedded-functions">Garbage Bit Count for Embedded Functions</h4>
+<div class="arithmatex">\[
+G \geq n - m
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(G\)</span> is the minimum number of garbage bits</li>
+<li><span class="arithmatex">\(n\)</span> is the number of input bits</li>
+<li><span class="arithmatex">\(m\)</span> is the number of output bits of the original function</li>
+<li>For a <span class="arithmatex">\(k\)</span>-input, 1-output Boolean gate, <span class="arithmatex">\(G \geq k - 1\)</span> garbage bits are needed</li>
+</ul>
+<p>For example, embedding a 2-input AND gate via a Toffoli gate produces the output <span class="arithmatex">\((a, b, a \wedge b)\)</span>: the desired result is <span class="arithmatex">\(a \wedge b\)</span>, and the "garbage" consists of the preserved inputs <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(b\)</span> on the first two output lines. While preserving the inputs is what enables reversibility, these extra outputs accumulate as the circuit grows.</p>
+<h3 id="the-accumulation-problem">The Accumulation Problem</h3>
+<p>In a circuit of <span class="arithmatex">\(g\)</span> irreversible gates, each embedded reversibly, the total number of garbage bits can be as large as:</p>
+<div class="arithmatex">\[
+G_{\text{total}} = \sum_{i=1}^{g} G_i
+\]</div>
+<p>For a circuit of <span class="arithmatex">\(g\)</span> two-input gates, this is <span class="arithmatex">\(O(g)\)</span> garbage bits. In a large computation, the garbage can vastly exceed the size of the useful output, consuming memory and---critically for quantum computing---creating entanglement with the computational register that prevents interference.</p>
+<h3 id="bennetts-garbage-cleanup">Bennett's Garbage Cleanup</h3>
+<p>Bennett's compute-copy-uncompute strategy (described earlier) is the standard method for eliminating garbage bits. The process works as follows for a circuit computing <span class="arithmatex">\(f(x)\)</span>:</p>
+<p><strong>Step 1 (Compute forward):</strong> Apply the reversible circuit for <span class="arithmatex">\(f\)</span>, producing the output <span class="arithmatex">\(f(x)\)</span> along with garbage <span class="arithmatex">\(g(x)\)</span>:</p>
+<div class="arithmatex">\[
+|x\rangle|0\rangle_{\text{work}}|0\rangle_{\text{out}} \to |x\rangle|g(x)\rangle_{\text{work}}|f(x)\rangle_{\text{out}}
+\]</div>
+<p><strong>Step 2 (Copy result):</strong> Use CNOT gates to copy <span class="arithmatex">\(f(x)\)</span> to a separate clean register:</p>
+<div class="arithmatex">\[
+|x\rangle|g(x)\rangle|f(x)\rangle|0\rangle_{\text{copy}} \to |x\rangle|g(x)\rangle|f(x)\rangle|f(x)\rangle_{\text{copy}}
+\]</div>
+<p><strong>Step 3 (Uncompute):</strong> Apply the inverse of the computation in Step 1, restoring the work register to its initial state:</p>
+<div class="arithmatex">\[
+|x\rangle|g(x)\rangle|f(x)\rangle|f(x)\rangle_{\text{copy}} \to |x\rangle|0\rangle_{\text{work}}|0\rangle_{\text{out}}|f(x)\rangle_{\text{copy}}
+\]</div>
+<p>The net effect is the clean reversible transformation:</p>
+<div class="arithmatex">\[
+|x\rangle|0\rangle \to |x\rangle|f(x)\rangle
+\]</div>
+<p>with no residual garbage. The work register is returned to its initial state and can be reused for subsequent computations.</p>
+<h3 id="space-overhead-analysis">Space Overhead Analysis</h3>
+<p>The space overhead of garbage management depends on the strategy used:</p>
+<p><strong>Naive approach (no cleanup):</strong> Space grows linearly with computation time: <span class="arithmatex">\(O(T)\)</span> garbage bits for a computation of <span class="arithmatex">\(T\)</span> steps. This is unacceptable for long computations.</p>
+<p><strong>Bennett's basic cleanup:</strong> The compute-copy-uncompute strategy requires workspace for the maximum garbage produced during the forward computation, which is <span class="arithmatex">\(O(S + T)\)</span> where <span class="arithmatex">\(S\)</span> is the original space and <span class="arithmatex">\(T\)</span> is the time (since the history tape records <span class="arithmatex">\(T\)</span> steps). However, after cleanup, only <span class="arithmatex">\(O(S + m)\)</span> space is occupied (original input plus clean output).</p>
+<p><strong>Bennett's recursive checkpointing:</strong> By dividing the computation into segments and recursively applying the compute-copy-uncompute strategy, Bennett (1989) showed that the space can be reduced to:</p>
+<h4 id="recursive-checkpointing-space-bound">Recursive Checkpointing Space Bound</h4>
+<div class="arithmatex">\[
+S_{\text{rev}} = O(S \cdot k \cdot T^{1/k})
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(S\)</span> is the space used by the original irreversible computation</li>
+<li><span class="arithmatex">\(T\)</span> is the time used by the original computation</li>
+<li><span class="arithmatex">\(k\)</span> is the number of recursion levels (a tunable parameter)</li>
+<li>The time overhead is <span class="arithmatex">\(T_{\text{rev}} = O(T \cdot (2k)^k / k!)\)</span>, which is <span class="arithmatex">\(O(T^{1+\epsilon})\)</span> for appropriate choice of <span class="arithmatex">\(k\)</span></li>
+</ul>
+<p>For large computations, the optimal choice <span class="arithmatex">\(k = O(\log T / \log \log T)\)</span> yields:</p>
+<div class="arithmatex">\[
+S_{\text{rev}} = O(S \cdot \log T), \quad T_{\text{rev}} = O(T^{1+\epsilon})
+\]</div>
+<p>for any <span class="arithmatex">\(\epsilon &gt; 0\)</span>. This demonstrates that garbage can be managed with only logarithmic space overhead, at the cost of a modest polynomial time increase.</p>
+<h3 id="garbage-bits-in-quantum-computing">Garbage Bits in Quantum Computing</h3>
+<p>The garbage bit problem is even more critical in quantum computing than in classical reversible computing. In a quantum computation, garbage bits that are entangled with the computational register prevent the interference effects that quantum algorithms rely on. Specifically, if a quantum subroutine produces garbage:</p>
+<div class="arithmatex">\[
+\sum_x \alpha_x |x\rangle|0\rangle \to \sum_x \alpha_x |f(x)\rangle|g(x)\rangle
+\]</div>
+<p>then the garbage register <span class="arithmatex">\(|g(x)\rangle\)</span> acts as a "which-path" marker that destroys the coherence between different branches of the superposition. The reduced density matrix of the output register is:</p>
+<div class="arithmatex">\[
+\rho_{\text{out}} = \sum_x |\alpha_x|^2 |f(x)\rangle\langle f(x)|
+\]</div>
+<p>which is a classical mixture---all quantum advantage is lost. Bennett's uncomputation strategy is therefore not merely an optimization in the quantum setting; it is a <strong>necessity</strong> for maintaining quantum coherence. This is why uncomputation is a standard step in virtually every quantum algorithm, as we will see in Chapters 7--9.</p>
+<h4 id="diagram-bennett-compute-copy-uncompute">Diagram: Bennett Compute-Copy-Uncompute</h4>
+<iframe src="../../sims/bennett-uncompute/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Step-by-step visualization of Bennett's compute-copy-uncompute garbage cleanup strategy</summary>
+<p>Type: MicroSim
+Learning objective: Understand how Bennett's three-stage strategy (compute, copy, uncompute) eliminates garbage bits while preserving the desired output in a reversible computation. Bloom level: Analyze.
+Visual elements: A horizontal pipeline showing three stages: Compute (left, highlighted in blue), Copy (center, green), and Uncompute (right, orange). Register contents are displayed as labeled bit strings at each stage: input register <span class="arithmatex">\(|x\rangle\)</span>, work register (showing garbage accumulation and cleanup), output register (showing the copy of <span class="arithmatex">\(f(x)\)</span>), and a separate clean output register. Arrows indicate the flow of computation forward and then backward. Garbage bits are highlighted in red during accumulation and fade to gray as they are cleaned up.
+Controls: Input value selector, step-through button (advance one stage at a time), auto-play with speed control, choice of example function (AND, full adder, 3-bit multiplication), reset.
+Behavior: Users step through the three stages, observing how garbage accumulates during the forward computation, the result is copied to a clean register, and then the inverse computation erases all garbage. The work register visibly returns to all zeros. A counter tracks total garbage bits at each stage.
+Implementation: p5.js with animated register displays and stage-by-stage progression.</p>
+</details>
+<h3 id="summary-of-garbage-bit-management">Summary of Garbage Bit Management</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Without cleanup</th>
+<th>With Bennett cleanup</th>
+<th>With recursive checkpointing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Garbage at completion</td>
+<td><span class="arithmatex">\(O(T)\)</span> bits</td>
+<td>0 bits</td>
+<td>0 bits</td>
+</tr>
+<tr>
+<td>Workspace required</td>
+<td><span class="arithmatex">\(O(T)\)</span></td>
+<td><span class="arithmatex">\(O(T)\)</span> (during compute)</td>
+<td><span class="arithmatex">\(O(S \log T)\)</span></td>
+</tr>
+<tr>
+<td>Time overhead</td>
+<td><span class="arithmatex">\(1\times\)</span></td>
+<td><span class="arithmatex">\(2\times\)</span></td>
+<td><span class="arithmatex">\(O(T^{\epsilon})\)</span> factor</td>
+</tr>
+<tr>
+<td>Quantum compatible</td>
+<td>No (decoherence)</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Reusable workspace</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reversible-computing-and-the-path-to-quantum-computation">Reversible Computing and the Path to Quantum Computation</h2>
+<p>The concepts developed in this chapter form an essential bridge between classical computing and the quantum paradigm. Let us summarize the key connections:</p>
+<ol>
+<li>
+<p><strong>Landauer's principle</strong> (<a href="../02-physical-limits/">Chapter 2</a>) establishes that information erasure has a thermodynamic cost. Reversible computing avoids this cost by never erasing information.</p>
+</li>
+<li>
+<p><strong>Logical reversibility</strong> means computing only bijective functions. Bennett's proof shows that this is always possible, so reversibility does not limit computational universality.</p>
+</li>
+<li>
+<p><strong>The Toffoli and Fredkin gates</strong> provide universal gate sets for classical reversible computation. Their matrix representations are permutation matrices---a special case of unitary matrices.</p>
+</li>
+<li>
+<p><strong>Adiabatic computing</strong> provides a physical mechanism for approaching the zero-dissipation limit predicted by theory, with energy dissipation scaling as <span class="arithmatex">\(RC/T\)</span>.</p>
+</li>
+<li>
+<p><strong>Garbage bit management</strong> through Bennett's uncomputation is essential in the quantum setting, where garbage destroys coherence.</p>
+</li>
+</ol>
+<p>The transition to quantum computing (Chapters 7--9) generalizes reversible classical computation in a precise sense: quantum gates are described by <strong>unitary matrices</strong>, which include permutation matrices as a special case. The Toffoli gate, for example, is both a valid classical reversible gate and a valid quantum gate. Quantum computing extends the gate set from permutations (which map basis states to basis states) to arbitrary unitary transformations (which create superpositions of basis states). The reversible computing framework developed here---bijective functions, ancilla management, compute-copy-uncompute---carries over directly and forms the scaffolding on which quantum algorithms are built.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>R. Landauer, "Irreversibility and Heat Generation in the Computing Process," <em>IBM Journal of Research and Development</em>, vol. 5, no. 3, pp. 183--191, 1961.</li>
+<li>C. H. Bennett, "Logical Reversibility of Computation," <em>IBM Journal of Research and Development</em>, vol. 17, no. 6, pp. 525--532, 1973.</li>
+<li>C. H. Bennett, "Time/Space Trade-offs for Reversible Computation," <em>SIAM Journal on Computing</em>, vol. 18, no. 4, pp. 766--776, 1989.</li>
+<li>T. Toffoli, "Reversible Computing," in <em>Automata, Languages and Programming</em>, Lecture Notes in Computer Science, vol. 85, pp. 632--644, Springer, 1980.</li>
+<li>E. Fredkin and T. Toffoli, "Conservative Logic," <em>International Journal of Theoretical Physics</em>, vol. 21, no. 3--4, pp. 219--253, 1982.</li>
+<li>T. Yokoyama and R. Gluck, "A Reversible Programming Language and its Invertible Self-Interpreter," in <em>Proceedings of the ACM SIGPLAN Workshop on Partial Evaluation and Semantics-Based Program Manipulation</em>, pp. 144--153, 2007.</li>
+<li>A. G. Dickinson and J. S. Denker, "Adiabatic Dynamic Logic," <em>IEEE Journal of Solid-State Circuits</em>, vol. 30, no. 3, pp. 311--315, 1995.</li>
+<li>A. Vetuli, S. Di Pascoli, and L. M. Reyneri, "Positive Feedback in Adiabatic Logic," <em>Electronics Letters</em>, vol. 32, no. 20, pp. 1867--1869, 1996.</li>
+<li>M. P. Frank, "Reversibility for Efficient Computing," Ph.D. dissertation, MIT, 1999.</li>
+<li>M. Li and P. Vitanyi, "Reversibility and Adiabatic Computation: Trading Time and Space for Energy," <em>Proceedings of the Royal Society A</em>, vol. 452, pp. 769--789, 1996.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../05-beyond-cmos-devices/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 5. Beyond-CMOS Devices">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                5. Beyond-CMOS Devices
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../07-quantum-mechanics/" class="md-footer__link md-footer__link--next" aria-label="Next: 7. Quantum Mechanics">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                7. Quantum Mechanics
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

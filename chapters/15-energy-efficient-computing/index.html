@@ -1,0 +1,2986 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Neuromorphic, approximate, in-memory, and thermodynamic computing paradigms with energy-delay analysis">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/15-energy-efficient-computing/">
+      
+      
+        <link rel="prev" href="../14-hybrid-computing/">
+      
+      
+        <link rel="next" href="../16-future-of-computing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Energy-Efficient Computing Paradigms - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#energy-efficient-computing-paradigms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Energy-Efficient Computing Paradigms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neuromorphic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neuromorphic Computing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spiking-neural-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spiking Neural Networks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spiking Neural Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leaky-integrate-and-fire-membrane-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaky Integrate-and-Fire Membrane Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synaptic-current-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synaptic Current Summation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdp-learning-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STDP Learning Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-spiking-neural-network-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Spiking Neural Network Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approximate-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approximate Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Approximate Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approximation-error-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approximation Error Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probabilistic-approximation-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Probabilistic Approximation Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplier-energy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplier Energy Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-approximate-computing-error-energy-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Approximate Computing Error-Energy Tradeoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-memory-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Memory Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In-Memory Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crossbar-mac-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crossbar MAC Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-vector-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix-Vector Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analog-precision-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Precision Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thermodynamic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thermodynamic Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Thermodynamic Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boltzmann-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boltzmann Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thermodynamic-sampling-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thermodynamic Sampling Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-thermodynamic-computing-energy-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Thermodynamic Computing Energy Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-near-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute-Near-Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compute-Near-Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-movement-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Movement Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-cnm-bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal CNM Bandwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analog-neural-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Neural Accelerator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analog Neural Accelerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analog-inference-energy-per-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Inference Energy per Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adc-energy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADC Energy Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-analog-crossbar-array-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Analog Crossbar Array Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-delay-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy-Delay Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy-Delay Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-delay-product-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy-Delay Product Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmos-gate-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Gate Delay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmos-energy-delay-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Energy-Delay Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-energy-delay-product-comparison-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Energy-Delay Product Comparison Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synthesis-the-energy-efficient-computing-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesis: The Energy-Efficient Computing Landscape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neuromorphic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neuromorphic Computing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spiking-neural-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spiking Neural Networks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spiking Neural Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leaky-integrate-and-fire-membrane-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leaky Integrate-and-Fire Membrane Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synaptic-current-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synaptic Current Summation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdp-learning-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STDP Learning Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-spiking-neural-network-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Spiking Neural Network Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#approximate-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approximate Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Approximate Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#approximation-error-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approximation Error Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probabilistic-approximation-guarantee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Probabilistic Approximation Guarantee
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplier-energy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplier Energy Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-approximate-computing-error-energy-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Approximate Computing Error-Energy Tradeoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#in-memory-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Memory Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="In-Memory Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crossbar-mac-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crossbar MAC Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-vector-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix-Vector Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analog-precision-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Precision Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#thermodynamic-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thermodynamic Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Thermodynamic Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boltzmann-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boltzmann Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thermodynamic-sampling-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thermodynamic Sampling Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-thermodynamic-computing-energy-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Thermodynamic Computing Energy Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compute-near-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compute-Near-Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compute-Near-Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-movement-energy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Movement Energy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-cnm-bandwidth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal CNM Bandwidth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analog-neural-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Neural Accelerator
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analog Neural Accelerator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analog-inference-energy-per-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analog Inference Energy per Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adc-energy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ADC Energy Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-analog-crossbar-array-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Analog Crossbar Array Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#energy-delay-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy-Delay Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Energy-Delay Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-delay-product-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy-Delay Product Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmos-gate-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Gate Delay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmos-energy-delay-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Energy-Delay Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-energy-delay-product-comparison-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Energy-Delay Product Comparison Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synthesis-the-energy-efficient-computing-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesis: The Energy-Efficient Computing Landscape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/15-energy-efficient-computing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="energy-efficient-computing-paradigms">Energy-Efficient Computing Paradigms</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter surveys alternative computing paradigms focused on energy efficiency beyond traditional CMOS and quantum approaches. Topics include neuromorphic computing with spiking neural networks, approximate computing with formal error analysis, in-memory and compute-near-memory architectures, thermodynamic computing, analog neural accelerators, and quantitative energy-delay product comparisons.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 8 concepts:</p>
+<ol>
+<li>Neuromorphic Computing</li>
+<li>Spiking Neural Networks</li>
+<li>Approximate Computing</li>
+<li>In-Memory Computing</li>
+<li>Thermodynamic Computing</li>
+<li>Compute-Near-Memory</li>
+<li>Analog Neural Accelerator</li>
+<li>Energy-Delay Product</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../02-physical-limits/">Chapter 2: Physical Limits of Computing</a></li>
+<li><a href="../04-classical-computing/">Chapter 4: Classical Computing Fundamentals</a></li>
+<li><a href="../05-beyond-cmos-devices/">Chapter 5: Beyond-CMOS Devices</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In Chapter 2, we established fundamental thermodynamic bounds on computation, culminating in Landauer's principle and the power density wall that has stalled Dennard scaling since approximately 2006. Chapter 4 formalized the von Neumann architecture and its inherent memory-processor bottleneck, while Chapter 5 surveyed device-level alternatives to CMOS transistors. This chapter ascends from device physics to system-level architecture, asking a different question: rather than replacing the transistor, can we restructure the <em>paradigm</em> of computation itself to achieve orders-of-magnitude improvement in energy efficiency?</p>
+<p>The answer, explored across eight concepts, is a qualified yes. Nature provides compelling existence proofs: the human brain executes sophisticated pattern recognition at roughly 20 watts, while a GPU performing comparable image classification tasks may consume 300 watts or more. This three-order-of-magnitude gap motivates neuromorphic and analog approaches that emulate biological information processing. Meanwhile, the observation that many practical workloads tolerate bounded errors motivates approximate computing, and the recognition that data movement dominates energy budgets in modern systems motivates in-memory and compute-near-memory architectures.</p>
+<p>We develop each paradigm with mathematical rigor, derive the governing equations, and conclude with the energy-delay product as a unified figure of merit for quantitative comparison across paradigms.</p>
+<h2 id="neuromorphic-computing">Neuromorphic Computing</h2>
+<p><strong>Neuromorphic computing</strong> is a computing paradigm that draws architectural inspiration from the structure and function of biological neural systems, organizing computation around large populations of simple processing elements (artificial neurons) connected by adaptive weighted links (artificial synapses). The term was coined by Carver Mead in 1990, who observed that analog VLSI circuits operating in the subthreshold regime could emulate neural dynamics with extraordinary energy efficiency.</p>
+<p>The fundamental departure from von Neumann architecture is threefold:</p>
+<ul>
+<li><strong>Collocated memory and computation:</strong> Synaptic weights are stored at the point of computation (the synapse), eliminating the memory bus bottleneck</li>
+<li><strong>Massive parallelism:</strong> Millions of neurons compute simultaneously, trading clock speed for throughput</li>
+<li><strong>Event-driven operation:</strong> Neurons consume power only when they fire (spike), yielding workload-dependent energy consumption</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Von Neumann</th>
+<th>Neuromorphic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory model</td>
+<td>Separate (DRAM/SRAM)</td>
+<td>Distributed (synaptic)</td>
+</tr>
+<tr>
+<td>Data flow</td>
+<td>Sequential fetch-execute</td>
+<td>Parallel, event-driven</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>64-bit floating point</td>
+<td>Low precision (1-8 bit)</td>
+</tr>
+<tr>
+<td>Clock</td>
+<td>Synchronous (GHz)</td>
+<td>Asynchronous (spike-based)</td>
+</tr>
+<tr>
+<td>Power scaling</td>
+<td>Static + dynamic</td>
+<td>Primarily activity-dependent</td>
+</tr>
+<tr>
+<td>Fault tolerance</td>
+<td>Low (single bit flip = error)</td>
+<td>High (graceful degradation)</td>
+</tr>
+</tbody>
+</table>
+<p>The energy advantage of neuromorphic systems arises fundamentally from two sources. First, the elimination of data movement between memory and processor removes what has become the dominant energy cost in conventional computing: in a modern processor, a 64-bit DRAM access costs approximately 20 nJ, while a 64-bit floating-point multiply costs roughly 4 pJ—a ratio of 5000:1. Second, event-driven computation means that the vast majority of neurons in any given inference step remain quiescent and draw no dynamic power.</p>
+<p>Major neuromorphic hardware platforms include Intel's Loihi 2 (128 cores, 1 million neurons, 120 million synapses), IBM's TrueNorth (4096 cores, 1 million neurons, 256 million synapses), and SpiNNaker 2 (ARM-based digital neuromorphic system from the University of Manchester). These systems demonstrate power consumption on the order of milliwatts to watts for tasks that consume tens to hundreds of watts on conventional hardware.</p>
+<h2 id="spiking-neural-networks">Spiking Neural Networks</h2>
+<p><strong>Spiking neural networks</strong> (SNNs) are the computational model that underpins neuromorphic hardware. Unlike artificial neural networks (ANNs) that communicate continuous-valued activations, SNNs transmit information through discrete temporal events called <strong>spikes</strong>. The timing and frequency of spikes encode information, introducing time as a fundamental computational variable.</p>
+<p>The dynamics of a single spiking neuron are governed by the <strong>leaky integrate-and-fire</strong> (LIF) model, the most widely used abstraction that balances biological fidelity with computational tractability.</p>
+<h4 id="leaky-integrate-and-fire-membrane-equation">Leaky Integrate-and-Fire Membrane Equation</h4>
+<div class="arithmatex">\[\tau_m \frac{dV(t)}{dt} = -[V(t) - V_{\text{rest}}] + R_m I(t)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V(t)\)</span> is the membrane potential at time <span class="arithmatex">\(t\)</span></li>
+<li><span class="arithmatex">\(V_{\text{rest}}\)</span> is the resting membrane potential (typically <span class="arithmatex">\(-70\)</span> mV)</li>
+<li><span class="arithmatex">\(\tau_m = R_m C_m\)</span> is the membrane time constant (typically 10-30 ms)</li>
+<li><span class="arithmatex">\(R_m\)</span> is the membrane resistance</li>
+<li><span class="arithmatex">\(C_m\)</span> is the membrane capacitance</li>
+<li><span class="arithmatex">\(I(t)\)</span> is the total input current (synaptic plus external)</li>
+</ul>
+<p>When the membrane potential reaches the threshold <span class="arithmatex">\(V_{\text{th}}\)</span>, the neuron emits a spike and resets:</p>
+<div class="arithmatex">\[V(t) \geq V_{\text{th}} \implies \text{spike at time } t, \quad V(t^+) = V_{\text{reset}}\]</div>
+<p>The input current <span class="arithmatex">\(I(t)\)</span> aggregates contributions from presynaptic neurons:</p>
+<h4 id="synaptic-current-summation">Synaptic Current Summation</h4>
+<div class="arithmatex">\[I(t) = \sum_{j} w_j \sum_{k} \alpha(t - t_j^{(k)})\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(w_j\)</span> is the synaptic weight from presynaptic neuron <span class="arithmatex">\(j\)</span></li>
+<li><span class="arithmatex">\(t_j^{(k)}\)</span> is the time of the <span class="arithmatex">\(k\)</span>-th spike from neuron <span class="arithmatex">\(j\)</span></li>
+<li><span class="arithmatex">\(\alpha(t)\)</span> is the postsynaptic current kernel (e.g., <span class="arithmatex">\(\alpha(t) = \frac{t}{\tau_s}e^{-t/\tau_s}\Theta(t)\)</span> for alpha synapses)</li>
+<li><span class="arithmatex">\(\Theta(t)\)</span> is the Heaviside step function</li>
+</ul>
+<p>Learning in SNNs typically employs <strong>spike-timing-dependent plasticity</strong> (STDP), a biologically observed learning rule in which the synaptic weight change depends on the relative timing of pre- and post-synaptic spikes:</p>
+<h4 id="stdp-learning-rule">STDP Learning Rule</h4>
+<div class="arithmatex">\[\Delta w = \begin{cases} A_+ \exp\left(-\frac{\Delta t}{\tau_+}\right) &amp; \text{if } \Delta t &gt; 0 \text{ (pre before post: potentiation)} \\ -A_- \exp\left(\frac{\Delta t}{\tau_-}\right) &amp; \text{if } \Delta t &lt; 0 \text{ (post before pre: depression)} \end{cases}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\Delta t = t_{\text{post}} - t_{\text{pre}}\)</span> is the spike timing difference</li>
+<li><span class="arithmatex">\(A_+, A_-\)</span> are the maximum weight change amplitudes</li>
+<li><span class="arithmatex">\(\tau_+, \tau_-\)</span> are the time constants for potentiation and depression (typically 10-20 ms)</li>
+</ul>
+<p>The energy per synaptic operation in a neuromorphic SNN implementation is on the order of femtojoules (approximately <span class="arithmatex">\(1\)</span>-<span class="arithmatex">\(10\)</span> fJ per synaptic event on Loihi 2), compared to picojoules for a multiply-accumulate operation on a digital accelerator. This three-order-of-magnitude advantage compounds across the billions of synaptic operations in a typical inference pass.</p>
+<h4 id="diagram-spiking-neural-network-simulator">Diagram: Spiking Neural Network Simulator</h4>
+<iframe src="../../sims/spiking-neural-network/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Spiking Neural Network Simulator</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: simulate, demonstrate</p>
+<p>Learning Objective: Students can simulate a small spiking neural network using the LIF model, observing how membrane potential integrates incoming spikes, crosses threshold to produce output spikes, and how STDP modifies synaptic weights over time.</p>
+<p>Instructional Rationale: A parameter exploration is appropriate for an Apply-level objective because students must manipulate synaptic weights, input spike rates, and membrane parameters to observe emergent spiking behavior. Direct manipulation of the LIF dynamics builds intuition for how temporal coding and event-driven processing differ from rate-based ANNs.</p>
+<p>Visual elements:
+- A network diagram showing 4 input neurons connected to 1 output LIF neuron
+- Real-time raster plot showing input and output spike trains
+- Membrane potential trace <span class="arithmatex">\(V(t)\)</span> for the output neuron with threshold line
+- Synaptic weight bar chart showing current values of <span class="arithmatex">\(w_1, w_2, w_3, w_4\)</span>
+- STDP weight change visualization when learning is enabled</p>
+<p>Interactive controls:
+- Sliders: Input spike rates for each of the 4 input neurons (0-100 Hz)
+- Sliders: Synaptic weights <span class="arithmatex">\(w_1\)</span> through <span class="arithmatex">\(w_4\)</span> (range <span class="arithmatex">\(-1\)</span> to <span class="arithmatex">\(1\)</span>)
+- Slider: Membrane time constant <span class="arithmatex">\(\tau_m\)</span> (5-50 ms)
+- Slider: Threshold <span class="arithmatex">\(V_{\text{th}}\)</span> (adjustable)
+- Toggle: Enable/disable STDP learning
+- Button: Reset simulation
+- Button: Pause/Resume</p>
+<p>Behavior:
+- Input neurons generate Poisson spike trains at specified rates
+- Membrane potential integrates according to LIF equation with Euler method
+- When <span class="arithmatex">\(V \geq V_{\text{th}}\)</span>, output spike appears on raster plot and <span class="arithmatex">\(V\)</span> resets
+- With STDP enabled, weights update based on pre-post spike timing differences
+- Raster plot scrolls horizontally showing recent 2 seconds of activity</p>
+<p>Canvas layout:
+- Top (25%): Network diagram with labeled weights
+- Middle (50%): Raster plot (top half) and membrane potential trace (bottom half)
+- Bottom (25%): Controls panel and weight bar chart</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="approximate-computing">Approximate Computing</h2>
+<p><strong>Approximate computing</strong> is a paradigm that systematically trades computational accuracy for reductions in energy, latency, or area by exploiting the intrinsic error tolerance of many application domains. Image processing, machine learning, signal processing, and data analytics all exhibit significant tolerance to bounded computational errors, making them candidates for approximation at every level of the system stack: from transistor-level voltage scaling to algorithmic-level precision reduction.</p>
+<p>The theoretical foundation rests on bounding the error introduced by approximation. Consider an exact function <span class="arithmatex">\(f: \mathcal{X} \to \mathcal{Y}\)</span> and its approximate counterpart <span class="arithmatex">\(\tilde{f}: \mathcal{X} \to \mathcal{Y}\)</span>. We define the approximation quality through a distance metric on the output space.</p>
+<h4 id="approximation-error-bound">Approximation Error Bound</h4>
+<div class="arithmatex">\[\epsilon = \sup_{x \in \mathcal{X}} d(\tilde{f}(x), f(x))\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\epsilon\)</span> is the worst-case approximation error</li>
+<li><span class="arithmatex">\(d(\cdot, \cdot)\)</span> is a suitable distance metric (e.g., absolute error, relative error, or application-specific quality metric)</li>
+<li><span class="arithmatex">\(\mathcal{X}\)</span> is the input domain</li>
+<li><span class="arithmatex">\(f\)</span> is the exact computation, <span class="arithmatex">\(\tilde{f}\)</span> is the approximate computation</li>
+</ul>
+<p>In practice, we more often work with probabilistic error bounds:</p>
+<h4 id="probabilistic-approximation-guarantee">Probabilistic Approximation Guarantee</h4>
+<div class="arithmatex">\[\Pr[d(\tilde{f}(X), f(X)) &gt; \delta] \leq \eta\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X\)</span> is a random variable drawn from the input distribution</li>
+<li><span class="arithmatex">\(\delta\)</span> is the error tolerance threshold</li>
+<li><span class="arithmatex">\(\eta\)</span> is the acceptable probability of exceeding the tolerance</li>
+</ul>
+<p>The key engineering insight is that energy savings scale superlinearly with reduced precision. For a digital multiplier operating on <span class="arithmatex">\(n\)</span>-bit operands, both the energy and area scale as:</p>
+<h4 id="multiplier-energy-scaling">Multiplier Energy Scaling</h4>
+<div class="arithmatex">\[E_{\text{mult}} \propto n^2, \qquad A_{\text{mult}} \propto n^2\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> is the operand bit width</li>
+<li>The quadratic scaling arises from the partial-product array structure</li>
+</ul>
+<p>Reducing precision from 32-bit floating point to 8-bit integer (a common technique in neural network inference) therefore yields an approximate <span class="arithmatex">\(16\times\)</span> reduction in multiply energy. Further reduction to binary or ternary weights achieves even more dramatic savings.</p>
+<p>Approximate computing techniques span multiple abstraction layers:</p>
+<ul>
+<li><strong>Circuit level:</strong> Voltage overscaling (operating below <span class="arithmatex">\(V_{\text{dd,min}}\)</span>), approximate adders (truncated carry chains), approximate multipliers (partial product truncation)</li>
+<li><strong>Architecture level:</strong> Load value prediction, approximate caches (allowing occasional bit flips), significance-based storage</li>
+<li><strong>Algorithm level:</strong> Loop perforation (skipping loop iterations), memoization with approximate matching, reduced-precision arithmetic</li>
+<li><strong>Application level:</strong> Quality-configurable outputs, progressive computation, early termination</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Abstraction Layer</th>
+<th>Typical Energy Savings</th>
+<th>Error Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voltage overscaling</td>
+<td>Circuit</td>
+<td>2-10<span class="arithmatex">\(\times\)</span></td>
+<td>Random bit errors, increasing with voltage reduction</td>
+</tr>
+<tr>
+<td>Approximate adder</td>
+<td>Circuit</td>
+<td>2-5<span class="arithmatex">\(\times\)</span></td>
+<td>Bounded carry-chain error</td>
+</tr>
+<tr>
+<td>Precision reduction (FP32 to INT8)</td>
+<td>Architecture</td>
+<td>10-20<span class="arithmatex">\(\times\)</span></td>
+<td>Quantization noise</td>
+</tr>
+<tr>
+<td>Loop perforation</td>
+<td>Algorithm</td>
+<td>2-5<span class="arithmatex">\(\times\)</span></td>
+<td>Sampling error, depends on loop body</td>
+</tr>
+<tr>
+<td>Early termination</td>
+<td>Application</td>
+<td>2-50<span class="arithmatex">\(\times\)</span></td>
+<td>Convergence-dependent</td>
+</tr>
+</tbody>
+</table>
+<h4 id="diagram-approximate-computing-error-energy-tradeoff">Diagram: Approximate Computing Error-Energy Tradeoff</h4>
+<iframe src="../../sims/approximate-computing-tradeoff/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Approximate Computing Error-Energy Tradeoff</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: compare, examine</p>
+<p>Learning Objective: Students can examine the tradeoff between approximation level and output quality for different computational tasks, comparing energy savings against error metrics to identify optimal operating points on the Pareto frontier.</p>
+<p>Instructional Rationale: A parameter exploration with linked error and energy displays is appropriate for an Analyze-level objective because students must deconstruct the relationship between precision, energy, and output quality. Comparing multiple approximation techniques on the same task builds understanding of when and why approximate computing is advantageous.</p>
+<p>Visual elements:
+- A Pareto frontier plot with energy (x-axis) vs. output quality (y-axis)
+- Side-by-side display of exact and approximate computation outputs (e.g., image filtering)
+- Error histogram showing distribution of per-element errors
+- Energy breakdown bar chart showing contribution of each operation type</p>
+<p>Interactive controls:
+- Dropdown: Select task (image blur, matrix multiplication, sorting)
+- Slider: Bit precision (2 to 32 bits)
+- Slider: Loop perforation rate (0% to 90% of iterations skipped)
+- Toggle: Approximate vs exact adder
+- Button: Reset to exact computation</p>
+<p>Behavior:
+- Adjusting precision slider reduces bit width of internal computations
+- Output image/result updates in real time showing approximation artifacts
+- Error histogram shifts right (more error) as approximation increases
+- Energy estimate decreases as approximation increases
+- Pareto frontier highlights current operating point</p>
+<p>Canvas layout:
+- Left (50%): Side-by-side exact/approximate output display
+- Right top (25%): Pareto frontier plot with current operating point
+- Right bottom (25%): Error histogram and energy breakdown</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="in-memory-computing">In-Memory Computing</h2>
+<p><strong>In-memory computing</strong> (IMC) eliminates the von Neumann bottleneck by performing computation directly within the memory array, avoiding the energy and latency costs of transferring data between memory and processor. In a conventional system, data movement accounts for 60-90% of total energy consumption for data-intensive workloads; in-memory computing attacks this dominant cost directly.</p>
+<p>The fundamental operation in IMC is the <strong>multiply-accumulate</strong> (MAC) performed in the analog domain within a crossbar array. Consider a resistive crossbar with input voltages applied to the rows and conductances <span class="arithmatex">\(G_{ij}\)</span> programmed at each crosspoint (representing synaptic weights or matrix elements). By Kirchhoff's current law, the current collected at column <span class="arithmatex">\(j\)</span> is:</p>
+<h4 id="crossbar-mac-operation">Crossbar MAC Operation</h4>
+<div class="arithmatex">\[I_j = \sum_{i=1}^{N} V_i \cdot G_{ij}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V_i\)</span> is the voltage applied to row <span class="arithmatex">\(i\)</span> (representing input <span class="arithmatex">\(x_i\)</span>)</li>
+<li><span class="arithmatex">\(G_{ij}\)</span> is the conductance at crosspoint <span class="arithmatex">\((i,j)\)</span> (representing weight <span class="arithmatex">\(w_{ij}\)</span>)</li>
+<li><span class="arithmatex">\(I_j\)</span> is the output current at column <span class="arithmatex">\(j\)</span> (representing the MAC result <span class="arithmatex">\(y_j = \sum_i x_i w_{ij}\)</span>)</li>
+<li><span class="arithmatex">\(N\)</span> is the number of rows</li>
+</ul>
+<p>This analog computation executes a full matrix-vector multiplication <span class="arithmatex">\(\mathbf{y} = \mathbf{W}\mathbf{x}\)</span> in a single step (<span class="arithmatex">\(O(1)\)</span> time complexity), with energy determined by the <span class="arithmatex">\(I^2R\)</span> dissipation in the crossbar rather than by the number of digital operations. The crossbar implements:</p>
+<h4 id="matrix-vector-multiplication">Matrix-Vector Multiplication</h4>
+<div class="arithmatex">\[\mathbf{I} = \mathbf{G} \cdot \mathbf{V} \quad \Longleftrightarrow \quad \mathbf{y} = \mathbf{W} \cdot \mathbf{x}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{G}\)</span> is the <span class="arithmatex">\(N \times M\)</span> conductance matrix</li>
+<li><span class="arithmatex">\(\mathbf{V}\)</span> is the <span class="arithmatex">\(N\)</span>-dimensional input voltage vector</li>
+<li><span class="arithmatex">\(\mathbf{I}\)</span> is the <span class="arithmatex">\(M\)</span>-dimensional output current vector</li>
+</ul>
+<p>The devices used to implement programmable conductances include resistive RAM (ReRAM/memristors), phase-change memory (PCM), spin-transfer torque magnetic RAM (STT-MRAM), and ferroelectric FETs. Each technology offers different tradeoffs in precision, endurance, speed, and energy:</p>
+<table>
+<thead>
+<tr>
+<th>Device Technology</th>
+<th>Conductance Levels</th>
+<th>Write Energy</th>
+<th>Read Latency</th>
+<th>Endurance (Cycles)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ReRAM (HfO<span class="arithmatex">\(_x\)</span>)</td>
+<td>4-64</td>
+<td>0.1-1 pJ</td>
+<td>1-10 ns</td>
+<td><span class="arithmatex">\(10^6\)</span>-<span class="arithmatex">\(10^{12}\)</span></td>
+</tr>
+<tr>
+<td>PCM (GST)</td>
+<td>16-256</td>
+<td>1-10 pJ</td>
+<td>10-100 ns</td>
+<td><span class="arithmatex">\(10^8\)</span>-<span class="arithmatex">\(10^{12}\)</span></td>
+</tr>
+<tr>
+<td>STT-MRAM</td>
+<td>2</td>
+<td>0.01-0.1 pJ</td>
+<td>1-10 ns</td>
+<td><span class="arithmatex">\(&gt;10^{15}\)</span></td>
+</tr>
+<tr>
+<td>FeRAM/FeFET</td>
+<td>4-16</td>
+<td>0.01-1 pJ</td>
+<td>1-10 ns</td>
+<td><span class="arithmatex">\(10^{10}\)</span>-<span class="arithmatex">\(10^{14}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The energy advantage of analog crossbar computation over digital MAC can be quantified. A digital 8-bit MAC requires approximately 2 pJ (for the multiplication) plus 0.5 pJ (for the accumulation), while an analog crossbar MAC in a ReRAM array consumes approximately 0.01-0.1 pJ per element, yielding a 10-100<span class="arithmatex">\(\times\)</span> improvement. However, this advantage is partially offset by the energy cost of analog-to-digital and digital-to-analog conversion (ADC/DAC) at the periphery of the array, which can dominate for high-precision computations.</p>
+<p>The fundamental precision limitation of analog IMC arises from device variability and noise. The effective number of bits (ENOB) achievable in a crossbar computation is bounded by:</p>
+<h4 id="analog-precision-bound">Analog Precision Bound</h4>
+<div class="arithmatex">\[\text{ENOB} \leq \frac{1}{2}\log_2\left(\frac{P_{\text{signal}}}{P_{\text{noise}} + P_{\text{variation}}}\right)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(P_{\text{signal}}\)</span> is the signal power (proportional to the squared mean conductance times input voltage)</li>
+<li><span class="arithmatex">\(P_{\text{noise}}\)</span> is the thermal and shot noise power</li>
+<li><span class="arithmatex">\(P_{\text{variation}}\)</span> is the power contribution from device-to-device conductance variation</li>
+</ul>
+<p>Typical crossbar arrays achieve 4-8 ENOB, sufficient for neural network inference but inadequate for scientific computing applications requiring double-precision accuracy.</p>
+<h2 id="thermodynamic-computing">Thermodynamic Computing</h2>
+<p><strong>Thermodynamic computing</strong> represents a paradigm that harnesses thermal fluctuations—ordinarily viewed as noise to be suppressed—as a computational resource. Rather than fighting thermodynamic noise with deterministic digital circuits operating far from thermal equilibrium, thermodynamic computing operates at or near thermal equilibrium, using the natural stochastic dynamics of physical systems to perform useful computation such as sampling, optimization, and probabilistic inference.</p>
+<p>The theoretical foundation connects directly to Landauer's principle from Chapter 2. Recall that erasing one bit of information dissipates at least <span class="arithmatex">\(k_B T \ln 2\)</span> of energy. Thermodynamic computing approaches this bound by designing computations that minimize information erasure and exploit reversible thermodynamic processes.</p>
+<p>The central object in thermodynamic computing is the <strong>Boltzmann machine</strong>, a stochastic recurrent network whose equilibrium distribution is the Boltzmann distribution:</p>
+<h4 id="boltzmann-distribution">Boltzmann Distribution</h4>
+<div class="arithmatex">\[P(\mathbf{s}) = \frac{1}{Z}\exp\left(-\frac{E(\mathbf{s})}{k_B T}\right)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{s} = (s_1, s_2, \ldots, s_n)\)</span> is a binary state configuration with <span class="arithmatex">\(s_i \in \{0, 1\}\)</span></li>
+<li><span class="arithmatex">\(E(\mathbf{s}) = -\sum_{i&lt;j} w_{ij}s_i s_j - \sum_i b_i s_i\)</span> is the energy function defined by weights <span class="arithmatex">\(w_{ij}\)</span> and biases <span class="arithmatex">\(b_i\)</span></li>
+<li><span class="arithmatex">\(Z = \sum_{\mathbf{s}} \exp(-E(\mathbf{s})/k_B T)\)</span> is the partition function</li>
+<li><span class="arithmatex">\(k_B T\)</span> is the thermal energy scale</li>
+</ul>
+<p>A physical implementation maps the Boltzmann machine onto a network of coupled stochastic elements (e.g., nanomagnets, Josephson junctions, or resistive devices) whose thermal fluctuations naturally sample from the Boltzmann distribution. The key insight is that thermal noise, which digital circuits spend enormous energy suppressing, becomes the engine of computation.</p>
+<p>The energy cost per sample in a thermodynamic computer scales fundamentally differently from a digital sampler:</p>
+<h4 id="thermodynamic-sampling-energy">Thermodynamic Sampling Energy</h4>
+<div class="arithmatex">\[E_{\text{sample}} \sim n \cdot k_B T \ln 2\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(n\)</span> is the number of binary variables</li>
+<li><span class="arithmatex">\(k_B T \ln 2 \approx 0.018\)</span> eV <span class="arithmatex">\(\approx 2.9 \times 10^{-21}\)</span> J at room temperature</li>
+</ul>
+<p>Compare this with the energy cost of generating <span class="arithmatex">\(n\)</span> pseudorandom bits on a digital processor, which requires <span class="arithmatex">\(n\)</span> multiplications at approximately 1 pJ each—a ratio of approximately <span class="arithmatex">\(10^9\)</span> per bit. While practical thermodynamic computers do not yet achieve the Landauer bound, they can in principle operate within 10-100<span class="arithmatex">\(\times\)</span> of it, still yielding enormous advantages for sampling-intensive workloads.</p>
+<p>Applications of thermodynamic computing include:</p>
+<ul>
+<li><strong>Combinatorial optimization:</strong> Sampling from low-energy states of an Ising Hamiltonian to solve NP-hard problems (analogous to quantum annealing but using classical thermal fluctuations)</li>
+<li><strong>Probabilistic inference:</strong> Performing Bayesian inference by sampling from posterior distributions encoded in the Boltzmann weights</li>
+<li><strong>Generative modeling:</strong> Training and sampling from Boltzmann machines for machine learning applications</li>
+<li><strong>Monte Carlo simulation:</strong> Accelerating Markov chain Monte Carlo methods through physical thermal dynamics</li>
+</ul>
+<h4 id="diagram-thermodynamic-computing-energy-landscape">Diagram: Thermodynamic Computing Energy Landscape</h4>
+<p><iframe src="../../sims/thermodynamic-computing-landscape/main.html" width="100%" height="500xp" scrolling="no"></iframe></p>
+<details>
+<summary>Thermodynamic Computing Energy Landscape</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: examine, relate</p>
+<p>Learning Objective: Students can examine how a thermodynamic computer explores an energy landscape through thermal fluctuations, relating the temperature parameter to the tradeoff between exploration (escaping local minima) and exploitation (settling into low-energy states).</p>
+<p>Instructional Rationale: An energy landscape visualization with temperature control is appropriate for an Analyze-level objective because students must relate the abstract Boltzmann distribution to the physical dynamics of state exploration. Observing how temperature controls the exploration-exploitation tradeoff builds intuition for simulated annealing and thermodynamic optimization.</p>
+<p>Visual elements:
+- A 2D energy landscape (height map) with multiple local minima and one global minimum
+- An animated particle representing the current state, moving stochastically across the landscape
+- A histogram showing visited states accumulating over time, converging to the Boltzmann distribution
+- Temperature gauge showing current <span class="arithmatex">\(k_B T\)</span> value
+- Energy trace plot showing <span class="arithmatex">\(E(\mathbf{s})\)</span> vs. time step</p>
+<p>Interactive controls:
+- Slider: Temperature <span class="arithmatex">\(T\)</span> (0.01 to 10, in units of <span class="arithmatex">\(E_{\text{barrier}}/k_B\)</span>)
+- Dropdown: Energy landscape shape (double well, rugged, funnel)
+- Button: Run 1000 steps
+- Button: Run simulated annealing schedule
+- Button: Reset histogram and trajectory</p>
+<p>Behavior:
+- At low <span class="arithmatex">\(T\)</span>: particle trapped in nearest local minimum, histogram concentrated
+- At high <span class="arithmatex">\(T\)</span>: particle explores uniformly, histogram flat
+- At intermediate <span class="arithmatex">\(T\)</span>: particle samples preferentially from low-energy regions
+- Annealing schedule gradually reduces <span class="arithmatex">\(T\)</span>, guiding particle toward global minimum
+- Histogram converges to <span class="arithmatex">\(P(\mathbf{s}) \propto \exp(-E/k_B T)\)</span></p>
+<p>Canvas layout:
+- Left (50%): 2D energy landscape with animated particle trajectory
+- Right top (25%): State histogram vs. Boltzmann prediction
+- Right bottom (25%): Energy trace and temperature controls</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="compute-near-memory">Compute-Near-Memory</h2>
+<p><strong>Compute-near-memory</strong> (CNM) architectures represent a less radical but more immediately deployable alternative to in-memory computing. Rather than performing computation inside the memory array itself, CNM places processing elements in close physical proximity to memory—typically at the memory controller, on the logic die of a 3D-stacked memory, or at the bank level within a DRAM chip. This approach preserves digital precision while dramatically reducing the distance (and hence the energy) of data movement.</p>
+<p>The energy cost of data movement in a conventional system follows a well-established hierarchy:</p>
+<table>
+<thead>
+<tr>
+<th>Data Movement</th>
+<th>Distance</th>
+<th>Energy per 64-bit Word</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Register file access</td>
+<td>~0.1 mm</td>
+<td>~1 pJ</td>
+</tr>
+<tr>
+<td>L1 cache access</td>
+<td>~1 mm</td>
+<td>~5 pJ</td>
+</tr>
+<tr>
+<td>L2 cache access</td>
+<td>~5 mm</td>
+<td>~25 pJ</td>
+</tr>
+<tr>
+<td>L3 cache access</td>
+<td>~10 mm</td>
+<td>~100 pJ</td>
+</tr>
+<tr>
+<td>DRAM access (on-package)</td>
+<td>~10 mm (vertical in 3D)</td>
+<td>~1-5 nJ</td>
+</tr>
+<tr>
+<td>DRAM access (off-package)</td>
+<td>~50 mm</td>
+<td>~15-20 nJ</td>
+</tr>
+<tr>
+<td>HBM access (3D-stacked)</td>
+<td>~0.1 mm (TSV)</td>
+<td>~3-7 pJ/bit</td>
+</tr>
+</tbody>
+</table>
+<p>The energy per bit of data movement scales approximately linearly with distance due to wire capacitance:</p>
+<h4 id="data-movement-energy">Data Movement Energy</h4>
+<div class="arithmatex">\[E_{\text{wire}} = C_{\text{wire}} \cdot V_{\text{dd}}^2 \cdot l\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(C_{\text{wire}}\)</span> is the capacitance per unit length (approximately 0.2 fF/<span class="arithmatex">\(\mu\)</span>m for modern interconnects)</li>
+<li><span class="arithmatex">\(V_{\text{dd}}\)</span> is the supply voltage</li>
+<li><span class="arithmatex">\(l\)</span> is the wire length</li>
+</ul>
+<p>CNM architectures exploit this scaling by minimizing <span class="arithmatex">\(l\)</span>. In a 3D-stacked memory such as Hybrid Memory Cube (HMC) or High Bandwidth Memory (HBM), through-silicon vias (TSVs) connect memory dies to a logic die with vertical distances of 10-50 <span class="arithmatex">\(\mu\)</span>m, compared to the 10-50 mm traces on a conventional PCB. This 1000<span class="arithmatex">\(\times\)</span> reduction in distance translates to a comparable reduction in per-access energy for the data movement component.</p>
+<p>The architectural design space for CNM systems spans several configurations:</p>
+<ul>
+<li><strong>Processing-in-memory controller (PIM-C):</strong> Logic added to the memory controller chip, operating on data before it traverses the memory channel. Suitable for simple reductions, filtering, and address transformations.</li>
+<li><strong>Processing-near-memory on logic die (PNM-LD):</strong> Compute cores placed on the logic die of a 3D-stacked memory. Samsung's FIMDRAM and SK Hynix's GDDR6-AiM exemplify this approach, integrating SIMD units capable of vector MAC operations directly on the DRAM buffer die.</li>
+<li><strong>Bank-level processing:</strong> Compute logic integrated at the DRAM bank level, enabling row-buffer-width SIMD operations. UPMEM's PIM-DIMM integrates a small processor at each DRAM bank.</li>
+</ul>
+<p>The effective bandwidth improvement of CNM over conventional memory access can be quantified. A standard DDR5 DIMM provides approximately 50 GB/s of bandwidth to the processor. An HBM3 stack provides approximately 800 GB/s. A bank-level PIM architecture with 16 banks each operating independently at internal row-buffer bandwidth can achieve an effective internal bandwidth of:</p>
+<h4 id="internal-cnm-bandwidth">Internal CNM Bandwidth</h4>
+<div class="arithmatex">\[B_{\text{internal}} = N_{\text{banks}} \times W_{\text{row}} \times f_{\text{bank}}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(N_{\text{banks}}\)</span> is the number of independently operated memory banks</li>
+<li><span class="arithmatex">\(W_{\text{row}}\)</span> is the row buffer width (typically 8192 bits = 1 KB)</li>
+<li><span class="arithmatex">\(f_{\text{bank}}\)</span> is the bank activation frequency</li>
+</ul>
+<p>For a typical HBM3 stack with 32 banks per channel and 16 channels, the internal bandwidth can exceed 10 TB/s—over 10<span class="arithmatex">\(\times\)</span> the external bandwidth—because data never leaves the memory die.</p>
+<h2 id="analog-neural-accelerator">Analog Neural Accelerator</h2>
+<p>An <strong>analog neural accelerator</strong> is a specialized hardware system that performs neural network inference using analog signal processing rather than digital arithmetic. By representing activations as continuous voltages or currents and weights as programmable conductances or capacitor charge levels, these accelerators exploit the physics of Ohm's law and Kirchhoff's laws to compute multiply-accumulate operations with minimal energy overhead.</p>
+<p>The core computation in an analog neural accelerator is identical to the crossbar MAC described in the in-memory computing section, but analog accelerators typically integrate additional analog circuit blocks to implement full neural network layers:</p>
+<ul>
+<li><strong>Digital-to-analog converters (DACs):</strong> Convert digital input activations to analog voltages</li>
+<li><strong>Crossbar array:</strong> Performs the matrix-vector multiplication <span class="arithmatex">\(\mathbf{y} = \mathbf{W}\mathbf{x}\)</span> in a single step</li>
+<li><strong>Analog activation functions:</strong> Implement nonlinearities (ReLU, sigmoid) using analog circuits</li>
+<li><strong>Analog-to-digital converters (ADCs):</strong> Convert analog output currents back to digital for interlayer communication</li>
+<li><strong>Sample-and-hold circuits:</strong> Store intermediate results for pipelined operation</li>
+</ul>
+<p>The total energy per inference for a layer with <span class="arithmatex">\(N\)</span> inputs and <span class="arithmatex">\(M\)</span> outputs decomposes as:</p>
+<h4 id="analog-inference-energy-per-layer">Analog Inference Energy per Layer</h4>
+<div class="arithmatex">\[E_{\text{layer}} = E_{\text{DAC}}(N) + E_{\text{crossbar}}(N, M) + E_{\text{ADC}}(M) + E_{\text{activation}}(M)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(E_{\text{DAC}}(N) = N \cdot E_{\text{dac,1}}\)</span> is the energy for <span class="arithmatex">\(N\)</span> digital-to-analog conversions</li>
+<li><span class="arithmatex">\(E_{\text{crossbar}}(N,M) = \sum_{i,j} V_i^2 G_{ij} \cdot t_{\text{compute}}\)</span> is the Ohmic dissipation in the array</li>
+<li><span class="arithmatex">\(E_{\text{ADC}}(M) = M \cdot E_{\text{adc,1}}\)</span> is the energy for <span class="arithmatex">\(M\)</span> analog-to-digital conversions</li>
+<li><span class="arithmatex">\(E_{\text{activation}}(M)\)</span> is the energy for <span class="arithmatex">\(M\)</span> activation function evaluations</li>
+</ul>
+<p>A critical design challenge is that the ADC energy scales exponentially with precision:</p>
+<h4 id="adc-energy-scaling">ADC Energy Scaling</h4>
+<div class="arithmatex">\[E_{\text{ADC}} \propto 2^{\text{ENOB}}\]</div>
+<p>where:</p>
+<ul>
+<li>ENOB is the effective number of bits of the ADC</li>
+</ul>
+<p>This exponential scaling means that for high-precision requirements, the ADC dominates the total energy budget, negating the advantage of analog computation. The sweet spot for analog accelerators is low-to-medium precision (4-8 bits), which suffices for most neural network inference tasks.</p>
+<table>
+<thead>
+<tr>
+<th>Accelerator</th>
+<th>Technology</th>
+<th>Precision</th>
+<th>TOPS/W</th>
+<th>Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IBM Analog AI chip</td>
+<td>PCM crossbar</td>
+<td>8-bit</td>
+<td>10-30</td>
+<td>DNN inference</td>
+</tr>
+<tr>
+<td>Mythic M1076</td>
+<td>Flash crossbar</td>
+<td>8-bit</td>
+<td>25</td>
+<td>Edge AI</td>
+</tr>
+<tr>
+<td>Syntiant NDP200</td>
+<td>Analog + digital</td>
+<td>8-bit</td>
+<td>100+</td>
+<td>Keyword spotting</td>
+</tr>
+<tr>
+<td>Rain Neuromorphics</td>
+<td>Memristor</td>
+<td>4-bit</td>
+<td>50+</td>
+<td>Sparse inference</td>
+</tr>
+<tr>
+<td>Digital baseline (GPU)</td>
+<td>CMOS</td>
+<td>FP16</td>
+<td>1-5</td>
+<td>General DNN</td>
+</tr>
+</tbody>
+</table>
+<p>The table illustrates the 10-100<span class="arithmatex">\(\times\)</span> improvement in energy efficiency (measured in tera-operations per second per watt, TOPS/W) that analog accelerators achieve over conventional digital implementations for inference workloads.</p>
+<h4 id="diagram-analog-crossbar-array-operation">Diagram: Analog Crossbar Array Operation</h4>
+<iframe src="../../sims/analog-crossbar-array/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Analog Crossbar Array Operation</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: compute, demonstrate</p>
+<p>Learning Objective: Students can demonstrate how an analog crossbar array computes a matrix-vector product by setting input voltages and conductance values, then observing the resulting output currents and comparing them to the exact digital result.</p>
+<p>Instructional Rationale: A parameter exploration is appropriate for an Apply-level objective because students must set conductance weights and input voltages, compute the expected MAC result, and verify it against the analog output. Adding device noise and variation lets students observe accuracy degradation and understand practical precision limits.</p>
+<p>Visual elements:
+- A crossbar grid (<span class="arithmatex">\(4 \times 4\)</span>) with programmable conductances shown as resistor symbols
+- Input voltage indicators on rows (left side)
+- Output current indicators on columns (bottom)
+- Numerical displays showing exact (digital) and noisy (analog) results side by side
+- Error bars showing the impact of conductance variation
+- Energy meter showing estimated computation energy</p>
+<p>Interactive controls:
+- Sliders: Input voltages <span class="arithmatex">\(V_1\)</span> through <span class="arithmatex">\(V_4\)</span> (range 0 to 1V)
+- Editable grid: Conductance values <span class="arithmatex">\(G_{ij}\)</span> (range 0 to 100 <span class="arithmatex">\(\mu\)</span>S)
+- Slider: Device variation <span class="arithmatex">\(\sigma_G/\bar{G}\)</span> (0% to 30%)
+- Slider: Thermal noise level
+- Button: Compute (performs MAC with current settings)
+- Button: Randomize weights and inputs
+- Dropdown: Preset matrices (identity, Hadamard, random)</p>
+<p>Behavior:
+- Output currents update in real time as inputs or conductances change
+- <span class="arithmatex">\(I_j = \sum_i V_i G_{ij}\)</span> computed exactly and with added noise
+- Error between exact and noisy results displayed as percentage
+- Energy estimate computed from <span class="arithmatex">\(E = \sum_{i,j} V_i^2 G_{ij} t_{\text{compute}}\)</span>
+- Increasing variation slider shows output degradation</p>
+<p>Canvas layout:
+- Center (60%): Crossbar grid with animated current flow
+- Left (20%): Input voltage sliders and labels
+- Right (20%): Output current displays, error metrics, energy estimate</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="energy-delay-product">Energy-Delay Product</h2>
+<p>The <strong>energy-delay product</strong> (EDP) is a figure of merit that captures the fundamental tradeoff between energy consumption and computational latency, enabling quantitative comparison across computing paradigms that operate at vastly different energy and speed scales. Minimizing energy alone can always be achieved by slowing down the computation (lowering voltage), while minimizing delay alone ignores energy cost. The EDP penalizes both wasteful energy expenditure and excessive latency.</p>
+<h4 id="energy-delay-product-definition">Energy-Delay Product Definition</h4>
+<div class="arithmatex">\[\text{EDP} = E \times D\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(E\)</span> is the energy consumed per operation (joules)</li>
+<li><span class="arithmatex">\(D\)</span> is the delay (latency) per operation (seconds)</li>
+<li>The units of EDP are joule-seconds (J<span class="arithmatex">\(\cdot\)</span>s)</li>
+</ul>
+<p>For CMOS circuits, the EDP has a well-known dependence on supply voltage. The dynamic energy per switching event is <span class="arithmatex">\(E = C V_{\text{dd}}^2\)</span>, and the delay through a CMOS gate scales as:</p>
+<h4 id="cmos-gate-delay">CMOS Gate Delay</h4>
+<div class="arithmatex">\[D \propto \frac{C V_{\text{dd}}}{(V_{\text{dd}} - V_{\text{th}})^\alpha}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(C\)</span> is the load capacitance</li>
+<li><span class="arithmatex">\(V_{\text{dd}}\)</span> is the supply voltage</li>
+<li><span class="arithmatex">\(V_{\text{th}}\)</span> is the threshold voltage</li>
+<li><span class="arithmatex">\(\alpha\)</span> is the velocity saturation parameter (<span class="arithmatex">\(\alpha \approx 1.3\)</span> for short-channel devices)</li>
+</ul>
+<p>Combining these expressions:</p>
+<h4 id="cmos-energy-delay-product">CMOS Energy-Delay Product</h4>
+<div class="arithmatex">\[\text{EDP}_{\text{CMOS}} \propto \frac{C^2 V_{\text{dd}}^3}{(V_{\text{dd}} - V_{\text{th}})^\alpha}\]</div>
+<p>where:</p>
+<ul>
+<li>The minimum EDP is achieved at an optimal voltage <span class="arithmatex">\(V_{\text{dd}}^* &gt; V_{\text{th}}\)</span> that balances the cubic energy increase against the delay reduction</li>
+</ul>
+<p>Differentiating with respect to <span class="arithmatex">\(V_{\text{dd}}\)</span> and setting to zero yields the optimal operating voltage. For <span class="arithmatex">\(\alpha = 1\)</span> (long-channel approximation):</p>
+<div class="arithmatex">\[V_{\text{dd}}^* = \frac{3}{2}V_{\text{th}}\]</div>
+<p>This result has profound implications: the EDP-optimal operating point is at a voltage only 50% above threshold, well below the typical 3-5<span class="arithmatex">\(\times\)</span> <span class="arithmatex">\(V_{\text{th}}\)</span> used in high-performance designs. Operating at the EDP-optimal point sacrifices speed for dramatic energy savings.</p>
+<p>The generalized <strong>energy-delay<span class="arithmatex">\(^n\)</span> product</strong> <span class="arithmatex">\(E \times D^n\)</span> allows weighting the relative importance of energy versus delay:</p>
+<ul>
+<li><span class="arithmatex">\(n = 0\)</span>: Pure energy optimization (minimize <span class="arithmatex">\(E\)</span> regardless of speed)</li>
+<li><span class="arithmatex">\(n = 1\)</span>: Energy-delay product (balanced tradeoff)</li>
+<li><span class="arithmatex">\(n = 2\)</span>: Energy-delay-squared product, used when latency is more critical</li>
+<li><span class="arithmatex">\(n \to \infty\)</span>: Pure delay optimization (minimize <span class="arithmatex">\(D\)</span> regardless of energy)</li>
+</ul>
+<p>We can now compare the paradigms discussed in this chapter using EDP as the common metric:</p>
+<table>
+<thead>
+<tr>
+<th>Paradigm</th>
+<th>Energy per Op</th>
+<th>Delay per Op</th>
+<th>EDP (J<span class="arithmatex">\(\cdot\)</span>s)</th>
+<th>Relative to CMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CMOS digital (FP32 MAC)</td>
+<td>~4 pJ</td>
+<td>~1 ns</td>
+<td><span class="arithmatex">\(4 \times 10^{-21}\)</span></td>
+<td>1<span class="arithmatex">\(\times\)</span> (baseline)</td>
+</tr>
+<tr>
+<td>CMOS digital (INT8 MAC)</td>
+<td>~0.25 pJ</td>
+<td>~0.5 ns</td>
+<td><span class="arithmatex">\(1.25 \times 10^{-22}\)</span></td>
+<td>0.03<span class="arithmatex">\(\times\)</span></td>
+</tr>
+<tr>
+<td>Analog crossbar (8-bit)</td>
+<td>~0.05 pJ</td>
+<td>~10 ns</td>
+<td><span class="arithmatex">\(5 \times 10^{-22}\)</span></td>
+<td>0.13<span class="arithmatex">\(\times\)</span></td>
+</tr>
+<tr>
+<td>Neuromorphic (SNN event)</td>
+<td>~0.005 pJ</td>
+<td>~1 <span class="arithmatex">\(\mu\)</span>s</td>
+<td><span class="arithmatex">\(5 \times 10^{-21}\)</span></td>
+<td>1.25<span class="arithmatex">\(\times\)</span></td>
+</tr>
+<tr>
+<td>Thermodynamic (per sample bit)</td>
+<td>~0.003 aJ</td>
+<td>~100 ns</td>
+<td><span class="arithmatex">\(3 \times 10^{-28}\)</span></td>
+<td><span class="arithmatex">\(7.5 \times 10^{-8}\times\)</span></td>
+</tr>
+<tr>
+<td>In-memory (ReRAM MAC)</td>
+<td>~0.01 pJ</td>
+<td>~10 ns</td>
+<td><span class="arithmatex">\(1 \times 10^{-22}\)</span></td>
+<td>0.025<span class="arithmatex">\(\times\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Interpreting the EDP Table</p>
+<p>The thermodynamic computing entry reflects the theoretical near-Landauer-limit operation and assumes ideal conditions. Practical implementations are currently 2-4 orders of magnitude above these theoretical values. Neuromorphic systems show a higher EDP than CMOS for a single operation because their advantage lies in massive parallelism and the elimination of data movement, not per-operation efficiency.</p>
+</div>
+<p>The EDP framework reveals that no single paradigm dominates across all dimensions. The optimal choice depends on the application characteristics:</p>
+<ul>
+<li><strong>Latency-critical, accuracy-required:</strong> CMOS digital remains optimal</li>
+<li><strong>Energy-critical, error-tolerant:</strong> Approximate and analog approaches excel</li>
+<li><strong>Data-movement-dominated:</strong> In-memory and compute-near-memory architectures provide the greatest gains</li>
+<li><strong>Sampling-intensive:</strong> Thermodynamic computing offers asymptotic advantages</li>
+<li><strong>Event-sparse, adaptive:</strong> Neuromorphic systems achieve the best system-level efficiency</li>
+</ul>
+<h4 id="diagram-energy-delay-product-comparison-dashboard">Diagram: Energy-Delay Product Comparison Dashboard</h4>
+<iframe src="../../sims/energy-delay-product/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Energy-Delay Product Comparison Dashboard</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Evaluate (L5)
+Bloom Verb: compare, assess</p>
+<p>Learning Objective: Students can compare computing paradigms on energy-delay axes, assess which paradigm is optimal for a given set of application constraints, and evaluate the tradeoffs between per-operation efficiency and system-level advantages such as parallelism and reduced data movement.</p>
+<p>Instructional Rationale: An interactive comparison dashboard is appropriate for an Evaluate-level objective because students must judge the relative merits of multiple paradigms under varying constraints. The ability to adjust application parameters (error tolerance, parallelism requirements, data movement fraction) and observe how the optimal paradigm shifts builds critical evaluation skills.</p>
+<p>Visual elements:
+- Log-log scatter plot with energy per operation (x-axis) and delay per operation (y-axis)
+- Iso-EDP curves shown as diagonal lines on the log-log plot
+- Each paradigm represented as a labeled point (or region) on the plot
+- Shaded feasibility regions based on application constraints (max energy, max delay, max error)
+- Bar chart comparing system-level energy for a specific workload across paradigms</p>
+<p>Interactive controls:
+- Checkboxes: Show/hide each paradigm on the plot
+- Slider: Application error tolerance (0% to 50%)
+- Slider: Workload data movement fraction (10% to 90%)
+- Slider: Required parallelism level (1 to <span class="arithmatex">\(10^6\)</span> operations)
+- Dropdown: Workload type (DNN inference, optimization, signal processing, scientific computing)
+- Dropdown: EDP weighting <span class="arithmatex">\(n\)</span> (0, 1, 2) to change iso-curves</p>
+<p>Behavior:
+- Adjusting error tolerance enables/disables approximate and analog paradigms
+- Increasing data movement fraction shifts the advantage toward IMC and CNM
+- Changing workload type repositions the optimal paradigm
+- Iso-EDP<span class="arithmatex">\(^n\)</span> curves rotate as <span class="arithmatex">\(n\)</span> changes, highlighting different regions of the design space
+- Hovering over a paradigm point shows detailed specifications</p>
+<p>Canvas layout:
+- Left (65%): Log-log energy-delay scatter plot with iso-EDP curves
+- Right (35%): Controls panel, workload specification, and system-level energy bar chart</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="synthesis-the-energy-efficient-computing-landscape">Synthesis: The Energy-Efficient Computing Landscape</h2>
+<p>The paradigms surveyed in this chapter represent complementary approaches to the energy efficiency challenge, each exploiting a different physical or algorithmic insight. The following synthesis maps these paradigms to their foundational principles and primary application domains.</p>
+<table>
+<thead>
+<tr>
+<th>Paradigm</th>
+<th>Foundational Insight</th>
+<th>Key Limitation</th>
+<th>Best Application Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Neuromorphic computing</td>
+<td>Brain-inspired event-driven processing</td>
+<td>Programming difficulty, limited precision</td>
+<td>Always-on edge sensing, adaptive control</td>
+</tr>
+<tr>
+<td>Spiking neural networks</td>
+<td>Temporal spike coding replaces static activations</td>
+<td>Training algorithms immature, accuracy gap vs. ANNs</td>
+<td>Low-power pattern recognition</td>
+</tr>
+<tr>
+<td>Approximate computing</td>
+<td>Many workloads tolerate bounded errors</td>
+<td>Formal error guarantees hard to derive</td>
+<td>Image/signal processing, ML inference</td>
+</tr>
+<tr>
+<td>In-memory computing</td>
+<td>Eliminate data movement, compute where data lives</td>
+<td>Limited precision (4-8 bits), device variability</td>
+<td>Matrix-heavy ML inference</td>
+</tr>
+<tr>
+<td>Thermodynamic computing</td>
+<td>Harness thermal noise as computational resource</td>
+<td>Early-stage technology, limited problem classes</td>
+<td>Sampling, optimization, probabilistic inference</td>
+</tr>
+<tr>
+<td>Compute-near-memory</td>
+<td>Reduce data movement distance</td>
+<td>Added design complexity, limited compute capability</td>
+<td>Data-intensive analytics, graph processing</td>
+</tr>
+<tr>
+<td>Analog neural accelerator</td>
+<td>Physics does the multiply-accumulate for free</td>
+<td>ADC bottleneck, noise, calibration overhead</td>
+<td>DNN inference at the edge</td>
+</tr>
+<tr>
+<td>Energy-delay product</td>
+<td>Unified metric for energy-speed tradeoff</td>
+<td>Does not capture accuracy or area</td>
+<td>Architectural comparison and optimization</td>
+</tr>
+</tbody>
+</table>
+<p>The trajectory of computing architecture is moving decisively away from the one-size-fits-all von Neumann model toward heterogeneous systems that deploy the right paradigm for each computational task. A future system-on-chip may integrate a conventional CMOS core for control logic, an analog neural accelerator for inference, an in-memory computing block for matrix operations, and a thermodynamic sampling unit for probabilistic reasoning—all coordinated by a neuromorphic event-driven scheduler. The energy-delay product and its generalizations provide the quantitative framework for making these architectural allocation decisions rigorously.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This chapter established the theoretical foundations and practical characteristics of eight energy-efficient computing paradigms:</p>
+<ol>
+<li>
+<p><strong>Neuromorphic computing</strong> organizes computation around biologically inspired neurons and synapses, eliminating the memory-processor bottleneck through collocated storage and processing with event-driven activation.</p>
+</li>
+<li>
+<p><strong>Spiking neural networks</strong> encode information in spike timing, governed by the leaky integrate-and-fire equation, with learning through spike-timing-dependent plasticity achieving femtojoule-scale synaptic operations.</p>
+</li>
+<li>
+<p><strong>Approximate computing</strong> systematically trades accuracy for energy savings, with formal error bounds ensuring output quality, achieving up to 20<span class="arithmatex">\(\times\)</span> energy reduction through precision scaling (<span class="arithmatex">\(E_{\text{mult}} \propto n^2\)</span>).</p>
+</li>
+<li>
+<p><strong>In-memory computing</strong> performs matrix-vector multiplication directly in resistive crossbar arrays via Ohm's law (<span class="arithmatex">\(I_j = \sum_i V_i G_{ij}\)</span>), eliminating data movement at the cost of limited analog precision.</p>
+</li>
+<li>
+<p><strong>Thermodynamic computing</strong> exploits thermal fluctuations to sample from Boltzmann distributions at near-Landauer energy costs (<span class="arithmatex">\(\sim n k_B T \ln 2\)</span> per sample), offering asymptotic advantages for probabilistic workloads.</p>
+</li>
+<li>
+<p><strong>Compute-near-memory</strong> architectures reduce data movement energy by placing processing logic adjacent to memory arrays, exploiting the linear scaling of wire energy with distance (<span class="arithmatex">\(E_{\text{wire}} \propto l\)</span>).</p>
+</li>
+<li>
+<p><strong>Analog neural accelerators</strong> implement neural network layers using analog circuits, achieving 10-100<span class="arithmatex">\(\times\)</span> improvement in TOPS/W over digital implementations, with the ADC energy (<span class="arithmatex">\(\propto 2^{\text{ENOB}}\)</span>) as the critical bottleneck.</p>
+</li>
+<li>
+<p>The <strong>energy-delay product</strong> <span class="arithmatex">\(\text{EDP} = E \times D\)</span> provides a unified figure of merit for comparing paradigms, with the CMOS-optimal operating point at <span class="arithmatex">\(V_{\text{dd}}^* = \frac{3}{2}V_{\text{th}}\)</span> in the long-channel limit.</p>
+</li>
+</ol>
+<details class="question">
+<summary>Concept Check: Why does in-memory computing achieve its greatest advantage for neural network inference rather than scientific computing?</summary>
+<p>In-memory computing using analog crossbar arrays achieves 4-8 effective bits of precision, limited by device variability and noise. Neural network inference has been shown to tolerate this level of quantization with minimal accuracy degradation (often less than 1% accuracy loss for 8-bit inference on standard benchmarks). Scientific computing, however, typically requires 32-64 bits of floating-point precision for numerical stability. At these precision levels, the ADC energy (<span class="arithmatex">\(\propto 2^{\text{ENOB}}\)</span>) would dominate the total computation energy, eliminating the advantage of analog MAC operations. The fundamental insight is that the energy advantage of analog computation is inversely related to the precision requirement of the workload.</p>
+</details>
+<details class="question">
+<summary>Concept Check: How does the energy-delay product framework explain why different paradigms are optimal for different workloads?</summary>
+<p>The EDP <span class="arithmatex">\(= E \times D\)</span> penalizes both high energy and high latency equally. Neuromorphic systems have low per-event energy but high per-event latency (microseconds for spike propagation), yielding an EDP comparable to CMOS for single operations. However, their advantage emerges at the <em>system</em> level: event-driven processing means most of the network is quiescent most of the time, so the average system power is far below peak. Similarly, thermodynamic computing has extremely low per-bit energy (near Landauer limit) but relatively slow convergence times, making its EDP attractive only for workloads where many parallel samples are needed. The generalized <span class="arithmatex">\(E \times D^n\)</span> product captures application-specific emphasis: latency-critical applications (large <span class="arithmatex">\(n\)</span>) favor CMOS, while energy-critical applications (<span class="arithmatex">\(n = 0\)</span>) favor thermodynamic or neuromorphic approaches.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../14-hybrid-computing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 14. Hybrid Computing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                14. Hybrid Computing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../16-future-of-computing/" class="md-footer__link md-footer__link--next" aria-label="Next: 16. Future of Computing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                16. Future of Computing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

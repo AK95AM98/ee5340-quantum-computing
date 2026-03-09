@@ -1,0 +1,2979 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The qubit as the fundamental unit of quantum information, Bloch sphere representation, entanglement, Bell states, and mathematical tools for composite quantum systems">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/08-qubits-and-states/">
+      
+      
+        <link rel="prev" href="../07-quantum-mechanics/">
+      
+      
+        <link rel="next" href="../09-quantum-gates/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Qubits and Quantum States - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#qubits-and-quantum-states" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Qubits and Quantum States
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-qubit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Qubit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Qubit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qubit-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qubit State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-basis-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Basis States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computational Basis States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computational-basis-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Basis Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-eigenvalue-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Eigenvalue Equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloch-sphere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloch Sphere
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloch Sphere">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloch-sphere-parametrization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloch Sphere Parametrization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bloch-sphere-interactive-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bloch Sphere Interactive Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-phase-invariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Phase Invariance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative Phase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qubit-state-tomography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qubit State Tomography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Qubit State Tomography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-pauli-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix Pauli Expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qubit-state-tomography-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Qubit State Tomography Protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-qubit-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Qubit Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Qubit Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-qubit-hilbert-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two-Qubit Hilbert Space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-two-qubit-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Two-Qubit State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-entanglement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Entanglement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Entanglement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maximally-entangled-state-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maximally Entangled State Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bell-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bell States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bell-state-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell State Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bell-state-correlation-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bell State Correlation Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#epr-paradox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EPR Paradox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bells-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell's Inequality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bell&#39;s Inequality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chsh-quantity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHSH Quantity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chsh-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHSH Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsirelsons-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tsirelson's Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chsh-inequality-and-quantum-violation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: CHSH Inequality and Quantum Violation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schmidt-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schmidt Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schmidt Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schmidt-decomposition-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schmidt Decomposition Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entanglement-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entanglement Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Trace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partial Trace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partial-trace-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Trace Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduced-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduced Density Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduced Density Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-entanglement-and-reduced-state-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Entanglement and Reduced State Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-qubit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Qubit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Qubit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qubit-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qubit State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-basis-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Basis States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computational Basis States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computational-basis-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Basis Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-eigenvalue-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Eigenvalue Equations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bloch-sphere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloch Sphere
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bloch Sphere">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bloch-sphere-parametrization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bloch Sphere Parametrization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bloch-sphere-interactive-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bloch Sphere Interactive Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Phase
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Global Phase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-phase-invariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Phase Invariance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative Phase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qubit-state-tomography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qubit State Tomography
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Qubit State Tomography">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-matrix-pauli-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Density Matrix Pauli Expansion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-qubit-state-tomography-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Qubit State Tomography Protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-qubit-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Qubit Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Qubit Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-qubit-hilbert-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two-Qubit Hilbert Space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-two-qubit-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Two-Qubit State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-entanglement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Entanglement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Entanglement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maximally-entangled-state-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maximally Entangled State Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bell-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bell States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bell-state-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell State Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-bell-state-correlation-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Bell State Correlation Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#epr-paradox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EPR Paradox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bells-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bell's Inequality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bell&#39;s Inequality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chsh-quantity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHSH Quantity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chsh-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHSH Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsirelsons-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tsirelson's Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-chsh-inequality-and-quantum-violation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: CHSH Inequality and Quantum Violation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schmidt-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schmidt Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schmidt Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schmidt-decomposition-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schmidt Decomposition Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entanglement-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entanglement Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Trace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Partial Trace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#partial-trace-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Trace Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduced-density-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduced Density Matrix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reduced Density Matrix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-entanglement-and-reduced-state-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Entanglement and Reduced State Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/08-qubits-and-states/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="qubits-and-quantum-states">Qubits and Quantum States</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter introduces the qubit as the fundamental unit of quantum information. We develop the Bloch sphere representation, analyze global and relative phase, construct multi-qubit state spaces via tensor products, introduce quantum entanglement and derive Bell state properties, discuss the EPR paradox and Bell's inequality, and develop the mathematical tools of Schmidt decomposition and partial trace for analyzing composite quantum systems.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 14 concepts:</p>
+<ol>
+<li>Qubit</li>
+<li>Computational Basis States</li>
+<li>Bloch Sphere</li>
+<li>Global Phase</li>
+<li>Relative Phase</li>
+<li>Qubit State Tomography</li>
+<li>Multi-Qubit Systems</li>
+<li>Quantum Entanglement</li>
+<li>Bell States</li>
+<li>EPR Paradox</li>
+<li>Bell's Inequality</li>
+<li>Schmidt Decomposition</li>
+<li>Partial Trace</li>
+<li>Reduced Density Matrix</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+<li><a href="../07-quantum-mechanics/">Chapter 7: Quantum Mechanics Foundations</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In Chapter 7, we established the postulates of quantum mechanics, the Hilbert space formalism, and the measurement theory that governs how physical observables yield outcomes. We now specialize these tools to the smallest nontrivial quantum system: a two-dimensional Hilbert space. This specialization yields the <strong>qubit</strong>, the quantum analogue of the classical bit and the fundamental carrier of quantum information. Everything that makes quantum computing distinctive—superposition, interference, entanglement—manifests already at the level of one or two qubits, making a thorough understanding of this chapter essential before proceeding to quantum gates and algorithms.</p>
+<p>We begin with the mathematical definition of a single qubit, develop its geometric representation on the Bloch sphere, and carefully distinguish between global and relative phase. We then extend to multi-qubit systems through the tensor product, introduce entanglement as a genuinely quantum correlation with no classical analogue, and derive the properties of the Bell states. The chapter concludes with the mathematical machinery—Schmidt decomposition, partial trace, and reduced density matrices—required for analyzing subsystems of composite quantum states.</p>
+<h2 id="the-qubit">The Qubit</h2>
+<p>A <strong>qubit</strong> (quantum bit) is a quantum system whose state space is the two-dimensional complex Hilbert space <span class="arithmatex">\(\mathcal{H} = \mathbb{C}^2\)</span>. The most general pure state of a qubit is a normalized vector</p>
+<h4 id="qubit-state">Qubit State</h4>
+<p><span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha, \beta \in \mathbb{C}\)</span> are complex probability amplitudes</li>
+<li><span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> form an orthonormal basis for <span class="arithmatex">\(\mathbb{C}^2\)</span></li>
+<li>The normalization constraint requires <span class="arithmatex">\(|\alpha|^2 + |\beta|^2 = 1\)</span></li>
+</ul>
+<p>Unlike a classical bit, which is deterministically in state 0 or 1, a qubit exists in a coherent superposition of both basis states simultaneously. The information content of a qubit is encoded in the two complex numbers <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>, subject to one real constraint (normalization) and one physically irrelevant degree of freedom (global phase), leaving two real parameters that specify the state.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Classical Bit</th>
+<th>Qubit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State space</td>
+<td><span class="arithmatex">\(\{0, 1\}\)</span></td>
+<td><span class="arithmatex">\(\mathbb{C}^2\)</span> with <span class="arithmatex">\(\|\psi\| = 1\)</span></td>
+</tr>
+<tr>
+<td>Number of states</td>
+<td>2</td>
+<td>Continuum (Bloch sphere)</td>
+</tr>
+<tr>
+<td>Measurement outcomes</td>
+<td>Deterministic</td>
+<td>Probabilistic (Born rule)</td>
+</tr>
+<tr>
+<td>Copying</td>
+<td>Freely copyable</td>
+<td>No-cloning theorem forbids</td>
+</tr>
+<tr>
+<td>Information content</td>
+<td>1 bit</td>
+<td>1 bit (Holevo bound)</td>
+</tr>
+<tr>
+<td>State description</td>
+<td>Single bit value</td>
+<td>Two complex amplitudes <span class="arithmatex">\((\alpha, \beta)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The last row of this table deserves emphasis: despite requiring two complex numbers (four real parameters minus two constraints) to specify a qubit state, the Holevo bound proves that a single qubit can transmit at most one classical bit of information. The richness of the qubit state space manifests not in information storage but in the interference patterns accessible during quantum computation.</p>
+<h2 id="computational-basis-states">Computational Basis States</h2>
+<p>The <strong>computational basis</strong> (also called the standard basis or <span class="arithmatex">\(Z\)</span>-basis) consists of the two orthonormal eigenstates of the Pauli-<span class="arithmatex">\(Z\)</span> operator:</p>
+<h4 id="computational-basis-vectors">Computational Basis Vectors</h4>
+<p><span class="arithmatex">\(|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \qquad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\)</span></p>
+<p>These states satisfy orthonormality <span class="arithmatex">\(\langle i | j \rangle = \delta_{ij}\)</span> and completeness <span class="arithmatex">\(|0\rangle\langle 0| + |1\rangle\langle 1| = I\)</span>. They are eigenstates of the Pauli-<span class="arithmatex">\(Z\)</span> matrix with eigenvalues <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> respectively:</p>
+<h4 id="pauli-z-eigenvalue-equations">Pauli-Z Eigenvalue Equations</h4>
+<p><span class="arithmatex">\(Z|0\rangle = +|0\rangle, \qquad Z|1\rangle = -|1\rangle\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(Z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\)</span> is the Pauli-<span class="arithmatex">\(Z\)</span> operator</li>
+</ul>
+<p>The physical realization of <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> depends on the hardware platform: ground and excited states of a superconducting transmon, spin-up and spin-down of a trapped ion, or horizontal and vertical polarization of a photon. The abstract Hilbert space formalism treats all implementations uniformly.</p>
+<p>Other frequently used bases include the <span class="arithmatex">\(X\)</span>-basis (Hadamard basis):</p>
+<ul>
+<li><span class="arithmatex">\(|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span></li>
+<li><span class="arithmatex">\(|-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\)</span></li>
+</ul>
+<p>and the <span class="arithmatex">\(Y\)</span>-basis:</p>
+<ul>
+<li><span class="arithmatex">\(|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\)</span></li>
+<li><span class="arithmatex">\(|-i\rangle = \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\)</span></li>
+</ul>
+<p>Each basis corresponds to the eigenstates of the respective Pauli operator, and measurements in different bases extract complementary information about the qubit state.</p>
+<h2 id="bloch-sphere">Bloch Sphere</h2>
+<p>The normalization constraint <span class="arithmatex">\(|\alpha|^2 + |\beta|^2 = 1\)</span> and the physical irrelevance of global phase (discussed below) reduce the qubit state to two real parameters. We parametrize these as polar and azimuthal angles on a unit sphere—the <strong>Bloch sphere</strong>.</p>
+<h4 id="bloch-sphere-parametrization">Bloch Sphere Parametrization</h4>
+<p><span class="arithmatex">\(|\psi\rangle = \cos\frac{\theta}{2}|0\rangle + e^{i\phi}\sin\frac{\theta}{2}|1\rangle\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta \in [0, \pi]\)</span> is the polar angle measured from the positive <span class="arithmatex">\(z\)</span>-axis</li>
+<li><span class="arithmatex">\(\phi \in [0, 2\pi)\)</span> is the azimuthal angle in the <span class="arithmatex">\(xy\)</span>-plane</li>
+</ul>
+<p>The Cartesian coordinates of the corresponding Bloch vector <span class="arithmatex">\(\hat{n} = (n_x, n_y, n_z)\)</span> are:</p>
+<ul>
+<li><span class="arithmatex">\(n_x = \sin\theta\cos\phi = \langle\psi|X|\psi\rangle\)</span></li>
+<li><span class="arithmatex">\(n_y = \sin\theta\sin\phi = \langle\psi|Y|\psi\rangle\)</span></li>
+<li><span class="arithmatex">\(n_z = \cos\theta = \langle\psi|Z|\psi\rangle\)</span></li>
+</ul>
+<p>The Bloch vector components are precisely the expectation values of the three Pauli operators, which provides a direct experimental procedure for determining the state: measure the expectation values of <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, and <span class="arithmatex">\(Z\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th><span class="arithmatex">\(\theta\)</span></th>
+<th><span class="arithmatex">\(\phi\)</span></th>
+<th>Bloch Vector <span class="arithmatex">\((n_x, n_y, n_z)\)</span></th>
+<th>Ket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>North pole</td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td>—</td>
+<td><span class="arithmatex">\((0, 0, 1)\)</span></td>
+<td><span class="arithmatex">\(\|0\rangle\)</span></td>
+</tr>
+<tr>
+<td>South pole</td>
+<td><span class="arithmatex">\(\pi\)</span></td>
+<td>—</td>
+<td><span class="arithmatex">\((0, 0, -1)\)</span></td>
+<td><span class="arithmatex">\(\|1\rangle\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(+x\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td><span class="arithmatex">\((1, 0, 0)\)</span></td>
+<td><span class="arithmatex">\(\|+\rangle\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(-x\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td><span class="arithmatex">\(\pi\)</span></td>
+<td><span class="arithmatex">\((-1, 0, 0)\)</span></td>
+<td><span class="arithmatex">\(\|-\rangle\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(+y\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td><span class="arithmatex">\((0, 1, 0)\)</span></td>
+<td><span class="arithmatex">\(\|+i\rangle\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(-y\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td><span class="arithmatex">\(3\pi/2\)</span></td>
+<td><span class="arithmatex">\((0, -1, 0)\)</span></td>
+<td><span class="arithmatex">\(\|-i\rangle\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A key geometric fact: orthogonal quantum states correspond to <strong>antipodal</strong> points on the Bloch sphere, not to orthogonal directions. This arises because the state space is the complex projective line <span class="arithmatex">\(\mathbb{CP}^1 \cong S^2\)</span>, and the factor of <span class="arithmatex">\(\theta/2\)</span> in the parametrization accounts for this double covering.</p>
+<h4 id="diagram-bloch-sphere-interactive-visualization">Diagram: Bloch Sphere Interactive Visualization</h4>
+<iframe src="../../sims/bloch-sphere-visualization/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Bloch Sphere Interactive Visualization</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: demonstrate, manipulate</p>
+<p>Learning Objective: Students can manipulate the polar and azimuthal angles of a qubit state and observe the corresponding Bloch vector position, state vector amplitudes, and measurement probabilities in all three Pauli bases.</p>
+<p>Instructional Rationale: Parameter exploration is appropriate for an Apply-level objective because students must connect the abstract angles <span class="arithmatex">\(\theta\)</span> and <span class="arithmatex">\(\phi\)</span> to concrete Bloch vector coordinates, ket amplitudes, and measurement statistics. Direct manipulation builds intuition about the geometry of qubit state space.</p>
+<p>Visual elements:
+- A 3D wireframe unit sphere with labeled axes (<span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(z\)</span>)
+- A Bloch vector arrow from the origin to the surface point <span class="arithmatex">\((\sin\theta\cos\phi, \sin\theta\sin\phi, \cos\theta)\)</span>
+- Labeled points for the six cardinal states (<span class="arithmatex">\(|0\rangle\)</span>, <span class="arithmatex">\(|1\rangle\)</span>, <span class="arithmatex">\(|+\rangle\)</span>, <span class="arithmatex">\(|-\rangle\)</span>, <span class="arithmatex">\(|+i\rangle\)</span>, <span class="arithmatex">\(|-i\rangle\)</span>)
+- Equator circle and prime meridian arc for reference
+- State vector display: <span class="arithmatex">\(|\psi\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle\)</span> with numerical values
+- Measurement probability bars for <span class="arithmatex">\(Z\)</span>-, <span class="arithmatex">\(X\)</span>-, and <span class="arithmatex">\(Y\)</span>-basis outcomes</p>
+<p>Interactive controls:
+- Slider: <span class="arithmatex">\(\theta\)</span> from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(\pi\)</span> (default: <span class="arithmatex">\(\pi/3\)</span>)
+- Slider: <span class="arithmatex">\(\phi\)</span> from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(2\pi\)</span> (default: <span class="arithmatex">\(0\)</span>)
+- Button: Snap to cardinal states (<span class="arithmatex">\(|0\rangle\)</span>, <span class="arithmatex">\(|1\rangle\)</span>, <span class="arithmatex">\(|+\rangle\)</span>, <span class="arithmatex">\(|-\rangle\)</span>, <span class="arithmatex">\(|+i\rangle\)</span>, <span class="arithmatex">\(|-i\rangle\)</span>)
+- Checkbox: Show projection shadows on <span class="arithmatex">\(xy\)</span>-, <span class="arithmatex">\(xz\)</span>-, <span class="arithmatex">\(yz\)</span>-planes
+- Mouse drag: rotate the 3D view</p>
+<p>Behavior:
+- Moving <span class="arithmatex">\(\theta\)</span> slider rotates the Bloch vector from north pole (<span class="arithmatex">\(|0\rangle\)</span>) to south pole (<span class="arithmatex">\(|1\rangle\)</span>)
+- Moving <span class="arithmatex">\(\phi\)</span> slider rotates the Bloch vector around the <span class="arithmatex">\(z\)</span>-axis
+- Probability bars update in real time: <span class="arithmatex">\(P(0) = \cos^2(\theta/2)\)</span>, <span class="arithmatex">\(P(1) = \sin^2(\theta/2)\)</span> for <span class="arithmatex">\(Z\)</span>-basis, etc.
+- State vector ket updates with numerical amplitudes</p>
+<p>Canvas layout:
+- Left (65%): 3D Bloch sphere rendering
+- Right (35%): Controls panel, state display, probability bars</p>
+<p>Implementation: p5.js with WEBGL renderer for 3D sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="global-phase">Global Phase</h2>
+<p>Two state vectors that differ by only an overall complex factor of unit modulus represent the same physical state. Formally, <span class="arithmatex">\(|\psi\rangle\)</span> and <span class="arithmatex">\(e^{i\gamma}|\psi\rangle\)</span> are <strong>physically indistinguishable</strong> for any <span class="arithmatex">\(\gamma \in \mathbb{R}\)</span>.</p>
+<p>This can be verified directly from the Born rule. For any measurement operator <span class="arithmatex">\(M\)</span> with outcome projector <span class="arithmatex">\(P_m\)</span>:</p>
+<h4 id="global-phase-invariance">Global Phase Invariance</h4>
+<p><span class="arithmatex">\(P(m) = |\langle m | e^{i\gamma}\psi\rangle|^2 = |e^{i\gamma}|^2|\langle m|\psi\rangle|^2 = |\langle m|\psi\rangle|^2\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|e^{i\gamma}|^2 = 1\)</span> for all <span class="arithmatex">\(\gamma \in \mathbb{R}\)</span></li>
+<li><span class="arithmatex">\(P(m)\)</span> is the probability of measurement outcome <span class="arithmatex">\(m\)</span></li>
+</ul>
+<p>Global phase invariance means the true state space of a qubit is not <span class="arithmatex">\(S^3 \subset \mathbb{C}^2\)</span> (the unit sphere in four real dimensions) but rather the quotient <span class="arithmatex">\(S^3/U(1) \cong S^2\)</span>, which is precisely the Bloch sphere. This reduction from four to two real parameters is the geometric content of global phase invariance.</p>
+<p>In practice, global phase irrelevance means we can always choose <span class="arithmatex">\(\alpha\)</span> to be real and non-negative in the parametrization <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span> without loss of generality. This convention corresponds exactly to the Bloch sphere parametrization where <span class="arithmatex">\(\cos(\theta/2) \geq 0\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Global Phase and Relative Phase in Multi-Qubit Systems</p>
+<p>While a global phase on the entire system state is unobservable, a phase applied to one subsystem of an entangled state is NOT a global phase—it is a relative phase that changes the physical state. This distinction becomes critical when constructing controlled gates in quantum circuits.</p>
+</div>
+<h2 id="relative-phase">Relative Phase</h2>
+<p>Unlike global phase, the <strong>relative phase</strong> between the <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> components is physically observable and determines the azimuthal angle <span class="arithmatex">\(\phi\)</span> on the Bloch sphere. Consider two states with identical <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> probabilities but different relative phases:</p>
+<ul>
+<li><span class="arithmatex">\(|\psi_1\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle) = |+\rangle\)</span></li>
+<li><span class="arithmatex">\(|\psi_2\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle) = |-\rangle\)</span></li>
+</ul>
+<p>Both yield <span class="arithmatex">\(P(0) = P(1) = 1/2\)</span> when measured in the <span class="arithmatex">\(Z\)</span>-basis. However, they are orthogonal states and are perfectly distinguishable when measured in the <span class="arithmatex">\(X\)</span>-basis:</p>
+<ul>
+<li><span class="arithmatex">\(\langle +|\psi_1\rangle = 1\)</span> and <span class="arithmatex">\(\langle +|\psi_2\rangle = 0\)</span></li>
+<li><span class="arithmatex">\(\langle -|\psi_1\rangle = 0\)</span> and <span class="arithmatex">\(\langle -|\psi_2\rangle = 1\)</span></li>
+</ul>
+<p>More generally, the relative phase <span class="arithmatex">\(\phi\)</span> in <span class="arithmatex">\(|\psi\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle\)</span> determines the <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> expectation values:</p>
+<ul>
+<li><span class="arithmatex">\(\langle X \rangle = \sin\theta\cos\phi\)</span></li>
+<li><span class="arithmatex">\(\langle Y \rangle = \sin\theta\sin\phi\)</span></li>
+</ul>
+<p>Relative phase is the essential resource exploited by quantum algorithms. Interference between computational paths—constructive for correct answers and destructive for incorrect ones—is controlled entirely by manipulating relative phases through quantum gates.</p>
+<h2 id="qubit-state-tomography">Qubit State Tomography</h2>
+<p><strong>Quantum state tomography</strong> is the experimental procedure for reconstructing the density matrix <span class="arithmatex">\(\rho\)</span> of a qubit from repeated measurements. Since a single measurement collapses the state and yields only one bit of information, full state reconstruction requires an ensemble of identically prepared qubits.</p>
+<p>For a single qubit, the density matrix can be expanded in the Pauli basis:</p>
+<h4 id="density-matrix-pauli-expansion">Density Matrix Pauli Expansion</h4>
+<p><span class="arithmatex">\(\rho = \frac{1}{2}(I + n_x X + n_y Y + n_z Z) = \frac{1}{2}(I + \vec{n}\cdot\vec{\sigma})\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\vec{n} = (n_x, n_y, n_z)\)</span> is the Bloch vector with <span class="arithmatex">\(|\vec{n}| \leq 1\)</span></li>
+<li><span class="arithmatex">\(\vec{\sigma} = (X, Y, Z)\)</span> is the vector of Pauli matrices</li>
+<li><span class="arithmatex">\(|\vec{n}| = 1\)</span> for pure states, <span class="arithmatex">\(|\vec{n}| &lt; 1\)</span> for mixed states</li>
+</ul>
+<p>The tomographic protocol proceeds as follows:</p>
+<ol>
+<li><strong>Prepare</strong> <span class="arithmatex">\(N\)</span> identical copies of the unknown state <span class="arithmatex">\(\rho\)</span></li>
+<li><strong>Measure</strong> <span class="arithmatex">\(N/3\)</span> copies in each of the <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, and <span class="arithmatex">\(Z\)</span> bases</li>
+<li><strong>Estimate</strong> the expectation values: <span class="arithmatex">\(n_x \approx \bar{X}\)</span>, <span class="arithmatex">\(n_y \approx \bar{Y}\)</span>, <span class="arithmatex">\(n_z \approx \bar{Z}\)</span></li>
+<li><strong>Reconstruct</strong> <span class="arithmatex">\(\rho = \frac{1}{2}(I + n_x X + n_y Y + n_z Z)\)</span></li>
+</ol>
+<p>The statistical uncertainty in each Bloch vector component scales as <span class="arithmatex">\(\Delta n_i \sim 1/\sqrt{N/3}\)</span>, so achieving tomographic precision <span class="arithmatex">\(\epsilon\)</span> requires <span class="arithmatex">\(N \sim O(1/\epsilon^2)\)</span> copies. This scaling is a fundamental consequence of the Born rule's probabilistic nature.</p>
+<h4 id="diagram-qubit-state-tomography-protocol">Diagram: Qubit State Tomography Protocol</h4>
+<iframe src="../../sims/qubit-state-tomography/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Qubit State Tomography Protocol</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: examine, deconstruct</p>
+<p>Learning Objective: Students can trace how repeated measurements in three complementary bases allow reconstruction of a qubit's Bloch vector, understanding the statistical convergence as sample size increases.</p>
+<p>Instructional Rationale: A parameter exploration with progressive data accumulation is appropriate for an Analyze-level objective because students must deconstruct the tomography process into its constituent measurements and examine how statistical estimates converge to the true Bloch vector. Observing the interplay between sample size and reconstruction accuracy builds insight into quantum measurement theory.</p>
+<p>Visual elements:
+- A Bloch sphere showing the true state (hidden initially) and the estimated state (updated in real time)
+- Three histograms showing measurement outcomes in <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span> bases
+- Numerical display of estimated Bloch vector components <span class="arithmatex">\((n_x, n_y, n_z)\)</span> with confidence intervals
+- Error metric: Trace distance between true and estimated density matrices</p>
+<p>Interactive controls:
+- Dropdown: Select a target state to reconstruct (e.g., <span class="arithmatex">\(|+\rangle\)</span>, <span class="arithmatex">\(|+i\rangle\)</span>, random state)
+- Button: "Take 10 measurements" (adds 10 simulated measurements)
+- Button: "Take 100 measurements"
+- Button: "Reset"
+- Toggle: "Reveal true state" (shows the true Bloch vector)
+- Slider: Noise level (adds depolarizing noise to simulate mixed states)</p>
+<p>Behavior:
+- Each measurement is a simulated Born-rule sample in the appropriate basis
+- Histograms accumulate outcome counts (+1 and -1 for each Pauli basis)
+- Estimated Bloch vector updates as running averages of measurement outcomes
+- Estimated state point on Bloch sphere converges toward true state as measurements accumulate
+- Confidence interval bars shrink proportionally to <span class="arithmatex">\(1/\sqrt{N}\)</span></p>
+<p>Canvas layout:
+- Left (50%): Bloch sphere with true and estimated state vectors
+- Right (50%): Three horizontal histograms (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span> outcomes), Bloch vector estimates, error metric</p>
+<p>Implementation: p5.js with WEBGL for 3D Bloch sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="multi-qubit-systems">Multi-Qubit Systems</h2>
+<p>The state space of a composite quantum system is constructed via the <strong>tensor product</strong> of the constituent Hilbert spaces. For two qubits, each living in <span class="arithmatex">\(\mathbb{C}^2\)</span>, the joint system lives in:</p>
+<h4 id="two-qubit-hilbert-space">Two-Qubit Hilbert Space</h4>
+<p><span class="arithmatex">\(\mathcal{H}_{AB} = \mathcal{H}_A \otimes \mathcal{H}_B = \mathbb{C}^2 \otimes \mathbb{C}^2 = \mathbb{C}^4\)</span></p>
+<p>The computational basis for the two-qubit space consists of four states formed by all combinations of the single-qubit basis states:</p>
+<ul>
+<li><span class="arithmatex">\(|00\rangle = |0\rangle_A \otimes |0\rangle_B = (1, 0, 0, 0)^T\)</span></li>
+<li><span class="arithmatex">\(|01\rangle = |0\rangle_A \otimes |1\rangle_B = (0, 1, 0, 0)^T\)</span></li>
+<li><span class="arithmatex">\(|10\rangle = |1\rangle_A \otimes |0\rangle_B = (0, 0, 1, 0)^T\)</span></li>
+<li><span class="arithmatex">\(|11\rangle = |1\rangle_A \otimes |1\rangle_B = (0, 0, 0, 1)^T\)</span></li>
+</ul>
+<p>The most general two-qubit pure state is:</p>
+<h4 id="general-two-qubit-state">General Two-Qubit State</h4>
+<p><span class="arithmatex">\(|\Psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha_{ij} \in \mathbb{C}\)</span> are complex amplitudes</li>
+<li><span class="arithmatex">\(\sum_{i,j}|\alpha_{ij}|^2 = 1\)</span> enforces normalization</li>
+</ul>
+<p>For <span class="arithmatex">\(n\)</span> qubits, the Hilbert space dimension is <span class="arithmatex">\(2^n\)</span>, and a general state requires <span class="arithmatex">\(2^n\)</span> complex amplitudes (minus normalization and global phase). This exponential scaling of the state space is the fundamental resource that gives quantum computing its potential computational advantage—and also what makes classical simulation of quantum systems intractable.</p>
+<p><strong>Product states</strong> are the special case where the joint state factors:</p>
+<p><span class="arithmatex">\(|\Psi_{\text{prod}}\rangle = |\psi\rangle_A \otimes |\phi\rangle_B = (\alpha_A|0\rangle + \beta_A|1\rangle) \otimes (\alpha_B|0\rangle + \beta_B|1\rangle)\)</span></p>
+<p>Expanding this product yields <span class="arithmatex">\(\alpha_{00} = \alpha_A \alpha_B\)</span>, <span class="arithmatex">\(\alpha_{01} = \alpha_A \beta_B\)</span>, <span class="arithmatex">\(\alpha_{10} = \beta_A \alpha_B\)</span>, <span class="arithmatex">\(\alpha_{11} = \beta_A \beta_B\)</span>. A product state satisfies the factorization condition <span class="arithmatex">\(\alpha_{00}\alpha_{11} = \alpha_{01}\alpha_{10}\)</span>, which can serve as a separability test for two-qubit pure states.</p>
+<table>
+<thead>
+<tr>
+<th>Number of Qubits <span class="arithmatex">\(n\)</span></th>
+<th>Hilbert Space Dimension <span class="arithmatex">\(2^n\)</span></th>
+<th>Real Parameters</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>Single spin-1/2 particle</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>Two-qubit register</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>14</td>
+<td>Three-qubit error correction code</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1,024</td>
+<td>2,046</td>
+<td>Small quantum circuit</td>
+</tr>
+<tr>
+<td>50</td>
+<td><span class="arithmatex">\(\sim 10^{15}\)</span></td>
+<td><span class="arithmatex">\(\sim 2 \times 10^{15}\)</span></td>
+<td>Beyond classical simulation</td>
+</tr>
+<tr>
+<td>300</td>
+<td><span class="arithmatex">\(\sim 2^{300}\)</span></td>
+<td><span class="arithmatex">\(\sim 2^{301}\)</span></td>
+<td>More states than atoms in universe</td>
+</tr>
+</tbody>
+</table>
+<h2 id="quantum-entanglement">Quantum Entanglement</h2>
+<p>A multi-qubit pure state is <strong>entangled</strong> if it cannot be written as a tensor product of single-qubit states. For a bipartite system <span class="arithmatex">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span>, a pure state <span class="arithmatex">\(|\Psi\rangle_{AB}\)</span> is:</p>
+<ul>
+<li><strong>Separable (product):</strong> <span class="arithmatex">\(|\Psi\rangle_{AB} = |\psi\rangle_A \otimes |\phi\rangle_B\)</span></li>
+<li><strong>Entangled:</strong> <span class="arithmatex">\(|\Psi\rangle_{AB} \neq |\psi\rangle_A \otimes |\phi\rangle_B\)</span> for any choice of <span class="arithmatex">\(|\psi\rangle_A\)</span> and <span class="arithmatex">\(|\phi\rangle_B\)</span></li>
+</ul>
+<p>The simplest example of an entangled state is:</p>
+<h4 id="maximally-entangled-state-example">Maximally Entangled State Example</h4>
+<p><span class="arithmatex">\(|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)\)</span></p>
+<p>To verify entanglement, assume it factors: <span class="arithmatex">\(|\Psi^+\rangle = (\alpha|0\rangle + \beta|1\rangle) \otimes (\gamma|0\rangle + \delta|1\rangle)\)</span>. Expanding gives <span class="arithmatex">\(\alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle\)</span>. Matching coefficients: <span class="arithmatex">\(\alpha\gamma = 0\)</span> and <span class="arithmatex">\(\beta\delta = 0\)</span>, but <span class="arithmatex">\(\alpha\delta = 1/\sqrt{2} \neq 0\)</span> and <span class="arithmatex">\(\beta\gamma = 1/\sqrt{2} \neq 0\)</span>. From <span class="arithmatex">\(\alpha\gamma = 0\)</span>, either <span class="arithmatex">\(\alpha = 0\)</span> or <span class="arithmatex">\(\gamma = 0\)</span>; either case forces <span class="arithmatex">\(\alpha\delta = 0\)</span> or <span class="arithmatex">\(\beta\gamma = 0\)</span>, a contradiction. Therefore <span class="arithmatex">\(|\Psi^+\rangle\)</span> is entangled.</p>
+<p>Entanglement induces correlations between measurement outcomes that cannot be explained by any classical probability distribution over local hidden variables. If we measure both qubits of <span class="arithmatex">\(|\Psi^+\rangle\)</span> in the <span class="arithmatex">\(Z\)</span>-basis, the outcomes are always opposite (<span class="arithmatex">\(01\)</span> or <span class="arithmatex">\(10\)</span> each with probability <span class="arithmatex">\(1/2\)</span>), regardless of the spatial separation between the qubits. This perfect anti-correlation holds instantly, without any signal traveling between the particles.</p>
+<h2 id="bell-states">Bell States</h2>
+<p>The four <strong>Bell states</strong> (also called EPR pairs) form a maximally entangled orthonormal basis for the two-qubit Hilbert space <span class="arithmatex">\(\mathbb{C}^4\)</span>:</p>
+<h4 id="bell-state-definitions">Bell State Definitions</h4>
+<p><span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span></p>
+<p><span class="arithmatex">\(|\Phi^-\rangle = \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle)\)</span></p>
+<p><span class="arithmatex">\(|\Psi^+\rangle = \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle)\)</span></p>
+<p><span class="arithmatex">\(|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)\)</span></p>
+<p>These states are related to the computational basis by:</p>
+<p><span class="arithmatex">\(|\Phi^+\rangle = \text{CNOT}(H \otimes I)|00\rangle\)</span></p>
+<p>where <span class="arithmatex">\(H\)</span> is the Hadamard gate and <span class="arithmatex">\(\text{CNOT}\)</span> is the controlled-NOT gate (detailed in Chapter 9). This circuit provides the standard method for generating entanglement from an unentangled input.</p>
+<table>
+<thead>
+<tr>
+<th>Bell State</th>
+<th>Correlations (<span class="arithmatex">\(Z\)</span>-basis)</th>
+<th>Correlations (<span class="arithmatex">\(X\)</span>-basis)</th>
+<th>Parity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\|\Phi^+\rangle\)</span></td>
+<td>Same outcomes (<span class="arithmatex">\(00\)</span> or <span class="arithmatex">\(11\)</span>)</td>
+<td>Same outcomes (<span class="arithmatex">\(++\)</span> or <span class="arithmatex">\(--\)</span>)</td>
+<td>Even</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\|\Phi^-\rangle\)</span></td>
+<td>Same outcomes (<span class="arithmatex">\(00\)</span> or <span class="arithmatex">\(11\)</span>)</td>
+<td>Opposite outcomes (<span class="arithmatex">\(+-\)</span> or <span class="arithmatex">\(-+\)</span>)</td>
+<td>Even</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\|\Psi^+\rangle\)</span></td>
+<td>Opposite outcomes (<span class="arithmatex">\(01\)</span> or <span class="arithmatex">\(10\)</span>)</td>
+<td>Same outcomes (<span class="arithmatex">\(++\)</span> or <span class="arithmatex">\(--\)</span>)</td>
+<td>Odd</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\|\Psi^-\rangle\)</span></td>
+<td>Opposite outcomes (<span class="arithmatex">\(01\)</span> or <span class="arithmatex">\(10\)</span>)</td>
+<td>Opposite outcomes (<span class="arithmatex">\(+-\)</span> or <span class="arithmatex">\(-+\)</span>)</td>
+<td>Odd</td>
+</tr>
+</tbody>
+</table>
+<p>The Bell states are eigenstates of the two commuting operators <span class="arithmatex">\(Z \otimes Z\)</span> and <span class="arithmatex">\(X \otimes X\)</span> with the eigenvalues shown. This structure is the prototype for the stabilizer formalism developed in Chapter 11 for quantum error correction.</p>
+<p><strong>Derivation of <span class="arithmatex">\(|\Phi^+\rangle\)</span> correlations.</strong> Writing <span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>, suppose Alice measures qubit <span class="arithmatex">\(A\)</span> in the <span class="arithmatex">\(Z\)</span>-basis and obtains outcome <span class="arithmatex">\(|0\rangle_A\)</span>. By the projection postulate, the post-measurement state is:</p>
+<p><span class="arithmatex">\(\frac{(\langle 0|_A \otimes I_B)|\Phi^+\rangle}{\|(\langle 0|_A \otimes I_B)|\Phi^+\rangle\|} = \frac{\frac{1}{\sqrt{2}}|0\rangle_B}{1/\sqrt{2}} = |0\rangle_B\)</span></p>
+<p>So Bob's qubit is deterministically in <span class="arithmatex">\(|0\rangle_B\)</span>—the outcomes are perfectly correlated. If Alice instead obtains <span class="arithmatex">\(|1\rangle_A\)</span>, Bob's state collapses to <span class="arithmatex">\(|1\rangle_B\)</span>. Each outcome occurs with probability <span class="arithmatex">\(1/2\)</span>, giving the mixture <span class="arithmatex">\(\{(1/2, |0\rangle_B), (1/2, |1\rangle_B)\}\)</span> from Bob's perspective.</p>
+<h4 id="diagram-bell-state-correlation-explorer">Diagram: Bell State Correlation Explorer</h4>
+<iframe src="../../sims/bell-state-correlation-explorer/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Bell State Correlation Explorer</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: compare, examine</p>
+<p>Learning Objective: Students can compare measurement correlations across the four Bell states in different measurement bases, examining how entanglement produces correlated outcomes that differ from classical joint probability distributions.</p>
+<p>Instructional Rationale: A compare-and-contrast interactive is appropriate for an Analyze-level objective because students must distinguish the four Bell states by their operational signatures (correlation patterns) across measurement bases. Simulating many measurement rounds lets students observe statistical patterns and contrast them with classical predictions.</p>
+<p>Visual elements:
+- Two Bloch spheres side by side representing Alice's and Bob's qubits
+- Measurement basis selectors for Alice and Bob independently
+- Running tally of joint outcomes (e.g., <span class="arithmatex">\(|00\rangle\)</span>: 247, <span class="arithmatex">\(|01\rangle\)</span>: 3, <span class="arithmatex">\(|10\rangle\)</span>: 2, <span class="arithmatex">\(|11\rangle\)</span>: 248)
+- Correlation coefficient display: <span class="arithmatex">\(\langle A \otimes B \rangle\)</span>
+- Bar chart showing empirical vs theoretical joint outcome probabilities</p>
+<p>Interactive controls:
+- Dropdown: Select Bell state (<span class="arithmatex">\(|\Phi^+\rangle\)</span>, <span class="arithmatex">\(|\Phi^-\rangle\)</span>, <span class="arithmatex">\(|\Psi^+\rangle\)</span>, <span class="arithmatex">\(|\Psi^-\rangle\)</span>)
+- Dropdown: Alice's measurement basis (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>, or custom angle)
+- Dropdown: Bob's measurement basis (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>, or custom angle)
+- Button: "Measure 1 pair"
+- Button: "Measure 100 pairs"
+- Button: "Reset statistics"</p>
+<p>Behavior:
+- Each measurement simulates Born rule sampling from the selected Bell state in the chosen bases
+- Outcome tallies and correlation coefficient update in real time
+- Bar chart shows empirical frequencies converging to theoretical probabilities
+- Bloch spheres flash to indicate measurement outcomes for single-pair measurements
+- Custom angle selector allows exploring Bell inequality violation angles</p>
+<p>Canvas layout:
+- Top (40%): Two Bloch spheres with basis indicators
+- Bottom (60%): Outcome tallies, correlation display, bar chart comparison</p>
+<p>Implementation: p5.js with WEBGL for Bloch spheres. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="epr-paradox">EPR Paradox</h2>
+<p>In their celebrated 1935 paper, Einstein, Podolsky, and Rosen (EPR) argued that quantum mechanics is incomplete. Their argument proceeds from two premises:</p>
+<ol>
+<li><strong>Realism:</strong> If a physical quantity can be predicted with certainty without disturbing the system, there exists an element of physical reality corresponding to it.</li>
+<li><strong>Locality:</strong> No influence can propagate faster than light; a measurement on one particle cannot instantaneously affect a distant particle.</li>
+</ol>
+<p>Consider the Bell state <span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span> shared between Alice and Bob, who are spacelike separated. If Alice measures in the <span class="arithmatex">\(Z\)</span>-basis and obtains <span class="arithmatex">\(|0\rangle\)</span>, she can predict with certainty that Bob's qubit is <span class="arithmatex">\(|0\rangle\)</span>. By realism, Bob's <span class="arithmatex">\(Z\)</span>-value must have been determined before Alice's measurement.</p>
+<p>But Alice could instead have measured in the <span class="arithmatex">\(X\)</span>-basis. The state <span class="arithmatex">\(|\Phi^+\rangle\)</span> can equally be written as <span class="arithmatex">\(\frac{1}{\sqrt{2}}(|++\rangle + |--\rangle)\)</span>, so if Alice obtains <span class="arithmatex">\(|+\rangle\)</span>, Bob's qubit is deterministically <span class="arithmatex">\(|+\rangle\)</span>. By realism, Bob's <span class="arithmatex">\(X\)</span>-value must also have been predetermined.</p>
+<p>If both <span class="arithmatex">\(Z\)</span> and <span class="arithmatex">\(X\)</span> values are simultaneously defined, quantum mechanics is incomplete because no quantum state can assign definite values to non-commuting observables (by the uncertainty principle). EPR concluded that "hidden variables" must supplement the quantum mechanical description.</p>
+<p>The resolution came three decades later through Bell's theorem, which showed that <strong>no local hidden variable theory</strong> can reproduce all predictions of quantum mechanics—the EPR assumptions of local realism are inconsistent with experiment.</p>
+<h2 id="bells-inequality">Bell's Inequality</h2>
+<p>John Bell (1964) derived an inequality that any local hidden variable (LHV) theory must satisfy, and showed that quantum mechanics violates it. The most experimentally practical version is the <strong>CHSH inequality</strong> (Clauser, Horne, Shimony, Holt, 1969).</p>
+<p><strong>Setup.</strong> Alice and Bob each choose between two measurement settings: Alice measures <span class="arithmatex">\(A_1\)</span> or <span class="arithmatex">\(A_2\)</span>, Bob measures <span class="arithmatex">\(B_1\)</span> or <span class="arithmatex">\(B_2\)</span>, each yielding outcomes <span class="arithmatex">\(\pm 1\)</span>.</p>
+<p><strong>Derivation for local hidden variables.</strong> Suppose outcomes are determined by a hidden variable <span class="arithmatex">\(\lambda\)</span> with distribution <span class="arithmatex">\(p(\lambda)\)</span>. Define <span class="arithmatex">\(A_i(\lambda), B_j(\lambda) \in \{-1, +1\}\)</span>. The CHSH quantity is:</p>
+<h4 id="chsh-quantity">CHSH Quantity</h4>
+<p><span class="arithmatex">\(S = \langle A_1 B_1 \rangle + \langle A_1 B_2 \rangle + \langle A_2 B_1 \rangle - \langle A_2 B_2 \rangle\)</span></p>
+<p>For fixed <span class="arithmatex">\(\lambda\)</span>:</p>
+<p><span class="arithmatex">\(A_1(\lambda)[B_1(\lambda) + B_2(\lambda)] + A_2(\lambda)[B_1(\lambda) - B_2(\lambda)]\)</span></p>
+<p>Since <span class="arithmatex">\(B_1, B_2 \in \{-1, +1\}\)</span>, either <span class="arithmatex">\(B_1 + B_2 = 0\)</span> (and <span class="arithmatex">\(|B_1 - B_2| = 2\)</span>) or <span class="arithmatex">\(|B_1 + B_2| = 2\)</span> (and <span class="arithmatex">\(B_1 - B_2 = 0\)</span>). In either case, the magnitude of the expression is exactly 2 for each <span class="arithmatex">\(\lambda\)</span>. Averaging over <span class="arithmatex">\(\lambda\)</span>:</p>
+<h4 id="chsh-inequality">CHSH Inequality</h4>
+<p><span class="arithmatex">\(|S| \leq 2\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(S\)</span> is the CHSH combination of four correlation functions</li>
+<li>The bound of 2 holds for any local hidden variable theory</li>
+</ul>
+<p><strong>Quantum violation.</strong> For the Bell state <span class="arithmatex">\(|\Phi^+\rangle\)</span> and the optimal measurement settings <span class="arithmatex">\(A_1 = Z\)</span>, <span class="arithmatex">\(A_2 = X\)</span>, <span class="arithmatex">\(B_1 = \frac{Z+X}{\sqrt{2}}\)</span>, <span class="arithmatex">\(B_2 = \frac{Z-X}{\sqrt{2}}\)</span> (corresponding to measurement angles <span class="arithmatex">\(0, \pi/2\)</span> for Alice and <span class="arithmatex">\(\pi/4, -\pi/4\)</span> for Bob), quantum mechanics predicts:</p>
+<h4 id="tsirelsons-bound">Tsirelson's Bound</h4>
+<p><span class="arithmatex">\(S_{\text{QM}} = 2\sqrt{2} \approx 2.828\)</span></p>
+<p>This value, known as <strong>Tsirelson's bound</strong>, is the maximum achievable by quantum mechanics and exceeds the classical limit of 2. The violation has been confirmed experimentally with increasing precision, closing successive loopholes (detection, locality, freedom-of-choice) culminating in loophole-free tests in 2015.</p>
+<h4 id="diagram-chsh-inequality-and-quantum-violation">Diagram: CHSH Inequality and Quantum Violation</h4>
+<iframe src="../../sims/chsh-inequality-explorer/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>CHSH Inequality and Quantum Violation</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Evaluate (L5)
+Bloom Verb: assess, validate</p>
+<p>Learning Objective: Students can assess the CHSH inequality by varying Alice's and Bob's measurement angles, computing the CHSH parameter <span class="arithmatex">\(S\)</span>, and validating that quantum mechanics violates the classical bound <span class="arithmatex">\(|S| \leq 2\)</span> while respecting Tsirelson's bound <span class="arithmatex">\(|S| \leq 2\sqrt{2}\)</span>.</p>
+<p>Instructional Rationale: An angle-exploration interface is appropriate for an Evaluate-level objective because students must judge whether specific measurement configurations violate the classical bound, validate the quantum prediction against the CHSH formula, and critically assess the gap between classical and quantum limits. The ability to test arbitrary angles (not just optimal ones) forces students to evaluate when and why the violation occurs.</p>
+<p>Visual elements:
+- Two circular dials showing Alice's and Bob's measurement angles on the Bloch sphere equator
+- Real-time computation and display of the four correlation terms <span class="arithmatex">\(\langle A_1 B_1 \rangle\)</span>, <span class="arithmatex">\(\langle A_1 B_2 \rangle\)</span>, <span class="arithmatex">\(\langle A_2 B_1 \rangle\)</span>, <span class="arithmatex">\(\langle A_2 B_2 \rangle\)</span>
+- A number line from <span class="arithmatex">\(-4\)</span> to <span class="arithmatex">\(4\)</span> showing the CHSH value <span class="arithmatex">\(S\)</span> with marked regions: green for <span class="arithmatex">\(|S| \leq 2\)</span> (classical), red for <span class="arithmatex">\(2 &lt; |S| \leq 2\sqrt{2}\)</span> (quantum), gray for <span class="arithmatex">\(|S| &gt; 2\sqrt{2}\)</span> (forbidden)
+- Formula display showing the computation
+- Bell state selector</p>
+<p>Interactive controls:
+- Slider: Alice's angle <span class="arithmatex">\(a_1\)</span> (default <span class="arithmatex">\(0\)</span>)
+- Slider: Alice's angle <span class="arithmatex">\(a_2\)</span> (default <span class="arithmatex">\(\pi/2\)</span>)
+- Slider: Bob's angle <span class="arithmatex">\(b_1\)</span> (default <span class="arithmatex">\(\pi/4\)</span>)
+- Slider: Bob's angle <span class="arithmatex">\(b_2\)</span> (default <span class="arithmatex">\(-\pi/4\)</span>)
+- Dropdown: Select Bell state (<span class="arithmatex">\(|\Phi^+\rangle\)</span>, <span class="arithmatex">\(|\Phi^-\rangle\)</span>, <span class="arithmatex">\(|\Psi^+\rangle\)</span>, <span class="arithmatex">\(|\Psi^-\rangle\)</span>)
+- Button: "Set optimal angles" (snaps to <span class="arithmatex">\(2\sqrt{2}\)</span> violation)
+- Button: "Reset to default"</p>
+<p>Behavior:
+- Correlation terms computed as <span class="arithmatex">\(\langle A_i B_j \rangle = -\cos(a_i - b_j)\)</span> for <span class="arithmatex">\(|\Phi^+\rangle\)</span>
+- <span class="arithmatex">\(S\)</span> value updates in real time as angles change
+- Number line marker moves and changes color based on <span class="arithmatex">\(S\)</span> value
+- When <span class="arithmatex">\(|S| &gt; 2\)</span>, a "Bell violation!" indicator appears
+- Tooltip explains why quantum mechanics can exceed the classical bound</p>
+<p>Canvas layout:
+- Top (30%): Angle dials for Alice and Bob
+- Middle (40%): Correlation term computation and CHSH formula display
+- Bottom (30%): Number line visualization of <span class="arithmatex">\(S\)</span> with classical/quantum regions</p>
+<p>Implementation: p5.js. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="schmidt-decomposition">Schmidt Decomposition</h2>
+<p>The <strong>Schmidt decomposition</strong> provides a canonical form for bipartite pure states that reveals the entanglement structure. For any pure state <span class="arithmatex">\(|\Psi\rangle_{AB} \in \mathcal{H}_A \otimes \mathcal{H}_B\)</span> with <span class="arithmatex">\(\dim(\mathcal{H}_A) = d_A\)</span> and <span class="arithmatex">\(\dim(\mathcal{H}_B) = d_B\)</span>:</p>
+<h4 id="schmidt-decomposition-theorem">Schmidt Decomposition Theorem</h4>
+<p><span class="arithmatex">\(|\Psi\rangle_{AB} = \sum_{i=1}^{r} \lambda_i |a_i\rangle_A \otimes |b_i\rangle_B\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\{|a_i\rangle\}\)</span> is an orthonormal set in <span class="arithmatex">\(\mathcal{H}_A\)</span> (Schmidt basis for <span class="arithmatex">\(A\)</span>)</li>
+<li><span class="arithmatex">\(\{|b_i\rangle\}\)</span> is an orthonormal set in <span class="arithmatex">\(\mathcal{H}_B\)</span> (Schmidt basis for <span class="arithmatex">\(B\)</span>)</li>
+<li><span class="arithmatex">\(\lambda_i &gt; 0\)</span> are the Schmidt coefficients satisfying <span class="arithmatex">\(\sum_i \lambda_i^2 = 1\)</span></li>
+<li><span class="arithmatex">\(r \leq \min(d_A, d_B)\)</span> is the Schmidt rank</li>
+</ul>
+<p><strong>Derivation.</strong> Express <span class="arithmatex">\(|\Psi\rangle_{AB}\)</span> in arbitrary orthonormal bases <span class="arithmatex">\(\{|u_j\rangle_A\}\)</span> and <span class="arithmatex">\(\{|v_k\rangle_B\}\)</span> as <span class="arithmatex">\(|\Psi\rangle = \sum_{j,k} c_{jk}|u_j\rangle|v_k\rangle\)</span>. The coefficients <span class="arithmatex">\(c_{jk}\)</span> form a matrix <span class="arithmatex">\(C\)</span>. Applying the singular value decomposition <span class="arithmatex">\(C = UDV^\dagger\)</span> where <span class="arithmatex">\(D = \text{diag}(\lambda_1, \ldots, \lambda_r)\)</span>:</p>
+<p><span class="arithmatex">\(|\Psi\rangle = \sum_{j,k}\sum_i U_{ji}\lambda_i V^*_{ki}|u_j\rangle|v_k\rangle = \sum_i \lambda_i \left(\sum_j U_{ji}|u_j\rangle\right)\left(\sum_k V^*_{ki}|v_k\rangle\right) = \sum_i \lambda_i |a_i\rangle|b_i\rangle\)</span></p>
+<p>where <span class="arithmatex">\(|a_i\rangle = \sum_j U_{ji}|u_j\rangle\)</span> and <span class="arithmatex">\(|b_i\rangle = \sum_k V^*_{ki}|v_k\rangle\)</span> are orthonormal because <span class="arithmatex">\(U\)</span> and <span class="arithmatex">\(V\)</span> are unitary.</p>
+<p>The Schmidt decomposition immediately characterizes entanglement:</p>
+<ul>
+<li><strong>Schmidt rank <span class="arithmatex">\(r = 1\)</span>:</strong> The state is a product state (separable)</li>
+<li><strong>Schmidt rank <span class="arithmatex">\(r &gt; 1\)</span>:</strong> The state is entangled</li>
+<li><strong><span class="arithmatex">\(r = d\)</span> with all <span class="arithmatex">\(\lambda_i = 1/\sqrt{d}\)</span>:</strong> The state is maximally entangled</li>
+</ul>
+<p><strong>Example.</strong> For <span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>, the Schmidt decomposition is already in canonical form with <span class="arithmatex">\(r = 2\)</span>, <span class="arithmatex">\(\lambda_1 = \lambda_2 = 1/\sqrt{2}\)</span>, confirming maximal entanglement. For <span class="arithmatex">\(|00\rangle\)</span>, the decomposition has <span class="arithmatex">\(r = 1\)</span>, <span class="arithmatex">\(\lambda_1 = 1\)</span>, confirming separability.</p>
+<p>The <strong>entanglement entropy</strong> (von Neumann entropy of the reduced density matrix) quantifies entanglement for bipartite pure states:</p>
+<h4 id="entanglement-entropy">Entanglement Entropy</h4>
+<p><span class="arithmatex">\(E(|\Psi\rangle_{AB}) = -\sum_i \lambda_i^2 \log_2 \lambda_i^2\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda_i\)</span> are the Schmidt coefficients</li>
+<li><span class="arithmatex">\(E = 0\)</span> for product states</li>
+<li><span class="arithmatex">\(E = \log_2 d\)</span> for maximally entangled states in <span class="arithmatex">\(\mathbb{C}^d \otimes \mathbb{C}^d\)</span></li>
+<li>For two qubits, <span class="arithmatex">\(E_{\max} = 1\)</span> ebit (one "entanglement bit")</li>
+</ul>
+<h2 id="partial-trace">Partial Trace</h2>
+<p>The <strong>partial trace</strong> is the mathematical operation that extracts the description of a subsystem from a composite quantum state. Given a density matrix <span class="arithmatex">\(\rho_{AB}\)</span> on <span class="arithmatex">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span>, the partial trace over subsystem <span class="arithmatex">\(B\)</span> yields the reduced density matrix of <span class="arithmatex">\(A\)</span>:</p>
+<h4 id="partial-trace-definition">Partial Trace Definition</h4>
+<p><span class="arithmatex">\(\rho_A = \text{Tr}_B(\rho_{AB}) = \sum_j (I_A \otimes \langle j|_B) \rho_{AB} (I_A \otimes |j\rangle_B)\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\{|j\rangle_B\}\)</span> is any orthonormal basis for <span class="arithmatex">\(\mathcal{H}_B\)</span></li>
+<li><span class="arithmatex">\(I_A\)</span> is the identity on <span class="arithmatex">\(\mathcal{H}_A\)</span></li>
+<li>The result is independent of the choice of basis <span class="arithmatex">\(\{|j\rangle_B\}\)</span></li>
+</ul>
+<p>The partial trace is the unique operation that satisfies <span class="arithmatex">\(\text{Tr}(O_A \cdot \rho_A) = \text{Tr}((O_A \otimes I_B) \cdot \rho_{AB})\)</span> for all operators <span class="arithmatex">\(O_A\)</span> on <span class="arithmatex">\(\mathcal{H}_A\)</span>. This means <span class="arithmatex">\(\rho_A\)</span> reproduces all local measurement statistics on subsystem <span class="arithmatex">\(A\)</span>.</p>
+<p><strong>Computation for pure states.</strong> For a bipartite pure state <span class="arithmatex">\(|\Psi\rangle_{AB}\)</span> with Schmidt decomposition <span class="arithmatex">\(\sum_i \lambda_i |a_i\rangle|b_i\rangle\)</span>:</p>
+<p><span class="arithmatex">\(\rho_A = \text{Tr}_B(|\Psi\rangle\langle\Psi|) = \sum_i \lambda_i^2 |a_i\rangle\langle a_i|\)</span></p>
+<p>This result follows directly:</p>
+<p><span class="arithmatex">\(\rho_A = \sum_j \langle j|_B \left(\sum_{i,k} \lambda_i \lambda_k |a_i\rangle\langle a_k| \otimes |b_i\rangle\langle b_k|\right)|j\rangle_B = \sum_{i,k}\lambda_i\lambda_k |a_i\rangle\langle a_k| \underbrace{\sum_j \langle j|b_i\rangle\langle b_k|j\rangle}_{\langle b_k|b_i\rangle = \delta_{ki}} = \sum_i \lambda_i^2 |a_i\rangle\langle a_i|\)</span></p>
+<p><strong>Worked Example.</strong> Compute the partial trace of <span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>:</p>
+<p><span class="arithmatex">\(\rho_{AB} = |\Phi^+\rangle\langle\Phi^+| = \frac{1}{2}(|00\rangle\langle 00| + |00\rangle\langle 11| + |11\rangle\langle 00| + |11\rangle\langle 11|)\)</span></p>
+<p><span class="arithmatex">\(\rho_A = \text{Tr}_B(\rho_{AB}) = \frac{1}{2}(\langle 0|_B|00\rangle\langle 00||0\rangle_B + \langle 0|_B|00\rangle\langle 11||0\rangle_B + \langle 0|_B|11\rangle\langle 00||0\rangle_B + \langle 0|_B|11\rangle\langle 11||0\rangle_B)\)</span>
+<span class="arithmatex">\(\quad + \frac{1}{2}(\langle 1|_B|00\rangle\langle 00||1\rangle_B + \langle 1|_B|00\rangle\langle 11||1\rangle_B + \langle 1|_B|11\rangle\langle 00||1\rangle_B + \langle 1|_B|11\rangle\langle 11||1\rangle_B)\)</span></p>
+<p>Evaluating the inner products term by term:</p>
+<p><span class="arithmatex">\(\rho_A = \frac{1}{2}(|0\rangle\langle 0| + 0 + 0 + 0) + \frac{1}{2}(0 + 0 + 0 + |1\rangle\langle 1|) = \frac{1}{2}(|0\rangle\langle 0| + |1\rangle\langle 1|) = \frac{I}{2}\)</span></p>
+<p>This is the maximally mixed state—a hallmark of maximal entanglement.</p>
+<h2 id="reduced-density-matrix">Reduced Density Matrix</h2>
+<p>The <strong>reduced density matrix</strong> <span class="arithmatex">\(\rho_A = \text{Tr}_B(\rho_{AB})\)</span> provides the complete description of subsystem <span class="arithmatex">\(A\)</span> accessible through local measurements. Its eigenvalues are the squared Schmidt coefficients <span class="arithmatex">\(\{\lambda_i^2\}\)</span>, and its eigenstates are the Schmidt basis vectors <span class="arithmatex">\(\{|a_i\rangle\}\)</span>.</p>
+<p>The reduced density matrix reveals a profound connection between entanglement and mixedness:</p>
+<ul>
+<li><strong>Product state</strong> <span class="arithmatex">\(|\Psi\rangle = |\psi\rangle_A \otimes |\phi\rangle_B\)</span>: <span class="arithmatex">\(\rho_A = |\psi\rangle\langle\psi|\)</span> is pure</li>
+<li><strong>Entangled state</strong>: <span class="arithmatex">\(\rho_A\)</span> is mixed (not a projector), with purity <span class="arithmatex">\(\text{Tr}(\rho_A^2) &lt; 1\)</span></li>
+<li><strong>Maximally entangled state</strong> (<span class="arithmatex">\(d\)</span>-dimensional): <span class="arithmatex">\(\rho_A = I/d\)</span> is maximally mixed</li>
+</ul>
+<p>This means that <strong>entanglement between a system and its environment is precisely what makes the system appear mixed</strong>, even when the global state is pure. This insight is the foundation of decoherence theory in quantum computing: qubit interactions with the environment create entanglement, which manifests as noise from the qubit's local perspective.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th><span class="arithmatex">\(\rho_A\)</span></th>
+<th>Purity <span class="arithmatex">\(\text{Tr}(\rho_A^2)\)</span></th>
+<th>Entanglement Entropy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\|00\rangle\)</span> (product)</td>
+<td><span class="arithmatex">\(\|0\rangle\langle 0\|\)</span></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\frac{1}{\sqrt{2}}(\|00\rangle + \|11\rangle)\)</span> (max entangled)</td>
+<td><span class="arithmatex">\(\frac{I}{2}\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{2}\)</span></td>
+<td>1 ebit</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\sqrt{0.9}\|00\rangle + \sqrt{0.1}\|11\rangle\)</span> (partially entangled)</td>
+<td><span class="arithmatex">\(0.9\|0\rangle\langle 0\| + 0.1\|1\rangle\langle 1\|\)</span></td>
+<td>0.82</td>
+<td>0.469 ebits</td>
+</tr>
+</tbody>
+</table>
+<h4 id="diagram-entanglement-and-reduced-state-visualizer">Diagram: Entanglement and Reduced State Visualizer</h4>
+<iframe src="../../sims/entanglement-reduced-state/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Entanglement and Reduced State Visualizer</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: examine, compare</p>
+<p>Learning Objective: Students can examine how the Schmidt coefficients of a bipartite state control the purity and entanglement of the reduced density matrix, comparing the Bloch sphere representation of the reduced state (inside the sphere for mixed states) with the entanglement entropy.</p>
+<p>Instructional Rationale: A parameter exploration with linked visualizations is appropriate for an Analyze-level objective because students must connect three representations: the Schmidt coefficients (algebraic), the Bloch sphere radius (geometric), and the entanglement entropy (information-theoretic). Varying the Schmidt parameter and observing all three update simultaneously builds deep structural understanding.</p>
+<p>Visual elements:
+- A slider controlling the Schmidt coefficient <span class="arithmatex">\(\lambda_1\)</span> (with <span class="arithmatex">\(\lambda_2 = \sqrt{1 - \lambda_1^2}\)</span>)
+- Two-qubit state displayed in Schmidt form: <span class="arithmatex">\(\lambda_1|00\rangle + \lambda_2|11\rangle\)</span>
+- Bloch sphere showing the reduced state of qubit <span class="arithmatex">\(A\)</span> (Bloch vector length <span class="arithmatex">\(= |2\lambda_1^2 - 1|\)</span> along <span class="arithmatex">\(z\)</span>-axis)
+- Numerical display of <span class="arithmatex">\(\rho_A\)</span> as a <span class="arithmatex">\(2 \times 2\)</span> matrix
+- Purity gauge: <span class="arithmatex">\(\text{Tr}(\rho_A^2)\)</span> shown as a bar from 0.5 to 1.0
+- Entanglement entropy plot: <span class="arithmatex">\(E\)</span> vs <span class="arithmatex">\(\lambda_1\)</span> curve with current point highlighted</p>
+<p>Interactive controls:
+- Slider: <span class="arithmatex">\(\lambda_1\)</span> from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(1\)</span> (default: <span class="arithmatex">\(1/\sqrt{2}\)</span>)
+- Button: Snap to product state (<span class="arithmatex">\(\lambda_1 = 1\)</span>)
+- Button: Snap to maximally entangled (<span class="arithmatex">\(\lambda_1 = 1/\sqrt{2}\)</span>)
+- Toggle: Show/hide <span class="arithmatex">\(\rho_A\)</span> matrix elements</p>
+<p>Behavior:
+- Moving <span class="arithmatex">\(\lambda_1\)</span> slider updates the two-qubit state, reduced density matrix, Bloch vector, purity, and entropy simultaneously
+- At <span class="arithmatex">\(\lambda_1 = 1\)</span>: pure state on north pole, purity = 1, entropy = 0
+- At <span class="arithmatex">\(\lambda_1 = 1/\sqrt{2}\)</span>: maximally mixed state at origin, purity = 0.5, entropy = 1
+- At <span class="arithmatex">\(\lambda_1 = 0\)</span>: pure state on south pole, purity = 1, entropy = 0
+- Entropy curve shows concavity and maximum at equal Schmidt coefficients</p>
+<p>Canvas layout:
+- Left (40%): Bloch sphere showing reduced state with Bloch vector shrinking/growing
+- Right top (30%): State display, <span class="arithmatex">\(\rho_A\)</span> matrix, purity gauge
+- Right bottom (30%): Entanglement entropy curve with highlighted current point</p>
+<p>Implementation: p5.js with WEBGL for Bloch sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This chapter established the qubit as the fundamental building block of quantum information and developed the essential mathematical tools for analyzing quantum states:</p>
+<ol>
+<li>
+<p>A <strong>qubit</strong> is a normalized vector in <span class="arithmatex">\(\mathbb{C}^2\)</span>, described by two real parameters after accounting for normalization and global phase invariance.</p>
+</li>
+<li>
+<p>The <strong>Bloch sphere</strong> provides a complete geometric representation of single-qubit pure states, with the Bloch vector components equal to Pauli expectation values.</p>
+</li>
+<li>
+<p><strong>Global phase</strong> is physically unobservable, while <strong>relative phase</strong> determines interference effects and is the resource exploited by quantum algorithms.</p>
+</li>
+<li>
+<p><strong>Qubit state tomography</strong> reconstructs the density matrix from Pauli-basis measurements, requiring <span class="arithmatex">\(O(1/\epsilon^2)\)</span> copies for precision <span class="arithmatex">\(\epsilon\)</span>.</p>
+</li>
+<li>
+<p><strong>Multi-qubit systems</strong> live in tensor product spaces of dimension <span class="arithmatex">\(2^n\)</span>, whose exponential scaling is the source of quantum computational power.</p>
+</li>
+<li>
+<p><strong>Entanglement</strong> is the defining feature of quantum correlations: entangled states cannot be factored into product states and exhibit correlations stronger than any classical model allows.</p>
+</li>
+<li>
+<p>The four <strong>Bell states</strong> form a maximally entangled basis for two qubits and serve as the fundamental resource for quantum teleportation, superdense coding, and entanglement-based protocols.</p>
+</li>
+<li>
+<p>The <strong>EPR paradox</strong> and <strong>Bell's inequality</strong> (CHSH form) demonstrate that local hidden variable theories cannot reproduce quantum predictions, with the maximum quantum violation reaching <span class="arithmatex">\(2\sqrt{2}\)</span>.</p>
+</li>
+<li>
+<p>The <strong>Schmidt decomposition</strong> provides a canonical form for bipartite pure states, with the Schmidt rank characterizing entanglement.</p>
+</li>
+<li>
+<p>The <strong>partial trace</strong> and <strong>reduced density matrix</strong> extract subsystem descriptions from composite states, revealing that entanglement manifests as local mixedness.</p>
+</li>
+</ol>
+<details class="question">
+<summary>Concept Check: Why does maximal entanglement produce a maximally mixed reduced state?</summary>
+<p>For a maximally entangled state like <span class="arithmatex">\(|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\)</span>, the Schmidt coefficients are equal: <span class="arithmatex">\(\lambda_1 = \lambda_2 = 1/\sqrt{2}\)</span>. The reduced density matrix is <span class="arithmatex">\(\rho_A = \sum_i \lambda_i^2 |a_i\rangle\langle a_i| = \frac{1}{2}|0\rangle\langle 0| + \frac{1}{2}|1\rangle\langle 1| = I/2\)</span>. Physically, this means that no local measurement on qubit <span class="arithmatex">\(A\)</span> alone can extract any information about the state—all the information is encoded in the correlations between <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>. This is the information-theoretic signature of maximal entanglement: the subsystem entropy equals <span class="arithmatex">\(\log_2 d\)</span> bits, the maximum possible.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../07-quantum-mechanics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 7. Quantum Mechanics">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                7. Quantum Mechanics
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../09-quantum-gates/" class="md-footer__link md-footer__link--next" aria-label="Next: 9. Quantum Gates">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                9. Quantum Gates
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

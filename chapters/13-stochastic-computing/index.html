@@ -1,0 +1,3680 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Stochastic computing paradigm with number encoding, logic gates, variance analysis, and applications">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/13-stochastic-computing/">
+      
+      
+        <link rel="prev" href="../12-quantum-hardware/">
+      
+      
+        <link rel="next" href="../14-hybrid-computing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Stochastic Computing - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stochastic-computing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stochastic Computing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-number-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Number Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Number Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unipolar Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-encoding-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Encoding Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bipolar Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-encoding-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Encoding Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-bit-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Bit Stream
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Bit Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generation-via-comparators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generation via Comparators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generation via Comparators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-bit-stream-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Bit Stream Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-bit-stream-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Bit Stream Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reconstruction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-mean-estimator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Mean Estimator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-multiplication-via-and-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Multiplication via AND Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unipolar Multiplication via AND Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-and-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar AND Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-multiplication-via-xnor-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Multiplication via XNOR Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bipolar Multiplication via XNOR Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-xnor-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar XNOR Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Addition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Addition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or-gate-addition-unipolar-approximate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR-Gate Addition (Unipolar, Approximate)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OR-Gate Addition (Unipolar, Approximate)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or-gate-approximate-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR-Gate Approximate Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mux-based-stochastic-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mux-Based Stochastic Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mux-Based Stochastic Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaled-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaled Addition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaled Addition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mux-scaled-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MUX Scaled Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalized-weighted-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized Weighted Summation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generalized Weighted Summation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalized-mux-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized MUX Summation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-arithmetic-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Arithmetic Unit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variance-in-stochastic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance In Stochastic Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance In Stochastic Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variance-of-a-single-stochastic-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance of a Single Stochastic Number
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance of a Single Stochastic Number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-stream-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Stream Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precision-length-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precision-Length Relationship
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Precision-Length Relationship">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#precision-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precision Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variance-propagation-through-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance Propagation Through Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance Propagation Through Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiplication-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplication Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correlation-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correlation Effects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correlation Effects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-cross-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Cross-Correlation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Cross-Correlation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-computing-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Computing Correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effects-of-correlation-on-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effects of Correlation on Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deliberate-correlation-exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deliberate Correlation Exploitation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deliberate Correlation Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-correlation-effects-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Correlation Effects Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorrelation-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decorrelation Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decorrelation Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#independent-rng-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent RNG Sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regeneration-via-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration via Isolation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regeneration via Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regeneration-decorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration Decorrelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lfsr-sharing-with-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LFSR Sharing with Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorrelation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decorrelation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-error-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Error Tolerance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Error Tolerance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform-bit-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform Bit Significance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uniform Bit Significance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform-bit-weight-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform Bit Weight Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-under-random-bit-flips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Under Random Bit Flips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation-under-soft-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation Under Soft Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graceful Degradation Under Soft Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-error-tolerance-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Error Tolerance Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantitative-error-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantitative Error Bounds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantitative Error Bounds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noisy-channel-mse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel MSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-image-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Image Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Image Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edge Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roberts-cross-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roberts Cross Gradient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gamma Correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neural-network-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neural Network Inference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neural Network Inference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-neural-network-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Neural Network Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-stochastic-computing-paradigm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Stochastic Computing Paradigm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-number-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Number Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Number Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unipolar Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-encoding-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Encoding Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Encoding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bipolar Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-encoding-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Encoding Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-bit-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Bit Stream
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Bit Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generation-via-comparators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generation via Comparators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generation via Comparators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-bit-stream-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Bit Stream Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-bit-stream-generator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Bit Stream Generator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reconstruction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reconstruction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-mean-estimator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Mean Estimator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-multiplication-via-and-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar Multiplication via AND Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unipolar Multiplication via AND Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unipolar-and-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unipolar AND Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-multiplication-via-xnor-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar Multiplication via XNOR Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bipolar Multiplication via XNOR Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bipolar-xnor-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bipolar XNOR Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Addition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Addition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or-gate-addition-unipolar-approximate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR-Gate Addition (Unipolar, Approximate)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OR-Gate Addition (Unipolar, Approximate)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#or-gate-approximate-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OR-Gate Approximate Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mux-based-stochastic-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mux-Based Stochastic Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mux-Based Stochastic Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaled-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaled Addition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaled Addition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mux-scaled-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MUX Scaled Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalized-weighted-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized Weighted Summation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generalized Weighted Summation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generalized-mux-summation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalized MUX Summation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-arithmetic-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Arithmetic Unit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variance-in-stochastic-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance In Stochastic Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance In Stochastic Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variance-of-a-single-stochastic-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance of a Single Stochastic Number
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance of a Single Stochastic Number">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-stream-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Stream Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precision-length-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precision-Length Relationship
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Precision-Length Relationship">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#precision-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precision Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variance-propagation-through-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variance Propagation Through Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Variance Propagation Through Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiplication-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplication Variance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correlation-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correlation Effects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Correlation Effects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-cross-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Cross-Correlation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Cross-Correlation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-computing-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Computing Correlation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effects-of-correlation-on-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effects of Correlation on Multiplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deliberate-correlation-exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deliberate Correlation Exploitation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deliberate Correlation Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-correlation-effects-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Correlation Effects Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decorrelation-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decorrelation Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decorrelation Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#independent-rng-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent RNG Sources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regeneration-via-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration via Isolation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regeneration via Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regeneration-decorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration Decorrelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lfsr-sharing-with-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LFSR Sharing with Rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorrelation-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decorrelation Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-error-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Error Tolerance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Error Tolerance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform-bit-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform Bit Significance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uniform Bit Significance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform-bit-weight-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform Bit Weight Property
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-under-random-bit-flips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Under Random Bit Flips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation-under-soft-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation Under Soft Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graceful Degradation Under Soft Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-error-tolerance-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Error Tolerance Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quantitative-error-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantitative Error Bounds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantitative Error Bounds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noisy-channel-mse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel MSE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stochastic-image-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stochastic Image Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stochastic Image Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edge Detection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Edge Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#roberts-cross-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roberts Cross Gradient
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gamma Correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neural-network-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neural Network Inference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neural Network Inference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stochastic-neural-network-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stochastic Neural Network Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-stochastic-computing-paradigm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Stochastic Computing Paradigm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/13-stochastic-computing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="stochastic-computing">Stochastic Computing</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter introduces the stochastic computing paradigm as an alternative approach to deterministic digital computation. We develop stochastic number representations in both unipolar and bipolar encoding, analyze stochastic logic gates for multiplication and addition, derive variance bounds on accuracy, examine correlation effects and decorrelation techniques, and explore applications in image processing and neural networks.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 10 concepts:</p>
+<ol>
+<li>Stochastic Number Encoding</li>
+<li>Stochastic Bit Stream</li>
+<li>Stochastic Multiplication</li>
+<li>Stochastic Addition</li>
+<li>Mux-Based Stochastic Logic</li>
+<li>Variance In Stochastic Systems</li>
+<li>Correlation Effects</li>
+<li>Decorrelation Techniques</li>
+<li>Stochastic Error Tolerance</li>
+<li>Stochastic Image Processing</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+<li><a href="../04-classical-computing/">Chapter 4: Classical Computing Fundamentals</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>The preceding chapters of this textbook have developed the theoretical and physical foundations of quantum computation, a paradigm that exploits superposition, entanglement, and interference to achieve computational speedups for certain problem classes. We now turn to a fundamentally different unconventional computing paradigm---<strong>stochastic computing</strong> (SC)---which represents numerical values not as fixed binary words but as random bit streams whose statistical properties encode the desired information. First proposed by John von Neumann in 1956 and independently formalized by Brian Gaines in 1969, stochastic computing trades temporal resolution for extreme hardware simplicity: arithmetic operations such as multiplication reduce to single logic gates, and the resulting circuits exhibit graceful degradation under noise. These properties make SC particularly attractive for applications in neural network inference, image processing, and error-tolerant signal processing, where approximate computation suffices and energy efficiency is paramount.</p>
+<p>This chapter develops the mathematical theory of stochastic computing from first principles. We begin with the encoding schemes---unipolar and bipolar---that map real numbers onto probability spaces, then construct stochastic bit streams as the physical realization of these encodings. We derive the gate-level implementations of multiplication and addition, analyze the fundamental variance limitations that govern accuracy, examine how correlation between bit streams can catastrophically distort results or be deliberately exploited, and present decorrelation techniques that restore computational correctness. We conclude with applications to image processing and a discussion of stochastic computing's intrinsic error tolerance.</p>
+<p>The connections to information theory (Chapter 3) are deep: a stochastic bit stream of length <span class="arithmatex">\(N\)</span> carries at most <span class="arithmatex">\(\log_2(N+1)\)</span> bits of information about the encoded value, yet this information is distributed uniformly across every bit position, yielding the fault-tolerance properties that deterministic binary representations lack.</p>
+<h2 id="stochastic-number-encoding">Stochastic Number Encoding</h2>
+<p><strong>Stochastic number encoding</strong> is the foundational representation scheme of stochastic computing, in which a real number <span class="arithmatex">\(x\)</span> is represented by the probability <span class="arithmatex">\(P\)</span> that a random bit in a bit stream takes the value 1. Two principal encoding formats exist: unipolar and bipolar.</p>
+<h3 id="unipolar-encoding">Unipolar Encoding</h3>
+<p>In the <strong>unipolar</strong> format, a value <span class="arithmatex">\(x \in [0, 1]\)</span> is encoded as the probability <span class="arithmatex">\(P(X = 1) = x\)</span>. Each bit in the stream is an independent Bernoulli random variable with parameter <span class="arithmatex">\(x\)</span>.</p>
+<h4 id="unipolar-encoding-definition">Unipolar Encoding Definition</h4>
+<div class="arithmatex">\[
+x = P(X_i = 1), \quad x \in [0, 1]
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X_i \in \{0, 1\}\)</span> is the <span class="arithmatex">\(i\)</span>-th bit of the stochastic stream</li>
+<li><span class="arithmatex">\(P(X_i = 1) = x\)</span> is the probability that any given bit equals 1</li>
+<li>The value <span class="arithmatex">\(x = 0\)</span> corresponds to the all-zeros stream, and <span class="arithmatex">\(x = 1\)</span> to the all-ones stream</li>
+</ul>
+<h3 id="bipolar-encoding">Bipolar Encoding</h3>
+<p>The <strong>bipolar</strong> format extends the representable range to <span class="arithmatex">\([-1, 1]\)</span> by mapping a value <span class="arithmatex">\(y \in [-1, 1]\)</span> to the probability <span class="arithmatex">\(P(Y = 1) = (y + 1)/2\)</span>. This encoding is particularly useful for computations requiring signed arithmetic, such as those arising in neural network weights.</p>
+<h4 id="bipolar-encoding-definition">Bipolar Encoding Definition</h4>
+<div class="arithmatex">\[
+y = 2P(Y_i = 1) - 1, \quad y \in [-1, 1]
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(Y_i \in \{0, 1\}\)</span> is the <span class="arithmatex">\(i\)</span>-th bit of the stochastic stream</li>
+<li><span class="arithmatex">\(P(Y_i = 1) = (y + 1)/2\)</span> maps the bipolar value to a valid probability</li>
+<li><span class="arithmatex">\(y = -1\)</span> corresponds to <span class="arithmatex">\(P = 0\)</span> (all zeros), <span class="arithmatex">\(y = 0\)</span> to <span class="arithmatex">\(P = 0.5\)</span>, and <span class="arithmatex">\(y = 1\)</span> to <span class="arithmatex">\(P = 1\)</span> (all ones)</li>
+</ul>
+<p>The following table summarizes and contrasts the two encoding schemes.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Unipolar Encoding</th>
+<th>Bipolar Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Value range</td>
+<td><span class="arithmatex">\([0, 1]\)</span></td>
+<td><span class="arithmatex">\([-1, 1]\)</span></td>
+</tr>
+<tr>
+<td>Probability mapping</td>
+<td><span class="arithmatex">\(P = x\)</span></td>
+<td><span class="arithmatex">\(P = (y+1)/2\)</span></td>
+</tr>
+<tr>
+<td>Inverse mapping</td>
+<td><span class="arithmatex">\(x = P\)</span></td>
+<td><span class="arithmatex">\(y = 2P - 1\)</span></td>
+</tr>
+<tr>
+<td>Zero representation</td>
+<td><span class="arithmatex">\(P = 0\)</span> (all zeros)</td>
+<td><span class="arithmatex">\(P = 0.5\)</span> (half ones)</td>
+</tr>
+<tr>
+<td>One representation</td>
+<td><span class="arithmatex">\(P = 1\)</span> (all ones)</td>
+<td><span class="arithmatex">\(P = 1\)</span> (all ones)</td>
+</tr>
+<tr>
+<td>Negative values</td>
+<td>Not supported</td>
+<td><span class="arithmatex">\(P &lt; 0.5\)</span></td>
+</tr>
+<tr>
+<td>AND gate computes</td>
+<td>Multiplication <span class="arithmatex">\(x_1 \cdot x_2\)</span></td>
+<td>Not standard multiplication</td>
+</tr>
+<tr>
+<td>XNOR gate computes</td>
+<td>Not standard multiplication</td>
+<td>Multiplication <span class="arithmatex">\(y_1 \cdot y_2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The choice between unipolar and bipolar encoding has profound consequences for circuit design. Unipolar encoding simplifies multiplication (a single AND gate) but cannot represent negative numbers. Bipolar encoding supports the full signed range at the cost of requiring XNOR gates for multiplication and more complex addition circuits. In practice, many modern stochastic computing systems favor bipolar encoding because neural network weights and signal processing coefficients are naturally signed quantities.</p>
+<h2 id="stochastic-bit-stream">Stochastic Bit Stream</h2>
+<p>A <strong>stochastic bit stream</strong> (SBS) is the physical realization of a stochastic number encoding: a temporal sequence of bits <span class="arithmatex">\(B = (b_1, b_2, \ldots, b_N)\)</span> of length <span class="arithmatex">\(N\)</span>, where each bit <span class="arithmatex">\(b_i \in \{0, 1\}\)</span> is generated according to the encoding probability. In the ideal case, the bits are independent and identically distributed (i.i.d.) Bernoulli random variables.</p>
+<h3 id="generation-via-comparators">Generation via Comparators</h3>
+<p>The standard method for generating a stochastic bit stream from a conventional <span class="arithmatex">\(n\)</span>-bit binary number <span class="arithmatex">\(x\)</span> employs a <strong>comparator</strong> and a <strong>random number generator</strong> (RNG). At each clock cycle <span class="arithmatex">\(i\)</span>, a random number <span class="arithmatex">\(R_i\)</span> is drawn uniformly from <span class="arithmatex">\(\{0, 1, \ldots, 2^n - 1\}\)</span>, and the output bit is:</p>
+<h4 id="stochastic-bit-stream-generation">Stochastic Bit Stream Generation</h4>
+<div class="arithmatex">\[
+b_i = \begin{cases} 1 &amp; \text{if } R_i &lt; x \\ 0 &amp; \text{if } R_i \geq x \end{cases}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x \in \{0, 1, \ldots, 2^n - 1\}\)</span> is the <span class="arithmatex">\(n\)</span>-bit input value</li>
+<li><span class="arithmatex">\(R_i\)</span> is a uniformly distributed random integer from an RNG (typically a linear-feedback shift register, or LFSR)</li>
+<li>The resulting probability <span class="arithmatex">\(P(b_i = 1) = x / 2^n\)</span> encodes the fractional value <span class="arithmatex">\(x/2^n\)</span></li>
+</ul>
+<h4 id="diagram-stochastic-bit-stream-generator">Diagram: Stochastic Bit Stream Generator</h4>
+<iframe src="../../sims/stochastic-bit-stream-generator/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Stochastic bit stream generation from binary input using a comparator and RNG</summary>
+<p>Type: MicroSim
+Learning objective: Understand how a conventional binary number is converted into a stochastic bit stream through comparison with random numbers. Bloom level: Apply.
+Visual elements: An n-bit binary input slider (0-255 for 8-bit), an animated random number generator producing uniform values each clock cycle, a comparator that outputs 1 or 0, and a scrolling bit stream display. A running average counter shows the estimated probability converging toward the true value as stream length increases. A histogram shows the distribution of ones and zeros.
+Controls: Input value slider, stream length selector (64, 256, 1024, 4096), play/pause button, speed control, reset button.
+Behavior: Each clock tick generates a new random number, compares with the input, and appends a bit to the stream. The running average visually converges to the encoded probability. Longer streams yield more accurate estimates.
+Implementation: p5.js canvas with animated bit stream and real-time statistics.</p>
+</details>
+<h3 id="reconstruction">Reconstruction</h3>
+<p>The encoded value is recovered from an observed bit stream of length <span class="arithmatex">\(N\)</span> by computing the <strong>sample mean</strong>:</p>
+<h4 id="sample-mean-estimator">Sample Mean Estimator</h4>
+<div class="arithmatex">\[
+\hat{x} = \frac{1}{N}\sum_{i=1}^{N} b_i
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\hat{x}\)</span> is the estimated value of the stochastic number</li>
+<li><span class="arithmatex">\(N\)</span> is the stream length (number of observed bits)</li>
+<li>The estimator <span class="arithmatex">\(\hat{x}\)</span> is unbiased: <span class="arithmatex">\(E[\hat{x}] = x\)</span></li>
+</ul>
+<p>The precision of the estimate improves as <span class="arithmatex">\(\sqrt{N}\)</span>, which is a fundamental limitation of stochastic computing: to achieve <span class="arithmatex">\(n\)</span> bits of precision, one requires a stream of length <span class="arithmatex">\(N = O(2^{2n})\)</span>, compared to <span class="arithmatex">\(O(2^n)\)</span> clock cycles for conventional binary arithmetic. This exponential cost in precision is the principal trade-off for the extreme simplicity of stochastic arithmetic circuits.</p>
+<h2 id="stochastic-multiplication">Stochastic Multiplication</h2>
+<p><strong>Stochastic multiplication</strong> is arguably the most elegant operation in stochastic computing. In the unipolar encoding, multiplication of two values reduces to a single AND gate; in the bipolar encoding, it reduces to a single XNOR gate.</p>
+<h3 id="unipolar-multiplication-via-and-gate">Unipolar Multiplication via AND Gate</h3>
+<p>Given two independent stochastic bit streams <span class="arithmatex">\(A = (a_1, \ldots, a_N)\)</span> and <span class="arithmatex">\(B = (b_1, \ldots, b_N)\)</span> encoding unipolar values <span class="arithmatex">\(x_A\)</span> and <span class="arithmatex">\(x_B\)</span> respectively, the bitwise AND produces a new stream <span class="arithmatex">\(C\)</span> where <span class="arithmatex">\(c_i = a_i \wedge b_i\)</span>. The probability of a 1 in the output stream is:</p>
+<h4 id="unipolar-and-multiplication">Unipolar AND Multiplication</h4>
+<div class="arithmatex">\[
+P(c_i = 1) = P(a_i = 1) \cdot P(b_i = 1) = x_A \cdot x_B
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(a_i\)</span> and <span class="arithmatex">\(b_i\)</span> are assumed <strong>statistically independent</strong></li>
+<li>The AND gate output <span class="arithmatex">\(c_i = a_i \wedge b_i\)</span> encodes the product <span class="arithmatex">\(x_A \cdot x_B\)</span></li>
+<li>Independence is crucial; violation leads to incorrect results (see Correlation Effects)</li>
+</ul>
+<p>This is a remarkable result: an operation that requires an <span class="arithmatex">\(n \times n\)</span>-bit hardware multiplier in conventional binary arithmetic---<span class="arithmatex">\(O(n^2)\)</span> gates with <span class="arithmatex">\(O(n)\)</span> propagation delay---reduces to a single two-input AND gate with unit delay.</p>
+<h3 id="bipolar-multiplication-via-xnor-gate">Bipolar Multiplication via XNOR Gate</h3>
+<p>For bipolar-encoded streams <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> representing values <span class="arithmatex">\(y_A\)</span> and <span class="arithmatex">\(y_B\)</span>, the XNOR gate computes:</p>
+<h4 id="bipolar-xnor-multiplication">Bipolar XNOR Multiplication</h4>
+<div class="arithmatex">\[
+P(c_i = 1) = P(a_i = b_i) = P(a_i = 1)P(b_i = 1) + P(a_i = 0)P(b_i = 0)
+\]</div>
+<p>Substituting <span class="arithmatex">\(P(a_i = 1) = (y_A + 1)/2\)</span> and <span class="arithmatex">\(P(b_i = 1) = (y_B + 1)/2\)</span> and simplifying:</p>
+<div class="arithmatex">\[
+P(c_i = 1) = \frac{y_A y_B + 1}{2}
+\]</div>
+<p>which, under the bipolar decoding <span class="arithmatex">\(y_C = 2P(c_i = 1) - 1\)</span>, yields:</p>
+<div class="arithmatex">\[
+y_C = y_A \cdot y_B
+\]</div>
+<p>The XNOR gate thus computes exact bipolar multiplication, again assuming statistical independence of the input streams.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Encoding</th>
+<th>Gate</th>
+<th>Gate Count</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiplication</td>
+<td>Unipolar</td>
+<td>AND</td>
+<td>1</td>
+<td>1 gate delay</td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td>Bipolar</td>
+<td>XNOR</td>
+<td>1</td>
+<td>1 gate delay</td>
+</tr>
+<tr>
+<td>Binary multiply (<span class="arithmatex">\(n\)</span>-bit)</td>
+<td>Binary</td>
+<td>Array multiplier</td>
+<td><span class="arithmatex">\(O(n^2)\)</span></td>
+<td><span class="arithmatex">\(O(n)\)</span> gate delays</td>
+</tr>
+<tr>
+<td>Binary multiply (<span class="arithmatex">\(n\)</span>-bit)</td>
+<td>Binary</td>
+<td>Wallace tree</td>
+<td><span class="arithmatex">\(O(n^2)\)</span></td>
+<td><span class="arithmatex">\(O(\log n)\)</span> gate delays</td>
+</tr>
+</tbody>
+</table>
+<h2 id="stochastic-addition">Stochastic Addition</h2>
+<p>Stochastic addition is inherently more complex than multiplication because the sum of two probabilities can exceed the representable range <span class="arithmatex">\([0,1]\)</span> or <span class="arithmatex">\([-1,1]\)</span>. Two principal approaches address this: <strong>scaled addition</strong> via a multiplexer and <strong>OR-gate addition</strong> with constraints.</p>
+<h3 id="or-gate-addition-unipolar-approximate">OR-Gate Addition (Unipolar, Approximate)</h3>
+<p>For two independent unipolar streams encoding <span class="arithmatex">\(x_A\)</span> and <span class="arithmatex">\(x_B\)</span>, the OR gate computes:</p>
+<h4 id="or-gate-approximate-addition">OR-Gate Approximate Addition</h4>
+<div class="arithmatex">\[
+P(a_i \vee b_i = 1) = 1 - (1-x_A)(1-x_B) = x_A + x_B - x_A x_B
+\]</div>
+<p>where:</p>
+<ul>
+<li>The output equals <span class="arithmatex">\(x_A + x_B\)</span> only when <span class="arithmatex">\(x_A x_B \approx 0\)</span>, i.e., when both values are small</li>
+<li>For small operands, the OR gate provides a good approximation to addition</li>
+<li>The cross-term <span class="arithmatex">\(x_A x_B\)</span> introduces a systematic negative bias</li>
+</ul>
+<p>This approximation is useful in limited contexts but is generally inadequate for precise arithmetic. The preferred approach is multiplexer-based scaled addition, discussed in the next section.</p>
+<h2 id="mux-based-stochastic-logic">Mux-Based Stochastic Logic</h2>
+<p>The <strong>multiplexer</strong> (MUX) is the fundamental building block for stochastic addition and more general linear combinations. A 2-to-1 multiplexer with a stochastic selecting input computes a weighted average of its data inputs.</p>
+<h3 id="scaled-addition">Scaled Addition</h3>
+<p>Given two stochastic bit streams <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> encoding values <span class="arithmatex">\(x_A\)</span> and <span class="arithmatex">\(x_B\)</span> (unipolar), and a selecting stream <span class="arithmatex">\(S\)</span> encoding value <span class="arithmatex">\(s\)</span>, the MUX output is:</p>
+<h4 id="mux-scaled-addition">MUX Scaled Addition</h4>
+<div class="arithmatex">\[
+P(z_i = 1) = s \cdot x_A + (1 - s) \cdot x_B
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(z_i = s_i \cdot a_i + \bar{s}_i \cdot b_i\)</span> is the MUX output at clock cycle <span class="arithmatex">\(i\)</span></li>
+<li><span class="arithmatex">\(s_i\)</span> is the selecting bit: when <span class="arithmatex">\(s_i = 1\)</span>, the output passes <span class="arithmatex">\(a_i\)</span>; when <span class="arithmatex">\(s_i = 0\)</span>, it passes <span class="arithmatex">\(b_i\)</span></li>
+<li>Setting <span class="arithmatex">\(s = 0.5\)</span> (a fair coin) yields the <strong>scaled sum</strong> <span class="arithmatex">\((x_A + x_B)/2\)</span></li>
+</ul>
+<p>The scaled addition via MUX is the workhorse of stochastic arithmetic. For equal weighting (<span class="arithmatex">\(s = 0.5\)</span>), the result is always within <span class="arithmatex">\([0, 1]\)</span>, avoiding overflow. The division by 2 is the cost of keeping the result in range, and multiple additions accumulate this scaling factor.</p>
+<h3 id="generalized-weighted-summation">Generalized Weighted Summation</h3>
+<p>An <span class="arithmatex">\(M\)</span>-to-1 multiplexer with a uniformly random <span class="arithmatex">\(\lceil \log_2 M \rceil\)</span>-bit selecting input computes:</p>
+<h4 id="generalized-mux-summation">Generalized MUX Summation</h4>
+<div class="arithmatex">\[
+P(z_i = 1) = \frac{1}{M}\sum_{j=1}^{M} x_j
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x_j\)</span> is the value encoded by the <span class="arithmatex">\(j\)</span>-th input stream</li>
+<li>The selecting input uniformly routes each input to the output with probability <span class="arithmatex">\(1/M\)</span></li>
+<li>This computes the arithmetic mean of <span class="arithmatex">\(M\)</span> stochastic inputs using a single MUX</li>
+</ul>
+<p>This construction is particularly powerful for neural network inference, where the weighted sum of inputs <span class="arithmatex">\(\sum_j w_j x_j\)</span> can be implemented by adjusting the selection probabilities to match the weights <span class="arithmatex">\(w_j\)</span>.</p>
+<h4 id="diagram-stochastic-arithmetic-unit">Diagram: Stochastic Arithmetic Unit</h4>
+<iframe src="../../sims/stochastic-arithmetic-unit/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive demonstration of stochastic multiplication (AND, XNOR) and addition (MUX)</summary>
+<p>Type: MicroSim
+Learning objective: Visualize how single logic gates perform arithmetic on stochastic bit streams and observe the convergence of output statistics. Bloom level: Analyze.
+Visual elements: Two input value sliders generating stochastic bit streams displayed as scrolling rows of colored bits (green for 1, gray for 0). Three output streams shown simultaneously: AND gate (unipolar multiply), XNOR gate (bipolar multiply), and MUX (scaled add). Each output has a running average display and error bar showing deviation from the exact result. A truth table overlay highlights which gate input combinations produce output 1.
+Controls: Two input value sliders (0 to 1 for unipolar, -1 to 1 for bipolar), encoding mode toggle (unipolar/bipolar), stream length selector, animation speed, reset.
+Behavior: Bit streams are generated in real time. The outputs are computed gate-by-gate, and running averages converge toward the theoretical values. Users can observe how different input combinations affect convergence speed and accuracy.
+Implementation: p5.js with real-time bit stream animation and statistical overlays.</p>
+</details>
+<p>The following list summarizes the key stochastic arithmetic operations and their hardware costs:</p>
+<ul>
+<li><strong>Multiplication (unipolar):</strong> Single AND gate; computes <span class="arithmatex">\(x_A \cdot x_B\)</span>; requires independent inputs</li>
+<li><strong>Multiplication (bipolar):</strong> Single XNOR gate; computes <span class="arithmatex">\(y_A \cdot y_B\)</span>; requires independent inputs</li>
+<li><strong>Scaled addition:</strong> Single 2:1 MUX with <span class="arithmatex">\(s = 0.5\)</span>; computes <span class="arithmatex">\((x_A + x_B)/2\)</span>; selecting stream must be independent of data streams</li>
+<li><strong>Weighted sum:</strong> <span class="arithmatex">\(M\)</span>:1 MUX with programmable selection; computes <span class="arithmatex">\(\sum_j w_j x_j\)</span>; weights encoded in selection probabilities</li>
+<li><strong>Subtraction (bipolar):</strong> Single XOR gate; computes <span class="arithmatex">\(-y_A \cdot y_B\)</span> (negation composed with XNOR)</li>
+<li><strong>Absolute value (bipolar):</strong> MUX with input and its complement; maps <span class="arithmatex">\(y \mapsto |y|\)</span></li>
+</ul>
+<h2 id="variance-in-stochastic-systems">Variance In Stochastic Systems</h2>
+<p>The fundamental limitation of stochastic computing is the <strong>variance</strong> inherent in representing numbers as finite-length random bit streams. This variance determines the accuracy of every stochastic computation and governs the stream length required to achieve a target precision.</p>
+<h3 id="variance-of-a-single-stochastic-number">Variance of a Single Stochastic Number</h3>
+<p>For a unipolar stochastic number <span class="arithmatex">\(x\)</span> encoded in a stream of length <span class="arithmatex">\(N\)</span>, the sample mean estimator <span class="arithmatex">\(\hat{x} = \frac{1}{N}\sum_i b_i\)</span> has variance:</p>
+<h4 id="single-stream-variance">Single-Stream Variance</h4>
+<div class="arithmatex">\[
+\text{Var}(\hat{x}) = \frac{x(1-x)}{N}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x\)</span> is the true encoded value</li>
+<li><span class="arithmatex">\(N\)</span> is the stream length</li>
+<li>The variance is maximized at <span class="arithmatex">\(x = 0.5\)</span>, yielding <span class="arithmatex">\(\text{Var}_{\max} = 1/(4N)\)</span></li>
+<li>The variance vanishes at the endpoints <span class="arithmatex">\(x = 0\)</span> and <span class="arithmatex">\(x = 1\)</span></li>
+</ul>
+<h3 id="precision-length-relationship">Precision-Length Relationship</h3>
+<p>To achieve a precision of <span class="arithmatex">\(\epsilon\)</span> (i.e., <span class="arithmatex">\(|\hat{x} - x| \leq \epsilon\)</span> with high probability), we require by Chebyshev's inequality:</p>
+<h4 id="precision-bound">Precision Bound</h4>
+<div class="arithmatex">\[
+N \geq \frac{x(1-x)}{\epsilon^2 \delta} \leq \frac{1}{4\epsilon^2 \delta}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\epsilon\)</span> is the desired absolute accuracy</li>
+<li><span class="arithmatex">\(\delta\)</span> is the allowed failure probability (<span class="arithmatex">\(P(|\hat{x} - x| &gt; \epsilon) \leq \delta\)</span>)</li>
+<li>For <span class="arithmatex">\(n\)</span> bits of precision (<span class="arithmatex">\(\epsilon = 2^{-n}\)</span>), one needs <span class="arithmatex">\(N = O(2^{2n})\)</span> stream bits</li>
+</ul>
+<p>This quadratic scaling is the central cost of stochastic computing. Achieving 8 bits of precision requires streams of length <span class="arithmatex">\(\sim 2^{16} = 65536\)</span>, whereas a conventional binary multiplier operates on 8-bit words directly. The trade-off is justified only when the hardware savings per clock cycle (single gates versus full multiplier circuits) outweigh the increased number of clock cycles.</p>
+<h3 id="variance-propagation-through-multiplication">Variance Propagation Through Multiplication</h3>
+<p>When two independent stochastic streams encoding <span class="arithmatex">\(x_A\)</span> and <span class="arithmatex">\(x_B\)</span> are multiplied via an AND gate, the variance of the product estimate <span class="arithmatex">\(\hat{z} = \widehat{x_A \cdot x_B}\)</span> is:</p>
+<h4 id="multiplication-variance">Multiplication Variance</h4>
+<div class="arithmatex">\[
+\text{Var}(\hat{z}) = \frac{x_A x_B(1 - x_A x_B)}{N}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The product <span class="arithmatex">\(x_A x_B\)</span> plays the role of the effective probability in the output stream</li>
+<li>Cascading multiple multiplications increases effective variance, since each stage introduces its own stochastic noise</li>
+<li>For <span class="arithmatex">\(k\)</span> cascaded multiplications of equal values <span class="arithmatex">\(x\)</span>, the output variance scales as <span class="arithmatex">\(\text{Var} \approx x^k(1 - x^k)/N\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Stream length <span class="arithmatex">\(N\)</span></th>
+<th>Max variance <span class="arithmatex">\(1/(4N)\)</span></th>
+<th>Equivalent precision (bits)</th>
+<th>Clock cycles (for <span class="arithmatex">\(n\)</span>-bit binary multiply)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64</td>
+<td><span class="arithmatex">\(3.9 \times 10^{-3}\)</span></td>
+<td>~4 bits</td>
+<td>1 (8-bit multiplier)</td>
+</tr>
+<tr>
+<td>256</td>
+<td><span class="arithmatex">\(9.8 \times 10^{-4}\)</span></td>
+<td>~5 bits</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1024</td>
+<td><span class="arithmatex">\(2.4 \times 10^{-4}\)</span></td>
+<td>~6 bits</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4096</td>
+<td><span class="arithmatex">\(6.1 \times 10^{-5}\)</span></td>
+<td>~7 bits</td>
+<td>1</td>
+</tr>
+<tr>
+<td>65536</td>
+<td><span class="arithmatex">\(3.8 \times 10^{-6}\)</span></td>
+<td>~8 bits</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="correlation-effects">Correlation Effects</h2>
+<p>The correctness of stochastic arithmetic operations critically depends on the <strong>statistical independence</strong> of the input bit streams. When two streams are correlated, the output of logic gates can deviate dramatically from the intended arithmetic operation. Understanding and managing correlation is the central challenge in designing stochastic computing systems.</p>
+<h3 id="stochastic-cross-correlation">Stochastic Cross-Correlation</h3>
+<p>The <strong>stochastic computing correlation</strong> (SCC) between two bit streams <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> is defined as:</p>
+<h4 id="stochastic-computing-correlation">Stochastic Computing Correlation</h4>
+<div class="arithmatex">\[
+\text{SCC}(A, B) = \begin{cases} \frac{P(a=1, b=1) - P(a=1)P(b=1)}{\min(P(a=1), P(b=1)) - P(a=1)P(b=1)} &amp; \text{if overlap} &gt; \text{expected} \\ \frac{P(a=1, b=1) - P(a=1)P(b=1)}{P(a=1)P(b=1) - \max(P(a=1)+P(b=1)-1, 0)} &amp; \text{if overlap} &lt; \text{expected} \end{cases}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(P(a=1, b=1)\)</span> is the joint probability that both streams have a 1 at the same position</li>
+<li><span class="arithmatex">\(\text{SCC} = 0\)</span> indicates independence (uncorrelated streams)</li>
+<li><span class="arithmatex">\(\text{SCC} = 1\)</span> indicates maximal positive correlation (identical streams)</li>
+<li><span class="arithmatex">\(\text{SCC} = -1\)</span> indicates maximal negative correlation (anti-correlated streams)</li>
+</ul>
+<h3 id="effects-of-correlation-on-multiplication">Effects of Correlation on Multiplication</h3>
+<p>When two correlated streams are fed to an AND gate, the output probability deviates from the product:</p>
+<ul>
+<li><strong>Independent streams</strong> (<span class="arithmatex">\(\text{SCC} = 0\)</span>): AND computes <span class="arithmatex">\(P(a \wedge b) = x_A \cdot x_B\)</span> (correct multiplication)</li>
+<li><strong>Maximally correlated</strong> (<span class="arithmatex">\(\text{SCC} = 1\)</span>, identical streams): AND computes <span class="arithmatex">\(P(a \wedge a) = x_A\)</span> (identity, not multiplication)</li>
+<li><strong>Maximally anti-correlated</strong> (<span class="arithmatex">\(\text{SCC} = -1\)</span>): AND computes <span class="arithmatex">\(P(a \wedge b) = \max(x_A + x_B - 1, 0)\)</span> (saturating subtraction)</li>
+</ul>
+<p>This can be expressed compactly. When two identical streams <span class="arithmatex">\(A\)</span> are fed to an AND gate, the output encodes <span class="arithmatex">\(x_A\)</span> rather than <span class="arithmatex">\(x_A^2\)</span>. This is a catastrophic error: squaring 0.5 should yield 0.25, but the correlated AND gate yields 0.5.</p>
+<h3 id="deliberate-correlation-exploitation">Deliberate Correlation Exploitation</h3>
+<p>While correlation is usually detrimental, it can be deliberately exploited. For instance:</p>
+<ul>
+<li><strong>Computing <span class="arithmatex">\(\min(x_A, x_B)\)</span>:</strong> Use maximally positively correlated streams with an AND gate</li>
+<li><strong>Computing <span class="arithmatex">\(\max(x_A, x_B)\)</span>:</strong> Use maximally positively correlated streams with an OR gate</li>
+<li><strong>Computing <span class="arithmatex">\(|x_A - x_B|\)</span>:</strong> Use maximally positively correlated streams with an XOR gate</li>
+</ul>
+<p>This yields a complete set of non-smooth operations that are impossible to compute with independent streams, extending the computational repertoire of stochastic logic.</p>
+<h4 id="diagram-correlation-effects-visualizer">Diagram: Correlation Effects Visualizer</h4>
+<iframe src="../../sims/correlation-effects-visualizer/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive visualization of how correlation between stochastic bit streams affects AND gate output</summary>
+<p>Type: MicroSim
+Learning objective: Demonstrate the dramatic impact of stream correlation on stochastic computation accuracy. Bloom level: Analyze.
+Visual elements: Two parallel bit streams displayed as colored bars, with matching bits highlighted. A correlation slider controls the SCC value from -1 to +1. The AND gate output stream is shown below. Three plots display: (1) the theoretical output as a function of SCC, (2) the measured output from the simulation, and (3) the error between measured and ideal uncorrelated multiplication. A table shows the expected output for SCC = -1, 0, +1.
+Controls: Two input probability sliders, SCC slider (-1 to +1), stream length selector, play/pause, reset.
+Behavior: As the SCC slider moves, the bit streams are regenerated with the specified correlation structure (using the common random number technique). The AND gate output probability visibly deviates from <span class="arithmatex">\(x_A \cdot x_B\)</span> as correlation increases.
+Implementation: p5.js with correlated Bernoulli stream generation and real-time statistics.</p>
+</details>
+<h2 id="decorrelation-techniques">Decorrelation Techniques</h2>
+<p>Since correlation can corrupt stochastic computations, practical stochastic computing systems must employ <strong>decorrelation techniques</strong> to ensure that bit streams entering logic gates are sufficiently independent. Several approaches have been developed, each with distinct trade-offs in hardware cost and effectiveness.</p>
+<h3 id="independent-rng-sources">Independent RNG Sources</h3>
+<p>The most straightforward decorrelation method is to generate each stochastic bit stream using a <strong>separate, independently seeded random number generator</strong>. If each comparator in the system uses its own LFSR with a distinct seed, the resulting bit streams are statistically independent (or nearly so, given the pseudo-random nature of LFSRs).</p>
+<ul>
+<li><strong>Advantage:</strong> Guaranteed independence; no additional logic required beyond separate RNGs</li>
+<li><strong>Disadvantage:</strong> Hardware cost scales linearly with the number of streams; LFSRs consume area and power</li>
+<li><strong>Typical implementation:</strong> Each input uses its own maximal-length LFSR of <span class="arithmatex">\(n\)</span> bits, requiring <span class="arithmatex">\(n\)</span> flip-flops per stream</li>
+</ul>
+<h3 id="regeneration-via-isolation">Regeneration via Isolation</h3>
+<p>When a stochastic bit stream is used as input to multiple gates (creating a fan-out), the copies are perfectly correlated. <strong>Regeneration</strong> breaks this correlation by converting the stream back to a binary number (via a counter) and then regenerating a fresh stochastic stream from that number using an independent RNG.</p>
+<h4 id="regeneration-decorrelation">Regeneration Decorrelation</h4>
+<div class="arithmatex">\[
+\hat{x} = \frac{1}{N}\sum_{i=1}^{N} a_i \quad \longrightarrow \quad b_j = \begin{cases} 1 &amp; R'_j &lt; \hat{x} \cdot 2^n \\ 0 &amp; \text{otherwise} \end{cases}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\hat{x}\)</span> is the estimated value from counting the original stream <span class="arithmatex">\(A\)</span></li>
+<li><span class="arithmatex">\(R'_j\)</span> is drawn from an independent RNG</li>
+<li>The regenerated stream <span class="arithmatex">\(B\)</span> is independent of <span class="arithmatex">\(A\)</span> but encodes the same (estimated) value</li>
+</ul>
+<p>The cost of regeneration is a counter (<span class="arithmatex">\(n\)</span> bits), a new RNG, and a comparator---essentially replicating the original conversion hardware. Additionally, the estimation step introduces quantization error proportional to <span class="arithmatex">\(1/N\)</span>.</p>
+<h3 id="lfsr-sharing-with-rotation">LFSR Sharing with Rotation</h3>
+<p>A more area-efficient approach uses a <strong>single LFSR</strong> with different <strong>bit rotations</strong> to generate quasi-independent streams. If an <span class="arithmatex">\(n\)</span>-bit maximal-length LFSR produces the sequence <span class="arithmatex">\(R_1, R_2, \ldots\)</span>, then the rotated sequence <span class="arithmatex">\(R_1 \gg k, R_2 \gg k, \ldots\)</span> (circular right shift by <span class="arithmatex">\(k\)</span> positions) has low cross-correlation with the original for appropriate shift values.</p>
+<ul>
+<li><strong>Advantage:</strong> Single LFSR serves multiple comparators; minimal area overhead</li>
+<li><strong>Disadvantage:</strong> Streams are not truly independent; residual correlation exists, especially for short LFSRs</li>
+<li><strong>Best practice:</strong> Use LFSR length <span class="arithmatex">\(n \geq 2 \times\)</span> (number of precision bits); choose rotation amounts that are coprime to the LFSR period</li>
+</ul>
+<h3 id="decorrelation-summary">Decorrelation Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Hardware Cost</th>
+<th>Decorrelation Quality</th>
+<th>Latency Overhead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Independent RNGs</td>
+<td>High (<span class="arithmatex">\(n\)</span> flip-flops per stream)</td>
+<td>Excellent</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Regeneration</td>
+<td>Moderate (counter + RNG + comparator)</td>
+<td>Good (limited by quantization)</td>
+<td><span class="arithmatex">\(N\)</span> cycles for counting</td>
+</tr>
+<tr>
+<td>LFSR rotation</td>
+<td>Low (single LFSR + barrel shifter)</td>
+<td>Moderate (pseudo-independence)</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Clock domain isolation</td>
+<td>Moderate (clock crossing logic)</td>
+<td>Good</td>
+<td>Small synchronization delay</td>
+</tr>
+</tbody>
+</table>
+<h2 id="stochastic-error-tolerance">Stochastic Error Tolerance</h2>
+<p>One of the most compelling properties of stochastic computing is its inherent <strong>error tolerance</strong>---the ability to produce approximately correct results even in the presence of bit-level errors. This property distinguishes SC from conventional binary arithmetic, where a single bit flip in the most significant bit (MSB) can corrupt the result by up to 50%.</p>
+<h3 id="uniform-bit-significance">Uniform Bit Significance</h3>
+<p>In a conventional <span class="arithmatex">\(n\)</span>-bit binary representation, bit <span class="arithmatex">\(k\)</span> carries weight <span class="arithmatex">\(2^k\)</span>. An error in bit <span class="arithmatex">\(k\)</span> causes a magnitude-<span class="arithmatex">\(2^k\)</span> error in the represented value. In stark contrast, every bit in a stochastic stream carries equal weight <span class="arithmatex">\(1/N\)</span>:</p>
+<h4 id="uniform-bit-weight-property">Uniform Bit Weight Property</h4>
+<div class="arithmatex">\[
+\Delta \hat{x}_{\text{single bit flip}} = \frac{1}{N}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(N\)</span> is the stream length</li>
+<li>A single bit error changes the estimated value by exactly <span class="arithmatex">\(\pm 1/N\)</span>, regardless of the position of the error</li>
+<li>This is the <strong>uniform significance property</strong>: no bit is more important than any other</li>
+</ul>
+<p>This property means that random noise affecting individual bits causes a graceful, bounded degradation in accuracy rather than a catastrophic failure. If a fraction <span class="arithmatex">\(\alpha\)</span> of bits in a stream of length <span class="arithmatex">\(N\)</span> are randomly flipped, the expected error in the decoded value is:</p>
+<h4 id="error-under-random-bit-flips">Error Under Random Bit Flips</h4>
+<div class="arithmatex">\[
+E[|\hat{x}_{\text{noisy}} - x|] \leq \alpha
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha\)</span> is the bit error rate (fraction of flipped bits)</li>
+<li>The error scales linearly with <span class="arithmatex">\(\alpha\)</span>, independent of <span class="arithmatex">\(N\)</span> (for large <span class="arithmatex">\(N\)</span>)</li>
+<li>For comparison, a binary number with bit error rate <span class="arithmatex">\(\alpha\)</span> suffers expected error <span class="arithmatex">\(\sim \alpha \cdot 2^{n-1}/(2^n - 1) \cdot n\)</span>, which is dominated by MSB errors</li>
+</ul>
+<h3 id="graceful-degradation-under-soft-errors">Graceful Degradation Under Soft Errors</h3>
+<p>In radiation-hardened or ultra-low-voltage environments where transient faults (soft errors) are common, stochastic computing provides a natural resilience:</p>
+<ul>
+<li><strong>Binary system:</strong> A soft error in an adder's carry chain can corrupt the entire sum; error detection/correction codes (ECC) are required</li>
+<li><strong>Stochastic system:</strong> A soft error in an AND gate flips one output bit, shifting the result by <span class="arithmatex">\(1/N\)</span>; no ECC needed</li>
+</ul>
+<p>This makes stochastic computing attractive for aerospace, medical implant, and IoT applications where reliability constraints are severe but approximate results are acceptable.</p>
+<h4 id="diagram-error-tolerance-comparison">Diagram: Error Tolerance Comparison</h4>
+<iframe src="../../sims/stochastic-error-tolerance/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Side-by-side comparison of error impact on binary versus stochastic number representations</summary>
+<p>Type: MicroSim
+Learning objective: Demonstrate the graceful degradation property of stochastic computing compared to catastrophic failure modes in binary representation. Bloom level: Evaluate.
+Visual elements: Left panel shows an 8-bit binary number with individual bits that can be toggled (simulating errors) and the resulting decimal value, with error magnitude displayed. Right panel shows a stochastic bit stream of configurable length with random bit flips injected, and the resulting estimated value with error magnitude. A comparison bar chart shows the error magnitude for both representations at varying bit error rates (0.01, 0.05, 0.1, 0.2). Color coding highlights low errors (green) through high errors (red).
+Controls: Input value slider, bit error rate slider (0 to 0.5), stream length selector, binary bit toggle buttons, inject random errors button, reset.
+Behavior: Users can manually flip bits in the binary representation and observe catastrophic changes (especially MSB), or inject random errors into the stochastic stream and observe the modest, predictable degradation. The comparison chart updates in real time.
+Implementation: p5.js with dual-panel layout, interactive bit manipulation, and statistical comparison.</p>
+</details>
+<h3 id="quantitative-error-bounds">Quantitative Error Bounds</h3>
+<p>The mean squared error (MSE) of a stochastic computation under a noisy channel with bit error rate <span class="arithmatex">\(\alpha\)</span> can be bounded. For a unipolar value <span class="arithmatex">\(x\)</span> encoded in a stream of length <span class="arithmatex">\(N\)</span> with i.i.d. bit flips at rate <span class="arithmatex">\(\alpha\)</span>, the effective decoded value is:</p>
+<h4 id="noisy-channel-mse">Noisy Channel MSE</h4>
+<div class="arithmatex">\[
+\text{MSE} = E[(\hat{x}_{\text{noisy}} - x)^2] = \frac{x(1-x)}{N} + \alpha(1 - 2\alpha)(1 - 2x)^2 \cdot \frac{1}{N} + \alpha(1-\alpha)\frac{1}{N}
+\]</div>
+<p>For large <span class="arithmatex">\(N\)</span> and small <span class="arithmatex">\(\alpha\)</span>, the dominant contribution is the intrinsic stochastic variance <span class="arithmatex">\(x(1-x)/N\)</span>, and the noise-induced terms are additive corrections. This contrasts sharply with binary arithmetic, where the MSE due to bit errors does not diminish with word length---an MSB error always causes an <span class="arithmatex">\(O(1)\)</span> fractional error.</p>
+<h2 id="stochastic-image-processing">Stochastic Image Processing</h2>
+<p><strong>Stochastic image processing</strong> is one of the most successful application domains for stochastic computing, exploiting the paradigm's hardware simplicity and error tolerance for operations on pixel values. Since pixel intensities are naturally bounded in <span class="arithmatex">\([0, 1]\)</span> (after normalization) and moderate precision (8 bits) is visually sufficient, stochastic computing's strengths align well with image processing requirements.</p>
+<h3 id="edge-detection">Edge Detection</h3>
+<p>A basic edge detection filter computes the gradient magnitude at each pixel by approximating the partial derivatives using finite differences. The Roberts cross operator, for example, computes:</p>
+<h4 id="roberts-cross-gradient">Roberts Cross Gradient</h4>
+<div class="arithmatex">\[
+G = \sqrt{(I_{i,j} - I_{i+1,j+1})^2 + (I_{i,j+1} - I_{i+1,j})^2}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(I_{i,j}\)</span> is the normalized pixel intensity at position <span class="arithmatex">\((i,j)\)</span></li>
+<li>The differences and squaring operations can be implemented using XOR gates (for absolute difference in bipolar encoding) and AND gates (for squaring)</li>
+<li>The square root is approximated via a lookup-free stochastic circuit using FSM-based computation</li>
+</ul>
+<p>In a stochastic implementation, each pixel intensity is converted to a stochastic stream, and the entire gradient computation at each pixel requires only a handful of logic gates, compared to the multipliers and adders needed in a conventional implementation.</p>
+<h3 id="gamma-correction">Gamma Correction</h3>
+<p>Gamma correction, the nonlinear mapping <span class="arithmatex">\(y = x^\gamma\)</span>, is a standard image processing operation for display calibration. In stochastic computing, this can be approximated by cascading AND gates:</p>
+<ul>
+<li><strong><span class="arithmatex">\(\gamma = 2\)</span>:</strong> Feed the same stream (or a correlated copy) into a 2-input AND gate: <span class="arithmatex">\(P(a \wedge a) = x\)</span> (using the identity property of correlated streams), or use two independent streams: <span class="arithmatex">\(P(a \wedge b) = x^2\)</span></li>
+<li><strong><span class="arithmatex">\(\gamma = k\)</span> (integer):</strong> Cascade <span class="arithmatex">\(k\)</span> independent streams through a <span class="arithmatex">\(k\)</span>-input AND gate: output probability <span class="arithmatex">\(= x^k\)</span></li>
+<li><strong><span class="arithmatex">\(\gamma = 1/k\)</span> (fractional):</strong> Use an OR gate on <span class="arithmatex">\(k\)</span> independent copies, with appropriate correction circuits</li>
+</ul>
+<h3 id="neural-network-inference">Neural Network Inference</h3>
+<p>Stochastic computing has found significant application in <strong>neural network inference</strong>, where the dominant computation is the multiply-accumulate (MAC) operation <span class="arithmatex">\(y = \sigma(\sum_j w_j x_j + b)\)</span>. In a stochastic implementation:</p>
+<ul>
+<li>Each weight <span class="arithmatex">\(w_j\)</span> and input <span class="arithmatex">\(x_j\)</span> is encoded as a stochastic bit stream (bipolar for signed values)</li>
+<li>The product <span class="arithmatex">\(w_j x_j\)</span> is computed by an XNOR gate (one gate per synapse)</li>
+<li>The weighted sum <span class="arithmatex">\(\sum_j w_j x_j\)</span> is computed by a multiplexer tree</li>
+<li>The activation function <span class="arithmatex">\(\sigma\)</span> is implemented by a finite-state machine (FSM) that approximates tanh or sigmoid</li>
+</ul>
+<p>This approach has been demonstrated to achieve competitive classification accuracy on MNIST and CIFAR-10 with 256- to 1024-bit streams, using orders of magnitude less hardware area and energy than conventional digital MAC units.</p>
+<h4 id="diagram-stochastic-neural-network-layer">Diagram: Stochastic Neural Network Layer</h4>
+<iframe src="../../sims/stochastic-neural-network/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Stochastic implementation of a single neural network layer with XNOR multiplication and MUX accumulation</summary>
+<p>Type: MicroSim
+Learning objective: Understand how stochastic computing implements the multiply-accumulate operation central to neural network inference. Bloom level: Apply.
+Visual elements: A schematic of a single neuron with N inputs. Each input shows a stochastic bit stream and its corresponding weight stream. XNOR gates compute element-wise products, and a MUX tree accumulates the results. An FSM block implements the activation function. Output probability and decoded value are shown. Side panel compares hardware cost (gate count, area) versus a conventional binary MAC unit.
+Controls: Number of inputs (2, 4, 8, 16), input values and weights sliders, stream length selector, activation function choice (sigmoid, tanh, ReLU approximation), animation speed, reset.
+Behavior: Bit streams flow through the XNOR gates and MUX tree in real time. The output stream's running average converges to the expected neuron output. Users can modify weights and inputs to see how the stochastic neuron responds. The hardware comparison panel updates to reflect the selected configuration.
+Implementation: p5.js with schematic circuit visualization and real-time stochastic computation.</p>
+</details>
+<h3 id="application-comparison">Application Comparison</h3>
+<p>The following table compares stochastic and conventional implementations of common image processing operations.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Conventional Hardware</th>
+<th>Stochastic Hardware</th>
+<th>Precision Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pixel multiply</td>
+<td><span class="arithmatex">\(8 \times 8\)</span> multiplier (~64 full adders)</td>
+<td>1 AND gate</td>
+<td>256-bit stream <span class="arithmatex">\(\approx\)</span> 4-bit precision</td>
+</tr>
+<tr>
+<td>Convolution (<span class="arithmatex">\(3 \times 3\)</span> kernel)</td>
+<td>9 multipliers + 8 adders</td>
+<td>9 AND gates + 1 MUX tree</td>
+<td>1024-bit stream <span class="arithmatex">\(\approx\)</span> 5-bit precision</td>
+</tr>
+<tr>
+<td>Gamma correction (<span class="arithmatex">\(\gamma = 2\)</span>)</td>
+<td>Lookup table or multiplier</td>
+<td>1 AND gate (independent streams)</td>
+<td>Stream length dependent</td>
+</tr>
+<tr>
+<td>Edge detection (Roberts)</td>
+<td>2 subtractors + 2 multipliers + 1 adder</td>
+<td>2 XOR + 2 AND + 1 OR gate</td>
+<td>Adequate for visual quality</td>
+</tr>
+<tr>
+<td>Median filter (<span class="arithmatex">\(3 \times 3\)</span>)</td>
+<td>Sorting network (complex)</td>
+<td>Majority gate cascade</td>
+<td>Natural stochastic operation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="summary-of-the-stochastic-computing-paradigm">Summary of the Stochastic Computing Paradigm</h2>
+<p>Stochastic computing offers a fundamentally different approach to arithmetic computation, trading precision for hardware simplicity and gaining intrinsic error tolerance. The key theoretical results developed in this chapter are:</p>
+<ol>
+<li><strong>Encoding:</strong> Real numbers in <span class="arithmatex">\([0,1]\)</span> (unipolar) or <span class="arithmatex">\([-1,1]\)</span> (bipolar) are represented as the probability of a 1 in a random bit stream</li>
+<li><strong>Multiplication:</strong> A single AND gate (unipolar) or XNOR gate (bipolar) computes exact multiplication on independent streams</li>
+<li><strong>Addition:</strong> A 2:1 MUX with a fair selecting bit computes the scaled sum <span class="arithmatex">\((x_A + x_B)/2\)</span></li>
+<li><strong>Variance:</strong> Precision scales as <span class="arithmatex">\(O(1/\sqrt{N})\)</span>, requiring <span class="arithmatex">\(O(2^{2n})\)</span> stream bits for <span class="arithmatex">\(n\)</span> bits of accuracy</li>
+<li><strong>Correlation:</strong> Stream independence is essential for correct arithmetic; correlated streams compute different functions (min, max, absolute difference)</li>
+<li><strong>Decorrelation:</strong> Independent RNGs, regeneration, and LFSR rotation techniques restore the independence assumption</li>
+<li><strong>Error tolerance:</strong> Uniform bit significance yields graceful degradation---a bit error rate of <span class="arithmatex">\(\alpha\)</span> causes at most <span class="arithmatex">\(\alpha\)</span> absolute error</li>
+<li><strong>Applications:</strong> Image processing and neural network inference exploit SC's strengths, achieving competitive quality with dramatically simpler hardware</li>
+</ol>
+<p>The study of stochastic computing also deepens our understanding of the relationship between information, randomness, and computation---themes that connect to the information-theoretic foundations of Chapter 3 and the physical limits of Chapter 2. As we proceed to hybrid computing architectures in Chapter 14, the ability to mix stochastic, deterministic, and quantum computational elements opens new avenues for energy-efficient, fault-tolerant computing systems.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>B. R. Gaines, "Stochastic Computing Systems," in <em>Advances in Information Systems Science</em>, vol. 2, pp. 37-172, Plenum Press, 1969.</li>
+<li>A. Alaghi and J. P. Hayes, "Survey of Stochastic Computing," <em>ACM Transactions on Embedded Computing Systems</em>, vol. 12, no. 2s, Article 92, 2013.</li>
+<li>W. J. Poppelbaum, C. Afuso, and J. W. Esch, "Stochastic Computing Elements and Systems," in <em>Proceedings of the Fall Joint Computer Conference</em>, AFIPS, pp. 635-644, 1967.</li>
+<li>P. Li, D. J. Lilja, W. Qian, K. Bazargan, and M. D. Riedel, "Computation on Stochastic Bit Streams: Digital Image Processing Case Studies," <em>IEEE Transactions on VLSI Systems</em>, vol. 22, no. 3, pp. 449-462, 2014.</li>
+<li>J. von Neumann, "Probabilistic Logics and the Synthesis of Reliable Organisms from Unreliable Components," in <em>Automata Studies</em>, pp. 43-98, Princeton University Press, 1956.</li>
+<li>K. Kim, J. Lee, and K. Choi, "An Energy-Efficient Random Number Generator for Stochastic Circuits," in <em>Proceedings of the Asia and South Pacific Design Automation Conference</em>, pp. 256-261, 2016.</li>
+<li>A. Ren, Z. Li, C. Ding, Q. Qiu, Y. Wang, J. Li, X. Qian, and B. Yuan, "SC-DCNN: Highly-Scalable Deep Convolutional Neural Network using Stochastic Computing," in <em>Proceedings of the ACM International Conference on Architectural Support for Programming Languages and Operating Systems</em>, pp. 405-418, 2017.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../12-quantum-hardware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 12. Quantum Hardware">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                12. Quantum Hardware
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../14-hybrid-computing/" class="md-footer__link md-footer__link--next" aria-label="Next: 14. Hybrid Computing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                14. Hybrid Computing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

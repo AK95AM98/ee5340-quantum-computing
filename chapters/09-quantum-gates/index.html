@@ -1,0 +1,3399 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Quantum gate formalism including Pauli gates, Hadamard, rotation operators, multi-qubit gates, universality, and circuit model">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/09-quantum-gates/">
+      
+      
+        <link rel="prev" href="../08-qubits-and-states/">
+      
+      
+        <link rel="next" href="../10-quantum-algorithms/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Quantum Gates and Circuits - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quantum-gates-and-circuits" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quantum Gates and Circuits
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-qubit-gates-the-pauli-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Qubit Gates: The Pauli Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Single-Qubit Gates: The Pauli Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-x-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-X Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-X Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-x-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-X Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-y-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Y Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-Y Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-y-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Y Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-Z Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli Algebra
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli Algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-product-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli Product Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hadamard-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hadamard Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hadamard Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadamard-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hadamard Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-qubit-hadamard-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n-Qubit Hadamard Transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotation-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rotation Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-rotation-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Rotation Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-x-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the X-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-y-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the Y-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-z-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the Z-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zyz-euler-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZYZ Euler Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-single-qubit-gate-bloch-sphere-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Single-Qubit Gate Bloch Sphere Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-qubit-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Qubit Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Qubit Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CNOT Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlled-z-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled-Z Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controlled-Z Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cz-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CZ Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SWAP Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-in-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate in Quantum Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toffoli Gate in Quantum Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-multi-qubit-gate-circuit-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Multi-Qubit Gate Circuit Composer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#universal-gate-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Gate Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-gate-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gate Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gate-decomposition-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Decomposition Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solovay-kitaev-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solovay-Kitaev Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solovay-Kitaev Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solovay-kitaev-theorem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solovay-Kitaev Theorem Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Magic State Distillation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-magic-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Magic State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-circuit-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Circuit Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Circuit Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-circuit-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Circuit Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-gate-relationship-concept-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Gate Relationship Concept Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together-from-gates-to-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting It All Together: From Gates to Computation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-qubit-gates-the-pauli-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Qubit Gates: The Pauli Group
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Single-Qubit Gates: The Pauli Group">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-x-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-X Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-X Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-x-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-X Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-y-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Y Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-Y Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-y-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Y Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli-Z Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-z-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli-Z Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pauli-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli Algebra
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pauli Algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pauli-product-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pauli Product Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hadamard-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hadamard Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hadamard Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hadamard-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hadamard Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-qubit-hadamard-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n-Qubit Hadamard Transform
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-gate-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Gate Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotation-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rotation Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-rotation-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Rotation Operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-x-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the X-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-y-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the Y-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-about-the-z-axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation About the Z-Axis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zyz-euler-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZYZ Euler Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-single-qubit-gate-bloch-sphere-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Single-Qubit Gate Bloch Sphere Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-qubit-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Qubit Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Qubit Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CNOT Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnot-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CNOT Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlled-z-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlled-Z Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Controlled-Z Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cz-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CZ Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Gate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SWAP Gate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swap-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swap-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWAP Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-in-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate in Quantum Computing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toffoli Gate in Quantum Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toffoli-gate-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toffoli Gate Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-multi-qubit-gate-circuit-composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Multi-Qubit Gate Circuit Composer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#universal-gate-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Gate Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#universal-gate-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gate Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gate-decomposition-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Decomposition Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solovay-kitaev-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solovay-Kitaev Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solovay-Kitaev Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solovay-kitaev-theorem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solovay-Kitaev Theorem Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Magic State Distillation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-magic-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T Magic State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-circuit-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Circuit Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Circuit Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-circuit-simulator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Circuit Simulator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-gate-relationship-concept-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Gate Relationship Concept Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-it-all-together-from-gates-to-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Putting It All Together: From Gates to Computation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/09-quantum-gates/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="quantum-gates-and-circuits">Quantum Gates and Circuits</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter develops the quantum gate formalism for quantum computation. We derive the Pauli matrices and their algebraic properties, the Hadamard transform, rotation operators from matrix exponentials, and multi-qubit gates including CNOT, controlled-Z, SWAP, and the quantum Toffoli gate. We prove the universality of specific gate sets via the Solovay-Kitaev theorem and introduce magic state distillation and gate decomposition techniques.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 16 concepts:</p>
+<ol>
+<li>Pauli-X Gate</li>
+<li>Pauli-Y Gate</li>
+<li>Pauli-Z Gate</li>
+<li>Hadamard Gate</li>
+<li>Phase Gate</li>
+<li>T Gate</li>
+<li>Rotation Operators</li>
+<li>CNOT Gate</li>
+<li>Controlled-Z Gate</li>
+<li>SWAP Gate</li>
+<li>Toffoli Gate In Quantum</li>
+<li>Universal Gate Set</li>
+<li>Gate Decomposition</li>
+<li>Solovay-Kitaev Theorem</li>
+<li>Magic State Distillation</li>
+<li>Quantum Circuit Model</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+<li><a href="../06-reversible-computing/">Chapter 6: Reversible Computing</a> (for Toffoli Gate)</li>
+<li><a href="../07-quantum-mechanics/">Chapter 7: Quantum Mechanics Foundations</a></li>
+<li><a href="../08-qubits-and-states/">Chapter 8: Qubits and Quantum States</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>In Chapter 8, we developed the qubit as a normalized vector in <span class="arithmatex">\(\mathbb{C}^2\)</span> and constructed the multi-qubit state space via tensor products. The next foundational question is: how do we <em>manipulate</em> quantum states to perform computation? The answer lies in <strong>quantum gates</strong>—unitary operators acting on the Hilbert space of one or more qubits. Just as classical logic gates (AND, OR, NOT) transform bit strings, quantum gates transform quantum states while preserving the normalization and reversibility demanded by the postulates of quantum mechanics.</p>
+<p>The requirement that quantum evolution be unitary (<span class="arithmatex">\(U^\dagger U = I\)</span>) has profound consequences. Every quantum gate is invertible: the inverse of <span class="arithmatex">\(U\)</span> is simply <span class="arithmatex">\(U^\dagger\)</span>. There is no quantum analogue of the classical AND gate, which irreversibly maps two bits to one. This constraint connects directly to the reversible computing formalism of Chapter 6, and indeed the quantum Toffoli gate is the direct generalization of its classical counterpart.</p>
+<p>We begin with the single-qubit gates—the three Pauli matrices, the Hadamard gate, the phase and <span class="arithmatex">\(T\)</span> gates, and the continuous family of rotation operators—before ascending to multi-qubit gates (CNOT, controlled-<span class="arithmatex">\(Z\)</span>, SWAP, Toffoli). We then address the central theoretical question of <strong>universality</strong>: which finite sets of gates suffice to approximate any unitary transformation to arbitrary precision? The Solovay-Kitaev theorem provides a remarkable affirmative answer, and magic state distillation supplies the practical mechanism for achieving fault-tolerant universal computation.</p>
+<h2 id="single-qubit-gates-the-pauli-group">Single-Qubit Gates: The Pauli Group</h2>
+<p>The three <strong>Pauli matrices</strong> <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, and <span class="arithmatex">\(Z\)</span>, together with the identity <span class="arithmatex">\(I\)</span>, form the single-qubit Pauli group (up to phases <span class="arithmatex">\(\{\pm 1, \pm i\}\)</span>). These operators are simultaneously the generators of single-qubit rotations, the basis for expanding arbitrary <span class="arithmatex">\(2 \times 2\)</span> matrices, and the observables whose eigenstates define the three complementary measurement bases.</p>
+<h3 id="pauli-x-gate">Pauli-X Gate</h3>
+<p>The <strong>Pauli-<span class="arithmatex">\(X\)</span> gate</strong> is the quantum analogue of the classical NOT gate. It flips the computational basis states:</p>
+<h4 id="pauli-x-matrix">Pauli-X Matrix</h4>
+<div class="arithmatex">\[
+X = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X|0\rangle = |1\rangle\)</span> and <span class="arithmatex">\(X|1\rangle = |0\rangle\)</span> (bit flip)</li>
+<li><span class="arithmatex">\(X^2 = I\)</span> (involutory: applying <span class="arithmatex">\(X\)</span> twice returns to the original state)</li>
+<li>Eigenvalues: <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> with eigenstates <span class="arithmatex">\(|+\rangle\)</span> and <span class="arithmatex">\(|-\rangle\)</span></li>
+</ul>
+<p>On the Bloch sphere, <span class="arithmatex">\(X\)</span> corresponds to a rotation by <span class="arithmatex">\(\pi\)</span> radians about the <span class="arithmatex">\(x\)</span>-axis. For a general qubit state <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>, the action is <span class="arithmatex">\(X|\psi\rangle = \beta|0\rangle + \alpha|1\rangle\)</span>, which swaps the amplitudes of the computational basis states.</p>
+<h3 id="pauli-y-gate">Pauli-Y Gate</h3>
+<p>The <strong>Pauli-<span class="arithmatex">\(Y\)</span> gate</strong> combines a bit flip with a phase flip:</p>
+<h4 id="pauli-y-matrix">Pauli-Y Matrix</h4>
+<div class="arithmatex">\[
+Y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(Y|0\rangle = i|1\rangle\)</span> and <span class="arithmatex">\(Y|1\rangle = -i|0\rangle\)</span></li>
+<li><span class="arithmatex">\(Y^2 = I\)</span> (involutory)</li>
+<li>Eigenvalues: <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> with eigenstates <span class="arithmatex">\(|+i\rangle = \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\)</span> and <span class="arithmatex">\(|-i\rangle = \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\)</span></li>
+</ul>
+<p>On the Bloch sphere, <span class="arithmatex">\(Y\)</span> is a rotation by <span class="arithmatex">\(\pi\)</span> about the <span class="arithmatex">\(y\)</span>-axis. Unlike <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Z\)</span>, the Pauli-<span class="arithmatex">\(Y\)</span> matrix has purely imaginary off-diagonal elements, which introduces relative phases that are critical in constructing rotation operators.</p>
+<h3 id="pauli-z-gate">Pauli-Z Gate</h3>
+<p>The <strong>Pauli-<span class="arithmatex">\(Z\)</span> gate</strong> applies a phase flip, leaving <span class="arithmatex">\(|0\rangle\)</span> unchanged while multiplying <span class="arithmatex">\(|1\rangle\)</span> by <span class="arithmatex">\(-1\)</span>:</p>
+<h4 id="pauli-z-matrix">Pauli-Z Matrix</h4>
+<div class="arithmatex">\[
+Z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(Z|0\rangle = |0\rangle\)</span> and <span class="arithmatex">\(Z|1\rangle = -|1\rangle\)</span> (phase flip)</li>
+<li><span class="arithmatex">\(Z^2 = I\)</span> (involutory)</li>
+<li>Eigenvalues: <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> with eigenstates <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span></li>
+</ul>
+<p>On the Bloch sphere, <span class="arithmatex">\(Z\)</span> is a rotation by <span class="arithmatex">\(\pi\)</span> about the <span class="arithmatex">\(z\)</span>-axis. The computational basis states are the eigenstates of <span class="arithmatex">\(Z\)</span>, which is why measurement in the computational basis is often called "<span class="arithmatex">\(Z\)</span>-measurement."</p>
+<h3 id="pauli-algebra">Pauli Algebra</h3>
+<p>The three Pauli matrices satisfy a rich algebraic structure that underpins much of quantum gate theory:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hermiticity</td>
+<td><span class="arithmatex">\(X^\dagger = X\)</span>, <span class="arithmatex">\(Y^\dagger = Y\)</span>, <span class="arithmatex">\(Z^\dagger = Z\)</span></td>
+</tr>
+<tr>
+<td>Unitarity</td>
+<td><span class="arithmatex">\(X^\dagger X = Y^\dagger Y = Z^\dagger Z = I\)</span></td>
+</tr>
+<tr>
+<td>Involution</td>
+<td><span class="arithmatex">\(X^2 = Y^2 = Z^2 = I\)</span></td>
+</tr>
+<tr>
+<td>Anticommutation</td>
+<td><span class="arithmatex">\(\{X, Y\} = \{Y, Z\} = \{Z, X\} = 0\)</span></td>
+</tr>
+<tr>
+<td>Commutation</td>
+<td><span class="arithmatex">\([X, Y] = 2iZ\)</span>, <span class="arithmatex">\([Y, Z] = 2iX\)</span>, <span class="arithmatex">\([Z, X] = 2iY\)</span></td>
+</tr>
+<tr>
+<td>Product</td>
+<td><span class="arithmatex">\(XYZ = iI\)</span></td>
+</tr>
+<tr>
+<td>Trace</td>
+<td><span class="arithmatex">\(\text{Tr}(X) = \text{Tr}(Y) = \text{Tr}(Z) = 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The commutation relations <span class="arithmatex">\([\sigma_j, \sigma_k] = 2i\epsilon_{jkl}\sigma_l\)</span> mirror the angular momentum algebra of <span class="arithmatex">\(\mathfrak{su}(2)\)</span>, confirming that the Pauli matrices are the generators of <span class="arithmatex">\(SU(2)\)</span> rotations on the Bloch sphere. The anticommutation relations <span class="arithmatex">\(\{\sigma_j, \sigma_k\} = 2\delta_{jk}I\)</span> together with the commutation relations yield the general product formula:</p>
+<h4 id="pauli-product-formula">Pauli Product Formula</h4>
+<div class="arithmatex">\[
+\sigma_j \sigma_k = \delta_{jk}I + i\epsilon_{jkl}\sigma_l
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\sigma_j \in \{X, Y, Z\}\)</span> with <span class="arithmatex">\(j \in \{1, 2, 3\}\)</span></li>
+<li><span class="arithmatex">\(\delta_{jk}\)</span> is the Kronecker delta</li>
+<li><span class="arithmatex">\(\epsilon_{jkl}\)</span> is the Levi-Civita symbol</li>
+</ul>
+<p>This formula allows any product of Pauli matrices to be reduced to a single Pauli matrix (times a phase), which is essential for simplifying quantum circuit identities.</p>
+<h2 id="hadamard-gate">Hadamard Gate</h2>
+<p>The <strong>Hadamard gate</strong> is arguably the most important single-qubit gate in quantum computing. It creates an equal superposition from a computational basis state and is the essential ingredient for generating quantum parallelism.</p>
+<h4 id="hadamard-matrix">Hadamard Matrix</h4>
+<div class="arithmatex">\[
+H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(H|0\rangle = |+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span></li>
+<li><span class="arithmatex">\(H|1\rangle = |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\)</span></li>
+<li><span class="arithmatex">\(H^2 = I\)</span> (involutory: the Hadamard is its own inverse)</li>
+<li><span class="arithmatex">\(H = \frac{1}{\sqrt{2}}(X + Z)\)</span> (linear combination of Pauli operators)</li>
+</ul>
+<p>The Hadamard gate maps between the <span class="arithmatex">\(Z\)</span>-eigenbasis and the <span class="arithmatex">\(X\)</span>-eigenbasis. In terms of the Pauli operators, it enacts the conjugations <span class="arithmatex">\(HXH = Z\)</span> and <span class="arithmatex">\(HZH = X\)</span>, which means that a Hadamard gate converts <span class="arithmatex">\(X\)</span>-errors into <span class="arithmatex">\(Z\)</span>-errors and vice versa. This property is extensively used in quantum error correction (Chapter 11).</p>
+<p>Geometrically, the Hadamard is a rotation by <span class="arithmatex">\(\pi\)</span> about the axis <span class="arithmatex">\(\hat{n} = \frac{1}{\sqrt{2}}(\hat{x} + \hat{z})\)</span>, which lies at <span class="arithmatex">\(45°\)</span> between the <span class="arithmatex">\(x\)</span>- and <span class="arithmatex">\(z\)</span>-axes on the Bloch sphere.</p>
+<p><strong>Derivation of the <span class="arithmatex">\(n\)</span>-qubit Hadamard transform.</strong> Applying <span class="arithmatex">\(H\)</span> to each of <span class="arithmatex">\(n\)</span> qubits initialized to <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> produces a uniform superposition over all <span class="arithmatex">\(2^n\)</span> computational basis states:</p>
+<h4 id="n-qubit-hadamard-transform">n-Qubit Hadamard Transform</h4>
+<div class="arithmatex">\[
+H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{2^{n/2}}\sum_{x=0}^{2^n - 1}|x\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(H^{\otimes n}\)</span> denotes <span class="arithmatex">\(n\)</span> parallel Hadamard gates</li>
+<li><span class="arithmatex">\(|x\rangle\)</span> is the computational basis state corresponding to the binary representation of integer <span class="arithmatex">\(x\)</span></li>
+<li>The prefactor <span class="arithmatex">\(1/2^{n/2}\)</span> ensures normalization</li>
+</ul>
+<p>More generally, for an arbitrary computational basis state <span class="arithmatex">\(|y\rangle\)</span>:</p>
+<div class="arithmatex">\[
+H^{\otimes n}|y\rangle = \frac{1}{2^{n/2}}\sum_{x=0}^{2^n - 1}(-1)^{x \cdot y}|x\rangle
+\]</div>
+<p>where <span class="arithmatex">\(x \cdot y = \bigoplus_i x_i y_i\)</span> is the bitwise inner product modulo 2. This formula shows that <span class="arithmatex">\(H^{\otimes n}\)</span> implements the <strong>quantum Fourier transform over <span class="arithmatex">\(\mathbb{Z}_2^n\)</span></strong> and is the starting point for algorithms such as Deutsch-Jozsa and Bernstein-Vazirani (Chapter 10).</p>
+<h2 id="phase-gate">Phase Gate</h2>
+<p>The <strong>Phase gate</strong> (also called the <span class="arithmatex">\(S\)</span> gate) adds a relative phase of <span class="arithmatex">\(\pi/2\)</span> to the <span class="arithmatex">\(|1\rangle\)</span> state:</p>
+<h4 id="phase-gate-matrix">Phase Gate Matrix</h4>
+<div class="arithmatex">\[
+S = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; i \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(S|0\rangle = |0\rangle\)</span> and <span class="arithmatex">\(S|1\rangle = i|1\rangle\)</span></li>
+<li><span class="arithmatex">\(S^2 = Z\)</span> (the square of <span class="arithmatex">\(S\)</span> is the Pauli-<span class="arithmatex">\(Z\)</span> gate)</li>
+<li><span class="arithmatex">\(S^\dagger = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -i \end{pmatrix}\)</span> is the inverse phase gate</li>
+</ul>
+<p>The <span class="arithmatex">\(S\)</span> gate rotates the Bloch sphere by <span class="arithmatex">\(\pi/2\)</span> about the <span class="arithmatex">\(z\)</span>-axis. It maps <span class="arithmatex">\(|+\rangle \mapsto |+i\rangle\)</span> and <span class="arithmatex">\(|-\rangle \mapsto |-i\rangle\)</span>, rotating the <span class="arithmatex">\(X\)</span>-eigenstates into <span class="arithmatex">\(Y\)</span>-eigenstates. Combined with the Hadamard gate, <span class="arithmatex">\(S\)</span> enables measurement in the <span class="arithmatex">\(Y\)</span>-basis: applying <span class="arithmatex">\(S^\dagger H\)</span> before a <span class="arithmatex">\(Z\)</span>-measurement effectively measures in the <span class="arithmatex">\(Y\)</span>-basis.</p>
+<p>The <span class="arithmatex">\(S\)</span> gate belongs to the <strong>Clifford group</strong>—the set of unitary operators that map the Pauli group to itself under conjugation. The Clifford group is generated by <span class="arithmatex">\(\{H, S, \text{CNOT}\}\)</span> and plays a central role in quantum error correction and the theory of stabilizer states.</p>
+<h2 id="t-gate">T Gate</h2>
+<p>The <strong><span class="arithmatex">\(T\)</span> gate</strong> (also called the <span class="arithmatex">\(\pi/8\)</span> gate) adds a relative phase of <span class="arithmatex">\(\pi/4\)</span> to the <span class="arithmatex">\(|1\rangle\)</span> state:</p>
+<h4 id="t-gate-matrix">T Gate Matrix</h4>
+<div class="arithmatex">\[
+T = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi/4} \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(T|0\rangle = |0\rangle\)</span> and <span class="arithmatex">\(T|1\rangle = e^{i\pi/4}|1\rangle\)</span></li>
+<li><span class="arithmatex">\(T^2 = S\)</span> (the square of <span class="arithmatex">\(T\)</span> is the phase gate)</li>
+<li><span class="arithmatex">\(T^4 = Z\)</span> and <span class="arithmatex">\(T^8 = I\)</span></li>
+<li><span class="arithmatex">\(T^\dagger = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{-i\pi/4} \end{pmatrix}\)</span></li>
+</ul>
+<p>The <span class="arithmatex">\(T\)</span> gate is <strong>not</strong> a Clifford gate—it does not preserve the Pauli group under conjugation. This is precisely what makes it essential: the Clifford group alone is efficiently classically simulable (by the Gottesman-Knill theorem), so a non-Clifford gate is required for universal quantum computation. Adding <span class="arithmatex">\(T\)</span> to the Clifford generators <span class="arithmatex">\(\{H, S, \text{CNOT}\}\)</span> yields a universal gate set.</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Matrix</th>
+<th><span class="arithmatex">\(Z\)</span>-Rotation Angle</th>
+<th>Clifford?</th>
+<th><span class="arithmatex">\(T\)</span> Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(I\)</span></td>
+<td><span class="arithmatex">\(\text{diag}(1, 1)\)</span></td>
+<td><span class="arithmatex">\(0\)</span></td>
+<td>Yes</td>
+<td>0</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(Z\)</span></td>
+<td><span class="arithmatex">\(\text{diag}(1, -1)\)</span></td>
+<td><span class="arithmatex">\(\pi\)</span></td>
+<td>Yes</td>
+<td>0</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(S\)</span></td>
+<td><span class="arithmatex">\(\text{diag}(1, i)\)</span></td>
+<td><span class="arithmatex">\(\pi/2\)</span></td>
+<td>Yes</td>
+<td>0</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span></td>
+<td><span class="arithmatex">\(\text{diag}(1, e^{i\pi/4})\)</span></td>
+<td><span class="arithmatex">\(\pi/4\)</span></td>
+<td>No</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rotation-operators">Rotation Operators</h2>
+<p>The Pauli matrices generate continuous families of single-qubit rotations through the matrix exponential. A rotation by angle <span class="arithmatex">\(\theta\)</span> about axis <span class="arithmatex">\(\hat{n} = (n_x, n_y, n_z)\)</span> on the Bloch sphere is:</p>
+<h4 id="general-rotation-operator">General Rotation Operator</h4>
+<div class="arithmatex">\[
+R_{\hat{n}}(\theta) = e^{-i\theta\hat{n}\cdot\vec{\sigma}/2} = \cos\frac{\theta}{2}\,I - i\sin\frac{\theta}{2}\,(n_x X + n_y Y + n_z Z)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\vec{\sigma} = (X, Y, Z)\)</span> is the vector of Pauli matrices</li>
+<li><span class="arithmatex">\(\hat{n}\)</span> is a unit vector specifying the rotation axis</li>
+<li><span class="arithmatex">\(\theta\)</span> is the rotation angle</li>
+<li>The second equality follows from the Taylor expansion and the property <span class="arithmatex">\((\hat{n}\cdot\vec{\sigma})^2 = I\)</span></li>
+</ul>
+<p><strong>Derivation.</strong> Define <span class="arithmatex">\(A = \hat{n}\cdot\vec{\sigma}\)</span>. Since <span class="arithmatex">\(A^2 = n_x^2 I + n_y^2 I + n_z^2 I + \text{cross terms} = I\)</span> (using anticommutation <span class="arithmatex">\(\{\sigma_j, \sigma_k\} = 2\delta_{jk}I\)</span> and <span class="arithmatex">\(|\hat{n}|^2 = 1\)</span>), the Taylor series of <span class="arithmatex">\(e^{-i\theta A/2}\)</span> separates into even and odd powers:</p>
+<div class="arithmatex">\[
+e^{-i\theta A/2} = \sum_{k=0}^{\infty}\frac{(-i\theta/2)^k}{k!}A^k = \sum_{k\text{ even}}\frac{(-1)^{k/2}(\theta/2)^k}{k!}I + \sum_{k\text{ odd}}\frac{(-1)^{(k-1)/2}(\theta/2)^k}{k!}(-iA)
+\]</div>
+<div class="arithmatex">\[
+= \cos\frac{\theta}{2}\,I - i\sin\frac{\theta}{2}\,A
+\]</div>
+<p>The three canonical rotation operators about the coordinate axes are:</p>
+<h4 id="rotation-about-the-x-axis">Rotation About the X-Axis</h4>
+<div class="arithmatex">\[
+R_x(\theta) = e^{-i\theta X/2} = \begin{pmatrix} \cos\frac{\theta}{2} &amp; -i\sin\frac{\theta}{2} \\ -i\sin\frac{\theta}{2} &amp; \cos\frac{\theta}{2} \end{pmatrix}
+\]</div>
+<h4 id="rotation-about-the-y-axis">Rotation About the Y-Axis</h4>
+<div class="arithmatex">\[
+R_y(\theta) = e^{-i\theta Y/2} = \begin{pmatrix} \cos\frac{\theta}{2} &amp; -\sin\frac{\theta}{2} \\ \sin\frac{\theta}{2} &amp; \cos\frac{\theta}{2} \end{pmatrix}
+\]</div>
+<h4 id="rotation-about-the-z-axis">Rotation About the Z-Axis</h4>
+<div class="arithmatex">\[
+R_z(\theta) = e^{-i\theta Z/2} = \begin{pmatrix} e^{-i\theta/2} &amp; 0 \\ 0 &amp; e^{i\theta/2} \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta \in [0, 4\pi)\)</span> parametrizes the full <span class="arithmatex">\(SU(2)\)</span> rotation (note the double cover: <span class="arithmatex">\(R_{\hat{n}}(2\pi) = -I \neq I\)</span>, but <span class="arithmatex">\(R_{\hat{n}}(4\pi) = I\)</span>)</li>
+</ul>
+<p>The Pauli gates are special cases: <span class="arithmatex">\(X = iR_x(\pi)\)</span>, <span class="arithmatex">\(Y = iR_y(\pi)\)</span>, <span class="arithmatex">\(Z = iR_z(\pi)\)</span>, each equal to the corresponding rotation by <span class="arithmatex">\(\pi\)</span> up to a global phase. Similarly, <span class="arithmatex">\(S = R_z(\pi/2)\)</span> (up to global phase) and <span class="arithmatex">\(T = R_z(\pi/4)\)</span> (up to global phase).</p>
+<p><strong>Euler decomposition.</strong> Any single-qubit unitary <span class="arithmatex">\(U \in SU(2)\)</span> can be decomposed as a product of three rotations:</p>
+<h4 id="zyz-euler-decomposition">ZYZ Euler Decomposition</h4>
+<div class="arithmatex">\[
+U = e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha, \beta, \gamma, \delta \in \mathbb{R}\)</span> are the Euler angles</li>
+<li>The global phase <span class="arithmatex">\(e^{i\alpha}\)</span> is physically irrelevant for a single gate but matters in controlled versions</li>
+</ul>
+<p>This decomposition guarantees that three rotation parameters plus a phase suffice to specify any single-qubit gate, confirming that <span class="arithmatex">\(SU(2)\)</span> is a three-dimensional Lie group.</p>
+<h4 id="diagram-single-qubit-gate-bloch-sphere-visualization">Diagram: Single-Qubit Gate Bloch Sphere Visualization</h4>
+<iframe src="../../sims/single-qubit-gate-bloch/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Single-Qubit Gate Bloch Sphere Visualization</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: demonstrate, manipulate</p>
+<p>Learning Objective: Students can apply single-qubit gates to arbitrary initial states and observe the resulting rotation on the Bloch sphere, connecting matrix operations to geometric transformations.</p>
+<p>Instructional Rationale: Direct manipulation of gates and initial states is appropriate for an Apply-level objective because students must connect the abstract matrix representation of each gate to its geometric action on the Bloch sphere. Seeing rotations in real time builds intuition about gate composition and the relationship between Pauli gates, Hadamard, and rotation operators.</p>
+<p>Visual elements:
+- A 3D Bloch sphere with labeled axes and cardinal states
+- Initial state vector (blue arrow) and final state vector (red arrow)
+- Rotation axis displayed as a dashed line through the sphere
+- Rotation arc showing the angle of rotation
+- Matrix display of the selected gate
+- State vector display before and after gate application</p>
+<p>Interactive controls:
+- Dropdown: Select gate (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>, <span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(S\)</span>, <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(R_x(\theta)\)</span>, <span class="arithmatex">\(R_y(\theta)\)</span>, <span class="arithmatex">\(R_z(\theta)\)</span>)
+- Slider: Rotation angle <span class="arithmatex">\(\theta\)</span> (for parametric gates, default: <span class="arithmatex">\(\pi/2\)</span>)
+- Slider: Initial state <span class="arithmatex">\(\theta_0\)</span> (polar angle, default: <span class="arithmatex">\(\pi/4\)</span>)
+- Slider: Initial state <span class="arithmatex">\(\phi_0\)</span> (azimuthal angle, default: <span class="arithmatex">\(0\)</span>)
+- Button: "Apply Gate" (animates the rotation)
+- Button: "Reset"
+- Checkbox: Show rotation axis</p>
+<p>Behavior:
+- Selecting a gate displays its matrix and highlights the rotation axis on the sphere
+- "Apply Gate" animates the Bloch vector rotating from initial to final state along the geodesic arc
+- For parametric gates, the rotation angle slider updates the gate matrix and final state in real time
+- Gate composition: sequential "Apply Gate" clicks compose transformations</p>
+<p>Canvas layout:
+- Left (60%): 3D Bloch sphere with gate animation
+- Right (40%): Gate selector, matrix display, state vectors, controls</p>
+<p>Implementation: p5.js with WEBGL renderer for 3D sphere. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="multi-qubit-gates">Multi-Qubit Gates</h2>
+<p>Single-qubit gates manipulate individual qubits, but the power of quantum computing emerges from <strong>entangling gates</strong> that create correlations between qubits. The most important multi-qubit gates are the CNOT, controlled-<span class="arithmatex">\(Z\)</span>, SWAP, and Toffoli gates.</p>
+<h3 id="cnot-gate">CNOT Gate</h3>
+<p>The <strong>controlled-NOT (CNOT) gate</strong> is the most fundamental two-qubit gate. It flips the target qubit if and only if the control qubit is in state <span class="arithmatex">\(|1\rangle\)</span>:</p>
+<h4 id="cnot-matrix">CNOT Matrix</h4>
+<div class="arithmatex">\[
+\text{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The first qubit is the control and the second is the target</li>
+<li><span class="arithmatex">\(|0\rangle\langle 0|\)</span> and <span class="arithmatex">\(|1\rangle\langle 1|\)</span> are projectors onto the control qubit states</li>
+<li><span class="arithmatex">\(I\)</span> acts on the target when the control is <span class="arithmatex">\(|0\rangle\)</span>; <span class="arithmatex">\(X\)</span> flips the target when the control is <span class="arithmatex">\(|1\rangle\)</span></li>
+</ul>
+<p>The CNOT action on computational basis states is <span class="arithmatex">\(\text{CNOT}|a, b\rangle = |a, a \oplus b\rangle\)</span> where <span class="arithmatex">\(\oplus\)</span> denotes addition modulo 2. This is the quantum generalization of the classical XOR gate, and it is reversible since applying CNOT twice returns to the original state (<span class="arithmatex">\(\text{CNOT}^2 = I\)</span>).</p>
+<p>The CNOT gate is the standard entangling gate. Starting from the product state <span class="arithmatex">\(|+\rangle|0\rangle\)</span>:</p>
+<div class="arithmatex">\[
+\text{CNOT}(|+\rangle \otimes |0\rangle) = \text{CNOT}\frac{1}{\sqrt{2}}(|00\rangle + |10\rangle) = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = |\Phi^+\rangle
+\]</div>
+<p>This is the Bell state <span class="arithmatex">\(|\Phi^+\rangle\)</span>—a maximally entangled state created from an unentangled input by a single CNOT gate (preceded by a Hadamard on the control).</p>
+<ul>
+<li><strong>CNOT eigenstates:</strong> The Bell states are eigenstates of CNOT: <span class="arithmatex">\(\text{CNOT}|\Phi^+\rangle = |\Phi^+\rangle\)</span>, <span class="arithmatex">\(\text{CNOT}|\Psi^+\rangle = |\Psi^+\rangle\)</span>, <span class="arithmatex">\(\text{CNOT}|\Phi^-\rangle = -|\Phi^-\rangle\)</span> (up to phases determined by the specific Bell state).</li>
+<li><strong>Conjugation identities:</strong> <span class="arithmatex">\(\text{CNOT}(X \otimes I)\text{CNOT} = X \otimes X\)</span> and <span class="arithmatex">\(\text{CNOT}(I \otimes Z)\text{CNOT} = Z \otimes Z\)</span>. These identities show how errors propagate through CNOT gates, a key consideration for quantum error correction.</li>
+</ul>
+<h3 id="controlled-z-gate">Controlled-Z Gate</h3>
+<p>The <strong>controlled-<span class="arithmatex">\(Z\)</span> (CZ) gate</strong> applies a <span class="arithmatex">\(Z\)</span> gate to the target qubit when the control is <span class="arithmatex">\(|1\rangle\)</span>:</p>
+<h4 id="cz-matrix">CZ Matrix</h4>
+<div class="arithmatex">\[
+CZ = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The only effect is a phase flip on the <span class="arithmatex">\(|11\rangle\)</span> component: <span class="arithmatex">\(CZ|11\rangle = -|11\rangle\)</span></li>
+<li>All other computational basis states are unchanged</li>
+</ul>
+<p>A remarkable property of the CZ gate is its <strong>symmetry</strong>: it is invariant under exchange of control and target qubits. This can be verified directly—the matrix <span class="arithmatex">\(\text{diag}(1, 1, 1, -1)\)</span> is symmetric under the SWAP of the two qubit indices, since <span class="arithmatex">\(|11\rangle\)</span> is symmetric. This symmetry makes CZ particularly natural for hardware architectures where the physical coupling between qubits is symmetric.</p>
+<p>The CZ gate is related to CNOT by Hadamard conjugation on the target:</p>
+<div class="arithmatex">\[
+CZ = (I \otimes H)\,\text{CNOT}\,(I \otimes H)
+\]</div>
+<p>This identity is easily verified: the Hadamard on the target converts the <span class="arithmatex">\(X\)</span> flip of CNOT into a <span class="arithmatex">\(Z\)</span> phase flip.</p>
+<h3 id="swap-gate">SWAP Gate</h3>
+<p>The <strong>SWAP gate</strong> exchanges the states of two qubits:</p>
+<h4 id="swap-matrix">SWAP Matrix</h4>
+<div class="arithmatex">\[
+\text{SWAP} = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\text{SWAP}|a, b\rangle = |b, a\rangle\)</span> for all computational basis states</li>
+<li><span class="arithmatex">\(\text{SWAP}^2 = I\)</span> (involutory)</li>
+<li><span class="arithmatex">\(\text{SWAP} = |00\rangle\langle 00| + |01\rangle\langle 10| + |10\rangle\langle 01| + |11\rangle\langle 11|\)</span></li>
+</ul>
+<p>The SWAP gate can be decomposed into three CNOT gates:</p>
+<h4 id="swap-decomposition">SWAP Decomposition</h4>
+<div class="arithmatex">\[
+\text{SWAP} = \text{CNOT}_{12}\,\text{CNOT}_{21}\,\text{CNOT}_{12}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\text{CNOT}_{12}\)</span> has qubit 1 as control and qubit 2 as target</li>
+<li><span class="arithmatex">\(\text{CNOT}_{21}\)</span> has qubit 2 as control and qubit 1 as target</li>
+</ul>
+<p><strong>Proof.</strong> Track the computational basis states through the three CNOT gates. Starting with <span class="arithmatex">\(|a, b\rangle\)</span>:</p>
+<ol>
+<li><span class="arithmatex">\(\text{CNOT}_{12}\)</span>: <span class="arithmatex">\(|a, b\rangle \to |a, a \oplus b\rangle\)</span></li>
+<li><span class="arithmatex">\(\text{CNOT}_{21}\)</span>: <span class="arithmatex">\(|a, a \oplus b\rangle \to |a \oplus (a \oplus b), a \oplus b\rangle = |b, a \oplus b\rangle\)</span></li>
+<li><span class="arithmatex">\(\text{CNOT}_{12}\)</span>: <span class="arithmatex">\(|b, a \oplus b\rangle \to |b, b \oplus (a \oplus b)\rangle = |b, a\rangle\)</span></li>
+</ol>
+<p>The final state is <span class="arithmatex">\(|b, a\rangle = \text{SWAP}|a, b\rangle\)</span>, confirming the decomposition.</p>
+<p>The SWAP gate is essential in quantum architectures with limited qubit connectivity. When two qubits that need to interact are not physically adjacent, SWAP gates route quantum information through intermediate qubits—at a cost of three CNOT gates per SWAP.</p>
+<h3 id="toffoli-gate-in-quantum-computing">Toffoli Gate in Quantum Computing</h3>
+<p>The <strong>quantum Toffoli gate</strong> (controlled-controlled-NOT, CCNOT) is a three-qubit gate that flips the target qubit if and only if both control qubits are <span class="arithmatex">\(|1\rangle\)</span>:</p>
+<h4 id="toffoli-gate-action">Toffoli Gate Action</h4>
+<div class="arithmatex">\[
+\text{CCNOT}|a, b, c\rangle = |a, b, c \oplus (a \cdot b)\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(a, b\)</span> are the control qubits and <span class="arithmatex">\(c\)</span> is the target qubit</li>
+<li><span class="arithmatex">\(a \cdot b\)</span> denotes the logical AND</li>
+<li><span class="arithmatex">\(\oplus\)</span> is addition modulo 2</li>
+</ul>
+<p>The Toffoli gate is an <span class="arithmatex">\(8 \times 8\)</span> unitary matrix that acts as the identity on all computational basis states except <span class="arithmatex">\(|110\rangle \leftrightarrow |111\rangle\)</span>. The classical Toffoli gate (Chapter 6) is universal for classical reversible computation. Its quantum generalization preserves this property and additionally can create superpositions when applied to superposition inputs.</p>
+<p>The quantum Toffoli gate can be decomposed into single-qubit gates and CNOT gates. The standard decomposition requires six CNOT gates and several single-qubit gates (<span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(T^\dagger\)</span>, <span class="arithmatex">\(H\)</span>):</p>
+<table>
+<thead>
+<tr>
+<th>Decomposition</th>
+<th>Gate Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNOTs required</td>
+<td>6</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span>/<span class="arithmatex">\(T^\dagger\)</span> gates</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Hadamard gates</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Total elementary gates</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<p>This decomposition cost means that Toffoli gates are expensive resources in quantum circuits, motivating the search for more efficient implementations in specific quantum hardware architectures.</p>
+<h4 id="diagram-multi-qubit-gate-circuit-composer">Diagram: Multi-Qubit Gate Circuit Composer</h4>
+<iframe src="../../sims/multi-qubit-gate-composer/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Multi-Qubit Gate Circuit Composer</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Apply (L3)
+Bloom Verb: implement, construct</p>
+<p>Learning Objective: Students can construct multi-qubit circuits using CNOT, CZ, SWAP, and Toffoli gates, observing the resulting state transformations and verifying gate decompositions through simulation.</p>
+<p>Instructional Rationale: A circuit construction interface is appropriate for an Apply-level objective because students must implement specific gate sequences, verify that decompositions produce equivalent transformations, and observe how entanglement is created and manipulated by multi-qubit gates. Building circuits and checking outputs reinforces the connection between matrix representations and computational effects.</p>
+<p>Visual elements:
+- A quantum circuit diagram canvas with horizontal qubit wires (2-4 qubits)
+- Gate palette showing available gates (CNOT, CZ, SWAP, Toffoli, H, X, Y, Z, S, T)
+- State vector display showing the full quantum state after each gate layer
+- Probability bar chart for measurement outcomes
+- Matrix display of the total circuit unitary</p>
+<p>Interactive controls:
+- Drag-and-drop gates from palette onto circuit wires
+- Click to select control/target qubits for multi-qubit gates
+- Dropdown: Number of qubits (2, 3, or 4)
+- Dropdown: Initial state (all <span class="arithmatex">\(|0\rangle\)</span>, Bell state, GHZ state, custom)
+- Button: "Simulate" (computes and displays output state)
+- Button: "Clear circuit"
+- Button: "Show decomposition" (expands multi-qubit gates into elementary gates)</p>
+<p>Behavior:
+- Gates snap to grid positions on qubit wires
+- Simulation computes the circuit unitary by matrix multiplication and displays the output state
+- "Show decomposition" replaces Toffoli with its 15-gate elementary decomposition and SWAP with three CNOTs
+- State vector updates in real time as gates are added or removed
+- Probability bars reflect measurement probabilities in the computational basis</p>
+<p>Canvas layout:
+- Top (60%): Circuit diagram canvas with gate palette on the left
+- Bottom (40%): State vector display, probability bars, circuit unitary matrix</p>
+<p>Implementation: p5.js with custom circuit layout engine. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="universal-gate-sets">Universal Gate Sets</h2>
+<p>A central question in quantum computing is: what is the minimal set of gates from which we can construct any quantum computation? This question parallels the classical result that the NAND gate is universal for Boolean logic.</p>
+<h3 id="universal-gate-set">Universal Gate Set</h3>
+<p>A set of quantum gates <span class="arithmatex">\(\mathcal{G}\)</span> is <strong>universal</strong> if any unitary operation <span class="arithmatex">\(U\)</span> on <span class="arithmatex">\(n\)</span> qubits can be approximated to arbitrary precision <span class="arithmatex">\(\epsilon &gt; 0\)</span> by a finite sequence of gates from <span class="arithmatex">\(\mathcal{G}\)</span>. Formally, for any <span class="arithmatex">\(U \in SU(2^n)\)</span> and any <span class="arithmatex">\(\epsilon &gt; 0\)</span>, there exists a circuit <span class="arithmatex">\(C\)</span> composed of gates from <span class="arithmatex">\(\mathcal{G}\)</span> such that <span class="arithmatex">\(\|C - U\| &lt; \epsilon\)</span> in the operator norm.</p>
+<p>The following are examples of universal gate sets:</p>
+<ul>
+<li><span class="arithmatex">\(\{H, T, \text{CNOT}\}\)</span> — the standard universal gate set</li>
+<li><span class="arithmatex">\(\{H, \text{Toffoli}\}\)</span> — universal with the Hadamard providing non-classical rotations</li>
+<li><span class="arithmatex">\(\{R_y(\theta), R_z(\theta), \text{CNOT}\}\)</span> for irrational <span class="arithmatex">\(\theta/\pi\)</span> — continuous parametric gates plus entangling</li>
+<li>Any set generating a dense subgroup of <span class="arithmatex">\(SU(2)\)</span> together with any entangling two-qubit gate</li>
+</ul>
+<p>The standard proof of universality proceeds in three steps:</p>
+<ol>
+<li><strong>Any multi-qubit unitary decomposes into two-level unitaries</strong> (acting nontrivially on at most two computational basis states), which can be implemented using CNOT and single-qubit gates.</li>
+<li><strong>Any single-qubit unitary decomposes into <span class="arithmatex">\(R_z\)</span> and <span class="arithmatex">\(R_y\)</span> rotations</strong> via the Euler decomposition <span class="arithmatex">\(U = e^{i\alpha}R_z(\beta)R_y(\gamma)R_z(\delta)\)</span>.</li>
+<li><strong><span class="arithmatex">\(R_z\)</span> rotations can be approximated by products of <span class="arithmatex">\(H\)</span> and <span class="arithmatex">\(T\)</span></strong> gates, since <span class="arithmatex">\(HTH = R_x(\pi/4)\)</span> and irrational-angle rotations generate a dense subgroup of <span class="arithmatex">\(SU(2)\)</span>.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">The Gottesman-Knill Theorem</p>
+<p>The Clifford group <span class="arithmatex">\(\{H, S, \text{CNOT}\}\)</span> is <strong>not</strong> universal. By the Gottesman-Knill theorem, any circuit composed entirely of Clifford gates, acting on computational basis inputs and followed by computational basis measurements, can be efficiently simulated on a classical computer. Universality requires at least one non-Clifford gate (such as <span class="arithmatex">\(T\)</span>) to escape the classically simulable regime.</p>
+</div>
+<h3 id="gate-decomposition">Gate Decomposition</h3>
+<p><strong>Gate decomposition</strong> is the process of expressing an arbitrary unitary operation as a sequence of gates from a chosen universal gate set. For the standard set <span class="arithmatex">\(\{H, T, \text{CNOT}\}\)</span>, any single-qubit gate <span class="arithmatex">\(U\)</span> can be approximated as:</p>
+<h4 id="gate-decomposition-procedure">Gate Decomposition Procedure</h4>
+<div class="arithmatex">\[
+U \approx H^{a_1}T^{b_1}H^{a_2}T^{b_2}\cdots H^{a_m}T^{b_m}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(a_i \in \{0, 1\}\)</span> and <span class="arithmatex">\(b_i \in \{0, 1, \ldots, 7\}\)</span> (since <span class="arithmatex">\(T^8 = I\)</span>)</li>
+<li>The sequence length <span class="arithmatex">\(m\)</span> determines the approximation precision</li>
+<li><span class="arithmatex">\(\|U - H^{a_1}T^{b_1}\cdots H^{a_m}T^{b_m}\| &lt; \epsilon\)</span> in operator norm</li>
+</ul>
+<p>For multi-qubit unitaries, the decomposition proceeds hierarchically:</p>
+<ol>
+<li><strong>Cosine-sine decomposition</strong> or <strong>QR decomposition</strong> reduces an <span class="arithmatex">\(n\)</span>-qubit unitary to a product of two-level unitaries</li>
+<li>Each two-level unitary is implemented using a sequence of CNOT gates (for basis routing) and a single-qubit rotation</li>
+<li>Each single-qubit rotation is approximated using <span class="arithmatex">\(H\)</span> and <span class="arithmatex">\(T\)</span> gates</li>
+</ol>
+<p>The total gate count for decomposing a generic <span class="arithmatex">\(n\)</span>-qubit unitary scales as <span class="arithmatex">\(O(4^n)\)</span>, which is exponential—reflecting the fact that the space of <span class="arithmatex">\(n\)</span>-qubit unitaries has <span class="arithmatex">\(4^n\)</span> real parameters. Efficient quantum algorithms achieve their speedup precisely by exploiting structure to avoid this worst-case scaling.</p>
+<table>
+<thead>
+<tr>
+<th>Decomposition Level</th>
+<th>Input</th>
+<th>Output</th>
+<th>Gate Count Scaling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(n\)</span>-qubit unitary <span class="arithmatex">\(\to\)</span> two-level unitaries</td>
+<td><span class="arithmatex">\(U \in SU(2^n)\)</span></td>
+<td>Product of two-level unitaries</td>
+<td><span class="arithmatex">\(O(4^n)\)</span> two-level gates</td>
+</tr>
+<tr>
+<td>Two-level unitary <span class="arithmatex">\(\to\)</span> CNOT + single-qubit</td>
+<td>Two-level unitary</td>
+<td>CNOT sequence + <span class="arithmatex">\(R_y, R_z\)</span></td>
+<td><span class="arithmatex">\(O(n)\)</span> CNOTs</td>
+</tr>
+<tr>
+<td>Single-qubit <span class="arithmatex">\(\to\)</span> <span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(T\)</span></td>
+<td><span class="arithmatex">\(V \in SU(2)\)</span></td>
+<td><span class="arithmatex">\(H\)</span>-<span class="arithmatex">\(T\)</span> sequence</td>
+<td><span class="arithmatex">\(O(\log(1/\epsilon))\)</span> by Solovay-Kitaev</td>
+</tr>
+</tbody>
+</table>
+<h3 id="solovay-kitaev-theorem">Solovay-Kitaev Theorem</h3>
+<p>The <strong>Solovay-Kitaev theorem</strong> is a deep result in approximation theory that guarantees efficient approximation of arbitrary single-qubit unitaries using a discrete gate set. It provides a constructive algorithm with near-optimal gate count.</p>
+<h4 id="solovay-kitaev-theorem-statement">Solovay-Kitaev Theorem Statement</h4>
+<p>For any universal gate set <span class="arithmatex">\(\mathcal{G}\)</span> generating a dense subgroup of <span class="arithmatex">\(SU(2)\)</span>, any <span class="arithmatex">\(U \in SU(2)\)</span> can be approximated to precision <span class="arithmatex">\(\epsilon\)</span> using a sequence of <span class="arithmatex">\(O(\log^c(1/\epsilon))\)</span> gates from <span class="arithmatex">\(\mathcal{G}\)</span> and <span class="arithmatex">\(\mathcal{G}^{-1}\)</span>, where <span class="arithmatex">\(c \approx 3.97\)</span>.</p>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\epsilon = \|U - U_{\text{approx}}\|\)</span> is the operator norm distance</li>
+<li><span class="arithmatex">\(c\)</span> is a constant that has been improved by subsequent work to <span class="arithmatex">\(c \approx 3.97\)</span></li>
+<li><span class="arithmatex">\(\mathcal{G}^{-1}\)</span> denotes the set of inverses of gates in <span class="arithmatex">\(\mathcal{G}\)</span></li>
+<li>The approximation is constructive: the Solovay-Kitaev algorithm produces the gate sequence</li>
+</ul>
+<p><strong>Significance.</strong> Without the Solovay-Kitaev theorem, one might fear that approximating a continuous rotation to precision <span class="arithmatex">\(\epsilon\)</span> would require <span class="arithmatex">\(O(1/\epsilon)\)</span> or even <span class="arithmatex">\(O(1/\epsilon^2)\)</span> gates (as naive grid search would suggest). The theorem shows that the gate count grows only <em>polylogarithmically</em> in <span class="arithmatex">\(1/\epsilon\)</span>, which means that the overhead of discretizing continuous rotations is negligible.</p>
+<p><strong>Sketch of the recursive algorithm.</strong> The Solovay-Kitaev algorithm works by recursive refinement:</p>
+<ol>
+<li><strong>Base case:</strong> For coarse precision <span class="arithmatex">\(\epsilon_0\)</span>, enumerate short gate sequences from <span class="arithmatex">\(\mathcal{G}\)</span> to find a rough approximation <span class="arithmatex">\(U_0\)</span> with <span class="arithmatex">\(\|U - U_0\| &lt; \epsilon_0\)</span>.</li>
+<li><strong>Recursive step:</strong> Given an approximation <span class="arithmatex">\(U_n\)</span> with <span class="arithmatex">\(\|U - U_n\| &lt; \epsilon_n\)</span>, compute the "correction" <span class="arithmatex">\(V = U U_n^\dagger\)</span> (which is close to identity). Decompose <span class="arithmatex">\(V\)</span> using the group commutator: find <span class="arithmatex">\(V_1, V_2\)</span> such that <span class="arithmatex">\(V_1 V_2 V_1^\dagger V_2^\dagger \approx V\)</span> with each <span class="arithmatex">\(V_i\)</span> closer to the identity. Recursively approximate <span class="arithmatex">\(V_1\)</span> and <span class="arithmatex">\(V_2\)</span>.</li>
+<li><strong>Precision doubling:</strong> Each recursive level approximately squares the precision: <span class="arithmatex">\(\epsilon_{n+1} \approx \epsilon_n^{3/2}\)</span>, leading to the polylogarithmic scaling.</li>
+</ol>
+<p>More recent work on exact synthesis algorithms (e.g., the Ross-Selinger algorithm for <span class="arithmatex">\(\{H, T\}\)</span>) achieves the optimal <span class="arithmatex">\(T\)</span>-count of <span class="arithmatex">\(O(\log(1/\epsilon))\)</span> for single-qubit unitaries, eliminating the polynomial overhead in the exponent.</p>
+<h3 id="magic-state-distillation">Magic State Distillation</h3>
+<p><strong>Magic state distillation</strong> is a technique for implementing non-Clifford gates (such as <span class="arithmatex">\(T\)</span>) fault-tolerantly, which is essential for achieving universal fault-tolerant quantum computation. The core idea is to prepare a special "magic state" that, when consumed by a Clifford circuit via gate teleportation, effectively applies a <span class="arithmatex">\(T\)</span> gate.</p>
+<p>The magic state for the <span class="arithmatex">\(T\)</span> gate is:</p>
+<h4 id="t-magic-state">T Magic State</h4>
+<div class="arithmatex">\[
+|A\rangle = T|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + e^{i\pi/4}|1\rangle)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|A\rangle\)</span> lies on the equator of the Bloch sphere at azimuthal angle <span class="arithmatex">\(\phi = \pi/4\)</span></li>
+<li><span class="arithmatex">\(|A\rangle\)</span> is a non-stabilizer state (not reachable by Clifford circuits from <span class="arithmatex">\(|0\rangle\)</span>)</li>
+</ul>
+<p>Given a supply of noisy magic states <span class="arithmatex">\(\rho\)</span> with fidelity <span class="arithmatex">\(F = \langle A|\rho|A\rangle &lt; 1\)</span>, the distillation protocol uses a Clifford circuit (which can be implemented fault-tolerantly) to combine multiple noisy copies and produce fewer copies with higher fidelity:</p>
+<h4 id="magic-state-distillation-scaling">Magic State Distillation Scaling</h4>
+<div class="arithmatex">\[
+F_{\text{out}} \approx 1 - c\,(1 - F_{\text{in}})^{d}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(F_{\text{in}}\)</span> and <span class="arithmatex">\(F_{\text{out}}\)</span> are the input and output fidelities</li>
+<li><span class="arithmatex">\(d &gt; 1\)</span> characterizes the distillation power (typically <span class="arithmatex">\(d = 2\)</span> or <span class="arithmatex">\(d = 3\)</span> depending on the protocol)</li>
+<li><span class="arithmatex">\(c\)</span> is a protocol-dependent constant</li>
+<li>The 15-to-1 protocol distills 15 noisy <span class="arithmatex">\(|A\rangle\)</span> states into 1 high-fidelity <span class="arithmatex">\(|A\rangle\)</span> state with <span class="arithmatex">\(d = 3\)</span></li>
+</ul>
+<p>The gate teleportation circuit that consumes a magic state to implement <span class="arithmatex">\(T\)</span> is:</p>
+<ol>
+<li>Prepare the magic state <span class="arithmatex">\(|A\rangle\)</span> (or its noisy version) on an ancilla qubit</li>
+<li>Perform a CNOT from the data qubit to the ancilla</li>
+<li>Measure the ancilla in the computational basis</li>
+<li>If the outcome is <span class="arithmatex">\(|1\rangle\)</span>, apply a Clifford correction (<span class="arithmatex">\(SX\)</span>) to the data qubit</li>
+</ol>
+<p>Since steps 2-4 use only Clifford gates and measurements, the entire protocol is fault-tolerant (assuming the magic state has been sufficiently distilled). The <span class="arithmatex">\(T\)</span> gate cost is thus transformed into a state preparation cost, which can be amortized using distillation factories running in parallel.</p>
+<div class="admonition warning">
+<p class="admonition-title">Resource Cost of Magic State Distillation</p>
+<p>Magic state distillation is the dominant cost in fault-tolerant quantum computing. The 15-to-1 protocol requires approximately <span class="arithmatex">\(15^k\)</span> raw magic states for <span class="arithmatex">\(k\)</span> rounds of distillation to achieve error rate <span class="arithmatex">\(\sim p^{3^k}\)</span> from initial error rate <span class="arithmatex">\(p\)</span>. For practical error rates (<span class="arithmatex">\(p \sim 10^{-3}\)</span>) and target rates (<span class="arithmatex">\(\sim 10^{-15}\)</span>), this requires tens of thousands of physical qubits per logical <span class="arithmatex">\(T\)</span> gate. Reducing this overhead is an active area of research.</p>
+</div>
+<h2 id="quantum-circuit-model">Quantum Circuit Model</h2>
+<p>The <strong>quantum circuit model</strong> is the standard computational model for quantum computing, analogous to Boolean circuits for classical computing. A quantum circuit specifies a sequence of quantum gates applied to a register of qubits, followed by measurement.</p>
+<p>A quantum circuit consists of:</p>
+<ol>
+<li><strong>Input register:</strong> <span class="arithmatex">\(n\)</span> qubits initialized to <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span> (by convention)</li>
+<li><strong>Gate sequence:</strong> An ordered sequence of gates <span class="arithmatex">\(U_1, U_2, \ldots, U_L\)</span> from a universal gate set, each acting on one or two qubits</li>
+<li><strong>Measurement:</strong> Computational basis measurement on some or all output qubits</li>
+</ol>
+<p>The circuit computes the unitary <span class="arithmatex">\(U = U_L \cdots U_2 U_1\)</span> (note the right-to-left ordering: <span class="arithmatex">\(U_1\)</span> acts first). The output state is <span class="arithmatex">\(|\psi_{\text{out}}\rangle = U|0\rangle^{\otimes n}\)</span>, and the measurement yields a classical bit string <span class="arithmatex">\(x\)</span> with probability <span class="arithmatex">\(|\langle x|\psi_{\text{out}}\rangle|^2\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Circuit Parameter</th>
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Width</td>
+<td><span class="arithmatex">\(n\)</span></td>
+<td>Number of qubits</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td><span class="arithmatex">\(d\)</span></td>
+<td>Length of the longest path from input to output</td>
+</tr>
+<tr>
+<td>Size</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td>Total number of gates</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span>-count</td>
+<td><span class="arithmatex">\(T\)</span></td>
+<td>Number of <span class="arithmatex">\(T\)</span>/<span class="arithmatex">\(T^\dagger\)</span> gates (dominates fault-tolerant cost)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span>-depth</td>
+<td><span class="arithmatex">\(d_T\)</span></td>
+<td>Depth counting only <span class="arithmatex">\(T\)</span>-gate layers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Circuit identities.</strong> The following identities are frequently used to optimize quantum circuits:</p>
+<ul>
+<li><strong>Gate cancellation:</strong> <span class="arithmatex">\(U U^\dagger = I\)</span> — adjacent inverse gates cancel</li>
+<li><strong>Commutation:</strong> If <span class="arithmatex">\([U, V] = 0\)</span>, the gates can be reordered without changing the computation</li>
+<li><strong>Hadamard sandwich:</strong> <span class="arithmatex">\(HXH = Z\)</span>, <span class="arithmatex">\(HZH = X\)</span>, <span class="arithmatex">\(HYH = -Y\)</span></li>
+<li><strong>CNOT identities:</strong> <span class="arithmatex">\(\text{CNOT}_{12}\text{CNOT}_{12} = I\)</span>, and <span class="arithmatex">\((H \otimes H)\text{CNOT}_{12}(H \otimes H) = \text{CNOT}_{21}\)</span></li>
+</ul>
+<p>The last identity shows that the direction of a CNOT can be reversed by conjugating both qubits with Hadamard gates—a useful trick when hardware connectivity constrains which qubit can be the control.</p>
+<h4 id="diagram-quantum-circuit-simulator">Diagram: Quantum Circuit Simulator</h4>
+<iframe src="../../sims/quantum-circuit-simulator/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum Circuit Simulator</summary>
+<p>Type: microsim</p>
+<p>Bloom Taxonomy: Analyze (L4)
+Bloom Verb: deconstruct, trace</p>
+<p>Learning Objective: Students can trace the evolution of a multi-qubit quantum state through a circuit, deconstructing the computation into individual gate actions and analyzing how superposition and entanglement develop step by step.</p>
+<p>Instructional Rationale: A step-by-step circuit simulator is appropriate for an Analyze-level objective because students must deconstruct a quantum computation into its constituent gate operations, trace the state vector evolution through each layer, and analyze the intermediate states to understand how the final output is produced. This builds the ability to reason about quantum circuits that is essential for algorithm design.</p>
+<p>Visual elements:
+- Quantum circuit diagram with horizontal wires for each qubit
+- State vector display showing amplitudes at each step (expandable for multi-qubit states)
+- Probability histogram for measurement outcomes
+- Step indicator highlighting the current gate being applied
+- Entanglement indicator showing which qubits are entangled at each step</p>
+<p>Interactive controls:
+- Dropdown: Select a pre-built circuit (Bell state preparation, GHZ state, quantum teleportation, Deutsch algorithm)
+- Button: "Step Forward" (applies next gate and updates display)
+- Button: "Step Backward" (reverses last gate)
+- Button: "Run All" (applies all gates)
+- Button: "Reset"
+- Toggle: Show amplitudes as complex numbers or as magnitude/phase</p>
+<p>Behavior:
+- Each step highlights the active gate and updates the state vector display
+- Probability histogram updates after each step to show current measurement probabilities
+- Entanglement indicator uses a simple heuristic (Schmidt rank of bipartitions) to flag entangled qubit pairs
+- Pre-built circuits demonstrate key concepts: entanglement creation, phase kickback, measurement collapse</p>
+<p>Canvas layout:
+- Top (40%): Quantum circuit diagram with step highlighting
+- Bottom left (30%): State vector amplitudes (scrollable for large registers)
+- Bottom right (30%): Probability histogram and entanglement map</p>
+<p>Implementation: p5.js with matrix computation library for state evolution. Responsive design adapts to window resize events.</p>
+</details>
+<h4 id="diagram-gate-relationship-concept-map">Diagram: Gate Relationship Concept Map</h4>
+<iframe src="../../sims/gate-relationship-map/main.html" width="100%" height="450xp" scrolling="no"></iframe>
+
+<details>
+<summary>Gate Relationship Concept Map</summary>
+<p>Type: infographic</p>
+<p>Bloom Taxonomy: Understand (L2)
+Bloom Verb: classify, relate</p>
+<p>Learning Objective: Students can classify quantum gates by their properties (single-qubit vs. multi-qubit, Clifford vs. non-Clifford, discrete vs. continuous) and identify the relationships between gates (e.g., <span class="arithmatex">\(T^2 = S\)</span>, <span class="arithmatex">\(S^2 = Z\)</span>, CNOT + Hadamard = CZ).</p>
+<p>Instructional Rationale: A concept map is appropriate for an Understand-level objective because it organizes the chapter's 16 gate concepts into a coherent structure, showing hierarchical and relational connections that help students build a mental model of the gate landscape.</p>
+<p>Visual elements:
+- Nodes for each gate: <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>, <span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(S\)</span>, <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(R_x\)</span>, <span class="arithmatex">\(R_y\)</span>, <span class="arithmatex">\(R_z\)</span>, CNOT, CZ, SWAP, Toffoli
+- Color coding: Pauli gates (red), Clifford gates (blue), non-Clifford gates (purple), multi-qubit gates (green)
+- Directed edges showing relationships: <span class="arithmatex">\(T^2 = S\)</span>, <span class="arithmatex">\(S^2 = Z\)</span>, "generates" arrows to Universal Gate Set node
+- Grouping boxes: "Clifford Group", "Pauli Group", "Universal Set"
+- Legend explaining color codes and edge types</p>
+<p>Interactive controls:
+- Hover over a gate node to highlight all connected gates and relationships
+- Click a gate to display its matrix, Bloch sphere action, and key properties
+- Toggle: Show/hide relationship labels on edges
+- Dropdown: Highlight a specific relationship type (power relations, conjugation relations, decomposition relations)</p>
+<p>Behavior:
+- Hovering dims unrelated gates and brightens the selected gate's network
+- Clicking a gate opens a tooltip with its matrix representation and properties
+- The "Universal Set" node glows when all its generator gates are highlighted</p>
+<p>Canvas layout:
+- Full canvas: Force-directed graph layout with draggable nodes
+- Sidebar (appears on click): Gate details panel</p>
+<p>Implementation: p5.js with force-directed graph layout. Responsive design adapts to window resize events.</p>
+</details>
+<h2 id="putting-it-all-together-from-gates-to-computation">Putting It All Together: From Gates to Computation</h2>
+<p>The gate formalism developed in this chapter provides the complete toolkit for constructing quantum algorithms. The logical flow from physical qubits to quantum computation is:</p>
+<ol>
+<li><strong>Initialize</strong> <span class="arithmatex">\(n\)</span> qubits in <span class="arithmatex">\(|0\rangle^{\otimes n}\)</span></li>
+<li><strong>Prepare superposition</strong> using Hadamard gates: <span class="arithmatex">\(H^{\otimes n}|0\rangle^{\otimes n} = \frac{1}{2^{n/2}}\sum_x |x\rangle\)</span></li>
+<li><strong>Apply oracle/problem-specific unitaries</strong> using the universal gate set <span class="arithmatex">\(\{H, T, \text{CNOT}\}\)</span></li>
+<li><strong>Create and exploit entanglement</strong> using CNOT and other multi-qubit gates</li>
+<li><strong>Manipulate phases</strong> using <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(S\)</span>, <span class="arithmatex">\(Z\)</span>, and rotation gates to steer interference</li>
+<li><strong>Measure</strong> to extract the classical answer, with interference ensuring high probability on correct outputs</li>
+</ol>
+<p>The universality results guarantee that this framework can implement any quantum algorithm. The Solovay-Kitaev theorem ensures that discretizing continuous rotations incurs only polylogarithmic overhead. And magic state distillation provides the path to fault-tolerant implementation, at the cost of significant but manageable physical qubit overhead.</p>
+<p>In Chapter 10, we will use these gates to construct specific quantum algorithms—Deutsch-Jozsa, Grover's search, and the quantum Fourier transform—that demonstrate concrete computational advantages over classical approaches.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>This chapter established the quantum gate formalism as the foundation for quantum computation:</p>
+<ol>
+<li>
+<p>The <strong>Pauli gates</strong> (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>) are the generators of single-qubit rotations, satisfying the <span class="arithmatex">\(\mathfrak{su}(2)\)</span> algebra with commutation relations <span class="arithmatex">\([\sigma_j, \sigma_k] = 2i\epsilon_{jkl}\sigma_l\)</span>.</p>
+</li>
+<li>
+<p>The <strong>Hadamard gate</strong> creates superposition from computational basis states and implements the quantum Fourier transform over <span class="arithmatex">\(\mathbb{Z}_2^n\)</span> when applied in parallel.</p>
+</li>
+<li>
+<p>The <strong>Phase gate</strong> (<span class="arithmatex">\(S\)</span>) and <strong><span class="arithmatex">\(T\)</span> gate</strong> complete the single-qubit gate hierarchy: <span class="arithmatex">\(T^2 = S\)</span>, <span class="arithmatex">\(S^2 = Z\)</span>, with <span class="arithmatex">\(T\)</span> being the critical non-Clifford gate needed for universality.</p>
+</li>
+<li>
+<p><strong>Rotation operators</strong> <span class="arithmatex">\(R_{\hat{n}}(\theta) = \cos(\theta/2)I - i\sin(\theta/2)\hat{n}\cdot\vec{\sigma}\)</span> provide continuous parametric gates derived from the Pauli matrix exponential, with the ZYZ Euler decomposition covering all of <span class="arithmatex">\(SU(2)\)</span>.</p>
+</li>
+<li>
+<p>The <strong>CNOT gate</strong> is the fundamental entangling gate, creating Bell states from product states and serving as the two-qubit component of all universal gate sets.</p>
+</li>
+<li>
+<p>The <strong>controlled-<span class="arithmatex">\(Z\)</span> gate</strong> is symmetric in its qubit arguments and related to CNOT by Hadamard conjugation on the target.</p>
+</li>
+<li>
+<p>The <strong>SWAP gate</strong> exchanges qubit states and decomposes into three CNOTs, enabling quantum information routing in architectures with limited connectivity.</p>
+</li>
+<li>
+<p>The quantum <strong>Toffoli gate</strong> generalizes the classical Toffoli gate, decomposes into 6 CNOTs and single-qubit gates, and enables classical reversible computation within the quantum circuit model.</p>
+</li>
+<li>
+<p>The set <span class="arithmatex">\(\{H, T, \text{CNOT}\}\)</span> is a <strong>universal gate set</strong>: any <span class="arithmatex">\(n\)</span>-qubit unitary can be approximated to arbitrary precision using only these three gates.</p>
+</li>
+<li>
+<p><strong>Gate decomposition</strong> reduces arbitrary unitaries to sequences from the universal gate set, with generic <span class="arithmatex">\(n\)</span>-qubit unitaries requiring <span class="arithmatex">\(O(4^n)\)</span> gates.</p>
+</li>
+<li>
+<p>The <strong>Solovay-Kitaev theorem</strong> guarantees that approximating any single-qubit gate to precision <span class="arithmatex">\(\epsilon\)</span> requires only <span class="arithmatex">\(O(\log^c(1/\epsilon))\)</span> gates from a discrete universal set—a polylogarithmic overhead.</p>
+</li>
+<li>
+<p><strong>Magic state distillation</strong> enables fault-tolerant <span class="arithmatex">\(T\)</span> gate implementation by purifying noisy magic states <span class="arithmatex">\(|A\rangle = T|+\rangle\)</span> using Clifford circuits, at the cost of significant physical qubit overhead.</p>
+</li>
+<li>
+<p>The <strong>quantum circuit model</strong> specifies computation as an initialization, a sequence of gates from a universal set, and a final measurement, with circuit complexity measured by width, depth, size, and <span class="arithmatex">\(T\)</span>-count.</p>
+</li>
+</ol>
+<details class="question">
+<summary>Concept Check: Why is the <span class="arithmatex">\(T\)</span> gate essential for universality but the <span class="arithmatex">\(S\)</span> gate is not?</summary>
+<p>The <span class="arithmatex">\(S\)</span> gate is a Clifford gate—it maps the Pauli group to itself under conjugation (<span class="arithmatex">\(SXS^\dagger = Y\)</span>, <span class="arithmatex">\(SZS^\dagger = Z\)</span>). By the Gottesman-Knill theorem, circuits composed entirely of Clifford gates (<span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(S\)</span>, CNOT) acting on stabilizer states can be efficiently simulated classically. The <span class="arithmatex">\(T\)</span> gate is non-Clifford: <span class="arithmatex">\(TXT^\dagger\)</span> is not a Pauli operator. Adding <span class="arithmatex">\(T\)</span> to the Clifford generators creates a gate set that can approximate any unitary and thus perform computations that are (under standard complexity assumptions) not efficiently classically simulable. The hierarchy <span class="arithmatex">\(T^2 = S\)</span>, <span class="arithmatex">\(S^2 = Z\)</span> shows that <span class="arithmatex">\(T\)</span> is a "finer" rotation than <span class="arithmatex">\(S\)</span> and escapes the Clifford group.</p>
+</details>
+<details class="question">
+<summary>Concept Check: Why does the SWAP gate decompose into exactly three CNOTs?</summary>
+<p>The SWAP gate exchanges two qubit states, which can be viewed as a sequence of three classical XOR operations: (1) copy information from qubit 1 to qubit 2, (2) copy from qubit 2 back to qubit 1, (3) copy from qubit 1 to qubit 2. Each XOR is a CNOT gate. The proof follows by tracking basis states: <span class="arithmatex">\(|a,b\rangle \xrightarrow{\text{CNOT}_{12}} |a, a\oplus b\rangle \xrightarrow{\text{CNOT}_{21}} |b, a\oplus b\rangle \xrightarrow{\text{CNOT}_{12}} |b, a\rangle\)</span>. Three is also the minimum: the SWAP gate has entangling power equivalent to 1.5 ebits, and each CNOT provides at most 1 ebit, but gate application is discrete, so three CNOTs are necessary and sufficient.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../08-qubits-and-states/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 8. Qubits and States">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                8. Qubits and States
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../10-quantum-algorithms/" class="md-footer__link md-footer__link--next" aria-label="Next: 10. Quantum Algorithms">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                10. Quantum Algorithms
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

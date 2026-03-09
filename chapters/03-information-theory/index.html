@@ -1,0 +1,3901 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Shannon entropy, mutual information, channel capacity, coding theorems, Kolmogorov complexity, and Hamming distance">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/03-information-theory/">
+      
+      
+        <link rel="prev" href="../02-physical-limits/">
+      
+      
+        <link rel="next" href="../04-classical-computing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Information Theory Foundations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#information-theory-foundations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Information Theory Foundations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shannon-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shannon Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axiomatic-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axiomatic Derivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Axiomatic Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-binary-entropy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Binary Entropy Function
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Binary Entropy Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-entropy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Entropy Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-shannon-entropy-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Shannon Entropy Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-thermodynamic-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Thermodynamic Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joint-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joint Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-to-marginal-entropies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relation to Marginal Entropies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-rule-for-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule for Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chain Rule for Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chain-rule-for-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule for Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditioning-reduces-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditioning Reduces Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicit Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information-sum-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information Sum Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-negativity-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-negativity Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relative Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kullback-leibler-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kullback-Leibler Divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-negativity-proof-gibbs-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-negativity Proof (Gibbs' Inequality)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asymmetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asymmetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information-as-kl-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information as KL Divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-processing-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processing Inequality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Processing Inequality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#markov-chain-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markov Chain Condition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markov Chain Condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-processing-inequality_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processing Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Coding Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source Coding Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-coding-theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#achievability-typical-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievability: Typical Sequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converse-kraft-inequality-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converse: Kraft Inequality Argument
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Significance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Capacity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Capacity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-memoryless-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Memoryless Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discrete Memoryless Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-capacity-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Capacity Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties-of-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties of Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noisy-channel-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel Coding Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Noisy Channel Coding Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noisy-channel-coding-theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#achievability-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievability Sketch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converse-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converse Sketch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Significance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-symmetric-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Symmetric Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Symmetric Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Derivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacity Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bsc-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BSC Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-binary-symmetric-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Binary Symmetric Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kolmogorov-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kolmogorov Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kolmogorov-complexity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariance-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invariance Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uncomputability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uncomputability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-shannon-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Shannon Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-kolmogorov-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithmic-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithmic Randomness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithmic Randomness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incompressibility-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incompressibility Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counting-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counting Argument
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#martin-lof-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Martin-Löf Randomness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-the-source-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to the Source Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hamming-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Distance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hamming Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hamming-distance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metric Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-distance-of-a-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Distance of a Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-detection-and-correction-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Detection and Correction Bounds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hamming-bound-sphere-packing-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hamming Bound (Sphere-Packing Bound)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Hamming Bound (Sphere-Packing Bound)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hamming-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-channel-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Channel Coding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connections-and-forward-look" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connections and Forward Look
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shannon-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shannon Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axiomatic-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axiomatic Derivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Axiomatic Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shannon-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shannon Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-binary-entropy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Binary Entropy Function
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Binary Entropy Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-entropy-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Entropy Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-shannon-entropy-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Shannon Entropy Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-thermodynamic-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Thermodynamic Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joint-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Joint Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-to-marginal-entropies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relation to Marginal Entropies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditional-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-rule-for-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule for Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chain Rule for Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chain-rule-for-entropy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule for Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditioning-reduces-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditioning Reduces Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutual-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mutual Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Explicit Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information-sum-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information Sum Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-negativity-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-negativity Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relative-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative Entropy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relative Entropy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kullback-leibler-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kullback-Leibler Divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-negativity-proof-gibbs-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-negativity Proof (Gibbs' Inequality)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asymmetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asymmetry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutual-information-as-kl-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mutual Information as KL Divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-processing-inequality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processing Inequality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Processing Inequality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#markov-chain-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markov Chain Condition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markov Chain Condition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-processing-inequality_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Processing Inequality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Coding Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source Coding Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-coding-theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#achievability-typical-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievability: Typical Sequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converse-kraft-inequality-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converse: Kraft Inequality Argument
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Significance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Capacity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Channel Capacity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discrete-memoryless-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discrete Memoryless Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discrete Memoryless Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-capacity-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Capacity Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties-of-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties of Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noisy-channel-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel Coding Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Noisy Channel Coding Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#noisy-channel-coding-theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noisy Channel Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#achievability-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Achievability Sketch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converse-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converse Sketch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Significance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-symmetric-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Symmetric Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Symmetric Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Channel Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity Derivation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacity Derivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bsc-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BSC Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-binary-symmetric-channel-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Binary Symmetric Channel Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kolmogorov-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kolmogorov Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kolmogorov-complexity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariance-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invariance Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uncomputability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uncomputability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-shannon-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Shannon Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-kolmogorov-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Kolmogorov Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algorithmic-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithmic Randomness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithmic Randomness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incompressibility-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incompressibility Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counting-argument" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counting Argument
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#martin-lof-randomness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Martin-Löf Randomness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-the-source-coding-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to the Source Coding Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hamming-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Distance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hamming Distance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hamming-distance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metric Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-distance-of-a-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Distance of a Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-detection-and-correction-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Detection and Correction Bounds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hamming-bound-sphere-packing-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hamming Bound (Sphere-Packing Bound)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Hamming Bound (Sphere-Packing Bound)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hamming-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hamming Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-to-channel-coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection to Channel Coding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connections-and-forward-look" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connections and Forward Look
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/03-information-theory/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="information-theory-foundations">Information Theory Foundations</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter develops Shannon's information theory framework with rigorous mathematical derivations. Topics include Shannon entropy and its properties, joint and conditional entropy, mutual information, the data processing inequality, source and channel coding theorems, and channel capacity. We also introduce Kolmogorov complexity and algorithmic randomness, and establish the deep connections between information-theoretic and thermodynamic entropy.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 13 concepts:</p>
+<ol>
+<li>Shannon Entropy</li>
+<li>Joint Entropy</li>
+<li>Conditional Entropy</li>
+<li>Mutual Information</li>
+<li>Relative Entropy</li>
+<li>Data Processing Inequality</li>
+<li>Source Coding Theorem</li>
+<li>Channel Capacity</li>
+<li>Noisy Channel Coding Theorem</li>
+<li>Binary Symmetric Channel</li>
+<li>Kolmogorov Complexity</li>
+<li>Algorithmic Randomness</li>
+<li>Hamming Distance</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+<li><a href="../04-classical-computing/">Chapter 4: Classical Computing Fundamentals</a> (for Kolmogorov Complexity)</li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Information theory, founded by Claude Shannon in his landmark 1948 paper "A Mathematical Theory of Communication," provides the mathematical framework for quantifying, transmitting, and processing information. Shannon's insight was that information can be treated as a precise mathematical quantity, independent of its semantic content, and that fundamental limits govern how efficiently information can be compressed and how reliably it can be communicated over noisy channels. These results rank among the deepest in all of engineering science, and their consequences permeate every layer of modern computing and communication.</p>
+<p>For this course, information theory plays a dual role. First, it provides the language and tools we need for quantum information theory in later chapters---von Neumann entropy, quantum channel capacity, and quantum error correction all generalize the classical concepts developed here. Second, information theory forges a profound link between abstract computation and physical reality. In Chapter 2 we established Landauer's principle: erasing one bit of information dissipates at least <span class="arithmatex">\(k_B T \ln 2\)</span> joules of energy. That result depends critically on identifying the information-theoretic entropy <span class="arithmatex">\(H\)</span> (measured in bits) with the thermodynamic entropy <span class="arithmatex">\(S\)</span> (measured in J/K) via the conversion factor <span class="arithmatex">\(k_B \ln 2\)</span>:</p>
+<div class="arithmatex">\[S = k_B \ln 2 \cdot H\]</div>
+<p>This equation is the bridge between Shannon's world and Boltzmann's world. Every concept we develop in this chapter---entropy, mutual information, channel capacity---has a thermodynamic shadow, and understanding both sides is essential for reasoning about the physical costs of computation.</p>
+<p>We begin with Shannon entropy derived from first-principles axioms, then build the hierarchy of information measures (joint entropy, conditional entropy, mutual information, relative entropy), prove the data processing inequality, state and interpret the source and channel coding theorems, analyze the binary symmetric channel, and conclude with Kolmogorov complexity, algorithmic randomness, and Hamming distance.</p>
+<h2 id="shannon-entropy">Shannon Entropy</h2>
+<p><strong>Shannon entropy</strong> is the foundational quantity of information theory. It measures the average uncertainty (or information content) associated with a discrete random variable. The entropy quantifies, in a precise operational sense, the minimum number of bits needed on average to describe the outcome of a random experiment.</p>
+<h3 id="axiomatic-derivation">Axiomatic Derivation</h3>
+<p>Shannon's 1948 derivation proceeds from three natural axioms. Let <span class="arithmatex">\(X\)</span> be a discrete random variable taking values in <span class="arithmatex">\(\{x_1, x_2, \ldots, x_n\}\)</span> with probability mass function <span class="arithmatex">\(p(x_i) = p_i\)</span>. We seek a function <span class="arithmatex">\(H(p_1, p_2, \ldots, p_n)\)</span> that quantifies the "uncertainty" of the distribution and satisfies:</p>
+<p><strong>Axiom 1 (Continuity):</strong> <span class="arithmatex">\(H\)</span> is a continuous function of the probabilities <span class="arithmatex">\(p_i\)</span>.</p>
+<p><strong>Axiom 2 (Maximum at uniformity):</strong> For <span class="arithmatex">\(n\)</span> equally likely outcomes, <span class="arithmatex">\(H(1/n, \ldots, 1/n)\)</span> is a monotonically increasing function of <span class="arithmatex">\(n\)</span>. More possible equally likely outcomes means more uncertainty.</p>
+<p><strong>Axiom 3 (Composition / Chain rule):</strong> If a choice is decomposed into successive choices, the original <span class="arithmatex">\(H\)</span> is the weighted sum of the individual values of <span class="arithmatex">\(H\)</span>. That is, grouping outcomes does not change the total uncertainty.</p>
+<p>Shannon proved that the unique function (up to a multiplicative constant) satisfying all three axioms is:</p>
+<h4 id="shannon-entropy_1">Shannon Entropy</h4>
+<div class="arithmatex">\[H(X) = -\sum_{i=1}^{n} p_i \log_2 p_i\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X\)</span> is a discrete random variable with <span class="arithmatex">\(n\)</span> possible outcomes</li>
+<li><span class="arithmatex">\(p_i = P(X = x_i)\)</span> is the probability of the <span class="arithmatex">\(i\)</span>-th outcome</li>
+<li>The logarithm base 2 gives entropy in <strong>bits</strong>; base <span class="arithmatex">\(e\)</span> gives <strong>nats</strong>, and base 10 gives <strong>hartleys</strong></li>
+<li>The convention <span class="arithmatex">\(0 \log_2 0 = 0\)</span> is adopted, consistent with the limit <span class="arithmatex">\(\lim_{p \to 0^+} p \log p = 0\)</span></li>
+</ul>
+<p>The quantity <span class="arithmatex">\(-\log_2 p_i\)</span> is called the <strong>self-information</strong> or <strong>surprisal</strong> of outcome <span class="arithmatex">\(x_i\)</span>. Rare events (small <span class="arithmatex">\(p_i\)</span>) carry high surprisal; certain events (<span class="arithmatex">\(p_i = 1\)</span>) carry zero surprisal. Entropy is the expected surprisal.</p>
+<h3 id="key-properties">Key Properties</h3>
+<p>Shannon entropy satisfies several important properties, each with direct physical and computational significance.</p>
+<p><strong>Non-negativity:</strong> <span class="arithmatex">\(H(X) \geq 0\)</span> for all distributions, with equality if and only if <span class="arithmatex">\(X\)</span> is deterministic (some <span class="arithmatex">\(p_i = 1\)</span>).</p>
+<p><em>Proof:</em> Since <span class="arithmatex">\(0 \leq p_i \leq 1\)</span>, we have <span class="arithmatex">\(\log_2 p_i \leq 0\)</span>, so <span class="arithmatex">\(-p_i \log_2 p_i \geq 0\)</span> for each term.</p>
+<p><strong>Maximum entropy:</strong> For a random variable with <span class="arithmatex">\(n\)</span> outcomes, <span class="arithmatex">\(H(X) \leq \log_2 n\)</span>, with equality if and only if <span class="arithmatex">\(X\)</span> is uniformly distributed.</p>
+<p><em>Proof:</em> Consider the relative entropy <span class="arithmatex">\(D(p \| u) \geq 0\)</span> where <span class="arithmatex">\(u\)</span> is the uniform distribution with <span class="arithmatex">\(u_i = 1/n\)</span> (proven below in the Relative Entropy section). Expanding:</p>
+<div class="arithmatex">\[D(p \| u) = \sum_i p_i \log_2 \frac{p_i}{1/n} = \sum_i p_i \log_2 p_i + \log_2 n = -H(X) + \log_2 n \geq 0\]</div>
+<p>Therefore <span class="arithmatex">\(H(X) \leq \log_2 n\)</span>, with equality when <span class="arithmatex">\(p = u\)</span>.</p>
+<p><strong>Concavity:</strong> <span class="arithmatex">\(H\)</span> is a strictly concave function of the probability vector <span class="arithmatex">\((p_1, \ldots, p_n)\)</span>. For any two distributions <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span> and <span class="arithmatex">\(0 &lt; \lambda &lt; 1\)</span>:</p>
+<div class="arithmatex">\[H(\lambda p + (1-\lambda) q) \geq \lambda H(p) + (1-\lambda) H(q)\]</div>
+<p>This means that mixing (randomizing between) two sources never decreases uncertainty, a property with deep connections to the Second Law of Thermodynamics.</p>
+<p><strong>Additivity for independent variables:</strong> If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then <span class="arithmatex">\(H(X, Y) = H(X) + H(Y)\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+<th>Condition for Equality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-negativity</td>
+<td><span class="arithmatex">\(H(X) \geq 0\)</span></td>
+<td><span class="arithmatex">\(X\)</span> is deterministic</td>
+</tr>
+<tr>
+<td>Upper bound</td>
+<td><span class="arithmatex">\(H(X) \leq \log_2 n\)</span></td>
+<td><span class="arithmatex">\(X\)</span> is uniform over <span class="arithmatex">\(n\)</span> outcomes</td>
+</tr>
+<tr>
+<td>Concavity</td>
+<td><span class="arithmatex">\(H(\lambda p + (1-\lambda)q) \geq \lambda H(p) + (1-\lambda)H(q)\)</span></td>
+<td><span class="arithmatex">\(p = q\)</span></td>
+</tr>
+<tr>
+<td>Additivity</td>
+<td><span class="arithmatex">\(H(X,Y) = H(X) + H(Y)\)</span></td>
+<td><span class="arithmatex">\(X, Y\)</span> independent</td>
+</tr>
+<tr>
+<td>Conditioning reduces entropy</td>
+<td>$H(X</td>
+<td>Y) \leq H(X)$</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-binary-entropy-function">The Binary Entropy Function</h3>
+<p>An especially important special case is the binary random variable <span class="arithmatex">\(X \in \{0, 1\}\)</span> with <span class="arithmatex">\(P(X = 1) = p\)</span> and <span class="arithmatex">\(P(X = 0) = 1 - p\)</span>. The entropy reduces to the <strong>binary entropy function</strong>:</p>
+<h4 id="binary-entropy-function">Binary Entropy Function</h4>
+<div class="arithmatex">\[H_b(p) = -p \log_2 p - (1-p) \log_2 (1-p)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p \in [0, 1]\)</span> is the probability of the outcome labeled 1</li>
+<li><span class="arithmatex">\(H_b(0) = H_b(1) = 0\)</span> (deterministic outcomes have zero uncertainty)</li>
+<li><span class="arithmatex">\(H_b(1/2) = 1\)</span> bit (a fair coin flip carries exactly one bit of information)</li>
+<li><span class="arithmatex">\(H_b\)</span> is symmetric about <span class="arithmatex">\(p = 1/2\)</span> and strictly concave</li>
+</ul>
+<p>The binary entropy function appears throughout coding theory and will be central to our analysis of the binary symmetric channel below. Its shape---rising from 0 at <span class="arithmatex">\(p = 0\)</span> to 1 at <span class="arithmatex">\(p = 1/2\)</span> and returning to 0 at <span class="arithmatex">\(p = 1\)</span>---captures the intuition that uncertainty is maximized when the outcome is most unpredictable.</p>
+<h4 id="diagram-shannon-entropy-explorer">Diagram: Shannon Entropy Explorer</h4>
+<iframe src="../../sims/shannon-entropy/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive visualization of Shannon entropy for discrete distributions</summary>
+<p>Type: MicroSim
+Learning objective: Understand how Shannon entropy varies with the probability distribution, verify the maximum entropy property for uniform distributions, and explore the binary entropy function. Bloom level: Analyze.
+Visual elements: Left panel shows a bar chart of a discrete probability distribution with draggable bars (2 to 8 outcomes). As the user adjusts the bars, the entropy value updates in real time and is displayed prominently. A dashed horizontal line marks the maximum entropy <span class="arithmatex">\(\log_2 n\)</span>. Right panel plots the binary entropy function <span class="arithmatex">\(H_b(p)\)</span> with a movable point tracing the curve. A shaded area under the curve illustrates the integral. Numerical readouts show <span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(H_{\max}\)</span>, and the ratio <span class="arithmatex">\(H / H_{\max}\)</span>.
+Controls: Number of outcomes slider (2-8), draggable probability bars (automatically renormalized), binary entropy slider for right panel, reset to uniform button, reset to deterministic button.
+Behavior: Dragging any bar redistributes probability mass (other bars adjust proportionally to maintain normalization). The entropy readout updates continuously. Preset buttons snap to uniform and degenerate distributions for comparison.
+Implementation: p5.js canvas with draggable bar chart and binary entropy curve plot.</p>
+</details>
+<h3 id="connection-to-thermodynamic-entropy">Connection to Thermodynamic Entropy</h3>
+<p>The formal identity between Shannon entropy and Gibbs/Boltzmann entropy is not a coincidence---it reflects a deep physical truth. Recall from Chapter 2 that the Boltzmann entropy of a system with <span class="arithmatex">\(\Omega\)</span> equally likely microstates is <span class="arithmatex">\(S = k_B \ln \Omega\)</span>. If we identify each microstate with an outcome of a uniform random variable <span class="arithmatex">\(X\)</span> over <span class="arithmatex">\(\Omega\)</span> states, then the Shannon entropy is <span class="arithmatex">\(H(X) = \log_2 \Omega\)</span>, and the two are related by:</p>
+<div class="arithmatex">\[S = k_B \ln 2 \cdot H(X)\]</div>
+<p>More generally, for a system with microstates having probabilities <span class="arithmatex">\(p_i\)</span> (the Gibbs distribution), the Gibbs entropy <span class="arithmatex">\(S = -k_B \sum_i p_i \ln p_i\)</span> is:</p>
+<div class="arithmatex">\[S = k_B \ln 2 \cdot H(X)\]</div>
+<p>where <span class="arithmatex">\(H\)</span> uses the base-2 logarithm. This identification is what makes Landauer's principle possible: erasing one bit (<span class="arithmatex">\(H = 1\)</span>) requires dissipating at least <span class="arithmatex">\(k_B T \ln 2\)</span> joules of heat, because erasing the bit reduces the information-theoretic entropy by 1, and the Second Law demands a compensating entropy increase in the thermal environment.</p>
+<h2 id="joint-entropy">Joint Entropy</h2>
+<p>When we have two (or more) random variables, we need to quantify the total uncertainty in the combined system. The <strong>joint entropy</strong> generalizes Shannon entropy to multiple random variables.</p>
+<h4 id="joint-entropy_1">Joint Entropy</h4>
+<div class="arithmatex">\[H(X, Y) = -\sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_2 p(x, y)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{X}\)</span> and <span class="arithmatex">\(\mathcal{Y}\)</span> are the alphabets (ranges) of <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span></li>
+<li><span class="arithmatex">\(p(x, y) = P(X = x, Y = y)\)</span> is the joint probability mass function</li>
+<li>The convention <span class="arithmatex">\(0 \log_2 0 = 0\)</span> applies to any zero-probability pairs</li>
+</ul>
+<h3 id="relation-to-marginal-entropies">Relation to Marginal Entropies</h3>
+<p>The joint entropy satisfies the following fundamental inequalities:</p>
+<div class="arithmatex">\[\max(H(X), H(Y)) \leq H(X, Y) \leq H(X) + H(Y)\]</div>
+<p>The <strong>left inequality</strong> states that the uncertainty in the pair is at least as large as the uncertainty in either component. The <strong>right inequality</strong> states that the joint uncertainty is at most the sum of the individual uncertainties, with equality if and only if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent.</p>
+<p><em>Proof of the right inequality:</em> Using the chain rule (developed in the next section) and the fact that conditioning reduces entropy:</p>
+<div class="arithmatex">\[H(X, Y) = H(X) + H(Y|X) \leq H(X) + H(Y)\]</div>
+<p>since <span class="arithmatex">\(H(Y|X) \leq H(Y)\)</span>, with equality when <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent.</p>
+<p>For <span class="arithmatex">\(n\)</span> random variables, the joint entropy extends naturally:</p>
+<div class="arithmatex">\[H(X_1, X_2, \ldots, X_n) = -\sum_{x_1, \ldots, x_n} p(x_1, \ldots, x_n) \log_2 p(x_1, \ldots, x_n)\]</div>
+<p>and satisfies <span class="arithmatex">\(H(X_1, \ldots, X_n) \leq \sum_{i=1}^n H(X_i)\)</span>, with equality if and only if all the variables are mutually independent.</p>
+<h2 id="conditional-entropy">Conditional Entropy</h2>
+<p><strong>Conditional entropy</strong> measures the remaining uncertainty in one random variable given knowledge of another. It is the key quantity that separates the entropy of a joint system from the entropy of its parts.</p>
+<h4 id="conditional-entropy_1">Conditional Entropy</h4>
+<div class="arithmatex">\[H(X|Y) = -\sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_2 p(x|y)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p(x|y) = p(x, y) / p(y)\)</span> is the conditional probability of <span class="arithmatex">\(X = x\)</span> given <span class="arithmatex">\(Y = y\)</span></li>
+<li>Equivalently, <span class="arithmatex">\(H(X|Y) = \sum_y p(y) H(X | Y = y)\)</span>, the expected entropy of <span class="arithmatex">\(X\)</span> conditioned on each value of <span class="arithmatex">\(Y\)</span></li>
+<li><span class="arithmatex">\(H(X|Y) = 0\)</span> if and only if <span class="arithmatex">\(X\)</span> is a deterministic function of <span class="arithmatex">\(Y\)</span></li>
+</ul>
+<p>An equivalent and illuminating form is:</p>
+<div class="arithmatex">\[H(X|Y) = H(X, Y) - H(Y)\]</div>
+<p>This says that the uncertainty remaining in <span class="arithmatex">\(X\)</span> after observing <span class="arithmatex">\(Y\)</span> equals the total uncertainty minus the uncertainty resolved by <span class="arithmatex">\(Y\)</span> alone.</p>
+<h3 id="chain-rule-for-entropy">Chain Rule for Entropy</h3>
+<p>The chain rule decomposes joint entropy into a sequence of conditional entropies:</p>
+<h4 id="chain-rule-for-entropy_1">Chain Rule for Entropy</h4>
+<div class="arithmatex">\[H(X_1, X_2, \ldots, X_n) = \sum_{i=1}^{n} H(X_i | X_1, \ldots, X_{i-1})\]</div>
+<p>where:</p>
+<ul>
+<li>Each term <span class="arithmatex">\(H(X_i | X_1, \ldots, X_{i-1})\)</span> is the entropy of <span class="arithmatex">\(X_i\)</span> given all preceding variables</li>
+<li>For the two-variable case: <span class="arithmatex">\(H(X, Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)\)</span></li>
+<li>This generalizes the product rule of probability: <span class="arithmatex">\(p(x, y) = p(x) p(y|x)\)</span></li>
+</ul>
+<p><em>Proof (two-variable case):</em></p>
+<div class="arithmatex">\[H(X, Y) = -\sum_{x,y} p(x,y) \log_2 p(x,y) = -\sum_{x,y} p(x,y) \log_2 [p(x) p(y|x)]\]</div>
+<div class="arithmatex">\[= -\sum_{x,y} p(x,y) \log_2 p(x) - \sum_{x,y} p(x,y) \log_2 p(y|x) = H(X) + H(Y|X)\]</div>
+<p>The general case follows by induction.</p>
+<h3 id="conditioning-reduces-entropy">Conditioning Reduces Entropy</h3>
+<p>A fundamental property is that conditioning on additional information never increases entropy on average:</p>
+<div class="arithmatex">\[H(X|Y) \leq H(X)\]</div>
+<p>with equality if and only if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent. This captures the intuitive notion that learning <span class="arithmatex">\(Y\)</span> can only reduce (or leave unchanged) our uncertainty about <span class="arithmatex">\(X\)</span>.</p>
+<p><em>Proof:</em> <span class="arithmatex">\(H(X) - H(X|Y) = I(X; Y) \geq 0\)</span>, where <span class="arithmatex">\(I(X;Y)\)</span> is the mutual information (shown non-negative below).</p>
+<h2 id="mutual-information">Mutual Information</h2>
+<p><strong>Mutual information</strong> quantifies the amount of information that one random variable contains about another. It is the central quantity in channel coding and the most natural measure of statistical dependence.</p>
+<h4 id="mutual-information_1">Mutual Information</h4>
+<div class="arithmatex">\[I(X; Y) = H(X) - H(X|Y) = H(Y) - H(Y|X) = H(X) + H(Y) - H(X, Y)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(I(X;Y)\)</span> measures the reduction in uncertainty about <span class="arithmatex">\(X\)</span> due to knowledge of <span class="arithmatex">\(Y\)</span> (and vice versa)</li>
+<li>The three equivalent forms follow from the chain rule: <span class="arithmatex">\(H(X,Y) = H(X) + H(Y|X) = H(Y) + H(X|Y)\)</span></li>
+<li><span class="arithmatex">\(I(X;Y) = I(Y;X)\)</span>: mutual information is <strong>symmetric</strong></li>
+</ul>
+<h3 id="explicit-formula">Explicit Formula</h3>
+<p>Expanding in terms of the distributions:</p>
+<h4 id="mutual-information-sum-formula">Mutual Information Sum Formula</h4>
+<div class="arithmatex">\[I(X; Y) = \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} p(x, y) \log_2 \frac{p(x, y)}{p(x) p(y)}\]</div>
+<p>where:</p>
+<ul>
+<li>The argument of the logarithm is the ratio of the joint distribution to the product of marginals</li>
+<li><span class="arithmatex">\(I(X;Y) = 0\)</span> if and only if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent (<span class="arithmatex">\(p(x,y) = p(x)p(y)\)</span> for all <span class="arithmatex">\(x, y\)</span>)</li>
+<li><span class="arithmatex">\(I(X;Y) = D(p(x,y) \| p(x)p(y))\)</span>, the KL divergence between the joint and product distributions</li>
+</ul>
+<h3 id="non-negativity-proof">Non-negativity Proof</h3>
+<p><strong>Theorem:</strong> <span class="arithmatex">\(I(X; Y) \geq 0\)</span> for all random variables <span class="arithmatex">\(X, Y\)</span>, with equality if and only if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent.</p>
+<p><em>Proof:</em> We have <span class="arithmatex">\(I(X;Y) = D(p(x,y) \| p(x)p(y))\)</span>. The non-negativity of mutual information therefore follows from the non-negativity of KL divergence (Gibbs' inequality), which we prove in the next section. Alternatively, a direct proof uses the log-sum inequality or Jensen's inequality applied to the convex function <span class="arithmatex">\(-\log\)</span>.</p>
+<h3 id="information-diagram">Information Diagram</h3>
+<p>The relationships among <span class="arithmatex">\(H(X)\)</span>, <span class="arithmatex">\(H(Y)\)</span>, <span class="arithmatex">\(H(X,Y)\)</span>, <span class="arithmatex">\(H(X|Y)\)</span>, <span class="arithmatex">\(H(Y|X)\)</span>, and <span class="arithmatex">\(I(X;Y)\)</span> are elegantly summarized by a Venn-like diagram:</p>
+<ul>
+<li><span class="arithmatex">\(H(X,Y)\)</span> is the area of the union of two overlapping circles</li>
+<li><span class="arithmatex">\(H(X)\)</span> is the left circle; <span class="arithmatex">\(H(Y)\)</span> is the right circle</li>
+<li><span class="arithmatex">\(I(X;Y)\)</span> is the intersection (overlap) region</li>
+<li><span class="arithmatex">\(H(X|Y) = H(X) - I(X;Y)\)</span> is the left crescent</li>
+<li><span class="arithmatex">\(H(Y|X) = H(Y) - I(X;Y)\)</span> is the right crescent</li>
+</ul>
+<p>This diagram provides a powerful mnemonic for deriving information-theoretic identities. Every inclusion-exclusion relationship that holds for set areas also holds for the corresponding entropy quantities.</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Formula</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(H(X)\)</span></td>
+<td><span class="arithmatex">\(-\sum p(x) \log p(x)\)</span></td>
+<td>Uncertainty of <span class="arithmatex">\(X\)</span> alone</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(H(Y)\)</span></td>
+<td><span class="arithmatex">\(-\sum p(y) \log p(y)\)</span></td>
+<td>Uncertainty of <span class="arithmatex">\(Y\)</span> alone</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(H(X,Y)\)</span></td>
+<td><span class="arithmatex">\(-\sum p(x,y) \log p(x,y)\)</span></td>
+<td>Total uncertainty of the pair</td>
+</tr>
+<tr>
+<td>$H(X</td>
+<td>Y)$</td>
+<td><span class="arithmatex">\(H(X,Y) - H(Y)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I(X;Y)\)</span></td>
+<td><span class="arithmatex">\(H(X) + H(Y) - H(X,Y)\)</span></td>
+<td>Shared information between <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="relative-entropy">Relative Entropy</h2>
+<p><strong>Relative entropy</strong>, also called the <strong>Kullback-Leibler (KL) divergence</strong>, measures the "distance" between two probability distributions over the same alphabet. Although it is not a true metric (it is asymmetric and does not satisfy the triangle inequality), it is the most important divergence measure in information theory.</p>
+<h4 id="kullback-leibler-divergence">Kullback-Leibler Divergence</h4>
+<div class="arithmatex">\[D(p \| q) = \sum_{x \in \mathcal{X}} p(x) \log_2 \frac{p(x)}{q(x)}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span> are two probability distributions over the same alphabet <span class="arithmatex">\(\mathcal{X}\)</span></li>
+<li>The convention is <span class="arithmatex">\(0 \log(0/q) = 0\)</span> and <span class="arithmatex">\(p \log(p/0) = +\infty\)</span> (if <span class="arithmatex">\(q(x) = 0\)</span> for some <span class="arithmatex">\(x\)</span> where <span class="arithmatex">\(p(x) &gt; 0\)</span>, the divergence is infinite)</li>
+<li><span class="arithmatex">\(D(p \| q)\)</span> represents the expected excess number of bits needed to encode samples from <span class="arithmatex">\(p\)</span> using a code optimized for <span class="arithmatex">\(q\)</span></li>
+</ul>
+<h3 id="non-negativity-proof-gibbs-inequality">Non-negativity Proof (Gibbs' Inequality)</h3>
+<p><strong>Theorem (Gibbs' inequality):</strong> <span class="arithmatex">\(D(p \| q) \geq 0\)</span> for all distributions <span class="arithmatex">\(p, q\)</span>, with equality if and only if <span class="arithmatex">\(p = q\)</span>.</p>
+<p><em>Proof via Jensen's inequality:</em> Since <span class="arithmatex">\(-\log\)</span> is a strictly convex function, Jensen's inequality gives:</p>
+<div class="arithmatex">\[-D(p \| q) = \sum_x p(x) \log_2 \frac{q(x)}{p(x)} \leq \log_2 \left( \sum_x p(x) \cdot \frac{q(x)}{p(x)} \right) = \log_2 \left( \sum_x q(x) \right) = \log_2(1) = 0\]</div>
+<p>Therefore <span class="arithmatex">\(D(p \| q) \geq 0\)</span>. Equality holds if and only if <span class="arithmatex">\(q(x)/p(x)\)</span> is constant for all <span class="arithmatex">\(x\)</span> in the support of <span class="arithmatex">\(p\)</span> (by the condition for equality in Jensen's inequality), which requires <span class="arithmatex">\(p = q\)</span>.</p>
+<p>This elegant proof, which leverages the concavity of <span class="arithmatex">\(\log\)</span> (equivalently, the convexity of <span class="arithmatex">\(-\log\)</span>), is one of the most useful techniques in information theory. It immediately yields the non-negativity of mutual information, the bound <span class="arithmatex">\(H(X) \leq \log_2 n\)</span>, and the data processing inequality.</p>
+<h3 id="asymmetry">Asymmetry</h3>
+<p>An important and sometimes counterintuitive property is that KL divergence is <strong>not symmetric</strong>: in general, <span class="arithmatex">\(D(p \| q) \neq D(q \| p)\)</span>. Intuitively, <span class="arithmatex">\(D(p \| q)\)</span> measures the cost of assuming the distribution is <span class="arithmatex">\(q\)</span> when it is actually <span class="arithmatex">\(p\)</span>, and this cost is different from the reverse scenario.</p>
+<p>As a concrete example, let <span class="arithmatex">\(p = (1/2, 1/2)\)</span> and <span class="arithmatex">\(q = (1/10, 9/10)\)</span>. Then:</p>
+<div class="arithmatex">\[D(p \| q) = \frac{1}{2}\log_2 \frac{1/2}{1/10} + \frac{1}{2}\log_2 \frac{1/2}{9/10} \approx 0.737 \text{ bits}\]</div>
+<div class="arithmatex">\[D(q \| p) = \frac{1}{10}\log_2 \frac{1/10}{1/2} + \frac{9}{10}\log_2 \frac{9/10}{1/2} \approx 0.531 \text{ bits}\]</div>
+<p>These are distinct values: <span class="arithmatex">\(D(p \| q) \neq D(q \| p)\)</span>. In machine learning, the choice of direction has important practical consequences---minimizing <span class="arithmatex">\(D(p \| q)\)</span> (the "forward KL") produces <strong>mean-seeking</strong> behavior, while minimizing <span class="arithmatex">\(D(q \| p)\)</span> (the "reverse KL") produces <strong>mode-seeking</strong> behavior.</p>
+<h3 id="mutual-information-as-kl-divergence">Mutual Information as KL Divergence</h3>
+<p>The connection <span class="arithmatex">\(I(X;Y) = D(p(x,y) \| p(x)p(y))\)</span> reveals that mutual information measures the KL divergence between the true joint distribution and the joint distribution under the assumption of independence. A large mutual information means the independence assumption is badly wrong---<span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are strongly dependent.</p>
+<h2 id="data-processing-inequality">Data Processing Inequality</h2>
+<p>The <strong>data processing inequality</strong> (DPI) is a powerful result stating that no processing of data can increase the information that it contains about the source. It formalizes the intuitive notion that "you can't create information from nothing."</p>
+<h3 id="markov-chain-condition">Markov Chain Condition</h3>
+<p>We say that three random variables <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span> form a <strong>Markov chain</strong> in the order <span class="arithmatex">\(X \to Y \to Z\)</span> if the conditional distribution of <span class="arithmatex">\(Z\)</span> given <span class="arithmatex">\((X, Y)\)</span> depends only on <span class="arithmatex">\(Y\)</span>:</p>
+<div class="arithmatex">\[p(z | x, y) = p(z | y) \quad \text{for all } x, y, z\]</div>
+<p>Equivalently, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Z\)</span> are conditionally independent given <span class="arithmatex">\(Y\)</span>. The interpretation is that <span class="arithmatex">\(Y\)</span> mediates all information flow from <span class="arithmatex">\(X\)</span> to <span class="arithmatex">\(Z\)</span>---once <span class="arithmatex">\(Y\)</span> is known, <span class="arithmatex">\(X\)</span> provides no additional information about <span class="arithmatex">\(Z\)</span>.</p>
+<h4 id="data-processing-inequality_1">Data Processing Inequality</h4>
+<div class="arithmatex">\[\text{If } X \to Y \to Z, \text{ then } I(X; Y) \geq I(X; Z)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(X \to Y \to Z\)</span> denotes that <span class="arithmatex">\(X, Y, Z\)</span> form a Markov chain in this order</li>
+<li>Processing <span class="arithmatex">\(Y\)</span> to produce <span class="arithmatex">\(Z\)</span> can only lose (or at best preserve) information about <span class="arithmatex">\(X\)</span></li>
+<li>Equality holds if and only if <span class="arithmatex">\(X \to Z \to Y\)</span> also forms a Markov chain (i.e., <span class="arithmatex">\(Z\)</span> is a <strong>sufficient statistic</strong> for <span class="arithmatex">\(X\)</span> with respect to <span class="arithmatex">\(Y\)</span>)</li>
+</ul>
+<h3 id="proof">Proof</h3>
+<p>By the chain rule for mutual information:</p>
+<div class="arithmatex">\[I(X; Y, Z) = I(X; Z) + I(X; Y | Z) = I(X; Y) + I(X; Z | Y)\]</div>
+<p>Since <span class="arithmatex">\(X \to Y \to Z\)</span> is a Markov chain, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Z\)</span> are conditionally independent given <span class="arithmatex">\(Y\)</span>, so <span class="arithmatex">\(I(X; Z | Y) = 0\)</span>. Therefore:</p>
+<div class="arithmatex">\[I(X; Y) = I(X; Z) + I(X; Y | Z)\]</div>
+<p>Since <span class="arithmatex">\(I(X; Y | Z) \geq 0\)</span> (mutual information is non-negative), we conclude:</p>
+<div class="arithmatex">\[I(X; Y) \geq I(X; Z)\]</div>
+<h3 id="implications">Implications</h3>
+<p>The data processing inequality has far-reaching consequences:</p>
+<ol>
+<li>
+<p><strong>Lossy compression:</strong> If we compress data <span class="arithmatex">\(X\)</span> into a representation <span class="arithmatex">\(Y\)</span> and then further compress <span class="arithmatex">\(Y\)</span> into <span class="arithmatex">\(Z\)</span>, then <span class="arithmatex">\(I(X; Z) \leq I(X; Y)\)</span>---each compression stage can only lose information.</p>
+</li>
+<li>
+<p><strong>Sufficient statistics:</strong> A statistic <span class="arithmatex">\(T(Y)\)</span> of data <span class="arithmatex">\(Y\)</span> about a parameter <span class="arithmatex">\(X\)</span> is sufficient if and only if <span class="arithmatex">\(I(X; T(Y)) = I(X; Y)\)</span>, meaning no information is lost.</p>
+</li>
+<li>
+<p><strong>Cascaded channels:</strong> Passing a signal through successive noisy channels <span class="arithmatex">\(X \to Y \to Z\)</span> yields <span class="arithmatex">\(I(X; Z) \leq I(X; Y)\)</span>---each channel degrades the signal.</p>
+</li>
+<li>
+<p><strong>Machine learning:</strong> No deterministic function of the input features can increase mutual information with the target variable. This constrains what any learning algorithm can achieve.</p>
+</li>
+</ol>
+<h2 id="source-coding-theorem">Source Coding Theorem</h2>
+<p>Shannon's <strong>source coding theorem</strong> (also called the <strong>noiseless coding theorem</strong> or Shannon's first theorem) establishes the fundamental limit on lossless data compression. It says that entropy is the ultimate compression rate: no lossless code can compress data below the entropy rate, and there exist codes that achieve this rate.</p>
+<h4 id="source-coding-theorem_1">Source Coding Theorem</h4>
+<div class="arithmatex">\[\text{For i.i.d. source } X_1, X_2, \ldots \text{ with } X_i \sim p(x): \quad \lim_{n \to \infty} \frac{L^*_n}{n} = H(X)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(L^*_n\)</span> is the minimum expected codeword length for encoding blocks of <span class="arithmatex">\(n\)</span> symbols from the source</li>
+<li><span class="arithmatex">\(H(X) = -\sum_x p(x) \log_2 p(x)\)</span> is the entropy of the source in bits per symbol</li>
+<li>The theorem asserts both a <strong>converse</strong> (<span class="arithmatex">\(L^*_n / n \geq H(X)\)</span>, compression below entropy is impossible) and an <strong>achievability</strong> (<span class="arithmatex">\(L^*_n / n\)</span> can be made arbitrarily close to <span class="arithmatex">\(H(X)\)</span>)</li>
+</ul>
+<h3 id="achievability-typical-sequences">Achievability: Typical Sequences</h3>
+<p>The proof of achievability rests on the concept of <strong>typical sequences</strong>. For an i.i.d. source, the law of large numbers implies that for a sequence <span class="arithmatex">\(x^n = (x_1, \ldots, x_n)\)</span>:</p>
+<div class="arithmatex">\[-\frac{1}{n} \log_2 p(x^n) = -\frac{1}{n} \sum_{i=1}^n \log_2 p(x_i) \to H(X) \quad \text{as } n \to \infty\]</div>
+<p>The <strong>typical set</strong> <span class="arithmatex">\(A_\epsilon^{(n)}\)</span> consists of all sequences <span class="arithmatex">\(x^n\)</span> satisfying:</p>
+<div class="arithmatex">\[2^{-n(H(X)+\epsilon)} \leq p(x^n) \leq 2^{-n(H(X)-\epsilon)}\]</div>
+<p>The <strong>asymptotic equipartition property</strong> (AEP) guarantees that:</p>
+<ol>
+<li><span class="arithmatex">\(P(x^n \in A_\epsilon^{(n)}) \to 1\)</span> as <span class="arithmatex">\(n \to \infty\)</span> (almost all probability mass is on typical sequences)</li>
+<li><span class="arithmatex">\(|A_\epsilon^{(n)}| \leq 2^{n(H(X)+\epsilon)}\)</span> (the typical set has at most <span class="arithmatex">\(2^{n(H+\epsilon)}\)</span> members)</li>
+<li><span class="arithmatex">\(|A_\epsilon^{(n)}| \geq (1-\epsilon) 2^{n(H(X)-\epsilon)}\)</span> for sufficiently large <span class="arithmatex">\(n\)</span></li>
+</ol>
+<p>Since there are approximately <span class="arithmatex">\(2^{nH}\)</span> typical sequences, we need only <span class="arithmatex">\(nH + o(n)\)</span> bits to index them, giving a compression rate approaching <span class="arithmatex">\(H(X)\)</span> bits per symbol.</p>
+<h3 id="converse-kraft-inequality-argument">Converse: Kraft Inequality Argument</h3>
+<p>The converse---that no code can achieve a rate below <span class="arithmatex">\(H(X)\)</span>---follows from the Kraft inequality for uniquely decodable codes. For any uniquely decodable code with codeword lengths <span class="arithmatex">\(l_1, l_2, \ldots, l_m\)</span>, the Kraft inequality requires:</p>
+<div class="arithmatex">\[\sum_{i=1}^m 2^{-l_i} \leq 1\]</div>
+<p>Minimizing the expected codeword length <span class="arithmatex">\(\sum_i p_i l_i\)</span> subject to this constraint (using Lagrange multipliers) yields the optimal lengths <span class="arithmatex">\(l_i^* = -\log_2 p_i\)</span>, which may not be integers. The expected length is therefore:</p>
+<div class="arithmatex">\[L^* = \sum_i p_i l_i^* = -\sum_i p_i \log_2 p_i = H(X)\]</div>
+<p>Since actual codeword lengths must be integers, we have <span class="arithmatex">\(H(X) \leq L^* &lt; H(X) + 1\)</span> for single-symbol codes. Block coding of <span class="arithmatex">\(n\)</span> symbols at a time makes the "+1" overhead negligible, achieving <span class="arithmatex">\(L_n^*/n \to H(X)\)</span>.</p>
+<h3 id="practical-significance">Practical Significance</h3>
+<p>The source coding theorem tells us that the entropy rate is the <strong>hard floor</strong> for lossless compression. For example:</p>
+<ul>
+<li>A fair coin (<span class="arithmatex">\(H = 1\)</span> bit/symbol) cannot be compressed at all</li>
+<li>English text (estimated <span class="arithmatex">\(H \approx 1.0\)</span>--<span class="arithmatex">\(1.5\)</span> bits/character) can be compressed from 8 bits/character (ASCII) to roughly 1--1.5 bits/character, consistent with the performance of algorithms like gzip and LZ77</li>
+<li>A biased coin with <span class="arithmatex">\(p(\text{heads}) = 0.9\)</span> has <span class="arithmatex">\(H \approx 0.469\)</span> bits/flip, so on average fewer than half a bit per flip suffices</li>
+</ul>
+<h2 id="channel-capacity">Channel Capacity</h2>
+<p>Having established the limits of data compression, we now turn to the dual problem: how reliably can information be transmitted over a noisy channel? The <strong>channel capacity</strong> quantifies the maximum rate at which information can be reliably communicated.</p>
+<h3 id="discrete-memoryless-channel">Discrete Memoryless Channel</h3>
+<p>A <strong>discrete memoryless channel</strong> (DMC) is characterized by an input alphabet <span class="arithmatex">\(\mathcal{X}\)</span>, an output alphabet <span class="arithmatex">\(\mathcal{Y}\)</span>, and a set of conditional probabilities <span class="arithmatex">\(p(y|x)\)</span> specifying the probability of receiving <span class="arithmatex">\(y\)</span> when <span class="arithmatex">\(x\)</span> is transmitted. "Memoryless" means each output depends only on the current input, not on previous inputs or outputs.</p>
+<h4 id="channel-capacity-definition">Channel Capacity Definition</h4>
+<div class="arithmatex">\[C = \max_{p(x)} I(X; Y)\]</div>
+<p>where:</p>
+<ul>
+<li>The maximum is over all possible input distributions <span class="arithmatex">\(p(x)\)</span></li>
+<li><span class="arithmatex">\(I(X; Y) = H(Y) - H(Y|X)\)</span> is the mutual information between input and output</li>
+<li><span class="arithmatex">\(H(Y|X) = \sum_x p(x) H(Y | X = x)\)</span> depends only on the channel (not on the input distribution)</li>
+<li><span class="arithmatex">\(C\)</span> is measured in bits per channel use</li>
+</ul>
+<p>The capacity is the tightest "bottleneck" of the channel, found by optimizing what we put in. The channel noise (<span class="arithmatex">\(H(Y|X)\)</span>) is fixed by the physics of the channel; we can only control the input distribution <span class="arithmatex">\(p(x)\)</span> to maximize the information that passes through.</p>
+<h3 id="properties-of-channel-capacity">Properties of Channel Capacity</h3>
+<ol>
+<li><span class="arithmatex">\(C \geq 0\)</span>, since <span class="arithmatex">\(I(X;Y) \geq 0\)</span> for all input distributions.</li>
+<li><span class="arithmatex">\(C \leq \log_2 |\mathcal{X}|\)</span>, since <span class="arithmatex">\(I(X;Y) \leq H(X) \leq \log_2 |\mathcal{X}|\)</span>.</li>
+<li><span class="arithmatex">\(C \leq \log_2 |\mathcal{Y}|\)</span>, since <span class="arithmatex">\(I(X;Y) \leq H(Y) \leq \log_2 |\mathcal{Y}|\)</span>.</li>
+<li>For a noiseless channel (<span class="arithmatex">\(Y = X\)</span>), <span class="arithmatex">\(C = \log_2 |\mathcal{X}|\)</span>---the full input alphabet is usable.</li>
+<li>For a completely noisy channel (<span class="arithmatex">\(Y\)</span> independent of <span class="arithmatex">\(X\)</span>), <span class="arithmatex">\(C = 0\)</span>---the channel conveys no information.</li>
+</ol>
+<h2 id="noisy-channel-coding-theorem">Noisy Channel Coding Theorem</h2>
+<p>Shannon's <strong>noisy channel coding theorem</strong> (Shannon's second theorem) is perhaps the most remarkable result in all of information theory. It asserts that reliable communication is possible at any rate below the channel capacity, and impossible above it.</p>
+<h4 id="noisy-channel-coding-theorem_1">Noisy Channel Coding Theorem</h4>
+<div class="arithmatex">\[\text{For a DMC with capacity } C:\]</div>
+<div class="arithmatex">\[\text{(Achievability)} \quad \forall R &lt; C, \; \exists \text{ codes with rate } R \text{ and } P_e \to 0 \text{ as } n \to \infty\]</div>
+<div class="arithmatex">\[\text{(Converse)} \quad \forall R &gt; C, \; P_e \to 1 \text{ as } n \to \infty \text{ for any sequence of codes with rate } R\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(R\)</span> is the coding rate in bits per channel use</li>
+<li><span class="arithmatex">\(n\)</span> is the block length (number of channel uses)</li>
+<li><span class="arithmatex">\(P_e\)</span> is the probability of decoding error</li>
+<li>The theorem says <span class="arithmatex">\(C\)</span> is a sharp threshold: below <span class="arithmatex">\(C\)</span>, errors vanish; above <span class="arithmatex">\(C\)</span>, errors are inevitable</li>
+</ul>
+<h3 id="achievability-sketch">Achievability Sketch</h3>
+<p>The proof of achievability uses <strong>random coding</strong>. Shannon showed that if we choose <span class="arithmatex">\(2^{nR}\)</span> codewords independently and uniformly at random from the input alphabet, then for <span class="arithmatex">\(R &lt; C\)</span>, the probability of error (averaged over all random codebooks) goes to zero exponentially in <span class="arithmatex">\(n\)</span>. Since the average error is small, there must exist at least one specific codebook achieving low error. The key technical tool is <strong>joint typicality</strong>: the decoder looks for the unique codeword that is jointly typical with the received sequence.</p>
+<h3 id="converse-sketch">Converse Sketch</h3>
+<p>The converse uses Fano's inequality. If we can reliably decode, then <span class="arithmatex">\(H(X^n | Y^n)\)</span> must be small (low residual uncertainty). Fano's inequality states:</p>
+<div class="arithmatex">\[H(X^n | Y^n) \leq 1 + P_e \cdot nR\]</div>
+<p>Combined with the data processing inequality and the definition of capacity, this forces <span class="arithmatex">\(R \leq C + \delta\)</span> for any <span class="arithmatex">\(\delta &gt; 0\)</span> when <span class="arithmatex">\(P_e\)</span> is small.</p>
+<h3 id="significance">Significance</h3>
+<p>Shannon's theorem is an <strong>existence</strong> theorem---it proves that good codes exist but does not construct them. The search for practical codes approaching capacity has driven decades of coding theory research, culminating in turbo codes (1993), LDPC codes (rediscovered 1996), and polar codes (2009), which come within fractions of a decibel of the Shannon limit. The theorem also has a profound philosophical implication: it separates the problem of source coding (compression) from channel coding (error correction), showing that the two can be solved independently without loss of optimality.</p>
+<h2 id="binary-symmetric-channel">Binary Symmetric Channel</h2>
+<p>The <strong>binary symmetric channel</strong> (BSC) is the simplest and most widely studied noisy channel model. It transmits binary symbols, and each bit is independently flipped with probability <span class="arithmatex">\(p\)</span> (the <strong>crossover probability</strong>).</p>
+<h3 id="channel-model">Channel Model</h3>
+<p>The BSC has input alphabet <span class="arithmatex">\(\mathcal{X} = \{0, 1\}\)</span>, output alphabet <span class="arithmatex">\(\mathcal{Y} = \{0, 1\}\)</span>, and transition probabilities:</p>
+<div class="arithmatex">\[p(y|x) = \begin{cases} 1 - p &amp; \text{if } y = x \\ p &amp; \text{if } y \neq x \end{cases}\]</div>
+<p>where <span class="arithmatex">\(p \in [0, 1]\)</span> is the crossover (error) probability.</p>
+<h3 id="capacity-derivation">Capacity Derivation</h3>
+<p>We derive the capacity of the BSC by maximizing <span class="arithmatex">\(I(X;Y)\)</span> over input distributions <span class="arithmatex">\(p(x)\)</span>.</p>
+<p><strong>Step 1:</strong> Write mutual information as <span class="arithmatex">\(I(X;Y) = H(Y) - H(Y|X)\)</span>.</p>
+<p><strong>Step 2:</strong> Compute <span class="arithmatex">\(H(Y|X)\)</span>. Given <span class="arithmatex">\(X = x\)</span>, the output <span class="arithmatex">\(Y\)</span> is a Bernoulli random variable with parameter <span class="arithmatex">\(p\)</span> (the crossover probability). Therefore:</p>
+<div class="arithmatex">\[H(Y|X) = H_b(p)\]</div>
+<p>where <span class="arithmatex">\(H_b(p) = -p \log_2 p - (1-p) \log_2(1-p)\)</span> is the binary entropy function. This quantity is independent of the input distribution.</p>
+<p><strong>Step 3:</strong> Maximize <span class="arithmatex">\(H(Y)\)</span>. Since <span class="arithmatex">\(Y\)</span> is a binary random variable, <span class="arithmatex">\(H(Y) \leq 1\)</span> bit, with equality when <span class="arithmatex">\(Y\)</span> is uniform. If the input distribution is uniform (<span class="arithmatex">\(P(X=0) = P(X=1) = 1/2\)</span>), then by symmetry <span class="arithmatex">\(P(Y=0) = P(Y=1) = 1/2\)</span>, so <span class="arithmatex">\(H(Y) = 1\)</span> bit.</p>
+<p><strong>Step 4:</strong> Combine:</p>
+<h4 id="bsc-channel-capacity">BSC Channel Capacity</h4>
+<div class="arithmatex">\[C_{\text{BSC}} = 1 - H_b(p)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(C = 1\)</span> bit/use when <span class="arithmatex">\(p = 0\)</span> (noiseless channel) or <span class="arithmatex">\(p = 1\)</span> (deterministic inversion, equivalent to noiseless)</li>
+<li><span class="arithmatex">\(C = 0\)</span> when <span class="arithmatex">\(p = 1/2\)</span> (completely random output, independent of input)</li>
+<li>The capacity is symmetric about <span class="arithmatex">\(p = 1/2\)</span>, reflecting the fact that a channel that always flips bits is as informative as one that never does (just invert the output)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Crossover probability <span class="arithmatex">\(p\)</span></th>
+<th><span class="arithmatex">\(H_b(p)\)</span> (bits)</th>
+<th>Capacity <span class="arithmatex">\(C\)</span> (bits/use)</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Perfect channel</td>
+</tr>
+<tr>
+<td>0.01</td>
+<td>0.081</td>
+<td>0.919</td>
+<td>Nearly perfect</td>
+</tr>
+<tr>
+<td>0.1</td>
+<td>0.469</td>
+<td>0.531</td>
+<td>Moderate noise</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.722</td>
+<td>0.278</td>
+<td>High noise</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>1.0</td>
+<td>0</td>
+<td>Completely random</td>
+</tr>
+</tbody>
+</table>
+<p>The BSC capacity formula <span class="arithmatex">\(C = 1 - H_b(p)\)</span> has a beautiful interpretation: the channel's output provides 1 bit per use of raw information, but <span class="arithmatex">\(H_b(p)\)</span> bits are "consumed" by the noise. The remaining <span class="arithmatex">\(1 - H_b(p)\)</span> bits are the usable information that can be extracted by the receiver.</p>
+<h4 id="diagram-binary-symmetric-channel-capacity">Diagram: Binary Symmetric Channel Capacity</h4>
+<iframe src="../../sims/bsc-capacity/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive visualization of the BSC model and its capacity as a function of crossover probability</summary>
+<p>Type: MicroSim
+Learning objective: Understand the binary symmetric channel model, derive the capacity formula <span class="arithmatex">\(C = 1 - H_b(p)\)</span>, and visualize how capacity degrades with increasing noise. Bloom level: Analyze.
+Visual elements: Left panel shows the BSC channel diagram with two input nodes (0, 1) and two output nodes (0, 1), with transition probabilities labeled on the arrows. Arrow thickness varies with probability. Right panel plots <span class="arithmatex">\(C(p) = 1 - H_b(p)\)</span> as a smooth curve, with a movable point tracing the curve as <span class="arithmatex">\(p\)</span> changes. A secondary plot shows <span class="arithmatex">\(H_b(p)\)</span> for reference. Below the plots, a live simulation sends random bits through the BSC and displays the transmitted, received, and error bits, with running bit error rate and estimated mutual information.
+Controls: Crossover probability slider <span class="arithmatex">\(p \in [0, 0.5]\)</span>, number of transmitted bits (100, 1000, 10000), input distribution bias slider, play/pause for simulation, reset.
+Behavior: Adjusting <span class="arithmatex">\(p\)</span> updates the channel diagram, the capacity curve highlight, and the simulation error rate. The estimated mutual information from the simulation converges to the theoretical value as the number of bits increases.
+Implementation: p5.js with channel diagram, capacity curve, and live bit transmission simulation.</p>
+</details>
+<h2 id="kolmogorov-complexity">Kolmogorov Complexity</h2>
+<p>While Shannon entropy measures the average information content of a source modeled as a random process, <strong>Kolmogorov complexity</strong> measures the information content of an individual string, independent of any probabilistic model. It provides an algorithmic, model-free notion of information that complements Shannon's framework.</p>
+<h3 id="definition">Definition</h3>
+<h4 id="kolmogorov-complexity_1">Kolmogorov Complexity</h4>
+<div class="arithmatex">\[K(x) = \min \{ |p| : U(p) = x \}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x\)</span> is a finite binary string</li>
+<li><span class="arithmatex">\(U\)</span> is a fixed universal Turing machine (the reference computer)</li>
+<li><span class="arithmatex">\(p\)</span> is a program (binary string) that causes <span class="arithmatex">\(U\)</span> to output <span class="arithmatex">\(x\)</span> and halt</li>
+<li><span class="arithmatex">\(|p|\)</span> denotes the length of program <span class="arithmatex">\(p\)</span> in bits</li>
+<li><span class="arithmatex">\(K(x)\)</span> is the length of the shortest program that produces <span class="arithmatex">\(x\)</span></li>
+</ul>
+<p>In other words, the Kolmogorov complexity of a string is the length of its shortest description in a fixed programming language. A string like <span class="arithmatex">\(0101010101\cdots01\)</span> (the pattern "01" repeated <span class="arithmatex">\(n\)</span> times) has low complexity---<span class="arithmatex">\(O(\log n)\)</span> bits suffice to describe the pattern and the repetition count---while a "random-looking" string of length <span class="arithmatex">\(n\)</span> typically has complexity close to <span class="arithmatex">\(n\)</span>, since no program shorter than the string itself can produce it.</p>
+<h3 id="invariance-theorem">Invariance Theorem</h3>
+<p>A natural concern is that <span class="arithmatex">\(K(x)\)</span> depends on the choice of universal Turing machine <span class="arithmatex">\(U\)</span>. The <strong>invariance theorem</strong> shows that this dependence is limited to an additive constant:</p>
+<p><strong>Theorem:</strong> For any two universal Turing machines <span class="arithmatex">\(U_1\)</span> and <span class="arithmatex">\(U_2\)</span>:</p>
+<div class="arithmatex">\[|K_{U_1}(x) - K_{U_2}(x)| \leq c\]</div>
+<p>where <span class="arithmatex">\(c\)</span> is a constant depending on <span class="arithmatex">\(U_1\)</span> and <span class="arithmatex">\(U_2\)</span> but independent of <span class="arithmatex">\(x\)</span>.</p>
+<p><em>Proof sketch:</em> Since <span class="arithmatex">\(U_1\)</span> is universal, it can simulate <span class="arithmatex">\(U_2\)</span> with a fixed-length simulation program of length <span class="arithmatex">\(c_{12}\)</span>. Any program <span class="arithmatex">\(p\)</span> for <span class="arithmatex">\(U_2\)</span> can be converted to a program of length <span class="arithmatex">\(|p| + c_{12}\)</span> for <span class="arithmatex">\(U_1\)</span>, so <span class="arithmatex">\(K_{U_1}(x) \leq K_{U_2}(x) + c_{12}\)</span>. By symmetry, the reverse also holds.</p>
+<p>This invariance justifies speaking of "the" Kolmogorov complexity of a string without specifying the machine, up to an additive constant.</p>
+<h3 id="uncomputability">Uncomputability</h3>
+<p>A fundamental result is that Kolmogorov complexity is <strong>not computable</strong>: there is no algorithm that takes <span class="arithmatex">\(x\)</span> as input and outputs <span class="arithmatex">\(K(x)\)</span>.</p>
+<p><em>Proof by contradiction:</em> Suppose there existed a program <span class="arithmatex">\(\texttt{KC}\)</span> that computes <span class="arithmatex">\(K(x)\)</span>. Consider the following program <span class="arithmatex">\(\texttt{P}\)</span>: "Enumerate all binary strings in lexicographic order; for each string <span class="arithmatex">\(x\)</span>, compute <span class="arithmatex">\(K(x)\)</span> using <span class="arithmatex">\(\texttt{KC}\)</span>; output the first <span class="arithmatex">\(x\)</span> for which <span class="arithmatex">\(K(x) &gt; |\texttt{P}|\)</span>." The program <span class="arithmatex">\(\texttt{P}\)</span> has some fixed length <span class="arithmatex">\(L = |\texttt{P}|\)</span>. But it outputs a string <span class="arithmatex">\(x\)</span> with <span class="arithmatex">\(K(x) &gt; L\)</span>, while simultaneously providing a description of <span class="arithmatex">\(x\)</span> of length <span class="arithmatex">\(L\)</span> (namely, the program <span class="arithmatex">\(\texttt{P}\)</span> itself). This contradicts <span class="arithmatex">\(K(x) &gt; L\)</span>, so <span class="arithmatex">\(\texttt{KC}\)</span> cannot exist.</p>
+<p>This argument is a formalization of Berry's paradox ("the smallest positive integer not definable in under sixty letters") and closely related to Gödel's incompleteness theorem and the halting problem.</p>
+<h3 id="connection-to-shannon-entropy">Connection to Shannon Entropy</h3>
+<p>For i.i.d. random sources, Kolmogorov complexity and Shannon entropy are asymptotically equivalent in the following sense:</p>
+<p><strong>Theorem:</strong> If <span class="arithmatex">\(X_1, X_2, \ldots, X_n\)</span> are i.i.d. with distribution <span class="arithmatex">\(p\)</span>, then:</p>
+<div class="arithmatex">\[\frac{1}{n} E[K(X_1 X_2 \cdots X_n)] \to H(X) \quad \text{as } n \to \infty\]</div>
+<p>That is, the expected Kolmogorov complexity per symbol converges to the Shannon entropy. This deep result connects the two major frameworks of information theory: Shannon's probabilistic framework and Kolmogorov's algorithmic framework. For individual strings, Kolmogorov complexity can be much larger or smaller than <span class="arithmatex">\(nH\)</span>, but on average over the source ensemble, the two measures agree.</p>
+<h3 id="conditional-kolmogorov-complexity">Conditional Kolmogorov Complexity</h3>
+<p>The conditional Kolmogorov complexity <span class="arithmatex">\(K(x|y)\)</span> is the length of the shortest program that outputs <span class="arithmatex">\(x\)</span> given <span class="arithmatex">\(y\)</span> as auxiliary input:</p>
+<div class="arithmatex">\[K(x|y) = \min \{ |p| : U(p, y) = x \}\]</div>
+<p>The chain rule for Kolmogorov complexity parallels the chain rule for entropy:</p>
+<div class="arithmatex">\[K(x, y) = K(x) + K(y|x) + O(\log K(x, y))\]</div>
+<p>The logarithmic correction term (absent in Shannon's chain rule) arises from the need to specify the boundary between the descriptions of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span>.</p>
+<h2 id="algorithmic-randomness">Algorithmic Randomness</h2>
+<p><strong>Algorithmic randomness</strong> provides a rigorous definition of what it means for an individual sequence to be "random," independent of any probabilistic model.</p>
+<h3 id="incompressibility-definition">Incompressibility Definition</h3>
+<p>A string <span class="arithmatex">\(x\)</span> of length <span class="arithmatex">\(n\)</span> is said to be <strong>algorithmically random</strong> (or <strong>Kolmogorov random</strong>) if it is incompressible:</p>
+<div class="arithmatex">\[K(x) \geq n - c\]</div>
+<p>for some small constant <span class="arithmatex">\(c\)</span>. An algorithmically random string cannot be described by any program significantly shorter than itself.</p>
+<h3 id="counting-argument">Counting Argument</h3>
+<p><strong>Theorem:</strong> Most strings of length <span class="arithmatex">\(n\)</span> are algorithmically random.</p>
+<p><em>Proof:</em> There are <span class="arithmatex">\(2^n\)</span> strings of length <span class="arithmatex">\(n\)</span>. There are at most <span class="arithmatex">\(2^0 + 2^1 + \cdots + 2^{n-c-1} = 2^{n-c} - 1 &lt; 2^{n-c}\)</span> programs of length less than <span class="arithmatex">\(n - c\)</span>. Therefore, at most <span class="arithmatex">\(2^{n-c}\)</span> strings of length <span class="arithmatex">\(n\)</span> have <span class="arithmatex">\(K(x) &lt; n - c\)</span>, which is a fraction <span class="arithmatex">\(2^{-c}\)</span> of all strings. For <span class="arithmatex">\(c = 10\)</span>, fewer than 0.1% of strings are compressible by 10 or more bits.</p>
+<p>This is a remarkable combinatorial fact: randomness is the <strong>typical</strong> condition, and structure (compressibility) is rare.</p>
+<h3 id="martin-lof-randomness">Martin-Löf Randomness</h3>
+<p>A more refined notion of algorithmic randomness was introduced by Per Martin-Löf in 1966. A sequence <span class="arithmatex">\(x = x_1 x_2 x_3 \cdots\)</span> (infinite binary sequence) is <strong>Martin-Löf random</strong> with respect to a computable probability measure <span class="arithmatex">\(\mu\)</span> if it passes all effective statistical tests. Formally, <span class="arithmatex">\(x\)</span> is Martin-Löf random if it does not belong to any <strong>effectively null set</strong>---a set that can be computably covered by intervals whose total <span class="arithmatex">\(\mu\)</span>-measure can be made arbitrarily small.</p>
+<p>For the uniform (fair coin) measure on <span class="arithmatex">\(\{0,1\}^\infty\)</span>, the following characterizations of Martin-Löf randomness are equivalent:</p>
+<ol>
+<li><strong>Incompressibility:</strong> The initial segments <span class="arithmatex">\(x_1 x_2 \cdots x_n\)</span> satisfy <span class="arithmatex">\(K(x_1 \cdots x_n) \geq n - O(1)\)</span> (Schnorr's theorem relates this to prefix-free Kolmogorov complexity).</li>
+<li><strong>Typicality:</strong> The sequence satisfies all computable statistical laws---the law of large numbers, the law of the iterated logarithm, etc.</li>
+<li><strong>Unpredictability:</strong> No computable betting strategy can make unbounded profit by gambling on successive bits of <span class="arithmatex">\(x\)</span>.</li>
+</ol>
+<p>Martin-Löf randomness is the mathematically "correct" definition of individual randomness, unifying the intuitive notions of incompressibility, typicality, and unpredictability into a single, robust concept.</p>
+<h3 id="connection-to-the-source-coding-theorem">Connection to the Source Coding Theorem</h3>
+<p>Algorithmic randomness illuminates the source coding theorem from a different angle. Shannon's theorem says that a typical sequence from an i.i.d. source with entropy <span class="arithmatex">\(H\)</span> has description length approximately <span class="arithmatex">\(nH\)</span> bits. Algorithmic randomness makes this precise at the individual sequence level: a Martin-Löf random sequence with respect to the source measure <span class="arithmatex">\(p\)</span> satisfies <span class="arithmatex">\(K(x_1 \cdots x_n) \approx nH(p)\)</span>, meaning that the "random" sequences are exactly the typical sequences in Shannon's sense.</p>
+<h2 id="hamming-distance">Hamming Distance</h2>
+<p>We now turn from the abstract theory of information measures to the combinatorial foundations of error-correcting codes. <strong>Hamming distance</strong>, introduced by Richard Hamming in 1950, is the fundamental metric for measuring the dissimilarity between binary strings and for analyzing the error-detection and error-correction capabilities of codes.</p>
+<h3 id="definition_1">Definition</h3>
+<h4 id="hamming-distance_1">Hamming Distance</h4>
+<div class="arithmatex">\[d(x, y) = |\{i : x_i \neq y_i\}|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(x = x_1 x_2 \cdots x_n\)</span> and <span class="arithmatex">\(y = y_1 y_2 \cdots y_n\)</span> are binary strings of equal length <span class="arithmatex">\(n\)</span></li>
+<li><span class="arithmatex">\(d(x, y)\)</span> counts the number of positions in which <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> differ</li>
+<li>Equivalently, <span class="arithmatex">\(d(x, y) = w(x \oplus y)\)</span>, where <span class="arithmatex">\(\oplus\)</span> is the bitwise XOR and <span class="arithmatex">\(w(\cdot)\)</span> is the <strong>Hamming weight</strong> (number of 1s)</li>
+</ul>
+<h3 id="metric-properties">Metric Properties</h3>
+<p>Hamming distance is a valid metric on <span class="arithmatex">\(\{0, 1\}^n\)</span>:</p>
+<ol>
+<li><strong>Non-negativity:</strong> <span class="arithmatex">\(d(x, y) \geq 0\)</span>, with <span class="arithmatex">\(d(x, y) = 0\)</span> if and only if <span class="arithmatex">\(x = y\)</span></li>
+<li><strong>Symmetry:</strong> <span class="arithmatex">\(d(x, y) = d(y, x)\)</span></li>
+<li><strong>Triangle inequality:</strong> <span class="arithmatex">\(d(x, z) \leq d(x, y) + d(y, z)\)</span></li>
+</ol>
+<p><em>Proof of the triangle inequality:</em> At each position <span class="arithmatex">\(i\)</span>, if <span class="arithmatex">\(x_i \neq z_i\)</span> then either <span class="arithmatex">\(x_i \neq y_i\)</span> or <span class="arithmatex">\(y_i \neq z_i\)</span> (or both). Therefore the number of positions where <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(z\)</span> differ is at most the number where <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> differ plus the number where <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(z\)</span> differ.</p>
+<h3 id="minimum-distance-of-a-code">Minimum Distance of a Code</h3>
+<p>An <span class="arithmatex">\((n, M)\)</span> binary code <span class="arithmatex">\(\mathcal{C}\)</span> is a set of <span class="arithmatex">\(M\)</span> codewords, each of length <span class="arithmatex">\(n\)</span>. The <strong>minimum distance</strong> of the code is:</p>
+<div class="arithmatex">\[d_{\min}(\mathcal{C}) = \min_{\substack{c_1, c_2 \in \mathcal{C} \\ c_1 \neq c_2}} d(c_1, c_2)\]</div>
+<p>The minimum distance is the most important single parameter of a code, because it determines the code's error-detection and error-correction capabilities.</p>
+<h3 id="error-detection-and-correction-bounds">Error Detection and Correction Bounds</h3>
+<p><strong>Theorem:</strong> A code with minimum distance <span class="arithmatex">\(d_{\min}\)</span> can:</p>
+<ul>
+<li><strong>Detect</strong> up to <span class="arithmatex">\(d_{\min} - 1\)</span> errors</li>
+<li><strong>Correct</strong> up to <span class="arithmatex">\(\lfloor (d_{\min} - 1)/2 \rfloor\)</span> errors</li>
+</ul>
+<p><em>Proof of error detection:</em> If at most <span class="arithmatex">\(d_{\min} - 1\)</span> bits of a codeword are flipped, the resulting string differs from the original codeword in at most <span class="arithmatex">\(d_{\min} - 1\)</span> positions. Since any two codewords differ in at least <span class="arithmatex">\(d_{\min}\)</span> positions, the corrupted string cannot be a different valid codeword. Therefore the receiver can detect that errors have occurred (though not necessarily identify the original codeword).</p>
+<p><em>Proof of error correction:</em> Let <span class="arithmatex">\(t = \lfloor (d_{\min} - 1)/2 \rfloor\)</span>. If at most <span class="arithmatex">\(t\)</span> errors occur, the received word is within Hamming distance <span class="arithmatex">\(t\)</span> of the transmitted codeword. For any other codeword <span class="arithmatex">\(c'\)</span>, the triangle inequality gives:</p>
+<div class="arithmatex">\[d_{\min} \leq d(c, c') \leq d(c, r) + d(r, c') \leq t + d(r, c')\]</div>
+<p>so <span class="arithmatex">\(d(r, c') \geq d_{\min} - t \geq t + 1 &gt; t\)</span>. Therefore, the received word is closer to the transmitted codeword than to any other codeword, and <strong>nearest-neighbor decoding</strong> (finding the closest codeword) recovers the original message correctly.</p>
+<h3 id="the-hamming-bound-sphere-packing-bound">The Hamming Bound (Sphere-Packing Bound)</h3>
+<p>How many codewords can a code of length <span class="arithmatex">\(n\)</span> and minimum distance <span class="arithmatex">\(d_{\min} = 2t+1\)</span> have? The <strong>Hamming bound</strong> provides an upper limit.</p>
+<h4 id="hamming-bound">Hamming Bound</h4>
+<div class="arithmatex">\[M \leq \frac{2^n}{\sum_{j=0}^{t} \binom{n}{j}}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(M\)</span> is the maximum number of codewords</li>
+<li><span class="arithmatex">\(n\)</span> is the codeword length</li>
+<li><span class="arithmatex">\(t = \lfloor (d_{\min}-1)/2 \rfloor\)</span> is the error-correction capability</li>
+<li><span class="arithmatex">\(\binom{n}{j}\)</span> is the number of binary strings at Hamming distance exactly <span class="arithmatex">\(j\)</span> from any given string</li>
+<li><span class="arithmatex">\(V(n, t) = \sum_{j=0}^{t} \binom{n}{j}\)</span> is the volume of a Hamming ball of radius <span class="arithmatex">\(t\)</span> in <span class="arithmatex">\(\{0,1\}^n\)</span></li>
+</ul>
+<p><em>Proof:</em> Consider the Hamming balls of radius <span class="arithmatex">\(t\)</span> centered at each of the <span class="arithmatex">\(M\)</span> codewords. Each ball contains <span class="arithmatex">\(V(n, t)\)</span> strings. By the error-correction property, these balls are disjoint (no string is within distance <span class="arithmatex">\(t\)</span> of two different codewords). Since all these disjoint balls must fit inside <span class="arithmatex">\(\{0, 1\}^n\)</span>, which has <span class="arithmatex">\(2^n\)</span> elements:</p>
+<div class="arithmatex">\[M \cdot V(n, t) \leq 2^n\]</div>
+<p>A code that meets the Hamming bound with equality is called a <strong>perfect code</strong>. The Hamming balls exactly tile the space <span class="arithmatex">\(\{0, 1\}^n\)</span> with no gaps. Examples of perfect codes include:</p>
+<ul>
+<li>The <strong>(7, 4, 3) Hamming code:</strong> <span class="arithmatex">\(n = 7\)</span>, <span class="arithmatex">\(M = 2^4 = 16\)</span>, <span class="arithmatex">\(d_{\min} = 3\)</span>, <span class="arithmatex">\(t = 1\)</span>. The Hamming bound gives <span class="arithmatex">\(M \leq 2^7 / (1 + 7) = 128/8 = 16\)</span>, achieved exactly.</li>
+<li>The <strong>(23, 12, 7) binary Golay code:</strong> <span class="arithmatex">\(n = 23\)</span>, <span class="arithmatex">\(M = 2^{12} = 4096\)</span>, <span class="arithmatex">\(d_{\min} = 7\)</span>, <span class="arithmatex">\(t = 3\)</span>. The Hamming bound is met with equality.</li>
+<li><strong>Trivial codes:</strong> The repetition code (all bits identical) and the full space <span class="arithmatex">\(\{0,1\}^n\)</span> with <span class="arithmatex">\(d_{\min} = 1\)</span>.</li>
+</ul>
+<p>It was proven by Tietäväinen and van Lint (1973) that the only nontrivial perfect binary codes are the Hamming codes and the Golay code.</p>
+<h3 id="connection-to-channel-coding">Connection to Channel Coding</h3>
+<p>Hamming distance connects directly to the BSC. On a BSC with crossover probability <span class="arithmatex">\(p &lt; 1/2\)</span>, the maximum-likelihood decoder is equivalent to the nearest-neighbor decoder in Hamming distance. A code with minimum distance <span class="arithmatex">\(d_{\min}\)</span> and nearest-neighbor decoding on a BSC can correct all error patterns of weight <span class="arithmatex">\(\leq t = \lfloor(d_{\min}-1)/2\rfloor\)</span>. The probability of decoding error is:</p>
+<div class="arithmatex">\[P_e = \sum_{j=t+1}^{n} \binom{n}{j} p^j (1-p)^{n-j}\]</div>
+<p>which decreases exponentially in <span class="arithmatex">\(n\)</span> for fixed rate <span class="arithmatex">\(R &lt; C\)</span>, as guaranteed by the noisy channel coding theorem.</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th><span class="arithmatex">\((n, k, d_{\min})\)</span></th>
+<th>Rate <span class="arithmatex">\(R = k/n\)</span></th>
+<th>Error correction <span class="arithmatex">\(t\)</span></th>
+<th>Perfect?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(7,4) Hamming</td>
+<td>(7, 4, 3)</td>
+<td>0.571</td>
+<td>1</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>(15,11) Hamming</td>
+<td>(15, 11, 3)</td>
+<td>0.733</td>
+<td>1</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>(23,12) Golay</td>
+<td>(23, 12, 7)</td>
+<td>0.522</td>
+<td>3</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>(31,26) Hamming</td>
+<td>(31, 26, 3)</td>
+<td>0.839</td>
+<td>1</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Triple repetition</td>
+<td>(3, 1, 3)</td>
+<td>0.333</td>
+<td>1</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connections-and-forward-look">Connections and Forward Look</h2>
+<p>The information-theoretic framework developed in this chapter provides the essential foundation for several subsequent topics in this course:</p>
+<p><strong>Quantum information theory</strong> (Chapters 7--10) generalizes every concept in this chapter. Shannon entropy becomes <strong>von Neumann entropy</strong> <span class="arithmatex">\(S(\rho) = -\text{tr}(\rho \log \rho)\)</span>, classical channels become quantum channels, and mutual information becomes <strong>coherent information</strong> and <strong>quantum mutual information</strong>. The quantum channel capacity (the Holevo-Schumacher-Westmoreland theorem) is the quantum analog of the noisy channel coding theorem.</p>
+<p><strong>Quantum error correction</strong> (Chapter 11) generalizes Hamming distance to quantum codes. The minimum distance of a quantum stabilizer code governs its error-correction capability, just as the classical minimum distance does here. The quantum Hamming bound and the quantum Singleton bound are direct analogs of their classical counterparts.</p>
+<p><strong>Landauer's principle and reversible computing</strong> (Chapters 2 and 5) depend on the identification of information-theoretic entropy with thermodynamic entropy. The minimum energy to erase a bit is <span class="arithmatex">\(k_B T \ln 2\)</span>, and the source coding theorem tells us that a source with entropy <span class="arithmatex">\(H\)</span> has <span class="arithmatex">\(nH\)</span> bits of information per <span class="arithmatex">\(n\)</span> symbols---thus the minimum thermodynamic cost of processing <span class="arithmatex">\(n\)</span> symbols from this source is at least <span class="arithmatex">\(nH \cdot k_B T \ln 2\)</span> joules (if the processing involves erasure).</p>
+<p><strong>Stochastic computing</strong> (Chapter 13) represents numbers as random bit streams, and the information content of a stochastic bit stream of length <span class="arithmatex">\(N\)</span> is at most <span class="arithmatex">\(\log_2(N+1)\)</span> bits by the source coding theorem---far less than the <span class="arithmatex">\(N\)</span> bits in the stream. This information-theoretic perspective explains both the compression inefficiency and the error tolerance of stochastic representations.</p>
+<p>The interplay between information, entropy, computation, and physics is the central theme of this course, and the tools developed in this chapter are the common language that connects all the pieces.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>C. E. Shannon, "A Mathematical Theory of Communication," <em>Bell System Technical Journal</em>, vol. 27, pp. 379--423, 623--656, 1948.</li>
+<li>T. M. Cover and J. A. Thomas, <em>Elements of Information Theory</em>, 2nd ed., Wiley-Interscience, 2006.</li>
+<li>R. W. Hamming, "Error Detecting and Error Correcting Codes," <em>Bell System Technical Journal</em>, vol. 29, no. 2, pp. 147--160, 1950.</li>
+<li>A. N. Kolmogorov, "Three Approaches to the Quantitative Definition of Information," <em>Problems of Information Transmission</em>, vol. 1, no. 1, pp. 1--7, 1965.</li>
+<li>P. Martin-Löf, "The Definition of Random Sequences," <em>Information and Control</em>, vol. 9, no. 6, pp. 602--619, 1966.</li>
+<li>M. Li and P. Vitányi, <em>An Introduction to Kolmogorov Complexity and Its Applications</em>, 4th ed., Springer, 2019.</li>
+<li>R. Landauer, "Irreversibility and Heat Generation in the Computing Process," <em>IBM Journal of Research and Development</em>, vol. 5, no. 3, pp. 183--191, 1961.</li>
+<li>D. J. C. MacKay, <em>Information Theory, Inference, and Learning Algorithms</em>, Cambridge University Press, 2003.</li>
+<li>S. Kullback and R. A. Leibler, "On Information and Sufficiency," <em>Annals of Mathematical Statistics</em>, vol. 22, no. 1, pp. 79--86, 1951.</li>
+<li>E. Arikan, "Channel Polarization: A Method for Constructing Capacity-Achieving Codes for Symmetric Binary-Input Memoryless Channels," <em>IEEE Transactions on Information Theory</em>, vol. 55, no. 7, pp. 3051--3073, 2009.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../02-physical-limits/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Physical Limits">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2. Physical Limits
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../04-classical-computing/" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Classical Computing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4. Classical Computing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

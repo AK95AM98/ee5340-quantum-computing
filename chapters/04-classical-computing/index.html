@@ -1,0 +1,4040 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Boolean algebra, CMOS transistor physics, power dissipation mechanisms, Boltzmann tyranny, and computational complexity theory">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/04-classical-computing/">
+      
+      
+        <link rel="prev" href="../03-information-theory/">
+      
+      
+        <link rel="next" href="../05-beyond-cmos-devices/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Classical Computing Fundamentals - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#classical-computing-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Classical Computing Fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boolean-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean Algebra
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean Algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axioms-of-boolean-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms of Boolean Algebra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-theorems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Theorems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-laws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's Laws
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="De Morgan&#39;s Laws">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-first-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's First Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-second-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's Second Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logic-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logic Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logic Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamental-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamental Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universal-gate-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Gate Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-logic-gate-truth-table-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Logic Gate Truth Table Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmos-transistor-physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Transistor Physics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CMOS Transistor Physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosfet-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MOSFET Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOSFET Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gate-oxide-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Oxide Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmos-and-pmos-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NMOS and PMOS Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cmos-inverter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CMOS Inverter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosfet-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MOSFET Operation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOSFET Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cutoff-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutoff Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cutoff Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cutoff-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutoff Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-triode-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear (Triode) Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linear (Triode) Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-region-drain-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Region Drain Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturation-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saturation Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Saturation Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saturation-region-drain-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saturation Region Drain Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-mosfet-operating-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of MOSFET Operating Regions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-power-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Power Dissipation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic Power Dissipation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#derivation-of-the-switching-power-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivation of the Switching Power Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Derivation of the Switching Power Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-power-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Power Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short-Circuit Power
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Short-Circuit Power">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-power_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short-Circuit Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-power-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Power Dissipation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Power Dissipation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#total-static-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total Static Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subthreshold-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subthreshold Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subthreshold-leakage-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Leakage Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subthreshold-swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Swing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gate-oxide-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Oxide Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gate Oxide Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tunneling-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunneling Mechanisms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunneling Mechanisms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-tunneling-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Tunneling Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fowler-nordheim-tunneling-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fowler-Nordheim Tunneling Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigation-high-kappa-dielectrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigation: High-\(\kappa\) Dielectrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boltzmann-tyranny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boltzmann Tyranny
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boltzmann Tyranny">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-physical-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Physical Origin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-for-voltage-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences for Voltage Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences for Voltage Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-per-operation-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Per Operation Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-switching-energy-boltzmann-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Switching Energy (Boltzmann Limit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threshold-voltage-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threshold Voltage Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Threshold Voltage Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-performance-leakage-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Performance-Leakage Tradeoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-threshold-cmos-mtcmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Threshold CMOS (MTCMOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-scaling-trends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historical Scaling Trends
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computational Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-problems-and-time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Problems and Time Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class P
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class P">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of P
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class NP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class NP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of NP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#np-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NP-Completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-bqp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class BQP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class BQP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-bqp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of BQP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Church-Turing Thesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#turing-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Turing Machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-church-turing-thesis-informal-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Church-Turing Thesis (Informal Statement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computability-and-the-halting-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computability and the Halting Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-extended-church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Extended Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-quantum-challenge-to-the-extended-church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Quantum Challenge to the Extended Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Quantum Challenge to the Extended Church-Turing Thesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-complexity-class-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Complexity Class Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-classical-foundations-to-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting Classical Foundations to Quantum Computing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-classical-computing-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Classical Computing Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boolean-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean Algebra
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean Algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#axioms-of-boolean-algebra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axioms of Boolean Algebra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-theorems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Theorems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-laws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's Laws
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="De Morgan&#39;s Laws">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-first-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's First Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-morgans-second-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        De Morgan's Second Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical Forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logic-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logic Gates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logic Gates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fundamental-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamental Gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universal-gate-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Universal Gate Sets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Universal Gate Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-logic-gate-truth-table-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Logic Gate Truth Table Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cmos-transistor-physics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMOS Transistor Physics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CMOS Transistor Physics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mosfet-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MOSFET Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOSFET Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gate-oxide-capacitance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Oxide Capacitance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmos-and-pmos-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NMOS and PMOS Operation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cmos-inverter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CMOS Inverter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mosfet-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MOSFET Operation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MOSFET Operation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cutoff-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutoff Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cutoff Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cutoff-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutoff Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-triode-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear (Triode) Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linear (Triode) Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-region-drain-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Region Drain Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saturation-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saturation Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Saturation Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saturation-region-drain-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saturation Region Drain Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-mosfet-operating-regions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of MOSFET Operating Regions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-power-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Power Dissipation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic Power Dissipation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#derivation-of-the-switching-power-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivation of the Switching Power Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Derivation of the Switching Power Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-power-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Power Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short-Circuit Power
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Short-Circuit Power">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#short-circuit-power_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Short-Circuit Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-power-dissipation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Power Dissipation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Power Dissipation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#total-static-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total Static Power
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subthreshold-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subthreshold Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subthreshold-leakage-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Leakage Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subthreshold-swing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subthreshold Swing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gate-oxide-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gate Oxide Leakage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gate Oxide Leakage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tunneling-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tunneling Mechanisms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tunneling Mechanisms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#direct-tunneling-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Tunneling Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fowler-nordheim-tunneling-current" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fowler-Nordheim Tunneling Current
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigation-high-kappa-dielectrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigation: High-\(\kappa\) Dielectrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boltzmann-tyranny" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boltzmann Tyranny
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boltzmann Tyranny">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-physical-origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Physical Origin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-for-voltage-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences for Voltage Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences for Voltage Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-per-operation-lower-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Energy Per Operation Lower Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-switching-energy-boltzmann-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Switching Energy (Boltzmann Limit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threshold-voltage-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threshold Voltage Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Threshold Voltage Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-performance-leakage-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Performance-Leakage Tradeoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-threshold-cmos-mtcmos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Threshold CMOS (MTCMOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-scaling-trends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historical Scaling Trends
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Complexity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computational Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-problems-and-time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Problems and Time Complexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class P
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class P">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of P
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class NP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class NP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of NP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#np-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NP-Completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-class-bqp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Class BQP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Class BQP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-bqp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of BQP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Church-Turing Thesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#turing-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Turing Machines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-church-turing-thesis-informal-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Church-Turing Thesis (Informal Statement)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computability-and-the-halting-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computability and the Halting Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-extended-church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Extended Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-quantum-challenge-to-the-extended-church-turing-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Quantum Challenge to the Extended Church-Turing Thesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Quantum Challenge to the Extended Church-Turing Thesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-complexity-class-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Complexity Class Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-classical-foundations-to-quantum-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connecting Classical Foundations to Quantum Computing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-classical-computing-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Classical Computing Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/04-classical-computing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="classical-computing-fundamentals">Classical Computing Fundamentals</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter covers the foundations of classical digital computing from Boolean algebra through CMOS transistor physics and power dissipation analysis. We derive the dynamic and static power models, examine subthreshold and gate oxide leakage mechanisms, analyze the Boltzmann tyranny limiting voltage scaling, and introduce computational complexity theory and the Church-Turing thesis.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 12 concepts:</p>
+<ol>
+<li>Boolean Algebra</li>
+<li>Logic Gates</li>
+<li>CMOS Transistor Physics</li>
+<li>MOSFET Operation</li>
+<li>Dynamic Power Dissipation</li>
+<li>Static Power Dissipation</li>
+<li>Subthreshold Leakage</li>
+<li>Gate Oxide Leakage</li>
+<li>Boltzmann Tyranny</li>
+<li>Threshold Voltage Scaling</li>
+<li>Computational Complexity</li>
+<li>Church-Turing Thesis</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../01-mathematical-foundations/">Chapter 1: Mathematical Foundations</a></li>
+<li><a href="../02-physical-limits/">Chapter 2: Physical Limits of Computing</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Classical digital computing, the dominant paradigm since the mid-twentieth century, rests on two pillars: a mathematical abstraction layer---Boolean algebra and computational complexity theory---and a physical implementation layer---CMOS transistor circuits. This chapter develops both pillars from first principles, establishing the foundations that motivate the exploration of beyond-CMOS devices (Chapter 5), reversible computing (Chapter 6), and quantum computing (Chapters 7--10) in the remainder of this textbook.</p>
+<p>We begin with Boolean algebra and logic gates, the mathematical language of digital circuits. We then descend to the physical substrate: CMOS transistors, their current-voltage characteristics, and the regions of operation that enable them to function as switches. From these device physics foundations, we derive the power dissipation models---dynamic switching power and static leakage power---that govern the energy budget of every modern processor. The analysis of leakage mechanisms, particularly subthreshold leakage and gate oxide tunneling, reveals that a fundamental thermodynamic constraint, the <strong>Boltzmann tyranny</strong>, prevents indefinite voltage scaling and sets an irreducible floor on energy per switching event. This thermodynamic wall, first encountered from the information-theoretic perspective in Chapter 2 through Landauer's principle, here manifests in concrete device physics.</p>
+<p>We conclude with computational complexity theory, which classifies problems not by their solutions but by the resources required to find solutions. The complexity classes P, NP, and BQP, together with the Church-Turing thesis and its extended form, frame the central question that quantum computing seeks to answer: are there problems for which quantum mechanics provides a genuine computational advantage?</p>
+<h2 id="boolean-algebra">Boolean Algebra</h2>
+<p><strong>Boolean algebra</strong> provides the mathematical foundation for all digital logic. Formalized by George Boole in 1854 and later applied to switching circuits by Claude Shannon in his 1938 master's thesis, Boolean algebra operates on a two-element set <span class="arithmatex">\(\{0, 1\}\)</span> with three primitive operations: conjunction (AND, denoted <span class="arithmatex">\(\cdot\)</span>), disjunction (OR, denoted <span class="arithmatex">\(+\)</span>), and complementation (NOT, denoted <span class="arithmatex">\(\overline{A}\)</span> or <span class="arithmatex">\(A'\)</span>).</p>
+<h3 id="axioms-of-boolean-algebra">Axioms of Boolean Algebra</h3>
+<p>A Boolean algebra <span class="arithmatex">\((\mathcal{B}, +, \cdot, \overline{\phantom{x}}, 0, 1)\)</span> satisfies the following axioms for all <span class="arithmatex">\(A, B, C \in \mathcal{B}\)</span>:</p>
+<table>
+<thead>
+<tr>
+<th>Axiom</th>
+<th>OR form</th>
+<th>AND form</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td><span class="arithmatex">\(A + 0 = A\)</span></td>
+<td><span class="arithmatex">\(A \cdot 1 = A\)</span></td>
+</tr>
+<tr>
+<td>Complement</td>
+<td><span class="arithmatex">\(A + \overline{A} = 1\)</span></td>
+<td><span class="arithmatex">\(A \cdot \overline{A} = 0\)</span></td>
+</tr>
+<tr>
+<td>Commutative</td>
+<td><span class="arithmatex">\(A + B = B + A\)</span></td>
+<td><span class="arithmatex">\(A \cdot B = B \cdot A\)</span></td>
+</tr>
+<tr>
+<td>Associative</td>
+<td><span class="arithmatex">\((A + B) + C = A + (B + C)\)</span></td>
+<td><span class="arithmatex">\((A \cdot B) \cdot C = A \cdot (B \cdot C)\)</span></td>
+</tr>
+<tr>
+<td>Distributive</td>
+<td><span class="arithmatex">\(A \cdot (B + C) = A \cdot B + A \cdot C\)</span></td>
+<td><span class="arithmatex">\(A + (B \cdot C) = (A + B) \cdot (A + C)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Note the duality: every Boolean theorem has a dual obtained by interchanging <span class="arithmatex">\(+\)</span> with <span class="arithmatex">\(\cdot\)</span> and <span class="arithmatex">\(0\)</span> with <span class="arithmatex">\(1\)</span>. This <strong>principle of duality</strong> halves the number of theorems that must be independently proved.</p>
+<h3 id="key-theorems">Key Theorems</h3>
+<p>From the axioms, several important theorems follow by algebraic manipulation:</p>
+<ul>
+<li><strong>Idempotence:</strong> <span class="arithmatex">\(A + A = A\)</span> and <span class="arithmatex">\(A \cdot A = A\)</span></li>
+<li><strong>Domination:</strong> <span class="arithmatex">\(A + 1 = 1\)</span> and <span class="arithmatex">\(A \cdot 0 = 0\)</span></li>
+<li><strong>Absorption:</strong> <span class="arithmatex">\(A + A \cdot B = A\)</span> and <span class="arithmatex">\(A \cdot (A + B) = A\)</span></li>
+<li><strong>Involution:</strong> <span class="arithmatex">\(\overline{\overline{A}} = A\)</span></li>
+<li><strong>Consensus:</strong> <span class="arithmatex">\(A \cdot B + \overline{A} \cdot C + B \cdot C = A \cdot B + \overline{A} \cdot C\)</span></li>
+</ul>
+<h3 id="de-morgans-laws">De Morgan's Laws</h3>
+<p>The most important theorems for circuit design are <strong>De Morgan's laws</strong>, which relate complementation to the duality between AND and OR:</p>
+<h4 id="de-morgans-first-law">De Morgan's First Law</h4>
+<div class="arithmatex">\[
+\overline{A + B} = \overline{A} \cdot \overline{B}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are Boolean variables</li>
+<li>The complement of a disjunction equals the conjunction of the complements</li>
+<li>Generalizes to <span class="arithmatex">\(n\)</span> variables: <span class="arithmatex">\(\overline{A_1 + A_2 + \cdots + A_n} = \overline{A_1} \cdot \overline{A_2} \cdots \overline{A_n}\)</span></li>
+</ul>
+<h4 id="de-morgans-second-law">De Morgan's Second Law</h4>
+<div class="arithmatex">\[
+\overline{A \cdot B} = \overline{A} + \overline{B}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The complement of a conjunction equals the disjunction of the complements</li>
+<li>Generalizes similarly to <span class="arithmatex">\(n\)</span> variables</li>
+</ul>
+<p><strong>Proof of De Morgan's First Law:</strong> We verify that <span class="arithmatex">\(\overline{A} \cdot \overline{B}\)</span> satisfies the definition of the complement of <span class="arithmatex">\(A + B\)</span>. First, <span class="arithmatex">\((A + B) + \overline{A} \cdot \overline{B} = (A + B + \overline{A}) \cdot (A + B + \overline{B}) = 1 \cdot 1 = 1\)</span>. Second, <span class="arithmatex">\((A + B) \cdot \overline{A} \cdot \overline{B} = A \cdot \overline{A} \cdot \overline{B} + B \cdot \overline{A} \cdot \overline{B} = 0 + 0 = 0\)</span>. Since the complement is unique in a Boolean algebra, <span class="arithmatex">\(\overline{A + B} = \overline{A} \cdot \overline{B}\)</span>. <span class="arithmatex">\(\square\)</span></p>
+<h3 id="canonical-forms">Canonical Forms</h3>
+<p>Any Boolean function <span class="arithmatex">\(f: \{0,1\}^n \to \{0,1\}\)</span> can be expressed in two canonical forms:</p>
+<ul>
+<li><strong>Sum of Products (SOP):</strong> A disjunction of minterms, where each minterm is a conjunction of all <span class="arithmatex">\(n\)</span> variables or their complements. For a function of variables <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span>:</li>
+</ul>
+<div class="arithmatex">\[
+f(A,B) = \sum_{i \in \text{ON-set}} m_i
+\]</div>
+<p>For example, <span class="arithmatex">\(f(A,B) = \overline{A} \cdot B + A \cdot B = (A + \overline{A}) \cdot B = B\)</span>.</p>
+<ul>
+<li><strong>Product of Sums (POS):</strong> A conjunction of maxterms, where each maxterm is a disjunction of all <span class="arithmatex">\(n\)</span> variables or their complements:</li>
+</ul>
+<div class="arithmatex">\[
+f(A,B) = \prod_{j \in \text{OFF-set}} M_j
+\]</div>
+<p>The SOP and POS forms are duals of each other and both provide complete representations of any Boolean function. The SOP form directly maps to a two-level AND-OR circuit; the POS form maps to a two-level OR-AND circuit. Both can be converted to NAND-only or NOR-only implementations using De Morgan's laws, which is essential for CMOS circuit design as discussed below.</p>
+<h2 id="logic-gates">Logic Gates</h2>
+<p><strong>Logic gates</strong> are the physical implementations of Boolean operations. Each gate takes one or more binary inputs and produces a binary output according to a fixed truth table.</p>
+<h3 id="fundamental-gates">Fundamental Gates</h3>
+<p>The truth tables for the seven standard gates on two inputs <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> are:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(A\)</span></th>
+<th><span class="arithmatex">\(B\)</span></th>
+<th>AND</th>
+<th>OR</th>
+<th>NOT(<span class="arithmatex">\(A\)</span>)</th>
+<th>NAND</th>
+<th>NOR</th>
+<th>XOR</th>
+<th>XNOR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>XOR</strong> (exclusive OR) gate, defined as <span class="arithmatex">\(A \oplus B = A \cdot \overline{B} + \overline{A} \cdot B\)</span>, detects inequality between its inputs and plays a crucial role in arithmetic circuits (half adders, parity generators) and later in reversible computing (Chapter 6). The <strong>XNOR</strong> gate computes the complement <span class="arithmatex">\(\overline{A \oplus B} = A \cdot B + \overline{A} \cdot \overline{B}\)</span>, which detects equality.</p>
+<h3 id="universal-gate-sets">Universal Gate Sets</h3>
+<p>A set of gates is <strong>universal</strong> (or <strong>functionally complete</strong>) if any Boolean function can be implemented using only gates from that set. The standard set <span class="arithmatex">\(\{\text{AND}, \text{OR}, \text{NOT}\}\)</span> is universal by the existence of canonical forms, but remarkably, either of the single-gate sets <span class="arithmatex">\(\{\text{NAND}\}\)</span> or <span class="arithmatex">\(\{\text{NOR}\}\)</span> is also universal.</p>
+<p><strong>Proof that NAND is universal.</strong> We show that NOT, AND, and OR can each be constructed from NAND gates:</p>
+<ol>
+<li><strong>NOT:</strong> <span class="arithmatex">\(\overline{A} = \overline{A \cdot A} = A \uparrow A\)</span> (feed <span class="arithmatex">\(A\)</span> to both inputs of a NAND)</li>
+<li><strong>AND:</strong> <span class="arithmatex">\(A \cdot B = \overline{\overline{A \cdot B}} = (A \uparrow B) \uparrow (A \uparrow B)\)</span> (NAND followed by NAND-as-NOT)</li>
+<li><strong>OR:</strong> <span class="arithmatex">\(A + B = \overline{\overline{A} \cdot \overline{B}} = (A \uparrow A) \uparrow (B \uparrow B)\)</span> (by De Morgan's second law)</li>
+</ol>
+<p>Since any Boolean function can be expressed in terms of AND, OR, and NOT, and each of these can be built from NAND alone, the NAND gate is universal. An analogous proof holds for NOR by duality. <span class="arithmatex">\(\square\)</span></p>
+<p>The universality of NAND is of paramount practical importance: in CMOS technology, the NAND gate is the most natural and efficient gate to implement, as we shall see in the next section.</p>
+<h4 id="diagram-logic-gate-truth-table-explorer">Diagram: Logic Gate Truth Table Explorer</h4>
+<iframe src="../../sims/logic-gate-explorer/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive truth table and circuit diagram for all fundamental logic gates</summary>
+<p>Type: MicroSim
+Learning objective: Understand the input-output behavior of AND, OR, NOT, NAND, NOR, XOR, and XNOR gates, and verify De Morgan's laws and universality constructions. Bloom level: Apply.
+Visual elements: A selectable gate type with animated circuit symbol. Two input toggle switches (A and B) with colored wires showing signal propagation. The output is highlighted green (1) or red (0). A truth table fills in row by row as the user cycles through inputs. A secondary panel shows how each gate can be constructed from NAND gates only.
+Controls: Gate type selector (AND, OR, NOT, NAND, NOR, XOR, XNOR), input toggle buttons for A and B, "show NAND construction" toggle, auto-cycle button to iterate through all input combinations.
+Behavior: Selecting a gate type displays its circuit symbol. Toggling inputs shows real-time output. The NAND construction panel animates signal flow through the equivalent NAND-only circuit, demonstrating universality.
+Implementation: p5.js with interactive circuit diagram and animated signal propagation.</p>
+</details>
+<h2 id="cmos-transistor-physics">CMOS Transistor Physics</h2>
+<p><strong>Complementary Metal-Oxide-Semiconductor (CMOS)</strong> technology implements logic gates using pairs of complementary transistors: <strong>NMOS</strong> (n-channel) and <strong>PMOS</strong> (p-channel) MOSFETs. Understanding their physical structure and electrical behavior is essential for analyzing the power dissipation mechanisms that ultimately limit classical computing.</p>
+<h3 id="mosfet-structure">MOSFET Structure</h3>
+<p>A MOSFET (Metal-Oxide-Semiconductor Field-Effect Transistor) consists of four terminals: <strong>gate</strong> (G), <strong>source</strong> (S), <strong>drain</strong> (D), and <strong>body</strong> (B). The gate is separated from the semiconductor channel by a thin layer of insulating gate oxide (typically SiO<span class="arithmatex">\(_2\)</span> or a high-<span class="arithmatex">\(\kappa\)</span> dielectric). The key structural parameters are:</p>
+<ul>
+<li><strong>Gate oxide thickness</strong> <span class="arithmatex">\(t_{\text{ox}}\)</span>: the thickness of the insulating layer, typically 1--5 nm in modern processes</li>
+<li><strong>Channel length</strong> <span class="arithmatex">\(L\)</span>: the distance between source and drain, defining the technology node (e.g., 7 nm, 5 nm)</li>
+<li><strong>Channel width</strong> <span class="arithmatex">\(W\)</span>: the lateral extent of the channel, a design variable</li>
+<li><strong>Gate oxide capacitance per unit area</strong> <span class="arithmatex">\(C_{\text{ox}} = \epsilon_{\text{ox}} / t_{\text{ox}}\)</span>, where <span class="arithmatex">\(\epsilon_{\text{ox}}\)</span> is the permittivity of the oxide</li>
+</ul>
+<h4 id="gate-oxide-capacitance">Gate Oxide Capacitance</h4>
+<div class="arithmatex">\[
+C_{\text{ox}} = \frac{\epsilon_{\text{ox}}}{t_{\text{ox}}} = \frac{\kappa \, \epsilon_0}{t_{\text{ox}}}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\epsilon_{\text{ox}}\)</span> is the permittivity of the gate dielectric material</li>
+<li><span class="arithmatex">\(\kappa\)</span> is the relative dielectric constant (<span class="arithmatex">\(\kappa \approx 3.9\)</span> for SiO<span class="arithmatex">\(_2\)</span>; <span class="arithmatex">\(\kappa \approx 20\)</span>--25 for HfO<span class="arithmatex">\(_2\)</span>)</li>
+<li><span class="arithmatex">\(\epsilon_0 = 8.854 \times 10^{-12}\)</span> F/m is the vacuum permittivity</li>
+<li><span class="arithmatex">\(t_{\text{ox}}\)</span> is the physical oxide thickness</li>
+</ul>
+<h3 id="nmos-and-pmos-operation">NMOS and PMOS Operation</h3>
+<p>An <strong>NMOS</strong> transistor has n-type source and drain regions in a p-type substrate. Applying a positive gate-to-source voltage <span class="arithmatex">\(V_{GS}\)</span> above the <strong>threshold voltage</strong> <span class="arithmatex">\(V_{th}\)</span> creates an inversion layer (channel) of electrons connecting source to drain, allowing current to flow. An <strong>NMOS</strong> transistor turns <strong>on</strong> when <span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span> and passes a strong logical 0 but a degraded logical 1.</p>
+<p>A <strong>PMOS</strong> transistor has p-type source and drain regions in an n-type well. It turns <strong>on</strong> when <span class="arithmatex">\(V_{GS} &lt; -|V_{th}|\)</span> (equivalently, when <span class="arithmatex">\(V_{SG} &gt; |V_{th}|\)</span>), creating a channel of holes. A PMOS passes a strong logical 1 but a degraded logical 0.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>NMOS</th>
+<th>PMOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channel carriers</td>
+<td>Electrons</td>
+<td>Holes</td>
+</tr>
+<tr>
+<td>Substrate type</td>
+<td>p-type</td>
+<td>n-type (n-well)</td>
+</tr>
+<tr>
+<td>Turns on when</td>
+<td><span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span></td>
+<td>$V_{SG} &gt;</td>
+</tr>
+<tr>
+<td>Passes strong</td>
+<td>Logic 0 (ground)</td>
+<td>Logic 1 (<span class="arithmatex">\(V_{DD}\)</span>)</td>
+</tr>
+<tr>
+<td>Passes weak</td>
+<td>Logic 1</td>
+<td>Logic 0</td>
+</tr>
+<tr>
+<td>Typical mobility</td>
+<td><span class="arithmatex">\(\mu_n \approx 250\)</span>--<span class="arithmatex">\(450\)</span> cm<span class="arithmatex">\(^2\)</span>/V<span class="arithmatex">\(\cdot\)</span>s</td>
+<td><span class="arithmatex">\(\mu_p \approx 100\)</span>--<span class="arithmatex">\(200\)</span> cm<span class="arithmatex">\(^2\)</span>/V<span class="arithmatex">\(\cdot\)</span>s</td>
+</tr>
+</tbody>
+</table>
+<p>In CMOS logic, NMOS and PMOS transistors are combined in complementary pairs so that for every input combination, either a pull-up path (through PMOS devices to <span class="arithmatex">\(V_{DD}\)</span>) or a pull-down path (through NMOS devices to ground) is active, but never both simultaneously in the steady state. This complementary structure is the key to CMOS's extremely low static power dissipation---a property that enabled the CMOS revolution, though one that is now under assault from leakage currents as we shall analyze below.</p>
+<h3 id="the-cmos-inverter">The CMOS Inverter</h3>
+<p>The simplest CMOS gate is the <strong>inverter</strong> (NOT gate): a PMOS transistor with its source connected to <span class="arithmatex">\(V_{DD}\)</span> and an NMOS transistor with its source connected to ground, with their gates tied together as the input and their drains tied together as the output. When the input is low (<span class="arithmatex">\(V_{in} = 0\)</span>), the PMOS is on and the NMOS is off, pulling the output to <span class="arithmatex">\(V_{DD}\)</span> (logic 1). When the input is high (<span class="arithmatex">\(V_{in} = V_{DD}\)</span>), the NMOS is on and the PMOS is off, pulling the output to ground (logic 0). In the steady state, there is no direct path from <span class="arithmatex">\(V_{DD}\)</span> to ground, so the quiescent current is ideally zero.</p>
+<p>A CMOS NAND gate extends this principle: two NMOS transistors in series form the pull-down network (both must be on to pull the output low), and two PMOS transistors in parallel form the pull-up network (either being on pulls the output high). This directly implements the NAND truth table and illustrates why NAND is the natural gate in CMOS.</p>
+<h2 id="mosfet-operation">MOSFET Operation</h2>
+<p>The MOSFET operates in three distinct regions depending on the gate-to-source voltage <span class="arithmatex">\(V_{GS}\)</span> and the drain-to-source voltage <span class="arithmatex">\(V_{DS}\)</span>. The drain current <span class="arithmatex">\(I_D\)</span> in each region is described by the Shockley model (long-channel approximation).</p>
+<h3 id="cutoff-region">Cutoff Region</h3>
+<p>When <span class="arithmatex">\(V_{GS} &lt; V_{th}\)</span>, the channel is not formed and ideally no current flows between drain and source:</p>
+<h4 id="cutoff-condition">Cutoff Condition</h4>
+<div class="arithmatex">\[
+I_D = 0 \quad \text{for} \quad V_{GS} &lt; V_{th}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V_{th}\)</span> is the threshold voltage, typically 0.2--0.5 V in modern processes</li>
+<li>In reality, a small subthreshold leakage current flows (analyzed in detail below)</li>
+<li>The transistor is in its "off" state for digital logic</li>
+</ul>
+<h3 id="linear-triode-region">Linear (Triode) Region</h3>
+<p>When <span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span> and <span class="arithmatex">\(V_{DS} &lt; V_{GS} - V_{th}\)</span> (the channel is not pinched off), the MOSFET behaves as a voltage-controlled resistor:</p>
+<h4 id="linear-region-drain-current">Linear Region Drain Current</h4>
+<div class="arithmatex">\[
+I_D = \mu_n C_{\text{ox}} \frac{W}{L} \left[ (V_{GS} - V_{th}) V_{DS} - \frac{V_{DS}^2}{2} \right]
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mu_n\)</span> is the electron mobility in the channel (for NMOS; use <span class="arithmatex">\(\mu_p\)</span> for PMOS)</li>
+<li><span class="arithmatex">\(C_{\text{ox}}\)</span> is the gate oxide capacitance per unit area</li>
+<li><span class="arithmatex">\(W/L\)</span> is the width-to-length ratio of the transistor</li>
+<li><span class="arithmatex">\(V_{GS} - V_{th}\)</span> is the gate overdrive voltage</li>
+<li>The <span class="arithmatex">\(V_{DS}^2/2\)</span> term accounts for the non-uniform channel charge</li>
+</ul>
+<p>For small <span class="arithmatex">\(V_{DS}\)</span>, the quadratic term is negligible and the current is approximately linear in <span class="arithmatex">\(V_{DS}\)</span>, justifying the name "linear region." The effective on-resistance in this regime is:</p>
+<div class="arithmatex">\[
+R_{\text{on}} \approx \frac{1}{\mu_n C_{\text{ox}} (W/L)(V_{GS} - V_{th})}
+\]</div>
+<h3 id="saturation-region">Saturation Region</h3>
+<p>When <span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span> and <span class="arithmatex">\(V_{DS} \geq V_{GS} - V_{th}\)</span>, the channel is pinched off at the drain end and the current becomes approximately independent of <span class="arithmatex">\(V_{DS}\)</span>:</p>
+<h4 id="saturation-region-drain-current">Saturation Region Drain Current</h4>
+<div class="arithmatex">\[
+I_D = \frac{1}{2} \mu_n C_{\text{ox}} \frac{W}{L} (V_{GS} - V_{th})^2 (1 + \lambda V_{DS})
+\]</div>
+<p>where:</p>
+<ul>
+<li>The <span class="arithmatex">\((V_{GS} - V_{th})^2\)</span> dependence arises from the square-law model of the long-channel MOSFET</li>
+<li><span class="arithmatex">\(\lambda\)</span> is the channel-length modulation parameter (typically <span class="arithmatex">\(0.01\)</span>--<span class="arithmatex">\(0.1\)</span> V<span class="arithmatex">\(^{-1}\)</span>); for an ideal long-channel device, <span class="arithmatex">\(\lambda = 0\)</span></li>
+<li>In the saturation region, the MOSFET acts as a current source controlled by <span class="arithmatex">\(V_{GS}\)</span></li>
+</ul>
+<p>The saturation current with <span class="arithmatex">\(\lambda = 0\)</span> is often written compactly as <span class="arithmatex">\(I_D = \frac{1}{2} k_n' (W/L)(V_{GS} - V_{th})^2\)</span>, where <span class="arithmatex">\(k_n' = \mu_n C_{\text{ox}}\)</span> is the process transconductance parameter.</p>
+<h3 id="summary-of-mosfet-operating-regions">Summary of MOSFET Operating Regions</h3>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Condition</th>
+<th>Drain Current <span class="arithmatex">\(I_D\)</span></th>
+<th>Circuit Analogy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cutoff</td>
+<td><span class="arithmatex">\(V_{GS} &lt; V_{th}\)</span></td>
+<td><span class="arithmatex">\(\approx 0\)</span> (ideally)</td>
+<td>Open switch</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td><span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span>, <span class="arithmatex">\(V_{DS} &lt; V_{GS} - V_{th}\)</span></td>
+<td><span class="arithmatex">\(\propto V_{DS}\)</span> (approx.)</td>
+<td>Resistor</td>
+</tr>
+<tr>
+<td>Saturation</td>
+<td><span class="arithmatex">\(V_{GS} &gt; V_{th}\)</span>, <span class="arithmatex">\(V_{DS} \geq V_{GS} - V_{th}\)</span></td>
+<td><span class="arithmatex">\(\propto (V_{GS} - V_{th})^2\)</span></td>
+<td>Current source</td>
+</tr>
+</tbody>
+</table>
+<p>In digital CMOS circuits, transistors operate primarily as switches, transitioning between cutoff (off) and deep linear (on with low <span class="arithmatex">\(V_{DS}\)</span>) regions. During switching transients, transistors briefly pass through saturation, which determines the maximum switching speed and transition currents.</p>
+<h2 id="dynamic-power-dissipation">Dynamic Power Dissipation</h2>
+<p>The dominant source of power dissipation in CMOS circuits at historically typical operating voltages is <strong>dynamic power</strong>, consumed during logic transitions when load capacitances are charged and discharged through the transistor networks.</p>
+<h3 id="derivation-of-the-switching-power-formula">Derivation of the Switching Power Formula</h3>
+<p>Consider a CMOS inverter driving a load capacitance <span class="arithmatex">\(C_L\)</span>. During a <span class="arithmatex">\(0 \to 1\)</span> output transition, the PMOS transistor charges <span class="arithmatex">\(C_L\)</span> from ground to <span class="arithmatex">\(V_{DD}\)</span>. The energy drawn from the supply is:</p>
+<div class="arithmatex">\[
+E_{\text{supply}} = \int_0^{V_{DD}} C_L \, V_{DD} \, dV_{\text{out}} = C_L V_{DD}^2
+\]</div>
+<p>However, only half of this energy is stored in the capacitor (<span class="arithmatex">\(\frac{1}{2} C_L V_{DD}^2\)</span>); the other half is dissipated as heat in the PMOS channel resistance, regardless of the transistor size. During the subsequent <span class="arithmatex">\(1 \to 0\)</span> transition, the stored energy <span class="arithmatex">\(\frac{1}{2} C_L V_{DD}^2\)</span> is dissipated in the NMOS channel. Thus, each complete switching cycle (<span class="arithmatex">\(0 \to 1 \to 0\)</span>) dissipates a total energy of <span class="arithmatex">\(C_L V_{DD}^2\)</span>.</p>
+<p>If the gate switches at a frequency <span class="arithmatex">\(f\)</span> and the <strong>switching activity factor</strong> <span class="arithmatex">\(\alpha\)</span> represents the fraction of clock cycles in which a transition occurs, the average dynamic power is:</p>
+<h4 id="dynamic-power-equation">Dynamic Power Equation</h4>
+<div class="arithmatex">\[
+P_{\text{dynamic}} = \alpha C_L V_{DD}^2 f
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\alpha\)</span> is the switching activity factor, <span class="arithmatex">\(0 \leq \alpha \leq 1\)</span> (typically <span class="arithmatex">\(\alpha \approx 0.1\)</span>--<span class="arithmatex">\(0.3\)</span> for random logic)</li>
+<li><span class="arithmatex">\(C_L\)</span> is the total load capacitance, including gate capacitance of fan-out gates, interconnect capacitance, and diffusion capacitance</li>
+<li><span class="arithmatex">\(V_{DD}\)</span> is the supply voltage</li>
+<li><span class="arithmatex">\(f\)</span> is the clock frequency</li>
+<li>The <span class="arithmatex">\(V_{DD}^2\)</span> dependence makes voltage scaling the most effective lever for reducing dynamic power</li>
+</ul>
+<p>For an entire chip with <span class="arithmatex">\(N\)</span> gates, the total dynamic power is:</p>
+<div class="arithmatex">\[
+P_{\text{dynamic, total}} = \sum_{i=1}^{N} \alpha_i C_{L,i} V_{DD}^2 f = \bar{\alpha} \, C_{\text{total}} \, V_{DD}^2 \, f
+\]</div>
+<p>where <span class="arithmatex">\(\bar{\alpha}\)</span> is the average switching activity and <span class="arithmatex">\(C_{\text{total}} = \sum_i C_{L,i}\)</span> is the total switched capacitance.</p>
+<h3 id="short-circuit-power">Short-Circuit Power</h3>
+<p>During transitions, there is a brief interval when both the PMOS and NMOS transistors are simultaneously conducting, creating a direct path from <span class="arithmatex">\(V_{DD}\)</span> to ground. This <strong>short-circuit current</strong> contributes additional dynamic power:</p>
+<h4 id="short-circuit-power_1">Short-Circuit Power</h4>
+<div class="arithmatex">\[
+P_{\text{sc}} = I_{\text{sc,peak}} \cdot V_{DD} \cdot t_{\text{sc}} \cdot f
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(I_{\text{sc,peak}}\)</span> is the peak short-circuit current</li>
+<li><span class="arithmatex">\(t_{\text{sc}}\)</span> is the duration of simultaneous conduction (proportional to input transition time)</li>
+<li>Typically <span class="arithmatex">\(P_{\text{sc}}\)</span> accounts for 10--15% of total dynamic power when input and output rise/fall times are matched</li>
+</ul>
+<p>In well-designed circuits, the short-circuit component is kept small by ensuring that input transition times are comparable to output transition times.</p>
+<h2 id="static-power-dissipation">Static Power Dissipation</h2>
+<p>Historically, CMOS's defining advantage was negligible static (standby) power. In the steady state, one transistor in each complementary pair is off, ideally blocking all current flow. However, as transistor dimensions have scaled below 100 nm, several leakage mechanisms have grown to the point where static power now rivals or exceeds dynamic power in modern processors.</p>
+<h4 id="total-static-power">Total Static Power</h4>
+<div class="arithmatex">\[
+P_{\text{static}} = V_{DD} \times I_{\text{leak}}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V_{DD}\)</span> is the supply voltage</li>
+<li><span class="arithmatex">\(I_{\text{leak}}\)</span> is the total leakage current, summing contributions from subthreshold leakage, gate oxide tunneling, junction leakage, gate-induced drain leakage (GIDL), and other mechanisms</li>
+</ul>
+<p>The principal leakage components are:</p>
+<table>
+<thead>
+<tr>
+<th>Leakage Mechanism</th>
+<th>Typical Contribution (sub-45 nm)</th>
+<th>Dependence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subthreshold leakage</td>
+<td>50--70%</td>
+<td>Exponential in <span class="arithmatex">\(V_{th}\)</span></td>
+</tr>
+<tr>
+<td>Gate oxide tunneling</td>
+<td>20--40%</td>
+<td>Exponential in <span class="arithmatex">\(t_{\text{ox}}\)</span></td>
+</tr>
+<tr>
+<td>Reverse-bias junction leakage</td>
+<td>5--10%</td>
+<td>Exponential in <span class="arithmatex">\(V_{DD}\)</span></td>
+</tr>
+<tr>
+<td>GIDL (Gate-Induced Drain Leakage)</td>
+<td>2--5%</td>
+<td>Dependent on <span class="arithmatex">\(V_{DG}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The following sections analyze the two dominant mechanisms in detail.</p>
+<h2 id="subthreshold-leakage">Subthreshold Leakage</h2>
+<p>When the gate-to-source voltage <span class="arithmatex">\(V_{GS}\)</span> is below the threshold voltage <span class="arithmatex">\(V_{th}\)</span>, a small but non-negligible current flows due to the diffusion of minority carriers across the weakly inverted channel. This <strong>subthreshold leakage</strong> current has an exponential dependence on the gate voltage:</p>
+<h4 id="subthreshold-leakage-current">Subthreshold Leakage Current</h4>
+<div class="arithmatex">\[
+I_{\text{sub}} = I_0 \exp\left(\frac{V_{GS} - V_{th}}{n \, V_T}\right) \left(1 - \exp\left(\frac{-V_{DS}}{V_T}\right)\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(I_0 = \mu_n C_{\text{ox}} (W/L) (n-1) V_T^2\)</span> is a process-dependent prefactor</li>
+<li><span class="arithmatex">\(V_T = kT/q\)</span> is the <strong>thermal voltage</strong>, approximately 26 mV at <span class="arithmatex">\(T = 300\)</span> K</li>
+<li><span class="arithmatex">\(k = 1.381 \times 10^{-23}\)</span> J/K is the Boltzmann constant (introduced in <a href="../02-physical-limits/">Chapter 2</a>)</li>
+<li><span class="arithmatex">\(q = 1.602 \times 10^{-19}\)</span> C is the elementary charge</li>
+<li><span class="arithmatex">\(n\)</span> is the <strong>subthreshold slope factor</strong> (also called the body-effect coefficient), typically <span class="arithmatex">\(1.0 &lt; n &lt; 1.5\)</span></li>
+<li>For <span class="arithmatex">\(V_{DS} \gg V_T\)</span> (which is the usual digital case), the factor <span class="arithmatex">\((1 - e^{-V_{DS}/V_T}) \approx 1\)</span></li>
+</ul>
+<p>The critical parameter governing subthreshold behavior is the <strong>subthreshold swing</strong> <span class="arithmatex">\(S\)</span>, defined as the gate voltage change required to reduce the drain current by one decade (factor of 10):</p>
+<h4 id="subthreshold-swing">Subthreshold Swing</h4>
+<div class="arithmatex">\[
+S = \frac{\partial V_{GS}}{\partial (\log_{10} I_D)} = n \, V_T \ln(10) = \frac{kT}{q} \ln(10) \left(1 + \frac{C_d}{C_{\text{ox}}}\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(S\)</span> is measured in mV/decade</li>
+<li><span class="arithmatex">\(C_d\)</span> is the depletion capacitance of the channel region</li>
+<li><span class="arithmatex">\(C_{\text{ox}}\)</span> is the gate oxide capacitance per unit area</li>
+<li><span class="arithmatex">\(n = 1 + C_d / C_{\text{ox}}\)</span> is the subthreshold slope factor</li>
+<li>At room temperature (<span class="arithmatex">\(T = 300\)</span> K) with ideal body effect (<span class="arithmatex">\(n = 1\)</span>, i.e., <span class="arithmatex">\(C_d \ll C_{\text{ox}}\)</span>), the minimum subthreshold swing is:</li>
+</ul>
+<div class="arithmatex">\[
+S_{\min} = \frac{kT}{q} \ln(10) = (25.85 \text{ mV})(2.303) \approx 60 \text{ mV/decade}
+\]</div>
+<p>This 60 mV/decade limit is a direct consequence of the Boltzmann distribution governing carrier statistics in the channel. It means that for every 60 mV reduction in <span class="arithmatex">\(V_{GS}\)</span> below <span class="arithmatex">\(V_{th}\)</span>, the subthreshold current decreases by only one order of magnitude. The practical implications are profound: to achieve an on/off current ratio of <span class="arithmatex">\(10^6\)</span> (adequate for low standby power), the threshold voltage must be at least <span class="arithmatex">\(6 \times 60 = 360\)</span> mV above the off-state gate voltage.</p>
+<h2 id="gate-oxide-leakage">Gate Oxide Leakage</h2>
+<p>As CMOS technology has scaled, the gate oxide thickness <span class="arithmatex">\(t_{\text{ox}}\)</span> has decreased to maintain electrostatic control of the channel. When <span class="arithmatex">\(t_{\text{ox}}\)</span> reaches the scale of a few nanometers (a few atomic layers), quantum mechanical <strong>tunneling</strong> through the oxide barrier becomes significant, allowing electrons to pass directly from the gate to the channel or vice versa.</p>
+<h3 id="tunneling-mechanisms">Tunneling Mechanisms</h3>
+<p>Two distinct tunneling mechanisms dominate, depending on the oxide thickness and the applied voltage:</p>
+<p><strong>Direct tunneling</strong> occurs when the applied voltage is less than the barrier height (<span class="arithmatex">\(qV_{\text{ox}} &lt; \phi_b\)</span>, where <span class="arithmatex">\(\phi_b \approx 3.1\)</span> eV for SiO<span class="arithmatex">\(_2\)</span>). The electron tunnels through a trapezoidal barrier, and the tunneling current density is approximately:</p>
+<h4 id="direct-tunneling-current">Direct Tunneling Current</h4>
+<div class="arithmatex">\[
+J_{\text{DT}} \propto \frac{V_{\text{ox}}}{t_{\text{ox}}^2} \exp\left(-\frac{4\pi t_{\text{ox}} \sqrt{2m^* \phi_b}}{h} \left[1 - \left(1 - \frac{qV_{\text{ox}}}{\phi_b}\right)^{3/2}\right] \right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V_{\text{ox}}\)</span> is the voltage drop across the oxide</li>
+<li><span class="arithmatex">\(t_{\text{ox}}\)</span> is the oxide thickness</li>
+<li><span class="arithmatex">\(m^*\)</span> is the effective tunneling mass of the electron in SiO<span class="arithmatex">\(_2\)</span> (<span class="arithmatex">\(m^* \approx 0.5 \, m_e\)</span>)</li>
+<li><span class="arithmatex">\(\phi_b\)</span> is the barrier height between silicon and SiO<span class="arithmatex">\(_2\)</span> (approximately 3.1 eV)</li>
+<li><span class="arithmatex">\(h = 6.626 \times 10^{-34}\)</span> J<span class="arithmatex">\(\cdot\)</span>s is Planck's constant</li>
+</ul>
+<p><strong>Fowler-Nordheim (FN) tunneling</strong> occurs when <span class="arithmatex">\(qV_{\text{ox}} &gt; \phi_b\)</span>. The barrier becomes triangular, and electrons tunnel through a thinner effective barrier:</p>
+<h4 id="fowler-nordheim-tunneling-current">Fowler-Nordheim Tunneling Current</h4>
+<div class="arithmatex">\[
+J_{\text{FN}} = \frac{q^3 E_{\text{ox}}^2}{8\pi h \phi_b} \exp\left(-\frac{8\pi \sqrt{2 m^* \phi_b^3}}{3 q h E_{\text{ox}}}\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(E_{\text{ox}} = V_{\text{ox}} / t_{\text{ox}}\)</span> is the electric field across the oxide</li>
+<li>The current depends exponentially on <span class="arithmatex">\(1/E_{\text{ox}}\)</span>, making it extremely sensitive to the oxide field</li>
+<li>FN tunneling dominates in thicker oxides under high voltage (e.g., in flash memory programming)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Barrier Shape</th>
+<th>Condition</th>
+<th>Oxide Thickness Regime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct tunneling</td>
+<td>Trapezoidal</td>
+<td><span class="arithmatex">\(qV_{\text{ox}} &lt; \phi_b\)</span></td>
+<td><span class="arithmatex">\(t_{\text{ox}} &lt; 3\)</span> nm</td>
+</tr>
+<tr>
+<td>Fowler-Nordheim</td>
+<td>Triangular</td>
+<td><span class="arithmatex">\(qV_{\text{ox}} &gt; \phi_b\)</span></td>
+<td><span class="arithmatex">\(t_{\text{ox}} &gt; 5\)</span> nm, high <span class="arithmatex">\(V\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mitigation-high-kappa-dielectrics">Mitigation: High-<span class="arithmatex">\(\kappa\)</span> Dielectrics</h3>
+<p>The exponential dependence of tunneling current on oxide thickness creates a crisis when <span class="arithmatex">\(t_{\text{ox}}\)</span> falls below approximately 1.5 nm for SiO<span class="arithmatex">\(_2\)</span>: the gate leakage current becomes unacceptably large (exceeding 100 A/cm<span class="arithmatex">\(^2\)</span>). The solution, adopted by the semiconductor industry starting at the 45 nm node, is to replace SiO<span class="arithmatex">\(_2\)</span> with a <strong>high-<span class="arithmatex">\(\kappa\)</span> dielectric</strong> such as hafnium dioxide (HfO<span class="arithmatex">\(_2\)</span>, <span class="arithmatex">\(\kappa \approx 22\)</span>). A physically thicker high-<span class="arithmatex">\(\kappa\)</span> film provides the same capacitance as a thinner SiO<span class="arithmatex">\(_2\)</span> film:</p>
+<div class="arithmatex">\[
+C_{\text{ox}} = \frac{\kappa_{\text{high}} \, \epsilon_0}{t_{\text{high}}} = \frac{\kappa_{\text{SiO}_2} \, \epsilon_0}{t_{\text{eq}}}
+\]</div>
+<p>The <strong>equivalent oxide thickness</strong> (EOT) is defined as <span class="arithmatex">\(t_{\text{eq}} = t_{\text{high}} \times (\kappa_{\text{SiO}_2} / \kappa_{\text{high}})\)</span>. For example, a 3.5 nm HfO<span class="arithmatex">\(_2\)</span> film has EOT <span class="arithmatex">\(\approx 3.5 \times (3.9/22) \approx 0.62\)</span> nm, providing strong capacitive coupling while maintaining a physical thickness that exponentially suppresses tunneling.</p>
+<h2 id="boltzmann-tyranny">Boltzmann Tyranny</h2>
+<p>The <strong>Boltzmann tyranny</strong> refers to the fundamental thermodynamic constraint that prevents the subthreshold swing of a conventional MOSFET from falling below 60 mV/decade at room temperature. This constraint arises directly from the Boltzmann distribution of carrier energies at the source-channel barrier and imposes an irreducible lower bound on the supply voltage---and hence on the energy per switching operation---of any transistor that relies on thermionic emission over a potential barrier.</p>
+<h3 id="the-physical-origin">The Physical Origin</h3>
+<p>In a MOSFET biased below threshold, the current is controlled by the fraction of source electrons with sufficient thermal energy to surmount the source-channel potential barrier <span class="arithmatex">\(\phi_s\)</span>. The carrier concentration at the top of the barrier follows the Boltzmann distribution:</p>
+<div class="arithmatex">\[
+n \propto \exp\left(\frac{-q\phi_s}{kT}\right)
+\]</div>
+<p>The gate voltage modulates <span class="arithmatex">\(\phi_s\)</span>, but the capacitive voltage divider between the gate oxide capacitance <span class="arithmatex">\(C_{\text{ox}}\)</span> and the depletion capacitance <span class="arithmatex">\(C_d\)</span> means that only a fraction of the gate voltage appears as a change in <span class="arithmatex">\(\phi_s\)</span>:</p>
+<div class="arithmatex">\[
+\frac{\partial \phi_s}{\partial V_{GS}} = \frac{C_{\text{ox}}}{C_{\text{ox}} + C_d} = \frac{1}{n}
+\]</div>
+<p>Even in the ideal limit where <span class="arithmatex">\(C_d \to 0\)</span> (perfect electrostatic control, <span class="arithmatex">\(n = 1\)</span>), the gate-to-current transfer function retains the <span class="arithmatex">\(kT/q\)</span> thermal factor:</p>
+<div class="arithmatex">\[
+\frac{\partial (\ln I_D)}{\partial V_{GS}} = \frac{q}{nkT} \leq \frac{q}{kT}
+\]</div>
+<p>Converting to log<span class="arithmatex">\(_{10}\)</span> gives <span class="arithmatex">\(S \geq (kT/q)\ln(10) = 60\)</span> mV/decade at 300 K. No design optimization---no material choice, no geometry change, no gate stack engineering---can break this limit as long as the transistor relies on thermal injection of carriers over a barrier.</p>
+<h3 id="consequences-for-voltage-scaling">Consequences for Voltage Scaling</h3>
+<p>The 60 mV/decade limit directly constrains how low the supply voltage <span class="arithmatex">\(V_{DD}\)</span> can be reduced. For a logic gate to function reliably, it must provide sufficient current ratio between the on and off states, typically requiring:</p>
+<div class="arithmatex">\[
+\frac{I_{\text{on}}}{I_{\text{off}}} &gt; 10^4 \text{ to } 10^6
+\]</div>
+<p>With <span class="arithmatex">\(S = 60\)</span> mV/decade, maintaining <span class="arithmatex">\(I_{\text{on}}/I_{\text{off}} = 10^5\)</span> requires at least <span class="arithmatex">\(V_{th} \geq 5 \times 60 = 300\)</span> mV of "voltage headroom" between the off-state and on-state gate voltages. Since the supply voltage must accommodate the threshold voltage plus the overdrive needed for adequate on-current, practical supply voltages cannot be reduced much below 0.5--0.7 V without either:</p>
+<ol>
+<li>Sacrificing the on/off ratio (increasing static leakage power), or</li>
+<li>Sacrificing on-current (reducing switching speed and hence performance)</li>
+</ol>
+<p>This is the essence of the <strong>power-performance-leakage trilemma</strong> that has stalled Dennard scaling since approximately 2006, as discussed in <a href="../02-physical-limits/">Chapter 2</a>.</p>
+<h4 id="energy-per-operation-lower-bound">Energy Per Operation Lower Bound</h4>
+<p>Combining the dynamic power formula with the voltage scaling constraint, the minimum energy per switching operation is bounded by:</p>
+<h4 id="minimum-switching-energy-boltzmann-limit">Minimum Switching Energy (Boltzmann Limit)</h4>
+<div class="arithmatex">\[
+E_{\text{switch}} = C_L V_{DD}^2 \geq C_L \left(\frac{S \cdot \log_{10}(I_{\text{on}}/I_{\text{off}})}{1}\right)^2
+\]</div>
+<p>where:</p>
+<ul>
+<li>The supply voltage must be at least <span class="arithmatex">\(V_{DD} \geq V_{th} + V_{\text{overdrive}}\)</span></li>
+<li>Even with aggressive scaling, <span class="arithmatex">\(E_{\text{switch}}\)</span> remains many orders of magnitude above the Landauer limit <span class="arithmatex">\(kT\ln 2 \approx 2.87 \times 10^{-21}\)</span> J at 300 K</li>
+<li>Current processors operate at <span class="arithmatex">\(E_{\text{switch}} \sim 10^{-15}\)</span> J per operation, approximately <span class="arithmatex">\(10^6\)</span> times the Landauer limit</li>
+</ul>
+<p>The Boltzmann tyranny thus motivates the exploration of <strong>steep-slope devices</strong> such as tunnel FETs (TFETs), negative-capacitance FETs (NCFETs), and nanoelectromechanical switches that can achieve <span class="arithmatex">\(S &lt; 60\)</span> mV/decade by employing non-thermionic transport mechanisms. These beyond-CMOS approaches are the subject of <a href="../05-beyond-cmos-devices/">Chapter 5</a>.</p>
+<h2 id="threshold-voltage-scaling">Threshold Voltage Scaling</h2>
+<p>The threshold voltage <span class="arithmatex">\(V_{th}\)</span> is the central parameter mediating the tradeoff between performance and leakage in CMOS design. As technology nodes have scaled from micrometers to nanometers, <span class="arithmatex">\(V_{th}\)</span> management has become the defining challenge of transistor engineering.</p>
+<h3 id="the-performance-leakage-tradeoff">The Performance-Leakage Tradeoff</h3>
+<p>The on-state current (and hence switching speed) increases as <span class="arithmatex">\(V_{th}\)</span> decreases, because the gate overdrive <span class="arithmatex">\(V_{GS} - V_{th}\)</span> increases for a given <span class="arithmatex">\(V_{DD}\)</span>:</p>
+<div class="arithmatex">\[
+I_{\text{on}} \propto (V_{DD} - V_{th})^\alpha
+\]</div>
+<p>where <span class="arithmatex">\(\alpha \approx 1\)</span>--<span class="arithmatex">\(2\)</span> depending on the velocity saturation regime. Simultaneously, the off-state leakage current increases exponentially as <span class="arithmatex">\(V_{th}\)</span> decreases:</p>
+<div class="arithmatex">\[
+I_{\text{off}} \propto \exp\left(\frac{-V_{th}}{nV_T}\right)
+\]</div>
+<p>This creates a fundamental tension. Quantitatively, reducing <span class="arithmatex">\(V_{th}\)</span> by 100 mV (assuming <span class="arithmatex">\(n = 1.2\)</span>) increases leakage by a factor of:</p>
+<div class="arithmatex">\[
+\frac{I_{\text{off, new}}}{I_{\text{off, old}}} = \exp\left(\frac{100 \text{ mV}}{1.2 \times 26 \text{ mV}}\right) \approx \exp(3.2) \approx 25
+\]</div>
+<p>Thus a modest 100 mV reduction in threshold voltage increases leakage by approximately 25<span class="arithmatex">\(\times\)</span>, while improving on-current by only 20--40% (depending on the ratio of <span class="arithmatex">\(V_{th}\)</span> to <span class="arithmatex">\(V_{DD}\)</span>).</p>
+<h3 id="multi-threshold-cmos-mtcmos">Multi-Threshold CMOS (MTCMOS)</h3>
+<p>Modern processors address the performance-leakage tradeoff by employing multiple threshold voltage flavors on a single chip:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(V_{th}\)</span> Flavor</th>
+<th><span class="arithmatex">\(V_{th}\)</span> Value</th>
+<th>Speed</th>
+<th>Leakage</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low-<span class="arithmatex">\(V_{th}\)</span> (LVT)</td>
+<td><span class="arithmatex">\(\sim 0.25\)</span> V</td>
+<td>Fast</td>
+<td>High</td>
+<td>Critical timing paths</td>
+</tr>
+<tr>
+<td>Standard-<span class="arithmatex">\(V_{th}\)</span> (SVT)</td>
+<td><span class="arithmatex">\(\sim 0.35\)</span> V</td>
+<td>Moderate</td>
+<td>Moderate</td>
+<td>General logic</td>
+</tr>
+<tr>
+<td>High-<span class="arithmatex">\(V_{th}\)</span> (HVT)</td>
+<td><span class="arithmatex">\(\sim 0.45\)</span> V</td>
+<td>Slow</td>
+<td>Low</td>
+<td>Non-critical paths, SRAM</td>
+</tr>
+</tbody>
+</table>
+<p>This <strong>multi-<span class="arithmatex">\(V_{th}\)</span></strong> strategy allows designers to selectively trade leakage for speed only where it is needed, reducing total chip leakage by 30--50% compared to a single-<span class="arithmatex">\(V_{th}\)</span> design at the same performance target.</p>
+<h3 id="historical-scaling-trends">Historical Scaling Trends</h3>
+<p>The following table illustrates the scaling of key parameters across technology generations, showing the divergence from ideal Dennard scaling:</p>
+<table>
+<thead>
+<tr>
+<th>Technology Node</th>
+<th><span class="arithmatex">\(V_{DD}\)</span> (V)</th>
+<th><span class="arithmatex">\(V_{th}\)</span> (V)</th>
+<th><span class="arithmatex">\(t_{\text{ox}}\)</span> (nm)</th>
+<th><span class="arithmatex">\(I_{\text{off}}\)</span> (nA/<span class="arithmatex">\(\mu\)</span>m)</th>
+<th><span class="arithmatex">\(V_{th}/V_{DD}\)</span> Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>250 nm (1997)</td>
+<td>2.5</td>
+<td>0.50</td>
+<td>5.0</td>
+<td>0.01</td>
+<td>0.20</td>
+</tr>
+<tr>
+<td>130 nm (2001)</td>
+<td>1.5</td>
+<td>0.40</td>
+<td>2.5</td>
+<td>0.1</td>
+<td>0.27</td>
+</tr>
+<tr>
+<td>65 nm (2005)</td>
+<td>1.1</td>
+<td>0.35</td>
+<td>1.5</td>
+<td>5</td>
+<td>0.32</td>
+</tr>
+<tr>
+<td>32 nm (2009)</td>
+<td>0.9</td>
+<td>0.30</td>
+<td>1.0 (EOT)</td>
+<td>50</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td>14 nm (2014)</td>
+<td>0.8</td>
+<td>0.28</td>
+<td>0.8 (EOT)</td>
+<td>100</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>7 nm (2018)</td>
+<td>0.7</td>
+<td>0.25</td>
+<td>0.5 (EOT)</td>
+<td>200</td>
+<td>0.36</td>
+</tr>
+<tr>
+<td>3 nm (2022)</td>
+<td>0.65</td>
+<td>0.23</td>
+<td>0.4 (EOT)</td>
+<td>300</td>
+<td>0.35</td>
+</tr>
+</tbody>
+</table>
+<p>The key observation is that <span class="arithmatex">\(V_{th}\)</span> has stopped scaling in proportion to <span class="arithmatex">\(V_{DD}\)</span>: the <span class="arithmatex">\(V_{th}/V_{DD}\)</span> ratio has actually increased from 0.20 to above 0.35, reflecting the inability to reduce <span class="arithmatex">\(V_{th}\)</span> without an unacceptable explosion in leakage. This failure to scale <span class="arithmatex">\(V_{th}\)</span> is the transistor-level manifestation of the end of Dennard scaling discussed in <a href="../02-physical-limits/">Chapter 2</a>.</p>
+<h2 id="computational-complexity">Computational Complexity</h2>
+<p>Having established the physical foundations and limitations of classical computing hardware, we now turn to the mathematical framework that classifies computational problems by their inherent difficulty: <strong>computational complexity theory</strong>. This theory is independent of any particular hardware implementation and provides the language for precisely stating what quantum computing can and cannot offer.</p>
+<h3 id="decision-problems-and-time-complexity">Decision Problems and Time Complexity</h3>
+<p>A <strong>decision problem</strong> is a problem whose answer is "yes" or "no" for every instance. The <strong>time complexity</strong> of an algorithm is the number of elementary steps it requires as a function of the input size <span class="arithmatex">\(n\)</span>, expressed in asymptotic notation.</p>
+<p>An algorithm runs in <strong>polynomial time</strong> if its time complexity is <span class="arithmatex">\(O(n^k)\)</span> for some constant <span class="arithmatex">\(k\)</span>. An algorithm runs in <strong>exponential time</strong> if its time complexity is <span class="arithmatex">\(O(c^n)\)</span> for some constant <span class="arithmatex">\(c &gt; 1\)</span>. The distinction between polynomial and exponential time is the central dividing line in complexity theory: polynomial-time algorithms are considered "efficient," while exponential-time algorithms are considered "intractable" for large inputs.</p>
+<h3 id="the-class-p">The Class P</h3>
+<p><strong>P</strong> (Polynomial time) is the class of decision problems solvable by a deterministic Turing machine in polynomial time:</p>
+<h4 id="definition-of-p">Definition of P</h4>
+<div class="arithmatex">\[
+\textbf{P} = \bigcup_{k=0}^{\infty} \text{DTIME}(n^k)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\text{DTIME}(f(n))\)</span> is the set of problems solvable by a deterministic Turing machine in <span class="arithmatex">\(O(f(n))\)</span> steps</li>
+<li>P includes problems such as sorting, shortest paths, linear programming, and primality testing (AKS algorithm)</li>
+<li>P is considered the class of "efficiently solvable" problems</li>
+</ul>
+<h3 id="the-class-np">The Class NP</h3>
+<p><strong>NP</strong> (Nondeterministic Polynomial time) is the class of decision problems for which a "yes" answer can be <strong>verified</strong> in polynomial time given an appropriate certificate (witness):</p>
+<h4 id="definition-of-np">Definition of NP</h4>
+<div class="arithmatex">\[
+\textbf{NP} = \{ L : \exists \text{ polynomial-time verifier } V \text{ and polynomial } p \text{ such that } x \in L \iff \exists w, |w| \leq p(|x|), V(x, w) = 1 \}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(L\)</span> is the language (set of "yes" instances) of the decision problem</li>
+<li><span class="arithmatex">\(w\)</span> is a polynomial-length certificate (witness)</li>
+<li><span class="arithmatex">\(V\)</span> is a deterministic polynomial-time verification algorithm</li>
+<li>NP includes problems such as Boolean satisfiability (SAT), graph coloring, integer factorization (decision version), and the traveling salesman problem (decision version)</li>
+</ul>
+<p>The class P is contained in NP (<span class="arithmatex">\(\textbf{P} \subseteq \textbf{NP}\)</span>), since any problem solvable in polynomial time can trivially be verified in polynomial time. The central open question of theoretical computer science is whether <span class="arithmatex">\(\textbf{P} = \textbf{NP}\)</span> or <span class="arithmatex">\(\textbf{P} \neq \textbf{NP}\)</span>. Most researchers believe <span class="arithmatex">\(\textbf{P} \neq \textbf{NP}\)</span>, but no proof exists.</p>
+<h3 id="np-completeness">NP-Completeness</h3>
+<p>A problem <span class="arithmatex">\(L\)</span> is <strong>NP-complete</strong> if:</p>
+<ol>
+<li><span class="arithmatex">\(L \in \textbf{NP}\)</span> (solutions can be verified in polynomial time), and</li>
+<li>Every problem in NP is polynomial-time reducible to <span class="arithmatex">\(L\)</span> (i.e., <span class="arithmatex">\(L\)</span> is NP-hard)</li>
+</ol>
+<p>NP-complete problems are the "hardest" problems in NP: if any NP-complete problem could be solved in polynomial time, then <span class="arithmatex">\(\textbf{P} = \textbf{NP}\)</span>. Stephen Cook's 1971 theorem established that Boolean satisfiability (SAT) is NP-complete, and Richard Karp subsequently showed that 21 other combinatorial problems are NP-complete. Thousands of NP-complete problems are now known, spanning graph theory, combinatorial optimization, logic, and number theory.</p>
+<h3 id="the-class-bqp">The Class BQP</h3>
+<p>The complexity class most relevant to quantum computing is <strong>BQP</strong> (Bounded-error Quantum Polynomial time):</p>
+<h4 id="definition-of-bqp">Definition of BQP</h4>
+<div class="arithmatex">\[
+\textbf{BQP} = \{ L : \exists \text{ polynomial-time quantum algorithm that decides } L \text{ with error probability} \leq 1/3 \}
+\]</div>
+<p>where:</p>
+<ul>
+<li>The algorithm runs on a quantum Turing machine (or equivalently, a polynomial-size quantum circuit)</li>
+<li>The error probability of <span class="arithmatex">\(1/3\)</span> is conventional; it can be reduced to <span class="arithmatex">\(2^{-n}\)</span> by <span class="arithmatex">\(O(n)\)</span> repetitions and majority voting</li>
+<li>BQP contains P (any classical polynomial algorithm can be simulated quantally)</li>
+<li>BQP is believed to be strictly larger than P but is not believed to contain all of NP</li>
+</ul>
+<p>The known relationships among complexity classes are:</p>
+<div class="arithmatex">\[
+\textbf{P} \subseteq \textbf{BPP} \subseteq \textbf{BQP} \subseteq \textbf{PP} \subseteq \textbf{PSPACE}
+\]</div>
+<p>where <strong>BPP</strong> is the classical randomized analogue of BQP and <strong>PP</strong> and <strong>PSPACE</strong> are larger classes. The key open questions are whether any of these containments are strict.</p>
+<table>
+<thead>
+<tr>
+<th>Complexity Class</th>
+<th>Computation Model</th>
+<th>Key Feature</th>
+<th>Example Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td>Deterministic classical</td>
+<td>Solvable in poly time</td>
+<td>Sorting, shortest path, primality</td>
+</tr>
+<tr>
+<td>NP</td>
+<td>Nondeterministic classical</td>
+<td>Verifiable in poly time</td>
+<td>SAT, graph coloring, TSP</td>
+</tr>
+<tr>
+<td>BPP</td>
+<td>Randomized classical</td>
+<td>Solvable with bounded error</td>
+<td>Primality (Miller-Rabin), polynomial identity</td>
+</tr>
+<tr>
+<td>BQP</td>
+<td>Quantum</td>
+<td>Solvable by quantum circuits</td>
+<td>Integer factoring (Shor), unstructured search (Grover)</td>
+</tr>
+<tr>
+<td>NP-complete</td>
+<td>N/A (hardness class)</td>
+<td>Hardest problems in NP</td>
+<td>SAT, 3-coloring, subset sum</td>
+</tr>
+</tbody>
+</table>
+<p>The most celebrated example of a problem believed to separate BQP from BPP is <strong>integer factorization</strong>: Shor's quantum algorithm (Chapter 10) solves it in polynomial time, while the best known classical algorithm (the general number field sieve) requires sub-exponential time <span class="arithmatex">\(\exp(O(n^{1/3} (\log n)^{2/3}))\)</span>. If integer factorization is not in BPP (as is widely believed), then BQP is strictly larger than BPP, demonstrating a genuine quantum computational advantage.</p>
+<h2 id="church-turing-thesis">Church-Turing Thesis</h2>
+<p>The <strong>Church-Turing thesis</strong> is the foundational hypothesis connecting the intuitive notion of "what is computable" to the formal mathematical model of a Turing machine.</p>
+<h3 id="turing-machines">Turing Machines</h3>
+<p>A <strong>Turing machine</strong> (TM), introduced by Alan Turing in 1936, consists of:</p>
+<ul>
+<li>An infinite tape divided into cells, each holding a symbol from a finite alphabet <span class="arithmatex">\(\Gamma\)</span></li>
+<li>A tape head that can read, write, and move left or right one cell per step</li>
+<li>A finite set of states <span class="arithmatex">\(Q\)</span> with a designated start state <span class="arithmatex">\(q_0\)</span> and halting states</li>
+<li>A transition function <span class="arithmatex">\(\delta: Q \times \Gamma \to Q \times \Gamma \times \{L, R\}\)</span> specifying the next state, symbol to write, and head movement direction</li>
+</ul>
+<p>Despite its apparent simplicity, the Turing machine can simulate any algorithm that a modern computer can execute, given sufficient time and tape. Conversely, any computation performable by a Turing machine can be executed by a real computer (with enough memory).</p>
+<h3 id="the-church-turing-thesis-informal-statement">The Church-Turing Thesis (Informal Statement)</h3>
+<p>The <strong>Church-Turing thesis</strong> states:</p>
+<blockquote>
+<p><em>Every function that is intuitively computable is computable by a Turing machine.</em></p>
+</blockquote>
+<p>Equivalently: any "effective procedure" or "algorithm" in the informal sense can be carried out by some Turing machine. This is a thesis (hypothesis), not a theorem, because "intuitively computable" is not a formal mathematical concept. However, the thesis is supported by extensive evidence: every proposed model of computation---lambda calculus (Church), general recursive functions (Godel, Kleene), register machines, cellular automata, and real-world programming languages---has been shown to be equivalent in computational power to Turing machines.</p>
+<h3 id="computability-and-the-halting-problem">Computability and the Halting Problem</h3>
+<p>The Church-Turing thesis implies the existence of <strong>uncomputabe</strong> problems---problems that no Turing machine (and hence no algorithm) can solve. The most famous is the <strong>halting problem</strong>: given a Turing machine <span class="arithmatex">\(M\)</span> and input <span class="arithmatex">\(x\)</span>, determine whether <span class="arithmatex">\(M\)</span> halts on <span class="arithmatex">\(x\)</span>.</p>
+<p><strong>Theorem (Turing, 1936).</strong> The halting problem is undecidable.</p>
+<p><em>Proof sketch.</em> Suppose for contradiction that a Turing machine <span class="arithmatex">\(H\)</span> decides the halting problem: <span class="arithmatex">\(H(M, x) = 1\)</span> if <span class="arithmatex">\(M\)</span> halts on <span class="arithmatex">\(x\)</span>, and <span class="arithmatex">\(H(M, x) = 0\)</span> otherwise. Construct a machine <span class="arithmatex">\(D\)</span> that, on input <span class="arithmatex">\(M\)</span>, runs <span class="arithmatex">\(H(M, M)\)</span> and does the opposite: if <span class="arithmatex">\(H(M, M) = 1\)</span>, then <span class="arithmatex">\(D\)</span> loops forever; if <span class="arithmatex">\(H(M, M) = 0\)</span>, then <span class="arithmatex">\(D\)</span> halts. Now consider <span class="arithmatex">\(D(D)\)</span>: if <span class="arithmatex">\(D\)</span> halts on <span class="arithmatex">\(D\)</span>, then <span class="arithmatex">\(H(D, D) = 1\)</span>, so <span class="arithmatex">\(D\)</span> loops---contradiction. If <span class="arithmatex">\(D\)</span> does not halt on <span class="arithmatex">\(D\)</span>, then <span class="arithmatex">\(H(D, D) = 0\)</span>, so <span class="arithmatex">\(D\)</span> halts---contradiction. Therefore <span class="arithmatex">\(H\)</span> cannot exist. <span class="arithmatex">\(\square\)</span></p>
+<h3 id="the-extended-church-turing-thesis">The Extended Church-Turing Thesis</h3>
+<p>The classical Church-Turing thesis addresses <strong>what</strong> can be computed but says nothing about <strong>how efficiently</strong>. The <strong>Extended Church-Turing Thesis</strong> (ECTT) strengthens the claim:</p>
+<blockquote>
+<p><em>Any computational model can be simulated by a probabilistic Turing machine with at most polynomial overhead.</em></p>
+</blockquote>
+<p>Formally, the ECTT asserts that <span class="arithmatex">\(\textbf{BPP}\)</span> contains every "physically realizable" complexity class (up to polynomial factors). This thesis has profound implications: if true, it means that no physical device---classical, analog, biological, or otherwise---can solve problems asymptotically faster than a classical computer (up to polynomial factors).</p>
+<h3 id="the-quantum-challenge-to-the-extended-church-turing-thesis">The Quantum Challenge to the Extended Church-Turing Thesis</h3>
+<p>Quantum computing poses the most serious challenge to the ECTT. If quantum computers can efficiently solve problems that classical computers cannot---that is, if <span class="arithmatex">\(\textbf{BQP} \not\subseteq \textbf{BPP}\)</span>---then the ECTT is false. The evidence for this separation includes:</p>
+<ol>
+<li><strong>Shor's algorithm</strong> for integer factorization runs in polynomial time on a quantum computer but has no known polynomial-time classical counterpart</li>
+<li><strong>Grover's algorithm</strong> for unstructured search achieves a quadratic speedup over any classical algorithm, which has been proven optimal</li>
+<li><strong>Simulation of quantum systems</strong> (the original motivation of Feynman in 1982) appears to require exponential classical resources but is naturally efficient on a quantum computer</li>
+<li><strong>Sampling problems</strong> such as boson sampling and random circuit sampling provide strong evidence of quantum computational advantage under plausible complexity-theoretic assumptions</li>
+</ol>
+<p>It is important to note that the (basic) Church-Turing thesis is <strong>not</strong> challenged by quantum computing: a classical Turing machine can simulate any quantum computation (by tracking all <span class="arithmatex">\(2^n\)</span> amplitudes), just not necessarily efficiently. Quantum computers do not compute any new functions; they compute certain functions faster.</p>
+<h4 id="diagram-complexity-class-hierarchy">Diagram: Complexity Class Hierarchy</h4>
+<iframe src="../../sims/complexity-class-venn/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive Venn diagram of computational complexity classes P, NP, BPP, BQP, and PSPACE</summary>
+<p>Type: MicroSim
+Learning objective: Understand the inclusion relationships among major complexity classes and identify which problems belong to which classes. Bloom level: Analyze.
+Visual elements: A nested Venn diagram showing P inside BPP inside BQP inside PSPACE, with NP overlapping BQP. Each region is color-coded and labeled. Clicking on a region highlights it and displays a list of representative problems in that class. Hovering over a problem name shows a brief description and its classification status (proven membership vs. conjectured).
+Controls: Toggle visibility of each complexity class, click regions to inspect problems, zoom and pan, toggle between "known containments" and "conjectured structure" views.
+Behavior: In "known containments" view, only proven inclusions are shown (P in NP in PSPACE; P in BPP in BQP in PSPACE). In "conjectured structure" view, the likely strict separations are visualized (P strictly inside NP, BQP not contained in NP, etc.). A legend explains which relationships are proved versus conjectured.
+Implementation: p5.js with interactive SVG-style Venn diagram, tooltip overlays, and toggle controls.</p>
+</details>
+<p>The following table summarizes how the Church-Turing thesis and its extended form relate to the computing paradigms studied in this textbook:</p>
+<table>
+<thead>
+<tr>
+<th>Thesis</th>
+<th>Statement</th>
+<th>Status</th>
+<th>Quantum Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Church-Turing (basic)</td>
+<td>Every computable function is Turing-computable</td>
+<td>Universally accepted</td>
+<td>Unchallenged: quantum computers compute the same functions</td>
+</tr>
+<tr>
+<td>Extended Church-Turing</td>
+<td>Every physical computation can be efficiently simulated classically</td>
+<td>Widely believed pre-quantum</td>
+<td>Challenged: Shor's algorithm suggests BQP <span class="arithmatex">\(\not\subseteq\)</span> BPP</td>
+</tr>
+<tr>
+<td>Quantum Church-Turing</td>
+<td>A quantum Turing machine can efficiently simulate any physical process</td>
+<td>Speculative</td>
+<td>Consistent with known physics; motivates quantum supremacy research</td>
+</tr>
+</tbody>
+</table>
+<h2 id="connecting-classical-foundations-to-quantum-computing">Connecting Classical Foundations to Quantum Computing</h2>
+<p>The concepts developed in this chapter form a bridge to the quantum computing paradigm explored in subsequent chapters. The connections are both physical and computational:</p>
+<p><strong>From a device physics perspective</strong>, the Boltzmann tyranny and the resulting failure of voltage scaling (Section on Boltzmann Tyranny and Threshold Voltage Scaling) explain why the semiconductor industry can no longer improve energy efficiency through conventional CMOS scaling alone. This motivates the search for fundamentally different computational paradigms. Reversible computing (<a href="../06-reversible-computing/">Chapter 6</a>) attacks the Landauer limit directly by avoiding information erasure. Quantum computing (<a href="../07-quantum-mechanics/">Chapters 7--10</a>) exploits superposition and entanglement to achieve computational speedups that no classical improvement can match.</p>
+<p><strong>From a complexity-theoretic perspective</strong>, the P vs. NP question and the definition of BQP establish the formal framework for asking whether quantum computers offer genuine advantages. The extended Church-Turing thesis, if falsified by quantum computing, would represent one of the most profound discoveries about the relationship between physics and computation.</p>
+<p><strong>From a Boolean algebra perspective</strong>, the classical logic gates studied here have direct quantum analogues---the quantum gates of <a href="../09-quantum-gates/">Chapter 9</a>. The crucial difference is that quantum gates must be unitary (and hence reversible), while classical gates like AND and OR are irreversible. This irreversibility is intimately connected to energy dissipation through Landauer's principle (<a href="../02-physical-limits/">Chapter 2</a>), closing the loop between the physical and logical layers of classical computing.</p>
+<h2 id="summary-of-classical-computing-fundamentals">Summary of Classical Computing Fundamentals</h2>
+<p>The key results and concepts developed in this chapter are:</p>
+<ol>
+<li><strong>Boolean algebra</strong> provides the mathematical framework for digital logic, with the axioms, De Morgan's laws, and canonical forms (SOP, POS) enabling systematic circuit design</li>
+<li><strong>Logic gates</strong> implement Boolean operations physically; NAND and NOR are each individually universal gate sets</li>
+<li><strong>CMOS transistor physics</strong> employs complementary NMOS/PMOS pairs to implement logic with ideally zero static power</li>
+<li><strong>MOSFET operation</strong> spans cutoff (off), linear (resistive), and saturation (current source) regions, with the square-law model governing current-voltage characteristics</li>
+<li><strong>Dynamic power</strong> <span class="arithmatex">\(P = \alpha C_L V_{DD}^2 f\)</span> dominates at higher voltages and is most effectively reduced by voltage scaling</li>
+<li><strong>Static power</strong> <span class="arithmatex">\(P = V_{DD} \times I_{\text{leak}}\)</span> has grown to rival dynamic power as transistors shrink below 100 nm</li>
+<li><strong>Subthreshold leakage</strong> increases exponentially as <span class="arithmatex">\(V_{th}\)</span> decreases, with the subthreshold swing <span class="arithmatex">\(S \geq 60\)</span> mV/decade setting a fundamental floor</li>
+<li><strong>Gate oxide leakage</strong> from quantum mechanical tunneling becomes significant for oxide thicknesses below 3 nm, mitigated by high-<span class="arithmatex">\(\kappa\)</span> dielectrics</li>
+<li><strong>Boltzmann tyranny</strong> prevents <span class="arithmatex">\(S &lt; 60\)</span> mV/decade in any thermionic transistor, constraining minimum supply voltage and energy per operation</li>
+<li><strong>Threshold voltage scaling</strong> has stalled, with the <span class="arithmatex">\(V_{th}/V_{DD}\)</span> ratio increasing rather than remaining constant, reflecting the performance-leakage tradeoff</li>
+<li><strong>Computational complexity</strong> classifies problems into P, NP, and BQP, with the P vs. NP question and the placement of BQP being central open problems</li>
+<li><strong>The Church-Turing thesis</strong> asserts the universality of Turing machines; its extended form is challenged by quantum computing's potential to efficiently solve classically intractable problems</li>
+</ol>
+<p>These foundations establish why the classical computing paradigm, while extraordinarily successful, faces fundamental physical and complexity-theoretic barriers that motivate the exploration of beyond-CMOS devices (<a href="../05-beyond-cmos-devices/">Chapter 5</a>), reversible computing (<a href="../06-reversible-computing/">Chapter 6</a>), and quantum computing (<a href="../07-quantum-mechanics/">Chapters 7--12</a>).</p>
+<h2 id="references">References</h2>
+<ol>
+<li>G. Boole, <em>An Investigation of the Laws of Thought</em>, Macmillan, 1854.</li>
+<li>C. E. Shannon, "A Symbolic Analysis of Relay and Switching Circuits," <em>Transactions of the AIEE</em>, vol. 57, no. 12, pp. 713-723, 1938.</li>
+<li>Y. Tsividis, <em>Operation and Modeling of the MOS Transistor</em>, 3rd ed., Oxford University Press, 2011.</li>
+<li>J. M. Rabaey, A. Chandrakasan, and B. Nikolic, <em>Digital Integrated Circuits: A Design Perspective</em>, 2nd ed., Prentice Hall, 2003.</li>
+<li>K. Roy, S. Mukhopadhyay, and H. Mahmoodi-Meimand, "Leakage Current Mechanisms and Leakage Reduction Techniques in Deep-Submicrometer CMOS Circuits," <em>Proceedings of the IEEE</em>, vol. 91, no. 2, pp. 305-327, 2003.</li>
+<li>A. M. Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," <em>Proceedings of the London Mathematical Society</em>, vol. 42, pp. 230-265, 1936.</li>
+<li>S. A. Cook, "The Complexity of Theorem-Proving Procedures," in <em>Proceedings of the Third Annual ACM Symposium on Theory of Computing</em>, pp. 151-158, 1971.</li>
+<li>M. A. Nielsen and I. L. Chuang, <em>Quantum Computation and Quantum Information</em>, 10th Anniversary Edition, Cambridge University Press, 2010.</li>
+<li>E. Bernstein and U. Vazirani, "Quantum Complexity Theory," <em>SIAM Journal on Computing</em>, vol. 26, no. 5, pp. 1411-1473, 1997.</li>
+<li>R. P. Feynman, "Simulating Physics with Computers," <em>International Journal of Theoretical Physics</em>, vol. 21, no. 6/7, pp. 467-488, 1982.</li>
+<li>S. Borkar, "Design Challenges of Technology Scaling," <em>IEEE Micro</em>, vol. 19, no. 4, pp. 23-29, 1999.</li>
+<li>International Technology Roadmap for Semiconductors (ITRS), "Process Integration, Devices, and Structures," 2013 Edition.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../03-information-theory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3. Information Theory">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3. Information Theory
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05-beyond-cmos-devices/" class="md-footer__link md-footer__link--next" aria-label="Next: 5. Beyond-CMOS Devices">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                5. Beyond-CMOS Devices
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

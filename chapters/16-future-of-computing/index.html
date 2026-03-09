@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Quantum supremacy, quantum advantage, benchmarking metrics, resource estimation, and post-Moore computing landscape">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/16-future-of-computing/">
+      
+      
+        <link rel="prev" href="../15-energy-efficient-computing/">
+      
+      
+        <link rel="next" href="../../learning-graph/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Future of Computing - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#future-of-computing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Future of Computing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-supremacy-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Supremacy Experiment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Supremacy Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-circuit-sampling-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Circuit Sampling Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#googles-sycamore-experiment-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google's Sycamore Experiment (2019)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequent-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent Experiments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsequent Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-supremacy-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Supremacy Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-advantage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Advantage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Advantage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-advantage-assessment-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Advantage Assessment Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-entropy-benchmarking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Entropy Benchmarking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-Entropy Benchmarking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-cross-entropy-benchmark-linear-xeb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Cross-Entropy Benchmark (Linear XEB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#porter-thomas-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Porter-Thomas Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xeb-fidelity-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XEB-Fidelity Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Volume
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantum-volume-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Volume Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-volume-benchmark-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Volume Benchmark Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-resource-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Resource Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Resource Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-logical-error-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Logical Error Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-qubit-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Qubit Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-resource-estimation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Resource Estimation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-moore-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Moore Landscape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Post-Moore Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaling-limits-and-the-end-of-dennard-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Limits and the End of Dennard Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Limits and the End of Dennard Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#landauer-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Landauer Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heterogeneous-and-domain-specific-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heterogeneous and Domain-Specific Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computing-paradigm-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computing Paradigm Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computing Paradigm Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-post-moore-computing-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Post-Moore Computing Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-road-ahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Road Ahead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-key-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Key Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-supremacy-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Supremacy Experiment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Supremacy Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#random-circuit-sampling-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Random Circuit Sampling Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#googles-sycamore-experiment-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Google's Sycamore Experiment (2019)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequent-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent Experiments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subsequent Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-supremacy-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Supremacy Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-advantage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Advantage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Advantage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-advantage-assessment-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Advantage Assessment Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-entropy-benchmarking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Entropy Benchmarking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-Entropy Benchmarking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linear-cross-entropy-benchmark-linear-xeb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear Cross-Entropy Benchmark (Linear XEB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#porter-thomas-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Porter-Thomas Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xeb-fidelity-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XEB-Fidelity Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Volume
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Volume">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quantum-volume-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Volume Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-volume-benchmark-visualizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Volume Benchmark Visualizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-resource-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Resource Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Resource Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-logical-error-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Logical Error Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-qubit-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Qubit Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#magic-state-distillation-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Magic State Distillation Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-resource-estimation-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Resource Estimation Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#post-moore-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Moore Landscape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Post-Moore Landscape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaling-limits-and-the-end-of-dennard-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Limits and the End of Dennard Scaling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Limits and the End of Dennard Scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#landauer-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Landauer Bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heterogeneous-and-domain-specific-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heterogeneous and Domain-Specific Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computing-paradigm-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computing Paradigm Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computing Paradigm Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-post-moore-computing-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Post-Moore Computing Landscape
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-road-ahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Road Ahead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-key-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Key Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/16-future-of-computing/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="future-of-computing">Future of Computing</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter assesses the current state and future directions of computing paradigms. We analyze quantum supremacy experiments and their complexity-theoretic arguments, distinguish quantum supremacy from practical quantum advantage, examine benchmarking metrics including cross-entropy benchmarking and quantum volume, discuss quantum resource estimation for fault-tolerant applications, and survey the post-Moore computing landscape.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 6 concepts:</p>
+<ol>
+<li>Quantum Supremacy Experiment</li>
+<li>Quantum Advantage</li>
+<li>Cross-Entropy Benchmarking</li>
+<li>Quantum Volume</li>
+<li>Quantum Resource Estimation</li>
+<li>Post-Moore Landscape</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../04-classical-computing/">Chapter 4: Classical Computing Fundamentals</a></li>
+<li><a href="../09-quantum-gates/">Chapter 9: Quantum Gates and Circuits</a></li>
+<li><a href="../11-quantum-error-correction/">Chapter 11: Quantum Error Correction</a></li>
+<li><a href="../12-quantum-hardware/">Chapter 12: Quantum Hardware Platforms</a></li>
+<li><a href="../15-energy-efficient-computing/">Chapter 15: Energy-Efficient Computing Paradigms</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>The preceding chapters have developed the theoretical foundations and hardware implementations of quantum computing. We now confront the central question: <strong>does any quantum device actually surpass the capabilities of classical computers, and if so, in what sense?</strong> The answer requires careful delineation of complexity-theoretic claims, experimental evidence, benchmarking methodology, and resource estimation for practical applications. Beyond quantum computing itself, the broader post-Moore landscape presents a rich tapestry of computing paradigms—neuromorphic, approximate, stochastic, and hybrid—each targeting distinct computational niches as Dennard scaling and Moore's law reach their physical limits.</p>
+<p>This chapter proceeds in six sections. We begin with the concept and experimental realization of quantum supremacy (Section 1), then distinguish it from the more practically oriented notion of quantum advantage (Section 2). We next examine two key benchmarking metrics: cross-entropy benchmarking (Section 3) and quantum volume (Section 4). Section 5 develops the formalism of quantum resource estimation for fault-tolerant applications. We conclude with a survey of the post-Moore computing landscape (Section 6), placing quantum computing in the broader context of emerging computational paradigms.</p>
+<p>The interplay between these concepts can be summarized as follows:</p>
+<ul>
+<li><strong>Quantum supremacy</strong> establishes a complexity-theoretic separation: a quantum device performs a specific task that no classical computer can replicate in feasible time</li>
+<li><strong>Quantum advantage</strong> demands that the task be practically useful, not merely computationally hard</li>
+<li><strong>Benchmarking metrics</strong> provide the measurement apparatus to quantify and compare quantum device performance</li>
+<li><strong>Resource estimation</strong> bridges the gap between current noisy devices and future fault-tolerant machines by quantifying the hardware requirements for target applications</li>
+<li><strong>Post-Moore landscape</strong> contextualizes quantum computing within the broader ecosystem of next-generation computing technologies</li>
+</ul>
+<h2 id="quantum-supremacy-experiment">Quantum Supremacy Experiment</h2>
+<p><strong>Quantum supremacy</strong> (also termed <em>quantum computational advantage</em>) denotes the milestone at which a programmable quantum device performs a well-defined computational task that no classical computer can complete in any feasible amount of time. The term was introduced by John Preskill in 2012, drawing on complexity-theoretic arguments that certain sampling problems—tractable for quantum computers—are intractable classically under plausible conjectures.</p>
+<p>The theoretical foundation rests on the observation that sampling from the output distribution of a random quantum circuit is believed to be classically hard. Consider an <span class="arithmatex">\(n\)</span>-qubit circuit <span class="arithmatex">\(U\)</span> composed of <span class="arithmatex">\(d\)</span> layers of random two-qubit gates drawn from a universal gate set. The output distribution is:</p>
+<h4 id="random-circuit-sampling-distribution">Random Circuit Sampling Distribution</h4>
+<div class="arithmatex">\[
+p(\mathbf{x}) = |\langle \mathbf{x} | U | 0^n \rangle|^2
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{x} \in \{0,1\}^n\)</span> is a computational basis bitstring</li>
+<li><span class="arithmatex">\(U\)</span> is the random unitary circuit</li>
+<li><span class="arithmatex">\(|0^n\rangle\)</span> is the initial all-zeros state</li>
+<li>The distribution <span class="arithmatex">\(p(\mathbf{x})\)</span> is conjectured to be classically intractable to sample from when the circuit depth <span class="arithmatex">\(d\)</span> exceeds a threshold scaling polynomially in <span class="arithmatex">\(n\)</span></li>
+</ul>
+<p>The complexity-theoretic argument proceeds as follows. If a classical computer could efficiently sample from the output distribution of random quantum circuits, then by a chain of polynomial-time reductions, the polynomial hierarchy (PH) would collapse to its third level. Since a collapse of PH is widely believed not to occur (an assumption comparable in status to <span class="arithmatex">\(\mathrm{P} \neq \mathrm{NP}\)</span>), classical simulation of random quantum circuits is presumed to be exponentially hard.</p>
+<h3 id="googles-sycamore-experiment-2019">Google's Sycamore Experiment (2019)</h3>
+<p>The landmark supremacy experiment was performed by Google's AI Quantum team using the Sycamore processor, a 53-qubit superconducting transmon device. The experimental protocol was:</p>
+<ol>
+<li><strong>Circuit construction</strong>: Apply <span class="arithmatex">\(d = 20\)</span> cycles of alternating single-qubit gates (randomly chosen from <span class="arithmatex">\(\{\sqrt{X}, \sqrt{Y}, \sqrt{W}\}\)</span>) and two-qubit <span class="arithmatex">\(\sqrt{\text{iSWAP}}\)</span> gates on a two-dimensional grid of qubits</li>
+<li><strong>Measurement</strong>: Sample bitstrings from the output distribution by repeated execution of the circuit</li>
+<li><strong>Verification</strong>: Evaluate the quality of the samples using cross-entropy benchmarking (see Section 3)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of qubits</td>
+<td>53 (of 54 fabricated; one defective)</td>
+</tr>
+<tr>
+<td>Circuit depth</td>
+<td>20 cycles</td>
+</tr>
+<tr>
+<td>Two-qubit gate</td>
+<td><span class="arithmatex">\(\sqrt{\text{iSWAP}}\)</span> (fSim gate family)</td>
+</tr>
+<tr>
+<td>Two-qubit gate error</td>
+<td><span class="arithmatex">\(\sim 0.36\%\)</span></td>
+</tr>
+<tr>
+<td>Single-qubit gate error</td>
+<td><span class="arithmatex">\(\sim 0.15\%\)</span></td>
+</tr>
+<tr>
+<td>Readout error</td>
+<td><span class="arithmatex">\(\sim 3.8\%\)</span></td>
+</tr>
+<tr>
+<td>Sampling time</td>
+<td>200 seconds (<span class="arithmatex">\(10^6\)</span> samples)</td>
+</tr>
+<tr>
+<td>Estimated classical time (2019)</td>
+<td><span class="arithmatex">\(\sim 10{,}000\)</span> years (Summit supercomputer)</td>
+</tr>
+</tbody>
+</table>
+<p>The claim of supremacy rested on the assertion that the Sycamore processor completed the sampling task in 200 seconds, whereas the most powerful classical supercomputer at the time (IBM's Summit) would require approximately 10,000 years. Subsequent classical algorithmic improvements have reduced the estimated classical cost substantially, with tensor-network methods bringing the estimate down to days or weeks on modern hardware, though this remains far beyond the quantum runtime.</p>
+<h3 id="subsequent-experiments">Subsequent Experiments</h3>
+<p>The quantum supremacy landscape has evolved considerably since 2019:</p>
+<ul>
+<li><strong>USTC Jiuzhang (2020--2021)</strong>: Demonstrated boson sampling supremacy with up to 113 detected photons using Gaussian boson sampling, a task estimated to require <span class="arithmatex">\(10^{24}\)</span> years classically</li>
+<li><strong>USTC Zuchongzhi (2021--2022)</strong>: 66-qubit superconducting processor performing random circuit sampling at increased depth, strengthening the supremacy claim</li>
+<li><strong>IBM (2023--2024)</strong>: Demonstrated utility-scale quantum computation on 127-qubit Eagle and 1121-qubit Condor processors, focusing on problems with practical relevance rather than pure supremacy</li>
+<li><strong>Google Willow (2024--2025)</strong>: 105-qubit processor demonstrating below-threshold error correction, establishing a new milestone for fault-tolerant scalability</li>
+</ul>
+<h4 id="diagram-quantum-supremacy-timeline">Diagram: Quantum Supremacy Timeline</h4>
+<iframe src="../../sims/quantum-supremacy-timeline/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum Supremacy Milestones and Classical Spoilers</summary>
+<p>Type: Interactive Timeline / Infographic
+A horizontal timeline from 2012 (Preskill's coining of the term) to 2026, showing major supremacy experiments (Google Sycamore, USTC Jiuzhang, Zuchongzhi, IBM Eagle/Condor, Google Willow) as nodes with expandable details. Below each quantum milestone, corresponding classical "spoiler" results (improved tensor-network simulations, GPU-based sampling) are shown, illustrating the ongoing cat-and-mouse dynamic. Hovering over each node reveals the number of qubits, circuit depth, claimed speedup, and subsequent classical responses.
+Implementation: D3.js timeline with expandable nodes and linked classical/quantum tracks.</p>
+</details>
+<h2 id="quantum-advantage">Quantum Advantage</h2>
+<p>While quantum supremacy establishes a complexity-theoretic separation, <strong>quantum advantage</strong> (sometimes called <em>practical quantum advantage</em>) demands that the quantum computation solve a problem of genuine practical value faster, cheaper, or more accurately than the best available classical alternative. This distinction is crucial: random circuit sampling, the basis for supremacy demonstrations, has no known direct application. Quantum advantage requires demonstrating superiority on tasks that matter to science, engineering, or industry.</p>
+<p>The hierarchy of quantum computational milestones can be organized as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Definition</th>
+<th>Status (2026)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantum supremacy</td>
+<td>Quantum device outperforms classical on <em>any</em> well-defined task</td>
+<td>Demonstrated (contested)</td>
+</tr>
+<tr>
+<td>Quantum utility</td>
+<td>Quantum device produces results useful for scientific inquiry</td>
+<td>Emerging evidence</td>
+</tr>
+<tr>
+<td>Quantum advantage</td>
+<td>Quantum device outperforms classical on a <em>practical</em> task</td>
+<td>Not yet conclusively demonstrated</td>
+</tr>
+<tr>
+<td>Fault-tolerant quantum computation</td>
+<td>Logical error rates below threshold for scalable computation</td>
+<td>Early demonstrations</td>
+</tr>
+</tbody>
+</table>
+<p>The candidate domains for near-term quantum advantage include:</p>
+<ul>
+<li><strong>Quantum chemistry</strong>: Computing ground-state energies and reaction dynamics of molecular systems relevant to drug discovery and materials science. The electronic structure problem for strongly correlated systems (e.g., FeMo-cofactor in nitrogen fixation) remains intractable classically but is a natural target for quantum simulation.</li>
+<li><strong>Optimization</strong>: Combinatorial optimization problems arising in logistics, finance, and machine learning. Variational quantum eigensolvers (VQE) and the quantum approximate optimization algorithm (QAOA) are the leading near-term approaches, though classical heuristics remain competitive for most problem instances studied to date.</li>
+<li><strong>Quantum machine learning</strong>: Kernel methods in exponentially large Hilbert spaces, quantum neural networks, and quantum-enhanced sampling. Provable separations exist for contrived problems, but advantage on practical machine learning tasks remains elusive.</li>
+<li><strong>Cryptanalysis</strong>: Shor's algorithm provides an exponential speedup for integer factoring and discrete logarithm, but requires millions of physical qubits with fault-tolerant error correction—far beyond current hardware.</li>
+<li><strong>Quantum simulation</strong>: Simulating many-body quantum dynamics, lattice gauge theories, and topological phases of matter. These are perhaps the most natural applications, as the quantum computer directly embodies the quantum system being studied.</li>
+</ul>
+<p>A rigorous framework for claiming quantum advantage requires specifying:</p>
+<ol>
+<li><strong>The computational problem</strong> <span class="arithmatex">\(\mathcal{P}\)</span> with a well-defined input-output relation</li>
+<li><strong>The figure of merit</strong> <span class="arithmatex">\(\mathcal{F}\)</span> (e.g., time-to-solution, energy, accuracy)</li>
+<li><strong>The best classical algorithm</strong> <span class="arithmatex">\(\mathcal{A}_C\)</span> for <span class="arithmatex">\(\mathcal{P}\)</span>, running on the best available classical hardware</li>
+<li><strong>The quantum algorithm</strong> <span class="arithmatex">\(\mathcal{A}_Q\)</span> for <span class="arithmatex">\(\mathcal{P}\)</span>, including compilation, error mitigation, and all overhead</li>
+<li><strong>The advantage ratio</strong> <span class="arithmatex">\(R = \mathcal{F}(\mathcal{A}_C) / \mathcal{F}(\mathcal{A}_Q) &gt; 1\)</span> on problem instances of practical interest</li>
+</ol>
+<p>The challenge of claiming quantum advantage is compounded by the fact that classical algorithms continue to improve. Several claimed quantum speedups have been "spoiled" by subsequent classical algorithmic advances—a phenomenon sometimes called the "classical spoiler" effect. Any credible quantum advantage claim must therefore be benchmarked against state-of-the-art classical methods, not merely naive baselines.</p>
+<h4 id="diagram-quantum-advantage-assessment-framework">Diagram: Quantum Advantage Assessment Framework</h4>
+<iframe src="../../sims/quantum-advantage-framework/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum vs. Classical Performance Comparison Framework</summary>
+<p>Type: Interactive MicroSim
+A two-panel visualization. The left panel shows a log-log plot of problem size <span class="arithmatex">\(n\)</span> versus time-to-solution for both classical (polynomial scaling, various colors for different algorithms) and quantum (with and without error correction overhead). The right panel shows a "breakeven" analysis: user selects an application domain (chemistry, optimization, machine learning, cryptography) and adjusts physical qubit count, gate error rate, and circuit depth. The tool computes and displays the crossover point where quantum outperforms classical, highlighting whether current or projected hardware reaches this threshold.
+Implementation: p5.js with parameterized scaling curves and interactive selectors.</p>
+</details>
+<h2 id="cross-entropy-benchmarking">Cross-Entropy Benchmarking</h2>
+<p><strong>Cross-entropy benchmarking (XEB)</strong> is the primary metric used to verify quantum supremacy experiments. It quantifies how well the measured output distribution of a quantum circuit matches the theoretically predicted distribution by measuring the cross-entropy between the experimental samples and the ideal output probabilities.</p>
+<p>Given a quantum circuit <span class="arithmatex">\(U\)</span> acting on <span class="arithmatex">\(n\)</span> qubits, the ideal output distribution assigns probability <span class="arithmatex">\(p(\mathbf{x}) = |\langle \mathbf{x}|U|0^n\rangle|^2\)</span> to each bitstring <span class="arithmatex">\(\mathbf{x}\)</span>. The linear cross-entropy benchmark is defined as:</p>
+<h4 id="linear-cross-entropy-benchmark-linear-xeb">Linear Cross-Entropy Benchmark (Linear XEB)</h4>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{XEB}} = 2^n \langle p(\mathbf{x}) \rangle_{\text{samples}} - 1
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(2^n\)</span> is the Hilbert space dimension</li>
+<li><span class="arithmatex">\(\langle p(\mathbf{x}) \rangle_{\text{samples}} = \frac{1}{N_s}\sum_{i=1}^{N_s} p(\mathbf{x}_i)\)</span> is the average ideal probability of the experimentally sampled bitstrings <span class="arithmatex">\(\{\mathbf{x}_1, \ldots, \mathbf{x}_{N_s}\}\)</span></li>
+<li><span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 1\)</span> for a perfect (noiseless) quantum computer</li>
+<li><span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 0\)</span> for a uniform random sampler (no quantum signal)</li>
+<li><span class="arithmatex">\(0 &lt; \mathcal{F}_{\text{XEB}} &lt; 1\)</span> for a noisy quantum device, with the value reflecting the overall circuit fidelity</li>
+</ul>
+<p>The physical interpretation of XEB is elegant. For a random circuit, the ideal output probabilities follow a Porter-Thomas distribution:</p>
+<h4 id="porter-thomas-distribution">Porter-Thomas Distribution</h4>
+<div class="arithmatex">\[
+\Pr[p(\mathbf{x}) = p] = 2^n e^{-2^n p}
+\]</div>
+<p>where:</p>
+<ul>
+<li>This exponential distribution is characteristic of the output of Haar-random unitaries</li>
+<li>The mean probability is <span class="arithmatex">\(\langle p \rangle = 2^{-n}\)</span> (uniform), but the variance is large: <span class="arithmatex">\(\text{Var}[p] = 2^{-2n}\)</span></li>
+</ul>
+<p>A perfect quantum sampler draws bitstrings preferentially from the high-probability tail of this distribution, yielding <span class="arithmatex">\(\langle p(\mathbf{x})\rangle_{\text{samples}} = 2\cdot 2^{-n}\)</span> (twice the mean), and hence <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 1\)</span>. A uniform random sampler draws uniformly, yielding <span class="arithmatex">\(\langle p(\mathbf{x})\rangle_{\text{samples}} = 2^{-n}\)</span> and <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 0\)</span>.</p>
+<p>The connection between XEB and circuit fidelity arises from the global depolarizing noise model. If the quantum device implements the ideal unitary <span class="arithmatex">\(U\)</span> with probability <span class="arithmatex">\(f\)</span> (the circuit fidelity) and produces a uniformly random state with probability <span class="arithmatex">\(1-f\)</span>, then:</p>
+<h4 id="xeb-fidelity-connection">XEB-Fidelity Connection</h4>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{XEB}} \approx f = \prod_{g \in \text{gates}} (1 - \epsilon_g)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(f\)</span> is the overall circuit fidelity</li>
+<li><span class="arithmatex">\(\epsilon_g\)</span> is the error rate of gate <span class="arithmatex">\(g\)</span></li>
+<li>The product extends over all gates in the circuit</li>
+<li>This approximation assumes that errors are independent and depolarizing</li>
+</ul>
+<p>In the Sycamore experiment, the measured <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} \approx 0.002\)</span> for the full 53-qubit, depth-20 circuit. While this value appears small, it is <span class="arithmatex">\(\sim 10\sigma\)</span> above the noise floor <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 0\)</span>, and the key point is that computing the ideal probabilities <span class="arithmatex">\(p(\mathbf{x})\)</span> for even this small fidelity requires exponential classical resources.</p>
+<p>XEB has been subject to several criticisms and refinements:</p>
+<ul>
+<li><strong>Spoofing concerns</strong>: Can a classical algorithm achieve <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} &gt; 0\)</span> without actually sampling from the correct distribution? Partial tensor-network simulations can exploit the structure of the circuit to "spoof" XEB for shallow circuits or circuits on low-connectivity graphs.</li>
+<li><strong>Patch-based XEB</strong>: To verify supremacy claims, one can partition the qubit grid into smaller patches, compute XEB for each patch exactly, and then extrapolate the full-circuit fidelity assuming error multiplicativity.</li>
+<li><strong>Log XEB</strong>: An alternative metric, <span class="arithmatex">\(\mathcal{F}_{\text{log}} = \langle \log(2^n p(\mathbf{x})) \rangle + \gamma_E\)</span> (where <span class="arithmatex">\(\gamma_E\)</span> is the Euler-Mascheroni constant), which is more robust to certain types of noise but harder to spoof.</li>
+</ul>
+<h2 id="quantum-volume">Quantum Volume</h2>
+<p><strong>Quantum volume (QV)</strong> is a holistic benchmarking metric introduced by IBM in 2019 that captures the effective computational capacity of a quantum processor by accounting for the number of qubits, gate errors, connectivity, compiler efficiency, and measurement fidelity in a single number. Unlike XEB, which is tailored to verifying specific sampling experiments, quantum volume provides a platform-independent measure for comparing different quantum hardware architectures.</p>
+<p>The quantum volume protocol works as follows. Consider a model circuit consisting of <span class="arithmatex">\(d\)</span> layers of random two-qubit gates (drawn from the Haar measure on <span class="arithmatex">\(SU(4)\)</span>) acting on <span class="arithmatex">\(m\)</span> of the device's <span class="arithmatex">\(n\)</span> available qubits, where both the qubit selection and gate pairings are random. After compiling this abstract circuit to the device's native gate set and connectivity (including SWAP insertions for non-adjacent qubit pairs), one executes the compiled circuit and measures the output.</p>
+<p>The quantum volume is defined as:</p>
+<h4 id="quantum-volume-definition">Quantum Volume Definition</h4>
+<div class="arithmatex">\[
+\log_2 V_Q = \max_{m \leq n} \left\{ m \;\Big|\; \Pr\left[\mathcal{F}_{\text{HO}}(m) &gt; \frac{2}{3}\right] &gt; \frac{2}{3} \right\}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(V_Q\)</span> is the quantum volume</li>
+<li><span class="arithmatex">\(m\)</span> is the number of qubits used in the test circuit</li>
+<li><span class="arithmatex">\(n\)</span> is the total number of physical qubits on the device</li>
+<li><span class="arithmatex">\(\mathcal{F}_{\text{HO}}(m)\)</span> is the <em>heavy output probability</em>: the fraction of measured bitstrings that fall in the "heavy" half of the ideal output distribution (i.e., bitstrings <span class="arithmatex">\(\mathbf{x}\)</span> with <span class="arithmatex">\(p(\mathbf{x})\)</span> above the median ideal probability)</li>
+<li>The double threshold (<span class="arithmatex">\(&gt; 2/3\)</span> in both probability and confidence) ensures statistical rigor</li>
+<li>The maximization over <span class="arithmatex">\(m\)</span> finds the largest circuit width for which the device passes the test</li>
+</ul>
+<p>The heavy output probability for a perfect quantum computer is approximately:</p>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{HO}}^{\text{ideal}} = 1 - \frac{1}{e} + \frac{1}{2e} \approx 0.8534
+\]</div>
+<p>and for a uniform random sampler:</p>
+<div class="arithmatex">\[
+\mathcal{F}_{\text{HO}}^{\text{random}} = \frac{1}{2}
+\]</div>
+<p>The threshold of <span class="arithmatex">\(2/3\)</span> lies between these extremes, providing a meaningful test of quantum coherence.</p>
+<table>
+<thead>
+<tr>
+<th>Processor</th>
+<th>Organization</th>
+<th>Year</th>
+<th>Quantum Volume</th>
+<th>Qubits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IBM Eagle (r3)</td>
+<td>IBM</td>
+<td>2023</td>
+<td><span class="arithmatex">\(2^7 = 128\)</span></td>
+<td>127</td>
+</tr>
+<tr>
+<td>Quantinuum H2</td>
+<td>Quantinuum</td>
+<td>2024</td>
+<td><span class="arithmatex">\(2^{20} = 1{,}048{,}576\)</span></td>
+<td>56</td>
+</tr>
+<tr>
+<td>IonQ Forte</td>
+<td>IonQ</td>
+<td>2023</td>
+<td><span class="arithmatex">\(2^{15} = 32{,}768\)</span></td>
+<td>32</td>
+</tr>
+<tr>
+<td>Rigetti Ankaa-2</td>
+<td>Rigetti</td>
+<td>2024</td>
+<td><span class="arithmatex">\(2^8 = 256\)</span></td>
+<td>84</td>
+</tr>
+<tr>
+<td>IBM Heron</td>
+<td>IBM</td>
+<td>2024</td>
+<td><span class="arithmatex">\(2^9 = 512\)</span></td>
+<td>133</td>
+</tr>
+</tbody>
+</table>
+<p>The table above illustrates a key insight: quantum volume does not simply scale with qubit count. Trapped-ion systems (Quantinuum, IonQ) achieve disproportionately high quantum volumes relative to their qubit counts because of their high gate fidelities and all-to-all connectivity, which eliminate the need for costly SWAP operations during compilation.</p>
+<p>Quantum volume has known limitations as a benchmarking metric:</p>
+<ul>
+<li><strong>Square circuit assumption</strong>: QV uses circuits of depth <span class="arithmatex">\(m\)</span> on <span class="arithmatex">\(m\)</span> qubits, meaning it does not independently probe width and depth</li>
+<li><strong>Ceiling effects</strong>: Once a device passes QV for all <span class="arithmatex">\(m \leq n\)</span>, the metric saturates and cannot distinguish further improvements</li>
+<li><strong>Application irrelevance</strong>: High QV does not guarantee good performance on any specific application</li>
+<li><strong>Compilation dependence</strong>: The result depends on the quality of the compiler, not just the hardware</li>
+</ul>
+<p>Several complementary metrics have been proposed to address these limitations, including circuit layer operations per second (CLOPS), algorithmic qubits, and application-specific benchmarks.</p>
+<h4 id="diagram-quantum-volume-benchmark-visualizer">Diagram: Quantum Volume Benchmark Visualizer</h4>
+<iframe src="../../sims/quantum-volume-benchmark/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Quantum Volume Protocol and Heavy Output Analysis</summary>
+<p>Type: Interactive MicroSim
+A two-panel display. The left panel shows the quantum volume protocol: a random model circuit of width <span class="arithmatex">\(m\)</span> and depth <span class="arithmatex">\(m\)</span>, compiled to a user-selectable device topology (grid, linear, all-to-all). The right panel shows the heavy output histogram comparing the ideal Porter-Thomas distribution with the measured output, highlighting heavy and light outputs. User can adjust <span class="arithmatex">\(m\)</span>, gate error rate, and connectivity. The tool computes <span class="arithmatex">\(\mathcal{F}_{\text{HO}}\)</span> and determines whether the device passes the QV test at each width. A summary displays <span class="arithmatex">\(\log_2 V_Q\)</span>.
+Implementation: p5.js with Monte Carlo circuit simulation using a depolarizing noise model.</p>
+</details>
+<h2 id="quantum-resource-estimation">Quantum Resource Estimation</h2>
+<p><strong>Quantum resource estimation</strong> is the systematic analysis of the physical hardware requirements—number of physical qubits, gate counts, execution time, and classical co-processing—needed to execute a target quantum algorithm at a specified accuracy using fault-tolerant error correction. Resource estimation bridges the gap between asymptotic algorithmic speedups (e.g., Shor's algorithm achieves exponential speedup for factoring) and the concrete engineering question: <em>how large and how good must the quantum computer be?</em></p>
+<p>The resource estimation pipeline consists of several stages:</p>
+<ol>
+<li><strong>Problem specification</strong>: Define the computational problem, input size <span class="arithmatex">\(N\)</span>, and target accuracy <span class="arithmatex">\(\epsilon\)</span></li>
+<li><strong>Algorithm selection</strong>: Choose the quantum algorithm (e.g., quantum phase estimation, Grover search, VQE) and determine its logical resource requirements</li>
+<li><strong>Logical resource count</strong>: Determine the number of logical qubits <span class="arithmatex">\(n_L\)</span>, logical gate count <span class="arithmatex">\(G_L\)</span>, and circuit depth <span class="arithmatex">\(D_L\)</span></li>
+<li><strong>Error correction overhead</strong>: Select an error-correcting code (typically the surface code) and compute the code distance <span class="arithmatex">\(d\)</span> required to achieve the target logical error rate</li>
+<li><strong>Physical resource count</strong>: Compute the number of physical qubits <span class="arithmatex">\(n_P\)</span>, physical gate count <span class="arithmatex">\(G_P\)</span>, and total execution time <span class="arithmatex">\(T\)</span></li>
+</ol>
+<p>The surface code is the dominant error correction scheme for resource estimation due to its high threshold error rate (<span class="arithmatex">\(\sim 1\%\)</span>) and 2D nearest-neighbor connectivity requirement. The key relations are:</p>
+<h4 id="surface-code-logical-error-rate">Surface Code Logical Error Rate</h4>
+<div class="arithmatex">\[
+p_L(d) \approx A \left(\frac{p}{p_{\text{th}}}\right)^{\lfloor d/2 \rfloor + 1}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p_L\)</span> is the logical error rate per code cycle</li>
+<li><span class="arithmatex">\(p\)</span> is the physical error rate per gate</li>
+<li><span class="arithmatex">\(p_{\text{th}} \approx 0.01\)</span> is the surface code threshold</li>
+<li><span class="arithmatex">\(d\)</span> is the code distance (must be odd)</li>
+<li><span class="arithmatex">\(A\)</span> is a constant of order <span class="arithmatex">\(\sim 0.1\)</span>--<span class="arithmatex">\(0.3\)</span> depending on the noise model</li>
+</ul>
+<p>The number of physical qubits per logical qubit in the surface code is:</p>
+<h4 id="surface-code-qubit-overhead">Surface Code Qubit Overhead</h4>
+<div class="arithmatex">\[
+n_P^{(\text{per logical})} = 2d^2
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(d\)</span> is the code distance</li>
+<li>The factor of 2 accounts for both data qubits and syndrome measurement (ancilla) qubits in the standard planar layout</li>
+<li>For <span class="arithmatex">\(d = 17\)</span> (a commonly estimated distance for practical applications): <span class="arithmatex">\(n_P^{(\text{per logical})} = 578\)</span></li>
+</ul>
+<p>The total number of physical qubits for a computation requiring <span class="arithmatex">\(n_L\)</span> logical qubits is:</p>
+<div class="arithmatex">\[
+n_P = n_L \cdot 2d^2 + n_{\text{distill}}
+\]</div>
+<p>where <span class="arithmatex">\(n_{\text{distill}}\)</span> is the additional qubit overhead for magic state distillation, which is typically a substantial fraction of the total.</p>
+<p>Magic state distillation is required because the Clifford gates (<span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(S\)</span>, CNOT) can be implemented transversally in the surface code, but the <span class="arithmatex">\(T\)</span> gate cannot. Each logical <span class="arithmatex">\(T\)</span> gate requires a distilled <span class="arithmatex">\(|T\rangle = (|0\rangle + e^{i\pi/4}|1\rangle)/\sqrt{2}\)</span> magic state. The distillation factory consumes noisy <span class="arithmatex">\(|T\rangle\)</span> states and produces high-fidelity ones:</p>
+<h4 id="magic-state-distillation-overhead">Magic State Distillation Overhead</h4>
+<div class="arithmatex">\[
+n_{\text{raw}} \approx \left(\frac{p_T}{\epsilon_T}\right)^{\log(n_T)/\log(k)}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(n_{\text{raw}}\)</span> is the number of raw (noisy) magic states consumed per distilled state</li>
+<li><span class="arithmatex">\(p_T\)</span> is the input magic state error rate</li>
+<li><span class="arithmatex">\(\epsilon_T\)</span> is the target magic state error rate</li>
+<li><span class="arithmatex">\(n_T\)</span> is the total number of <span class="arithmatex">\(T\)</span> gates in the algorithm</li>
+<li><span class="arithmatex">\(k\)</span> is the distillation protocol parameter (e.g., <span class="arithmatex">\(k = 15\)</span> for the standard 15-to-1 distillation protocol)</li>
+</ul>
+<p>The following table summarizes resource estimates for several landmark quantum algorithms:</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Algorithm</th>
+<th>Problem Size</th>
+<th>Logical Qubits</th>
+<th><span class="arithmatex">\(T\)</span>-gate Count</th>
+<th>Code Distance</th>
+<th>Physical Qubits</th>
+<th>Runtime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RSA-2048 factoring</td>
+<td>Shor + lattice surgery</td>
+<td>2048-bit integer</td>
+<td><span class="arithmatex">\(\sim 4{,}000\)</span></td>
+<td><span class="arithmatex">\(\sim 10^{10}\)</span></td>
+<td>17--27</td>
+<td><span class="arithmatex">\(\sim 4 \times 10^6\)</span></td>
+<td><span class="arithmatex">\(\sim 8\)</span> hours</td>
+</tr>
+<tr>
+<td>FeMo-co ground state</td>
+<td>QPE + Trotter</td>
+<td>54 orbitals</td>
+<td><span class="arithmatex">\(\sim 200\)</span></td>
+<td><span class="arithmatex">\(\sim 10^{12}\)</span></td>
+<td>17--31</td>
+<td><span class="arithmatex">\(\sim 4 \times 10^6\)</span></td>
+<td><span class="arithmatex">\(\sim\)</span> days</td>
+</tr>
+<tr>
+<td>100-bit Grover search</td>
+<td>Grover + surface code</td>
+<td><span class="arithmatex">\(N = 2^{100}\)</span></td>
+<td><span class="arithmatex">\(\sim 200\)</span></td>
+<td><span class="arithmatex">\(\sim 2^{50}\)</span></td>
+<td>21</td>
+<td><span class="arithmatex">\(\sim 10^5\)</span></td>
+<td><span class="arithmatex">\(\sim\)</span> millennia</td>
+</tr>
+<tr>
+<td>Li<span class="arithmatex">\(_2\)</span>O catalyst</td>
+<td>VQE (fault-tolerant)</td>
+<td>30 orbitals</td>
+<td><span class="arithmatex">\(\sim 100\)</span></td>
+<td><span class="arithmatex">\(\sim 10^{8}\)</span></td>
+<td>13--17</td>
+<td><span class="arithmatex">\(\sim 10^5\)</span></td>
+<td><span class="arithmatex">\(\sim\)</span> hours</td>
+</tr>
+</tbody>
+</table>
+<p>These estimates reveal a sobering reality: even algorithms with proven exponential speedups (Shor, QPE for chemistry) require millions of physical qubits for practical problem sizes. The current state of the art is <span class="arithmatex">\(\sim 10^2\)</span>--<span class="arithmatex">\(10^3\)</span> physical qubits with error rates <span class="arithmatex">\(\sim 10^{-3}\)</span>, implying a gap of approximately three orders of magnitude in qubit count and one order of magnitude in error rate before fault-tolerant quantum computing becomes practical for the most impactful applications.</p>
+<p>The resource estimation pipeline exposes a critical bottleneck: the <span class="arithmatex">\(T\)</span>-gate count dominates the total resource cost. Consequently, a major area of research is <span class="arithmatex">\(T\)</span>-gate optimization—reducing the number of <span class="arithmatex">\(T\)</span> gates through circuit synthesis, gate approximation (Solovay-Kitaev theorem, Ross-Selinger algorithm), and algorithmic redesign.</p>
+<h4 id="diagram-resource-estimation-pipeline">Diagram: Resource Estimation Pipeline</h4>
+<iframe src="../../sims/resource-estimation-pipeline/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Fault-Tolerant Resource Estimation Calculator</summary>
+<p>Type: Interactive MicroSim
+A multi-stage pipeline visualization. User selects an application (factoring, chemistry, optimization, search), specifies the problem size, and chooses a target accuracy. The tool walks through each stage of the estimation pipeline: (1) logical resource compilation showing qubit count and <span class="arithmatex">\(T\)</span>-gate count, (2) surface code distance selection given a physical error rate slider, (3) magic state distillation factory sizing, (4) total physical qubit count and runtime. Each stage displays the intermediate results and the dominant cost contributor. A final summary compares the estimated requirements against current and projected hardware capabilities.
+Implementation: p5.js with parameterized resource models based on published estimates from Azure Quantum Resource Estimator methodology.</p>
+</details>
+<h2 id="post-moore-landscape">Post-Moore Landscape</h2>
+<p>The trajectory of classical computing has been governed for over five decades by <strong>Moore's law</strong>—the empirical observation that transistor density on integrated circuits doubles approximately every two years—and <strong>Dennard scaling</strong>—the principle that power density remains constant as transistors shrink because voltage and current scale down proportionally. Dennard scaling ended around 2006 when threshold voltage could no longer be reduced without unacceptable leakage currents, ushering in the multi-core era. Moore's law itself is approaching fundamental physical limits as feature sizes approach atomic dimensions (<span class="arithmatex">\(\sim 2\)</span>--<span class="arithmatex">\(3\)</span> nm in 2025--2026).</p>
+<p>The post-Moore landscape encompasses the diverse computational paradigms being pursued to sustain performance growth beyond the end of conventional CMOS scaling:</p>
+<table>
+<thead>
+<tr>
+<th>Paradigm</th>
+<th>Principle</th>
+<th>Target Applications</th>
+<th>Maturity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantum computing</td>
+<td>Superposition and entanglement</td>
+<td>Chemistry, optimization, cryptography</td>
+<td>NISQ era (<span class="arithmatex">\(10^2\)</span>--<span class="arithmatex">\(10^3\)</span> qubits)</td>
+</tr>
+<tr>
+<td>Neuromorphic computing</td>
+<td>Brain-inspired spiking neural networks</td>
+<td>Pattern recognition, edge AI, robotics</td>
+<td>Commercial (Intel Loihi, IBM TrueNorth)</td>
+</tr>
+<tr>
+<td>Photonic computing</td>
+<td>Optical matrix multiplication</td>
+<td>Deep learning inference, signal processing</td>
+<td>Early commercial (Lightmatter, Luminous)</td>
+</tr>
+<tr>
+<td>In-memory computing</td>
+<td>Computation within memory arrays</td>
+<td>Matrix operations, search, inference</td>
+<td>Prototype (memristive crossbars)</td>
+</tr>
+<tr>
+<td>Approximate computing</td>
+<td>Trading accuracy for efficiency</td>
+<td>Machine learning, signal processing, multimedia</td>
+<td>Integrated in some ASICs</td>
+</tr>
+<tr>
+<td>Stochastic computing</td>
+<td>Probabilistic bit streams</td>
+<td>Edge inference, Bayesian networks, low-power</td>
+<td>Research / niche deployment</td>
+</tr>
+<tr>
+<td>Reversible computing</td>
+<td>Logically reversible operations</td>
+<td>Energy-limited computing, cryogenic logic</td>
+<td>Research</td>
+</tr>
+<tr>
+<td>Superconducting classical</td>
+<td>Rapid single-flux-quantum (RSFQ) logic</td>
+<td>High-speed digital, cryogenic co-processing</td>
+<td>Research / niche (NSA, IARPA)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scaling-limits-and-the-end-of-dennard-scaling">Scaling Limits and the End of Dennard Scaling</h3>
+<p>The fundamental energy limit for a binary switching event is set by the Landauer bound (Chapter 6):</p>
+<h4 id="landauer-bound">Landauer Bound</h4>
+<div class="arithmatex">\[
+E_{\text{min}} = k_B T \ln 2
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(k_B\)</span> is Boltzmann's constant</li>
+<li><span class="arithmatex">\(T\)</span> is the operating temperature</li>
+<li>At <span class="arithmatex">\(T = 300\)</span> K: <span class="arithmatex">\(E_{\text{min}} \approx 2.85 \times 10^{-21}\)</span> J <span class="arithmatex">\(\approx 0.018\)</span> eV</li>
+<li>Current CMOS switching energy is <span class="arithmatex">\(\sim 10^{-15}\)</span> J, approximately <span class="arithmatex">\(10^6\)</span> times the Landauer limit</li>
+</ul>
+<p>The gap between current switching energies and the Landauer limit suggests that enormous room for improvement remains in principle, but practical devices face constraints from noise margins, interconnect energy, and clock distribution that prevent approaching the thermodynamic limit.</p>
+<p>The evolution of computing performance can be captured by three key metrics:</p>
+<ul>
+<li><strong>Single-thread performance</strong>: Stagnant since <span class="arithmatex">\(\sim\)</span>2010 due to the end of Dennard scaling and the "power wall"</li>
+<li><strong>Throughput (FLOPS/watt)</strong>: Improving through specialization (GPUs, TPUs, FPGAs) but at diminishing rates</li>
+<li><strong>Application-specific efficiency</strong>: Domain-specific architectures (DSAs) achieve orders-of-magnitude improvements for targeted workloads</li>
+</ul>
+<h3 id="heterogeneous-and-domain-specific-architectures">Heterogeneous and Domain-Specific Architectures</h3>
+<p>The post-Moore era is characterized by a shift from general-purpose scaling to <strong>heterogeneous architectures</strong> that combine multiple specialized processing elements:</p>
+<ul>
+<li><strong>CPUs</strong> for control flow and serial computation</li>
+<li><strong>GPUs</strong> for massively parallel floating-point workloads</li>
+<li><strong>TPUs/NPUs</strong> for tensor operations in deep learning</li>
+<li><strong>FPGAs</strong> for reconfigurable hardware acceleration</li>
+<li><strong>Quantum processing units (QPUs)</strong> for specific quantum-amenable subroutines</li>
+<li><strong>Neuromorphic processors</strong> for event-driven, low-power inference</li>
+</ul>
+<p>This heterogeneous model implies that quantum computing will not <em>replace</em> classical computing but rather serve as a <strong>co-processor</strong> for specific problem classes where quantum algorithms provide provable or empirical speedups. The hybrid classical-quantum computing model (explored in Chapter 14) is therefore the most realistic near-term deployment scenario.</p>
+<h3 id="computing-paradigm-comparison">Computing Paradigm Comparison</h3>
+<p>To place quantum computing in the broader context, we compare the key paradigms across several dimensions:</p>
+<h4 id="diagram-post-moore-computing-landscape">Diagram: Post-Moore Computing Landscape</h4>
+<iframe src="../../sims/post-moore-landscape/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+
+<details>
+<summary>Post-Moore Computing Paradigm Comparison</summary>
+<p>Type: Interactive MicroSim
+A multi-axis radar chart comparing eight computing paradigms (classical CMOS, quantum, neuromorphic, photonic, in-memory, approximate, stochastic, reversible) across six dimensions: computational throughput, energy efficiency, programmability, maturity, scalability, and application breadth. User can select any subset of paradigms for comparison and toggle between current performance and projected 2030 performance. A companion panel shows the estimated timeline to practical deployment for each paradigm.
+Implementation: D3.js radar chart with interactive paradigm selection and projection toggles.</p>
+</details>
+<h3 id="the-road-ahead">The Road Ahead</h3>
+<p>The future of computing is not a single exponential trajectory but a branching tree of specialized paradigms, each optimized for different computational niches. Several convergent trends will shape this landscape over the coming decade:</p>
+<ol>
+<li><strong>Error correction breakthrough</strong>: Achieving logical error rates below <span class="arithmatex">\(10^{-10}\)</span> with surface codes or alternative codes (e.g., quantum LDPC codes, color codes) will unlock fault-tolerant quantum computing for chemistry, materials science, and cryptography</li>
+<li><strong>Hybrid quantum-classical workflows</strong>: Variational algorithms, quantum error mitigation, and quantum-inspired classical algorithms will form a continuum of approaches, blurring the boundary between quantum and classical</li>
+<li><strong>Quantum networking</strong>: Distributed quantum computing via quantum interconnects and quantum internet protocols will enable modular architectures that circumvent single-chip qubit count limitations</li>
+<li><strong>Cryogenic classical computing</strong>: Co-locating classical control electronics with quantum processors at millikelvin temperatures using superconducting RSFQ logic or cryo-CMOS will reduce the I/O bottleneck that currently limits scaling</li>
+<li><strong>Application discovery</strong>: The identification of new quantum algorithms with practical advantages—beyond the canonical examples of factoring, search, and simulation—remains the most important open question in the field</li>
+</ol>
+<p>The ultimate impact of quantum computing on the post-Moore landscape will be determined not by theoretical speedups alone but by the engineering reality of building, programming, and maintaining large-scale quantum systems. The path from quantum supremacy to quantum advantage to quantum utility is neither straight nor guaranteed, but the intellectual and technological foundations laid in this course provide the tools to navigate it.</p>
+<h2 id="summary-of-key-results">Summary of Key Results</h2>
+<p>The following list recapitulates the principal results developed in this chapter:</p>
+<ol>
+<li><strong>Random circuit sampling</strong>: <span class="arithmatex">\(p(\mathbf{x}) = |\langle\mathbf{x}|U|0^n\rangle|^2\)</span> defines the output distribution whose classical intractability underlies quantum supremacy claims</li>
+<li><strong>Linear XEB</strong>: <span class="arithmatex">\(\mathcal{F}_{\text{XEB}} = 2^n\langle p(\mathbf{x})\rangle_{\text{samples}} - 1\)</span> provides a scalable metric for verifying quantum circuit fidelity against ideal predictions</li>
+<li><strong>Porter-Thomas distribution</strong>: <span class="arithmatex">\(\Pr[p = p'] = 2^n e^{-2^n p'}\)</span> characterizes the output statistics of random quantum circuits</li>
+<li><strong>Quantum volume</strong>: <span class="arithmatex">\(\log_2 V_Q = \max_m\{m \mid \Pr[\mathcal{F}_{\text{HO}}(m) &gt; 2/3] &gt; 2/3\}\)</span> provides a holistic, platform-independent benchmark</li>
+<li><strong>Surface code logical error rate</strong>: <span class="arithmatex">\(p_L(d) \approx A(p/p_{\text{th}})^{\lfloor d/2\rfloor + 1}\)</span> governs the code distance selection in fault-tolerant resource estimation</li>
+<li><strong>Surface code qubit overhead</strong>: <span class="arithmatex">\(n_P = 2d^2\)</span> physical qubits per logical qubit, with magic state distillation dominating the total cost</li>
+<li><strong>Landauer bound</strong>: <span class="arithmatex">\(E_{\text{min}} = k_BT\ln 2\)</span> sets the thermodynamic floor for irreversible computation, with current technology <span class="arithmatex">\(\sim 10^6\times\)</span> above this limit</li>
+</ol>
+<h2 id="references">References</h2>
+<ol>
+<li>Preskill, J. "Quantum computing in the NISQ era and beyond." <em>Quantum</em> 2, 79 (2018).</li>
+<li>Arute, F., et al. "Quantum supremacy using a programmable superconducting processor." <em>Nature</em> 574, 505--510 (2019).</li>
+<li>Zhong, H.-S., et al. "Quantum computational advantage using photons." <em>Science</em> 370, 1460--1463 (2020).</li>
+<li>Cross, A.W., et al. "Validating quantum computers using randomized model circuits." <em>Physical Review A</em> 100, 032328 (2019).</li>
+<li>Bishop, L.S., et al. "Quantum volume." <em>Technical Report</em>, IBM (2017).</li>
+<li>Gidney, C. and Ekera, M. "How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits." <em>Quantum</em> 5, 433 (2021).</li>
+<li>Lee, J., et al. "Even more efficient quantum computations of chemistry through tensor hypercontraction." <em>PRX Quantum</em> 2, 030305 (2021).</li>
+<li>Kim, Y., et al. "Evidence for the utility of quantum computing before fault tolerance." <em>Nature</em> 618, 500--505 (2023).</li>
+<li>Acharya, R., et al. "Quantum error correction below the surface code threshold." <em>Nature</em> 638, 920--926 (2025).</li>
+<li>Shalf, J. "The future of computing beyond Moore's law." <em>Philosophical Transactions of the Royal Society A</em> 378, 20190061 (2020).</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../15-energy-efficient-computing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 15. Energy-Efficient Computing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                15. Energy-Efficient Computing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../learning-graph/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

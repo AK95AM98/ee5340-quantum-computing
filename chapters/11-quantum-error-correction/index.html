@@ -1,0 +1,2965 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Quantum error correction from noise channels through stabilizer codes and fault-tolerant thresholds">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/11-quantum-error-correction/">
+      
+      
+        <link rel="prev" href="../10-quantum-algorithms/">
+      
+      
+        <link rel="next" href="../12-quantum-hardware/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Quantum Error Correction - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quantum-error-correction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quantum Error Correction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mathematical-foundations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-noise-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Noise Channels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Noise Channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stinespring-dilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stinespring Dilation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kraus-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kraus Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kraus Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kraus-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kraus Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bit-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bit-Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bit-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase-Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase-Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase-Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bit-phase-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Phase Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bit-Phase Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bit-phase-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Phase Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depolarizing-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depolarizing Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Depolarizing Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depolarizing-channel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depolarizing Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplitude-damping-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Damping Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amplitude Damping Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amplitude-damping-channel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Damping Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-error-channel-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Error Channel Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-repetition-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Repetition Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Repetition Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-qubit-bit-flip-code-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three-Qubit Bit-Flip Code Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shor-nine-qubit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor Nine-Qubit Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shor Nine-Qubit Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shor-code-logical-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor Code Logical States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-shor-code-encoding-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Shor Code Encoding Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steane-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steane Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steane Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steane-code-logical-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steane Code Logical States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knill-laflamme-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knill-Laflamme Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knill-Laflamme Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knill-laflamme-error-correction-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knill-Laflamme Error Correction Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stabilizer-formalism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stabilizer Formalism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stabilizer Formalism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stabilizer-code-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stabilizer Code Space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stabilizer-syndrome-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stabilizer Syndrome Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surface-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surface Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-stabilizers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Stabilizers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-surface-code-lattice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Surface Code Lattice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-qubit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Qubit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-tolerant-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault-Tolerant Threshold
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fault-Tolerant Threshold">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threshold-theorem-aharonov-and-ben-or-1997-kitaev-1997-knill-laflamme-and-zurek-1998" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threshold Theorem (Aharonov and Ben-Or, 1997; Kitaev, 1997; Knill, Laflamme, and Zurek, 1998)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-fault-tolerant-threshold-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Fault-Tolerant Threshold Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-error-correction-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Error Correction Hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary of the Error Correction Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-error-correction-concept-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Error Correction Concept Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-noise-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Noise Channels
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Noise Channels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stinespring-dilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stinespring Dilation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kraus-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kraus Operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kraus Operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kraus-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kraus Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bit-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bit-Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bit-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase-Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase-Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase-Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bit-phase-flip-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Phase Flip Error
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bit-Phase Flip Error">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bit-phase-flip-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bit-Phase Flip Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depolarizing-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depolarizing Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Depolarizing Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depolarizing-channel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depolarizing Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplitude-damping-channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Damping Channel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amplitude Damping Channel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amplitude-damping-channel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Damping Channel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-error-channel-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Error Channel Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quantum-repetition-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quantum Repetition Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantum Repetition Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-qubit-bit-flip-code-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Three-Qubit Bit-Flip Code Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shor-nine-qubit-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor Nine-Qubit Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shor Nine-Qubit Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shor-code-logical-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shor Code Logical States
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-shor-code-encoding-circuit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Shor Code Encoding Circuit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#steane-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steane Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steane Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steane-code-logical-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steane Code Logical States
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knill-laflamme-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knill-Laflamme Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knill-Laflamme Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#knill-laflamme-error-correction-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knill-Laflamme Error Correction Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stabilizer-formalism" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stabilizer Formalism
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stabilizer Formalism">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stabilizer-code-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stabilizer Code Space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-stabilizer-syndrome-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Stabilizer Syndrome Measurement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surface-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surface Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#surface-code-stabilizers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface Code Stabilizers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-surface-code-lattice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Surface Code Lattice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-qubit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Qubit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-tolerant-threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fault-Tolerant Threshold
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fault-Tolerant Threshold">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threshold-theorem-aharonov-and-ben-or-1997-kitaev-1997-knill-laflamme-and-zurek-1998" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threshold Theorem (Aharonov and Ben-Or, 1997; Kitaev, 1997; Knill, Laflamme, and Zurek, 1998)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-fault-tolerant-threshold-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Fault-Tolerant Threshold Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-the-error-correction-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of the Error Correction Hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary of the Error Correction Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-quantum-error-correction-concept-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Quantum Error Correction Concept Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/11-quantum-error-correction/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="quantum-error-correction">Quantum Error Correction</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter develops quantum error correction theory from noise channel models through fault-tolerant computation. We formalize quantum noise using Kraus operators, analyze bit-flip, phase-flip, and depolarizing channels, construct the three-qubit repetition code and Shor's nine-qubit code, derive the Knill-Laflamme conditions, develop the stabilizer formalism, introduce surface codes with logical qubit encoding, and state the fault-tolerant threshold theorem.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 15 concepts:</p>
+<ol>
+<li>Quantum Noise Channels</li>
+<li>Depolarizing Channel</li>
+<li>Amplitude Damping Channel</li>
+<li>Kraus Operators</li>
+<li>Bit-Flip Error</li>
+<li>Phase-Flip Error</li>
+<li>Bit-Phase Flip Error</li>
+<li>Quantum Repetition Code</li>
+<li>Shor Nine-Qubit Code</li>
+<li>Steane Code</li>
+<li>Knill-Laflamme Conditions</li>
+<li>Stabilizer Formalism</li>
+<li>Surface Code</li>
+<li>Logical Qubit</li>
+<li>Fault-Tolerant Threshold</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter builds on concepts from:</p>
+<ul>
+<li><a href="../08-qubits-and-states/">Chapter 8: Qubits and Quantum States</a></li>
+<li><a href="../09-quantum-gates/">Chapter 9: Quantum Gates and Circuits</a></li>
+</ul>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>Quantum computation promises exponential speedups for specific problems, but the physical qubits that carry quantum information are extraordinarily fragile. Interactions with the environment---stray electromagnetic fields, thermal phonons, cosmic rays, and even imperfect control pulses---corrupt quantum states in ways that have no classical analogue. A classical bit, stored as a macroscopic voltage level, can be refreshed by thresholding: any voltage above <span class="arithmatex">\(V_\text{th}\)</span> is rounded to logical 1. A qubit, by contrast, lives in a continuous Hilbert space, and the no-cloning theorem (Chapter 8) forbids copying an unknown quantum state for majority-vote correction. Moreover, measurement itself disturbs the state, collapsing superpositions that may encode computational information.</p>
+<p>These obstacles led many physicists in the early 1990s to doubt whether large-scale quantum computation would ever be feasible. The discovery of quantum error correction by Shor (1995) and Steane (1996) overturned this pessimism. The central insight is that quantum information can be encoded redundantly in an entangled state of many physical qubits, errors can be detected by measuring <em>syndromes</em> that reveal error types without collapsing the encoded data, and corrections can be applied via unitary operations. The culmination of this program is the <strong>threshold theorem</strong>: provided the physical error rate per gate falls below a critical value, arbitrarily long quantum computations can be performed with arbitrarily small logical error rates, at a polylogarithmic overhead in physical qubits.</p>
+<p>This chapter develops the mathematical framework for quantum error correction in a systematic progression. We begin with the formalism of quantum noise channels and Kraus operators, then study the three canonical single-qubit error types. We construct progressively more powerful codes---the three-qubit repetition code, Shor's nine-qubit code, and Steane's seven-qubit code---before deriving the general conditions (Knill-Laflamme) that any quantum error-correcting code must satisfy. The stabilizer formalism provides an elegant algebraic language for describing a broad class of codes, culminating in the surface code, the leading candidate for practical fault-tolerant quantum computation.</p>
+<h2 id="quantum-noise-channels">Quantum Noise Channels</h2>
+<p>A <strong>quantum noise channel</strong> (also called a quantum channel or completely positive trace-preserving map) describes the most general physical evolution of an open quantum system---one that interacts with an environment whose degrees of freedom we do not control or observe. While isolated quantum systems evolve unitarily (<span class="arithmatex">\(\rho \mapsto U\rho U^\dagger\)</span>), open systems undergo non-unitary evolution that can introduce decoherence, dissipation, and errors.</p>
+<p>Formally, a quantum channel is a linear map <span class="arithmatex">\(\mathcal{E}: \mathcal{B}(\mathcal{H}) \to \mathcal{B}(\mathcal{H})\)</span> on the space of density operators satisfying three properties:</p>
+<ul>
+<li><strong>Linearity</strong>: <span class="arithmatex">\(\mathcal{E}(\alpha \rho_1 + \beta \rho_2) = \alpha \mathcal{E}(\rho_1) + \beta \mathcal{E}(\rho_2)\)</span></li>
+<li><strong>Complete positivity</strong>: <span class="arithmatex">\((\mathcal{E} \otimes \mathcal{I}_n)(\rho) \geq 0\)</span> for all <span class="arithmatex">\(n\)</span> and all positive <span class="arithmatex">\(\rho\)</span> on <span class="arithmatex">\(\mathcal{H} \otimes \mathbb{C}^n\)</span></li>
+<li><strong>Trace preservation</strong>: <span class="arithmatex">\(\text{Tr}[\mathcal{E}(\rho)] = \text{Tr}[\rho]\)</span> for all <span class="arithmatex">\(\rho\)</span></li>
+</ul>
+<p>Complete positivity is stronger than mere positivity: it requires that the map remains positive even when applied to part of an entangled system. This condition is physically necessary because our qubit may be entangled with other systems, and the joint state must remain a valid density operator after the channel acts on the subsystem.</p>
+<p>The physical picture underlying any quantum channel is the <strong>Stinespring dilation</strong>: the system interacts unitarily with an initially uncorrelated environment, and we then trace over the environment:</p>
+<h4 id="stinespring-dilation">Stinespring Dilation</h4>
+<div class="arithmatex">\[
+\mathcal{E}(\rho) = \text{Tr}_E\left[U(\rho \otimes |0\rangle_E\langle 0|)U^\dagger\right]
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U\)</span> is a unitary operator on the joint system-environment Hilbert space <span class="arithmatex">\(\mathcal{H}_S \otimes \mathcal{H}_E\)</span></li>
+<li><span class="arithmatex">\(|0\rangle_E\)</span> is the initial (pure) state of the environment</li>
+<li><span class="arithmatex">\(\text{Tr}_E\)</span> denotes the partial trace over the environment</li>
+</ul>
+<p>This representation guarantees that every quantum channel is completely positive and trace-preserving. It also provides the foundation for the Kraus operator representation, which we derive next.</p>
+<h2 id="kraus-operators">Kraus Operators</h2>
+<p>By expanding the Stinespring dilation in an orthonormal basis <span class="arithmatex">\(\{|k\rangle_E\}\)</span> of the environment, we obtain the <strong>operator-sum representation</strong> (Kraus representation) of a quantum channel. Inserting a resolution of the identity <span class="arithmatex">\(\sum_k |k\rangle_E\langle k| = I_E\)</span>:</p>
+<h4 id="kraus-representation">Kraus Representation</h4>
+<div class="arithmatex">\[
+\mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(E_k = {}_E\langle k|U|0\rangle_E\)</span> are the <strong>Kraus operators</strong> (also called operation elements)</li>
+<li>The completeness relation <span class="arithmatex">\(\sum_k E_k^\dagger E_k = I\)</span> ensures trace preservation</li>
+<li>The index <span class="arithmatex">\(k\)</span> runs over the dimension of the environment Hilbert space</li>
+</ul>
+<p>Each Kraus operator <span class="arithmatex">\(E_k\)</span> can be interpreted as one possible "error" that occurs with a probability determined by <span class="arithmatex">\(\text{Tr}[E_k \rho E_k^\dagger]\)</span>. If we were to measure the environment in the basis <span class="arithmatex">\(\{|k\rangle_E\}\)</span>, outcome <span class="arithmatex">\(k\)</span> would project the system into the (unnormalized) state <span class="arithmatex">\(E_k \rho E_k^\dagger\)</span>. Without measurement, the system is in the mixed state given by summing over all outcomes.</p>
+<p>The Kraus representation is not unique: if <span class="arithmatex">\(\{E_k\}\)</span> is a valid set of Kraus operators, then <span class="arithmatex">\(\{F_j = \sum_k u_{jk} E_k\}\)</span> is also valid for any unitary matrix <span class="arithmatex">\(u_{jk}\)</span>. This <strong>unitary freedom</strong> reflects the fact that different bases for the environment yield different Kraus decompositions of the same channel.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trace preservation</td>
+<td><span class="arithmatex">\(\sum_k E_k^\dagger E_k = I\)</span></td>
+</tr>
+<tr>
+<td>Complete positivity</td>
+<td>Automatic from Kraus form</td>
+</tr>
+<tr>
+<td>Number of Kraus operators</td>
+<td>At most <span class="arithmatex">\(d^2\)</span> for a <span class="arithmatex">\(d\)</span>-dimensional system</td>
+</tr>
+<tr>
+<td>Unitary evolution</td>
+<td>Single Kraus operator <span class="arithmatex">\(E_0 = U\)</span></td>
+</tr>
+<tr>
+<td>Unitary freedom</td>
+<td><span class="arithmatex">\(E_k \to F_j = \sum_k u_{jk} E_k\)</span> for unitary <span class="arithmatex">\(u\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>For a single qubit (<span class="arithmatex">\(d = 2\)</span>), any channel can be decomposed into at most four Kraus operators. This fact connects directly to the Pauli basis expansion: the most general single-qubit channel can be written in terms of the identity <span class="arithmatex">\(I\)</span> and the three Pauli matrices <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>, as we now demonstrate through specific error channels.</p>
+<h2 id="bit-flip-error">Bit-Flip Error</h2>
+<p>The simplest quantum error model is the <strong>bit-flip channel</strong>, which applies a Pauli-<span class="arithmatex">\(X\)</span> gate (bit flip) with probability <span class="arithmatex">\(p\)</span> and leaves the state unchanged with probability <span class="arithmatex">\(1-p\)</span>. This is the direct quantum analogue of the classical binary symmetric channel.</p>
+<h4 id="bit-flip-channel">Bit-Flip Channel</h4>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{bf}}(\rho) = (1-p)\rho + p\,X\rho X
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p \in [0, 1]\)</span> is the bit-flip probability</li>
+<li><span class="arithmatex">\(X = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\)</span> is the Pauli-<span class="arithmatex">\(X\)</span> operator</li>
+</ul>
+<p>The Kraus operators are <span class="arithmatex">\(E_0 = \sqrt{1-p}\,I\)</span> and <span class="arithmatex">\(E_1 = \sqrt{p}\,X\)</span>, which satisfy <span class="arithmatex">\(E_0^\dagger E_0 + E_1^\dagger E_1 = (1-p)I + pI = I\)</span>. To see the effect on a general pure state, consider <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>:</p>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{bf}}(|\psi\rangle\langle\psi|) = (1-p)|\psi\rangle\langle\psi| + p\,X|\psi\rangle\langle\psi|X
+\]</div>
+<p>The output is a statistical mixture: with probability <span class="arithmatex">\(1-p\)</span> the state is undisturbed, and with probability <span class="arithmatex">\(p\)</span> the amplitudes of <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> are swapped. On the Bloch sphere, the bit-flip channel contracts the Bloch vector along the <span class="arithmatex">\(y\)</span>- and <span class="arithmatex">\(z\)</span>-axes while preserving the <span class="arithmatex">\(x\)</span>-component, since <span class="arithmatex">\(X\)</span> commutes with itself.</p>
+<h2 id="phase-flip-error">Phase-Flip Error</h2>
+<p>The <strong>phase-flip channel</strong> applies a Pauli-<span class="arithmatex">\(Z\)</span> gate with probability <span class="arithmatex">\(p\)</span>:</p>
+<h4 id="phase-flip-channel">Phase-Flip Channel</h4>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{pf}}(\rho) = (1-p)\rho + p\,Z\rho Z
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p \in [0, 1]\)</span> is the phase-flip probability</li>
+<li><span class="arithmatex">\(Z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\)</span> is the Pauli-<span class="arithmatex">\(Z\)</span> operator</li>
+</ul>
+<p>The Kraus operators are <span class="arithmatex">\(E_0 = \sqrt{1-p}\,I\)</span> and <span class="arithmatex">\(E_1 = \sqrt{p}\,Z\)</span>. The phase-flip error has no classical analogue: it leaves the computational basis states <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> unchanged but flips the sign of the off-diagonal elements of the density matrix:</p>
+<div class="arithmatex">\[
+\rho = \begin{pmatrix} \rho_{00} &amp; \rho_{01} \\ \rho_{10} &amp; \rho_{11} \end{pmatrix} \xrightarrow{\mathcal{E}_{\text{pf}}} \begin{pmatrix} \rho_{00} &amp; (1-2p)\rho_{01} \\ (1-2p)\rho_{10} &amp; \rho_{11} \end{pmatrix}
+\]</div>
+<p>The coherences <span class="arithmatex">\(\rho_{01}\)</span> and <span class="arithmatex">\(\rho_{10}\)</span> are suppressed by the factor <span class="arithmatex">\((1-2p)\)</span>, which vanishes at <span class="arithmatex">\(p = 1/2\)</span>---the fully dephasing channel. On the Bloch sphere, the phase-flip channel contracts the <span class="arithmatex">\(x\)</span>- and <span class="arithmatex">\(y\)</span>-components while preserving the <span class="arithmatex">\(z\)</span>-component, the complementary behavior to the bit-flip channel.</p>
+<h2 id="bit-phase-flip-error">Bit-Phase Flip Error</h2>
+<p>The <strong>bit-phase flip channel</strong> applies a Pauli-<span class="arithmatex">\(Y\)</span> gate (equivalently, <span class="arithmatex">\(Y = iXZ\)</span>, combining a bit flip and a phase flip) with probability <span class="arithmatex">\(p\)</span>:</p>
+<h4 id="bit-phase-flip-channel">Bit-Phase Flip Channel</h4>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{bpf}}(\rho) = (1-p)\rho + p\,Y\rho Y
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p \in [0, 1]\)</span> is the bit-phase flip probability</li>
+<li><span class="arithmatex">\(Y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\)</span> is the Pauli-<span class="arithmatex">\(Y\)</span> operator</li>
+</ul>
+<p>The Kraus operators are <span class="arithmatex">\(E_0 = \sqrt{1-p}\,I\)</span> and <span class="arithmatex">\(E_1 = \sqrt{p}\,Y\)</span>. This channel contracts the Bloch sphere along the <span class="arithmatex">\(x\)</span>- and <span class="arithmatex">\(z\)</span>-axes while preserving the <span class="arithmatex">\(y\)</span>-component. The three Pauli error channels together represent the three independent types of single-qubit errors.</p>
+<table>
+<thead>
+<tr>
+<th>Error Type</th>
+<th>Pauli Operator</th>
+<th>Bloch Sphere Effect</th>
+<th>Preserved Axis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bit-flip</td>
+<td><span class="arithmatex">\(X\)</span></td>
+<td>Contracts <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(z\)</span></td>
+<td><span class="arithmatex">\(x\)</span></td>
+</tr>
+<tr>
+<td>Phase-flip</td>
+<td><span class="arithmatex">\(Z\)</span></td>
+<td>Contracts <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span></td>
+<td><span class="arithmatex">\(z\)</span></td>
+</tr>
+<tr>
+<td>Bit-phase flip</td>
+<td><span class="arithmatex">\(Y\)</span></td>
+<td>Contracts <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(z\)</span></td>
+<td><span class="arithmatex">\(y\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Any single-qubit error can be decomposed as a linear combination of <span class="arithmatex">\(I\)</span>, <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, and <span class="arithmatex">\(Z\)</span> errors. This discretization of errors---the fact that correcting the three Pauli errors suffices to correct arbitrary single-qubit errors---is a cornerstone of quantum error correction theory.</p>
+<h2 id="depolarizing-channel">Depolarizing Channel</h2>
+<p>The <strong>depolarizing channel</strong> is the most symmetric single-qubit noise model. It replaces the qubit state with the maximally mixed state <span class="arithmatex">\(I/2\)</span> with probability <span class="arithmatex">\(p\)</span>, or equivalently applies each of the three Pauli errors with equal probability:</p>
+<h4 id="depolarizing-channel_1">Depolarizing Channel</h4>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{dep}}(\rho) = (1-p)\rho + \frac{p}{3}\left(X\rho X + Y\rho Y + Z\rho Z\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p \in [0, 1]\)</span> is the depolarizing probability</li>
+<li>The factor <span class="arithmatex">\(1/3\)</span> distributes errors equally among the three Pauli types</li>
+</ul>
+<p>An equivalent form uses the identity <span class="arithmatex">\(X\rho X + Y\rho Y + Z\rho Z = 3 \cdot \frac{I}{2} \cdot \text{Tr}[\rho] - \rho\)</span> (which follows from the Pauli algebra):</p>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{dep}}(\rho) = \left(1 - \frac{4p}{3}\right)\rho + \frac{4p}{3}\frac{I}{2}
+\]</div>
+<p>On the Bloch sphere, the depolarizing channel uniformly contracts the Bloch vector by the factor <span class="arithmatex">\((1 - 4p/3)\)</span>, shrinking the sphere isotropically toward the origin (the maximally mixed state). At <span class="arithmatex">\(p = 3/4\)</span>, the Bloch vector vanishes entirely and the output is the maximally mixed state regardless of the input.</p>
+<p>The four Kraus operators of the depolarizing channel are:</p>
+<ul>
+<li><span class="arithmatex">\(E_0 = \sqrt{1-p}\,I\)</span></li>
+<li><span class="arithmatex">\(E_1 = \sqrt{p/3}\,X\)</span></li>
+<li><span class="arithmatex">\(E_2 = \sqrt{p/3}\,Y\)</span></li>
+<li><span class="arithmatex">\(E_3 = \sqrt{p/3}\,Z\)</span></li>
+</ul>
+<p>The depolarizing channel serves as the standard benchmark for quantum error correction codes: a code that corrects depolarizing noise automatically handles all single-qubit errors, since the Pauli operators form a basis for the error space.</p>
+<h2 id="amplitude-damping-channel">Amplitude Damping Channel</h2>
+<p>The <strong>amplitude damping channel</strong> models the physical process of energy relaxation---spontaneous emission from the excited state <span class="arithmatex">\(|1\rangle\)</span> to the ground state <span class="arithmatex">\(|0\rangle\)</span>. Unlike the Pauli channels, which are unital (they map the identity to itself), amplitude damping is non-unital and drives the qubit toward a specific state.</p>
+<h4 id="amplitude-damping-channel_1">Amplitude Damping Channel</h4>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{ad}}(\rho) = E_0 \rho E_0^\dagger + E_1 \rho E_1^\dagger
+\]</div>
+<p>where the Kraus operators are:</p>
+<ul>
+<li><span class="arithmatex">\(E_0 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; \sqrt{1-\gamma} \end{pmatrix}\)</span> represents the no-decay outcome</li>
+<li><span class="arithmatex">\(E_1 = \begin{pmatrix} 0 &amp; \sqrt{\gamma} \\ 0 &amp; 0 \end{pmatrix}\)</span> represents the decay (emission) outcome</li>
+<li><span class="arithmatex">\(\gamma \in [0, 1]\)</span> is the damping parameter (probability of decay)</li>
+</ul>
+<p>One can verify the completeness relation:</p>
+<div class="arithmatex">\[
+E_0^\dagger E_0 + E_1^\dagger E_1 = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1-\gamma \end{pmatrix} + \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; \gamma \end{pmatrix} = I
+\]</div>
+<p>Acting on the excited state <span class="arithmatex">\(|1\rangle\langle 1|\)</span>:</p>
+<div class="arithmatex">\[
+\mathcal{E}_{\text{ad}}(|1\rangle\langle 1|) = (1-\gamma)|1\rangle\langle 1| + \gamma|0\rangle\langle 0|
+\]</div>
+<p>The qubit transitions from <span class="arithmatex">\(|1\rangle\)</span> to <span class="arithmatex">\(|0\rangle\)</span> with probability <span class="arithmatex">\(\gamma\)</span>. In the limit <span class="arithmatex">\(\gamma \to 1\)</span>, the channel maps every state to <span class="arithmatex">\(|0\rangle\langle 0|\)</span>. On the Bloch sphere, the amplitude damping channel contracts the sphere asymmetrically, pulling every point toward the north pole (<span class="arithmatex">\(|0\rangle\)</span>). This models the <span class="arithmatex">\(T_1\)</span> relaxation process in physical qubits, with <span class="arithmatex">\(\gamma = 1 - e^{-t/T_1}\)</span>.</p>
+<h4 id="diagram-quantum-error-channel-visualization">Diagram: Quantum Error Channel Visualization</h4>
+<iframe src="../../sims/quantum-error-channels/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Bloch sphere visualization of quantum noise channels</summary>
+<p>Type: Interactive MicroSim
+A visualization showing the effect of each noise channel (bit-flip, phase-flip, depolarizing, amplitude damping) on the Bloch sphere. The user selects a channel type and adjusts the error probability with a slider. The Bloch sphere displays the image of a set of uniformly distributed initial states under the channel, showing how the sphere contracts or deforms.
+Implementation: p5.js with 3D rendering of the Bloch sphere.</p>
+</details>
+<h2 id="quantum-repetition-code">Quantum Repetition Code</h2>
+<p>Having characterized the types of errors that afflict qubits, we now turn to the central question: how can quantum information be protected? The <strong>quantum repetition code</strong> is the simplest quantum error-correcting code, analogous to classical repetition coding. It encodes a single logical qubit into three physical qubits and can correct a single bit-flip error.</p>
+<p>The encoding maps the logical basis states:</p>
+<h4 id="three-qubit-bit-flip-code-encoding">Three-Qubit Bit-Flip Code Encoding</h4>
+<div class="arithmatex">\[
+|0\rangle_L = |000\rangle, \qquad |1\rangle_L = |111\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|0\rangle_L\)</span> and <span class="arithmatex">\(|1\rangle_L\)</span> are the logical (encoded) basis states</li>
+<li>The subscript <span class="arithmatex">\(L\)</span> distinguishes logical from physical states</li>
+<li>A general logical state <span class="arithmatex">\(|\psi\rangle_L = \alpha|0\rangle_L + \beta|1\rangle_L = \alpha|000\rangle + \beta|111\rangle\)</span> is an entangled three-qubit state</li>
+</ul>
+<p>The encoding circuit uses two CNOT gates with the first qubit as control:</p>
+<div class="arithmatex">\[
+|\psi\rangle|00\rangle = (\alpha|0\rangle + \beta|1\rangle)|00\rangle \xrightarrow{\text{CNOT}_{12}} \alpha|00\rangle|0\rangle + \beta|11\rangle|0\rangle \xrightarrow{\text{CNOT}_{13}} \alpha|000\rangle + \beta|111\rangle
+\]</div>
+<p><strong>Syndrome measurement.</strong> Suppose a bit-flip error <span class="arithmatex">\(X_i\)</span> occurs on qubit <span class="arithmatex">\(i\)</span>. We can detect which qubit was flipped without measuring the encoded data by measuring two <em>stabilizer operators</em>: <span class="arithmatex">\(Z_1 Z_2\)</span> (parity of qubits 1 and 2) and <span class="arithmatex">\(Z_2 Z_3\)</span> (parity of qubits 2 and 3). These measurements yield <span class="arithmatex">\(\pm 1\)</span> eigenvalues that form the <strong>error syndrome</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>State after error</th>
+<th><span class="arithmatex">\(Z_1 Z_2\)</span></th>
+<th><span class="arithmatex">\(Z_2 Z_3\)</span></th>
+<th>Syndrome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None (<span class="arithmatex">\(I\)</span>)</td>
+<td>$\alpha</td>
+<td>000\rangle + \beta</td>
+<td>111\rangle$</td>
+<td><span class="arithmatex">\(+1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(X_1\)</span></td>
+<td>$\alpha</td>
+<td>100\rangle + \beta</td>
+<td>011\rangle$</td>
+<td><span class="arithmatex">\(-1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(X_2\)</span></td>
+<td>$\alpha</td>
+<td>010\rangle + \beta</td>
+<td>101\rangle$</td>
+<td><span class="arithmatex">\(-1\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(X_3\)</span></td>
+<td>$\alpha</td>
+<td>001\rangle + \beta</td>
+<td>110\rangle$</td>
+<td><span class="arithmatex">\(+1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Each single-qubit bit-flip error produces a unique syndrome. Upon obtaining the syndrome, we apply the appropriate Pauli-<span class="arithmatex">\(X\)</span> correction to restore the encoded state. Crucially, the syndrome measurement projects onto a subspace without revealing <span class="arithmatex">\(\alpha\)</span> or <span class="arithmatex">\(\beta\)</span>, preserving the quantum information.</p>
+<p><strong>Limitations.</strong> The three-qubit repetition code corrects only bit-flip errors. It cannot correct phase-flip errors: applying <span class="arithmatex">\(Z_1\)</span> to the encoded state yields <span class="arithmatex">\(\alpha|000\rangle - \beta|111\rangle\)</span>, which has the same syndrome <span class="arithmatex">\((0,0)\)</span> as the error-free state but has corrupted the relative phase. To correct both bit-flip and phase-flip errors, we need a more sophisticated code.</p>
+<h2 id="shor-nine-qubit-code">Shor Nine-Qubit Code</h2>
+<p>Peter Shor's nine-qubit code (1995) was the first quantum error-correcting code capable of correcting an arbitrary single-qubit error. It achieves this by concatenating the three-qubit bit-flip code with a three-qubit phase-flip code, using nine physical qubits to encode one logical qubit.</p>
+<p><strong>Phase-flip code.</strong> Just as the bit-flip code uses the <span class="arithmatex">\(Z\)</span>-basis encoding <span class="arithmatex">\(|0\rangle \to |000\rangle\)</span>, <span class="arithmatex">\(|1\rangle \to |111\rangle\)</span>, the phase-flip code uses the <span class="arithmatex">\(X\)</span>-basis (Hadamard basis) encoding:</p>
+<div class="arithmatex">\[
+|0\rangle \to |{+}{+}{+}\rangle, \qquad |1\rangle \to |{-}{-}{-}\rangle
+\]</div>
+<p>where <span class="arithmatex">\(|\pm\rangle = \frac{1}{\sqrt{2}}(|0\rangle \pm |1\rangle)\)</span>. A phase-flip error <span class="arithmatex">\(Z\)</span> on one qubit is equivalent to a bit-flip in the <span class="arithmatex">\(X\)</span>-basis (since <span class="arithmatex">\(HZH = X\)</span>), so the three-qubit repetition code in the <span class="arithmatex">\(X\)</span>-basis corrects a single phase flip.</p>
+<p><strong>Shor code construction.</strong> We concatenate: first encode against phase flips, then encode each of the three resulting qubits against bit flips:</p>
+<h4 id="shor-code-logical-states">Shor Code Logical States</h4>
+<div class="arithmatex">\[
+|0\rangle_L = \frac{1}{2\sqrt{2}}\left(|000\rangle + |111\rangle\right)\left(|000\rangle + |111\rangle\right)\left(|000\rangle + |111\rangle\right)
+\]</div>
+<div class="arithmatex">\[
+|1\rangle_L = \frac{1}{2\sqrt{2}}\left(|000\rangle - |111\rangle\right)\left(|000\rangle - |111\rangle\right)\left(|000\rangle - |111\rangle\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li>Each factor <span class="arithmatex">\(\frac{1}{\sqrt{2}}(|000\rangle \pm |111\rangle)\)</span> is a GHZ-like state encoding <span class="arithmatex">\(|\pm\rangle\)</span> in the three-qubit bit-flip code</li>
+<li>The outer structure <span class="arithmatex">\(|\pm\rangle|\pm\rangle|\pm\rangle\)</span> is the phase-flip code</li>
+<li>Nine physical qubits encode one logical qubit</li>
+</ul>
+<p>The Shor code corrects any single-qubit error because:</p>
+<ol>
+<li><strong>Bit-flip errors</strong> within any block of three qubits are detected and corrected by the inner bit-flip code (measuring <span class="arithmatex">\(Z_iZ_j\)</span> within each block).</li>
+<li><strong>Phase-flip errors</strong> on any block are detected by the outer phase-flip code (measuring <span class="arithmatex">\(X_1X_2X_3X_4X_5X_6\)</span> across blocks, which detects relative sign changes between blocks).</li>
+<li><strong>Arbitrary errors</strong> decompose as <span class="arithmatex">\(E = c_0 I + c_1 X + c_2 Y + c_3 Z\)</span>, and the linearity of quantum mechanics ensures that correcting <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Z\)</span>, and <span class="arithmatex">\(Y = iXZ\)</span> individually suffices to correct any error <span class="arithmatex">\(E\)</span>.</li>
+</ol>
+<p>The Shor code is a <span class="arithmatex">\([[9,1,3]]\)</span> code: 9 physical qubits, 1 logical qubit, and distance 3 (it can correct any single-qubit error or detect up to two errors).</p>
+<h4 id="diagram-shor-code-encoding-circuit">Diagram: Shor Code Encoding Circuit</h4>
+<iframe src="../../sims/shor-code-circuit/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Circuit diagram for the nine-qubit Shor code encoding</summary>
+<p>Type: Interactive Circuit Diagram
+Shows the encoding circuit for the Shor nine-qubit code. The circuit begins with one data qubit and eight ancilla qubits in <span class="arithmatex">\(|0\rangle\)</span>. The first stage applies Hadamard and CNOT gates for the phase-flip code, and the second stage applies CNOT gates for the bit-flip code within each block of three. Users can step through the circuit and observe the state evolution.
+Implementation: p5.js circuit diagram with step-by-step animation.</p>
+</details>
+<h2 id="steane-code">Steane Code</h2>
+<p>The <strong>Steane code</strong> is a <span class="arithmatex">\([[7,1,3]]\)</span> code---it uses only seven physical qubits to encode one logical qubit with distance 3, making it more efficient than Shor's nine-qubit code. It belongs to the important family of CSS (Calderbank-Shor-Steane) codes, which are constructed from classical linear codes.</p>
+<p>The Steane code is built from the classical <span class="arithmatex">\([7,4,3]\)</span> Hamming code <span class="arithmatex">\(\mathcal{C}_1\)</span> and its even-weight subcode <span class="arithmatex">\(\mathcal{C}_2 \subset \mathcal{C}_1\)</span>. The classical Hamming code has the parity-check matrix:</p>
+<div class="arithmatex">\[
+H = \begin{pmatrix} 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \end{pmatrix}
+\]</div>
+<p>The logical basis states of the Steane code are equal superpositions over the codewords of the classical code:</p>
+<h4 id="steane-code-logical-states">Steane Code Logical States</h4>
+<div class="arithmatex">\[
+|0\rangle_L = \frac{1}{\sqrt{8}} \sum_{x \in \mathcal{C}_2} |x\rangle, \qquad |1\rangle_L = \frac{1}{\sqrt{8}} \sum_{x \in \mathcal{C}_2} |x \oplus 1111111\rangle
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{C}_2\)</span> is the even-weight subcode of the <span class="arithmatex">\([7,4,3]\)</span> Hamming code, containing 8 codewords</li>
+<li><span class="arithmatex">\(\oplus\)</span> denotes bitwise XOR (addition modulo 2)</li>
+<li>The sum runs over all 8 codewords in <span class="arithmatex">\(\mathcal{C}_2\)</span></li>
+</ul>
+<p>Explicitly:</p>
+<div class="arithmatex">\[
+|0\rangle_L = \frac{1}{\sqrt{8}}(|0000000\rangle + |1010101\rangle + |0110011\rangle + |1100110\rangle + |0001111\rangle + |1011010\rangle + |0111100\rangle + |1101001\rangle)
+\]</div>
+<p>The Steane code corrects arbitrary single-qubit errors using six stabilizer generators: three for <span class="arithmatex">\(X\)</span>-type error detection (measuring <span class="arithmatex">\(Z\)</span>-type stabilizers derived from <span class="arithmatex">\(H\)</span>) and three for <span class="arithmatex">\(Z\)</span>-type error detection (measuring <span class="arithmatex">\(X\)</span>-type stabilizers derived from <span class="arithmatex">\(H\)</span>). The CSS structure ensures that <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Z\)</span> errors are decoded independently using the same classical Hamming code decoder.</p>
+<p>Key properties of the Steane code:</p>
+<ul>
+<li><strong>Transversal gates</strong>: The logical <span class="arithmatex">\(X_L\)</span>, <span class="arithmatex">\(Z_L\)</span>, <span class="arithmatex">\(H_L\)</span>, <span class="arithmatex">\(S_L\)</span>, and CNOT<span class="arithmatex">\(_L\)</span> gates can all be implemented transversally (by applying the gate independently to each physical qubit), which is naturally fault-tolerant.</li>
+<li><strong>CSS structure</strong>: <span class="arithmatex">\(X\)</span> errors and <span class="arithmatex">\(Z\)</span> errors are corrected independently, simplifying the decoding procedure.</li>
+<li><strong>Efficiency</strong>: Uses only 7 physical qubits compared to Shor's 9, with the same error-correcting capability.</li>
+</ul>
+<h2 id="knill-laflamme-conditions">Knill-Laflamme Conditions</h2>
+<p>What properties must a quantum code possess to successfully correct a given set of errors? The <strong>Knill-Laflamme conditions</strong> provide the necessary and sufficient algebraic criteria. Let <span class="arithmatex">\(\mathcal{C}\)</span> be a quantum code with orthonormal basis <span class="arithmatex">\(\{|c_i\rangle\}\)</span>, and let <span class="arithmatex">\(\{E_a\}\)</span> be a set of error operators (e.g., Kraus operators of a noise channel).</p>
+<h4 id="knill-laflamme-error-correction-conditions">Knill-Laflamme Error Correction Conditions</h4>
+<div class="arithmatex">\[
+\langle c_i | E_a^\dagger E_b | c_j \rangle = C_{ab}\,\delta_{ij}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|c_i\rangle\)</span>, <span class="arithmatex">\(|c_j\rangle\)</span> are orthonormal basis states of the code space <span class="arithmatex">\(\mathcal{C}\)</span></li>
+<li><span class="arithmatex">\(E_a\)</span>, <span class="arithmatex">\(E_b\)</span> are error operators from the set of correctable errors</li>
+<li><span class="arithmatex">\(C_{ab}\)</span> is a Hermitian matrix that depends only on the error operators (not on the code states)</li>
+<li><span class="arithmatex">\(\delta_{ij}\)</span> is the Kronecker delta</li>
+</ul>
+<p><strong>Interpretation.</strong> The Knill-Laflamme conditions encode two requirements:</p>
+<ol>
+<li>
+<p><strong>Non-deformation</strong> (diagonal condition, <span class="arithmatex">\(a = b\)</span>): <span class="arithmatex">\(\langle c_i | E_a^\dagger E_a | c_j \rangle = C_{aa}\,\delta_{ij}\)</span>. Different codewords must be equally affected by each error---the error must not create distinguishable distortions between code states that would leak information about the encoded data.</p>
+</li>
+<li>
+<p><strong>Orthogonality</strong> (off-diagonal condition, <span class="arithmatex">\(a \neq b\)</span>): <span class="arithmatex">\(\langle c_i | E_a^\dagger E_b | c_j \rangle = C_{ab}\,\delta_{ij}\)</span>. The error subspaces <span class="arithmatex">\(E_a\mathcal{C}\)</span> and <span class="arithmatex">\(E_b\mathcal{C}\)</span> must be either identical (when <span class="arithmatex">\(C_{ab} \neq 0\)</span>) or orthogonal in a way that does not distinguish code states. This ensures the syndrome measurement identifies the error without disturbing the encoded quantum information.</p>
+</li>
+</ol>
+<p><strong>Derivation sketch.</strong> The recovery operation <span class="arithmatex">\(\mathcal{R}\)</span> must satisfy <span class="arithmatex">\(\mathcal{R} \circ \mathcal{E}(\rho_L) = \rho_L\)</span> for all encoded states <span class="arithmatex">\(\rho_L\)</span> supported on <span class="arithmatex">\(\mathcal{C}\)</span>. Writing <span class="arithmatex">\(\mathcal{E}(\rho_L) = \sum_a E_a \rho_L E_a^\dagger\)</span> and <span class="arithmatex">\(\mathcal{R}(\cdot) = \sum_k R_k (\cdot) R_k^\dagger\)</span>, the condition <span class="arithmatex">\(\mathcal{R} \circ \mathcal{E} = \mathcal{I}\)</span> on the code space reduces to requiring that the error operators map the code space into distinguishable orthogonal subspaces in a code-state-independent manner, which is precisely the Knill-Laflamme condition.</p>
+<p><strong>Example verification for the three-qubit bit-flip code.</strong> The code space is spanned by <span class="arithmatex">\(|000\rangle\)</span> and <span class="arithmatex">\(|111\rangle\)</span>. The correctable errors are <span class="arithmatex">\(\{I, X_1, X_2, X_3\}\)</span>. We verify:</p>
+<div class="arithmatex">\[
+\langle 000 | X_i^\dagger X_j | 000 \rangle = \delta_{ij}, \qquad \langle 111 | X_i^\dagger X_j | 111 \rangle = \delta_{ij}
+\]</div>
+<div class="arithmatex">\[
+\langle 000 | X_i^\dagger X_j | 111 \rangle = 0 \quad \text{for all } i,j
+\]</div>
+<p>These relations confirm that <span class="arithmatex">\(C_{ab} = \delta_{ab}\)</span> and the off-diagonal entries vanish, verifying the Knill-Laflamme conditions with <span class="arithmatex">\(C = I\)</span>.</p>
+<h2 id="stabilizer-formalism">Stabilizer Formalism</h2>
+<p>The <strong>stabilizer formalism</strong>, developed by Daniel Gottesman, provides an elegant algebraic framework for constructing and analyzing a broad class of quantum error-correcting codes. Instead of specifying code states explicitly (which require exponentially many amplitudes), a stabilizer code is defined by a set of commuting Pauli operators whose simultaneous <span class="arithmatex">\(+1\)</span> eigenspace is the code space.</p>
+<p><strong>The Pauli group.</strong> The <span class="arithmatex">\(n\)</span>-qubit Pauli group <span class="arithmatex">\(\mathcal{G}_n\)</span> consists of all <span class="arithmatex">\(n\)</span>-fold tensor products of single-qubit Pauli operators <span class="arithmatex">\(\{I, X, Y, Z\}\)</span>, multiplied by overall phases <span class="arithmatex">\(\{\pm 1, \pm i\}\)</span>:</p>
+<div class="arithmatex">\[
+\mathcal{G}_n = \{\pm 1, \pm i\} \times \{I, X, Y, Z\}^{\otimes n}
+\]</div>
+<p>The group <span class="arithmatex">\(\mathcal{G}_n\)</span> has order <span class="arithmatex">\(4 \cdot 4^n\)</span> and is generated by the single-qubit Pauli operators on each qubit.</p>
+<p><strong>Stabilizer group.</strong> A <strong>stabilizer group</strong> <span class="arithmatex">\(\mathcal{S}\)</span> is an abelian subgroup of <span class="arithmatex">\(\mathcal{G}_n\)</span> that does not contain <span class="arithmatex">\(-I\)</span>. If <span class="arithmatex">\(\mathcal{S}\)</span> has <span class="arithmatex">\(n - k\)</span> independent generators <span class="arithmatex">\(\{g_1, g_2, \ldots, g_{n-k}\}\)</span>, then the simultaneous <span class="arithmatex">\(+1\)</span> eigenspace:</p>
+<h4 id="stabilizer-code-space">Stabilizer Code Space</h4>
+<div class="arithmatex">\[
+\mathcal{C} = \{|\psi\rangle \in (\mathbb{C}^2)^{\otimes n} : g_i|\psi\rangle = |\psi\rangle \text{ for all } i = 1, \ldots, n-k\}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{C}\)</span> is a <span class="arithmatex">\(2^k\)</span>-dimensional subspace encoding <span class="arithmatex">\(k\)</span> logical qubits into <span class="arithmatex">\(n\)</span> physical qubits</li>
+<li>Each generator <span class="arithmatex">\(g_i\)</span> is an element of the <span class="arithmatex">\(n\)</span>-qubit Pauli group <span class="arithmatex">\(\mathcal{G}_n\)</span></li>
+<li>All generators commute: <span class="arithmatex">\([g_i, g_j] = 0\)</span> for all <span class="arithmatex">\(i, j\)</span></li>
+</ul>
+<p><strong>Error detection.</strong> An error <span class="arithmatex">\(E \in \mathcal{G}_n\)</span> is detectable by the stabilizer code if and only if <span class="arithmatex">\(E \notin \mathcal{S}\)</span> or <span class="arithmatex">\(E\)</span> anticommutes with at least one generator <span class="arithmatex">\(g_i\)</span>. Measuring each generator <span class="arithmatex">\(g_i\)</span> yields the syndrome bit <span class="arithmatex">\(s_i \in \{0, 1\}\)</span>:</p>
+<div class="arithmatex">\[
+g_i(E|\psi\rangle) = (-1)^{s_i}E|\psi\rangle
+\]</div>
+<p>where <span class="arithmatex">\(s_i = 0\)</span> if <span class="arithmatex">\([g_i, E] = 0\)</span> (commute) and <span class="arithmatex">\(s_i = 1\)</span> if <span class="arithmatex">\(\{g_i, E\} = 0\)</span> (anticommute). The syndrome vector <span class="arithmatex">\(\mathbf{s} = (s_1, \ldots, s_{n-k})\)</span> uniquely identifies the error (up to elements of <span class="arithmatex">\(\mathcal{S}\)</span>).</p>
+<p><strong>Normalizer and logical operators.</strong> The normalizer <span class="arithmatex">\(N(\mathcal{S})\)</span> consists of all Pauli operators that commute with every element of <span class="arithmatex">\(\mathcal{S}\)</span>. Logical operators are elements of <span class="arithmatex">\(N(\mathcal{S}) \setminus \mathcal{S}\)</span>: they commute with all stabilizers (hence preserve the code space) but act nontrivially on the encoded information. For <span class="arithmatex">\(k\)</span> logical qubits, there are <span class="arithmatex">\(k\)</span> pairs of logical operators <span class="arithmatex">\((X_{L,j}, Z_{L,j})\)</span> satisfying the Pauli algebra on the logical subspace.</p>
+<p><strong>Example: Three-qubit bit-flip code in stabilizer language.</strong> The stabilizer group is generated by:</p>
+<div class="arithmatex">\[
+g_1 = Z_1 Z_2 I_3, \qquad g_2 = I_1 Z_2 Z_3
+\]</div>
+<p>The code space is the <span class="arithmatex">\(+1\)</span> eigenspace of both generators, which is <span class="arithmatex">\(\text{span}\{|000\rangle, |111\rangle\}\)</span>. The logical operators are <span class="arithmatex">\(X_L = X_1 X_2 X_3\)</span> (logical bit flip) and <span class="arithmatex">\(Z_L = Z_1\)</span> (logical phase flip).</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th><span class="arithmatex">\([[n, k, d]]\)</span></th>
+<th>Stabilizer Generators</th>
+<th>Logical Operators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3-qubit bit-flip</td>
+<td><span class="arithmatex">\([[3,1,1^*]]\)</span></td>
+<td><span class="arithmatex">\(Z_1Z_2\)</span>, <span class="arithmatex">\(Z_2Z_3\)</span></td>
+<td><span class="arithmatex">\(X_L = X_1X_2X_3\)</span>, <span class="arithmatex">\(Z_L = Z_1\)</span></td>
+</tr>
+<tr>
+<td>Shor code</td>
+<td><span class="arithmatex">\([[9,1,3]]\)</span></td>
+<td>8 generators</td>
+<td><span class="arithmatex">\(X_L = X^{\otimes 9}\)</span>, <span class="arithmatex">\(Z_L = Z^{\otimes 9}\)</span></td>
+</tr>
+<tr>
+<td>Steane code</td>
+<td><span class="arithmatex">\([[7,1,3]]\)</span></td>
+<td>6 generators</td>
+<td><span class="arithmatex">\(X_L = X^{\otimes 7}\)</span>, <span class="arithmatex">\(Z_L = Z^{\otimes 7}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>*The three-qubit bit-flip code has distance 3 for bit-flip errors only; its distance against general errors is 1.</p>
+<h4 id="diagram-stabilizer-syndrome-measurement">Diagram: Stabilizer Syndrome Measurement</h4>
+<iframe src="../../sims/stabilizer-syndrome/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive syndrome measurement for the three-qubit code</summary>
+<p>Type: Interactive MicroSim
+Displays the three-qubit bit-flip code. The user can apply <span class="arithmatex">\(X\)</span> errors to any subset of qubits and observe the syndrome measurement outcomes (<span class="arithmatex">\(Z_1Z_2\)</span> and <span class="arithmatex">\(Z_2Z_3\)</span>). The MicroSim shows the quantum circuit for syndrome extraction using ancilla qubits and highlights the correction operation.
+Implementation: p5.js circuit simulation with step-through capability.</p>
+</details>
+<h2 id="surface-code">Surface Code</h2>
+<p>The <strong>surface code</strong> (also called the toric code in its periodic boundary version, introduced by Kitaev in 1997) is the most practical and widely studied quantum error-correcting code for near-term and future quantum hardware. Its defining advantages are that it requires only nearest-neighbor interactions on a two-dimensional lattice and has the highest known error threshold among stabilizer codes.</p>
+<p><strong>Lattice structure.</strong> The surface code is defined on a two-dimensional square lattice. Data qubits reside on the edges of the lattice, while syndrome qubits (ancillas) reside on the vertices and faces:</p>
+<ul>
+<li><strong><span class="arithmatex">\(X\)</span>-stabilizers (vertex operators)</strong>: For each vertex <span class="arithmatex">\(v\)</span>, define <span class="arithmatex">\(A_v = \prod_{e \ni v} X_e\)</span>, the product of Pauli-<span class="arithmatex">\(X\)</span> operators on all edges incident to <span class="arithmatex">\(v\)</span>.</li>
+<li><strong><span class="arithmatex">\(Z\)</span>-stabilizers (plaquette operators)</strong>: For each face (plaquette) <span class="arithmatex">\(f\)</span>, define <span class="arithmatex">\(B_f = \prod_{e \in \partial f} Z_e\)</span>, the product of Pauli-<span class="arithmatex">\(Z\)</span> operators on all edges bounding <span class="arithmatex">\(f\)</span>.</li>
+</ul>
+<p>All stabilizers commute because every vertex operator and plaquette operator share an even number of edges (either 0 or 2), and <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Z\)</span> anticommute on each shared edge. The code space is the simultaneous <span class="arithmatex">\(+1\)</span> eigenspace of all <span class="arithmatex">\(A_v\)</span> and <span class="arithmatex">\(B_f\)</span>.</p>
+<h4 id="surface-code-stabilizers">Surface Code Stabilizers</h4>
+<div class="arithmatex">\[
+A_v = \prod_{e \ni v} X_e, \qquad B_f = \prod_{e \in \partial f} Z_e
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A_v\)</span> is the vertex (star) operator acting on the four edges meeting at vertex <span class="arithmatex">\(v\)</span></li>
+<li><span class="arithmatex">\(B_f\)</span> is the plaquette operator acting on the four edges bounding face <span class="arithmatex">\(f\)</span></li>
+<li>On boundaries, operators act on fewer than four edges</li>
+</ul>
+<p><strong>Error detection.</strong> A single <span class="arithmatex">\(Z\)</span> error on an edge <span class="arithmatex">\(e\)</span> anticommutes with the two vertex operators <span class="arithmatex">\(A_v\)</span> adjacent to <span class="arithmatex">\(e\)</span> and commutes with all plaquette operators. The syndrome is a pair of <span class="arithmatex">\(-1\)</span> eigenvalues at the two endpoints of <span class="arithmatex">\(e\)</span>, appearing as a pair of "defects" on the lattice. Similarly, an <span class="arithmatex">\(X\)</span> error creates defect pairs on adjacent plaquettes. Multiple errors create chains of defects, and the decoder's task is to identify a minimum-weight correction that pairs up all defects.</p>
+<p><strong>Code parameters.</strong> For an <span class="arithmatex">\(L \times L\)</span> lattice with appropriate boundary conditions, the surface code encodes <span class="arithmatex">\(k = 1\)</span> logical qubit into <span class="arithmatex">\(n = 2L^2 - 2L + 1 \approx 2L^2\)</span> physical qubits (for planar boundaries) with code distance <span class="arithmatex">\(d = L\)</span>. A logical error requires a chain of at least <span class="arithmatex">\(L\)</span> physical errors spanning the lattice, so the probability of a logical error scales as:</p>
+<div class="arithmatex">\[
+p_L \sim \left(\frac{p}{p_{\text{th}}}\right)^{L/2}
+\]</div>
+<p>where <span class="arithmatex">\(p\)</span> is the physical error rate and <span class="arithmatex">\(p_{\text{th}} \approx 1\%\)</span> is the threshold.</p>
+<h4 id="diagram-surface-code-lattice">Diagram: Surface Code Lattice</h4>
+<iframe src="../../sims/surface-code-lattice/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive surface code lattice with error visualization</summary>
+<p>Type: Interactive MicroSim
+Displays an <span class="arithmatex">\(L \times L\)</span> surface code lattice (default <span class="arithmatex">\(L=5\)</span>). Data qubits are shown on edges, with vertex and plaquette stabilizers highlighted. The user can click on edges to introduce <span class="arithmatex">\(X\)</span> or <span class="arithmatex">\(Z\)</span> errors and observe the resulting syndrome (highlighted defects). A minimum-weight perfect matching decoder is shown pairing defects. The user can vary <span class="arithmatex">\(L\)</span> and observe how the code distance grows.
+Implementation: p5.js with 2D grid rendering and interactive error placement.</p>
+</details>
+<h2 id="logical-qubit">Logical Qubit</h2>
+<p>A <strong>logical qubit</strong> is the unit of quantum information encoded in a quantum error-correcting code. It is a qubit whose state is distributed across multiple physical qubits in such a way that errors on individual physical qubits can be detected and corrected without disturbing the encoded information. The distinction between physical and logical qubits is fundamental to understanding the overhead of fault-tolerant quantum computation.</p>
+<p>Formally, a logical qubit is a two-dimensional subspace <span class="arithmatex">\(\mathcal{C} \subset (\mathbb{C}^2)^{\otimes n}\)</span> of the <span class="arithmatex">\(n\)</span>-qubit Hilbert space, equipped with logical Pauli operators <span class="arithmatex">\(X_L\)</span> and <span class="arithmatex">\(Z_L\)</span> that satisfy:</p>
+<div class="arithmatex">\[
+X_L^2 = Z_L^2 = I_L, \qquad X_L Z_L = -Z_L X_L
+\]</div>
+<p>and that commute with all stabilizer generators while acting nontrivially on the code space.</p>
+<p>The logical basis states <span class="arithmatex">\(|0\rangle_L\)</span> and <span class="arithmatex">\(|1\rangle_L\)</span> are the <span class="arithmatex">\(+1\)</span> and <span class="arithmatex">\(-1\)</span> eigenstates of <span class="arithmatex">\(Z_L\)</span>. Any logical state <span class="arithmatex">\(|\psi\rangle_L = \alpha|0\rangle_L + \beta|1\rangle_L\)</span> is a highly entangled state of the <span class="arithmatex">\(n\)</span> physical qubits. The encoding rate <span class="arithmatex">\(k/n\)</span> (logical qubits per physical qubit) is a key figure of merit:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th><span class="arithmatex">\(n\)</span> (physical)</th>
+<th><span class="arithmatex">\(k\)</span> (logical)</th>
+<th><span class="arithmatex">\(d\)</span> (distance)</th>
+<th>Rate <span class="arithmatex">\(k/n\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3-qubit repetition</td>
+<td>3</td>
+<td>1</td>
+<td>3 (bit-flip only)</td>
+<td>0.333</td>
+</tr>
+<tr>
+<td>Shor code</td>
+<td>9</td>
+<td>1</td>
+<td>3</td>
+<td>0.111</td>
+</tr>
+<tr>
+<td>Steane code</td>
+<td>7</td>
+<td>1</td>
+<td>3</td>
+<td>0.143</td>
+</tr>
+<tr>
+<td>Surface code (<span class="arithmatex">\(L\)</span>)</td>
+<td><span class="arithmatex">\(\sim 2L^2\)</span></td>
+<td>1</td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td><span class="arithmatex">\(\sim 1/(2L^2)\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\([[5,1,3]]\)</span> perfect code</td>
+<td>5</td>
+<td>1</td>
+<td>3</td>
+<td>0.200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logical gates.</strong> To perform computation on logical qubits, we need logical gate operations that act on the code space while preserving the code structure. A <strong>transversal gate</strong> applies the same single-qubit gate to each physical qubit independently:</p>
+<div class="arithmatex">\[
+U_L = U^{\otimes n}
+\]</div>
+<p>Transversal gates are naturally fault-tolerant because they do not spread errors between qubits within a code block. However, the Eastin-Knill theorem states that no quantum error-correcting code can implement a universal gate set entirely through transversal gates. Achieving universality requires additional techniques such as magic state distillation (Chapter 9) or code switching.</p>
+<p><strong>Quantum error correction cycle.</strong> During computation, errors continuously accumulate on physical qubits. The error correction cycle consists of:</p>
+<ol>
+<li><strong>Syndrome extraction</strong>: Measure all stabilizer generators using ancilla qubits.</li>
+<li><strong>Decoding</strong>: Use a classical decoder to determine the most likely error from the syndrome.</li>
+<li><strong>Correction</strong>: Apply the appropriate Pauli correction (or track it in software via a "Pauli frame").</li>
+</ol>
+<p>This cycle must be repeated at a rate faster than the error accumulation rate to maintain the fidelity of the logical qubit.</p>
+<h2 id="fault-tolerant-threshold">Fault-Tolerant Threshold</h2>
+<p>The <strong>fault-tolerant threshold theorem</strong> is the foundational result that makes large-scale quantum computation theoretically feasible. It states that if the physical error rate per gate is below a critical threshold value <span class="arithmatex">\(p_{\text{th}}\)</span>, then arbitrarily long quantum computations can be performed with arbitrarily small logical error rates, at the cost of a polylogarithmic overhead in physical resources.</p>
+<h4 id="threshold-theorem-aharonov-and-ben-or-1997-kitaev-1997-knill-laflamme-and-zurek-1998">Threshold Theorem (Aharonov and Ben-Or, 1997; Kitaev, 1997; Knill, Laflamme, and Zurek, 1998)</h4>
+<div class="arithmatex">\[
+p_L(p) \leq c \left(\frac{p}{p_{\text{th}}}\right)^{2^l}
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p\)</span> is the physical error rate per gate operation</li>
+<li><span class="arithmatex">\(p_{\text{th}}\)</span> is the fault-tolerant threshold (a constant depending on the code and noise model)</li>
+<li><span class="arithmatex">\(l\)</span> is the number of levels of code concatenation</li>
+<li><span class="arithmatex">\(c\)</span> is a constant of order 1</li>
+<li><span class="arithmatex">\(p_L(p)\)</span> is the logical error rate after <span class="arithmatex">\(l\)</span> levels of encoding</li>
+</ul>
+<p><strong>Exponential suppression.</strong> The double-exponential suppression <span class="arithmatex">\(\left(p/p_{\text{th}}\right)^{2^l}\)</span> arises from concatenation. At level 1, the logical error rate is <span class="arithmatex">\(\sim (p/p_{\text{th}})^2\)</span>. At level 2, we treat the level-1 logical qubits as "physical" qubits with error rate <span class="arithmatex">\((p/p_{\text{th}})^2\)</span> and encode again, yielding <span class="arithmatex">\(\sim ((p/p_{\text{th}})^2)^2 = (p/p_{\text{th}})^4\)</span>. After <span class="arithmatex">\(l\)</span> levels, the logical error rate is <span class="arithmatex">\((p/p_{\text{th}})^{2^l}\)</span>, which converges to zero doubly exponentially when <span class="arithmatex">\(p &lt; p_{\text{th}}\)</span>.</p>
+<p><strong>Overhead.</strong> Each level of concatenation multiplies the number of physical qubits by the code block size <span class="arithmatex">\(n\)</span>. After <span class="arithmatex">\(l\)</span> levels, the total number of physical qubits per logical qubit is <span class="arithmatex">\(n^l\)</span>. To achieve a target logical error rate <span class="arithmatex">\(\epsilon\)</span>, we need <span class="arithmatex">\(l = O(\log \log(1/\epsilon))\)</span> levels and hence <span class="arithmatex">\(n^{O(\log \log(1/\epsilon))} = \text{polylog}(1/\epsilon)\)</span> physical qubits. This polylogarithmic scaling is remarkably efficient: reducing the logical error rate by a factor of <span class="arithmatex">\(10^6\)</span> might only require doubling the number of encoding levels.</p>
+<p><strong>Threshold values.</strong> The numerical value of <span class="arithmatex">\(p_{\text{th}}\)</span> depends on the code, the noise model, and the fault-tolerant architecture:</p>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>Noise Model</th>
+<th>Threshold <span class="arithmatex">\(p_{\text{th}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concatenated Steane code</td>
+<td>Depolarizing</td>
+<td><span class="arithmatex">\(\sim 2.7 \times 10^{-5}\)</span></td>
+</tr>
+<tr>
+<td>Concatenated Golay code</td>
+<td>Depolarizing</td>
+<td><span class="arithmatex">\(\sim 1.3 \times 10^{-3}\)</span></td>
+</tr>
+<tr>
+<td>Surface code (MWPM decoder)</td>
+<td>Depolarizing</td>
+<td><span class="arithmatex">\(\sim 1.1 \times 10^{-2}\)</span></td>
+</tr>
+<tr>
+<td>Surface code (union-find decoder)</td>
+<td>Circuit-level noise</td>
+<td><span class="arithmatex">\(\sim 0.8 \times 10^{-2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The surface code's threshold of approximately <span class="arithmatex">\(1\%\)</span> is the highest known for a local code with practical decoding, making it the leading candidate for fault-tolerant quantum computation. Current superconducting qubit processors achieve two-qubit gate error rates of <span class="arithmatex">\(0.1\%\)</span>--<span class="arithmatex">\(1\%\)</span>, placing them at or near the threshold.</p>
+<p><strong>Requirements for fault tolerance.</strong> The threshold theorem assumes several conditions that must be met in practice:</p>
+<ul>
+<li><strong>Independent errors</strong>: Errors on different qubits are uncorrelated (or at least weakly correlated). Correlated errors can reduce the effective threshold.</li>
+<li><strong>Fresh ancillas</strong>: Ancilla qubits for syndrome measurement can be prepared in known states with error rates below threshold.</li>
+<li><strong>Fast classical processing</strong>: Syndrome decoding must be performed in real time, fast enough to keep pace with error accumulation.</li>
+<li><strong>Scalable connectivity</strong>: The code architecture must be compatible with the physical qubit layout. The surface code's nearest-neighbor connectivity makes it especially suitable for planar architectures.</li>
+</ul>
+<h4 id="diagram-fault-tolerant-threshold-visualization">Diagram: Fault-Tolerant Threshold Visualization</h4>
+<iframe src="../../sims/fault-tolerant-threshold/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Logical error rate vs. physical error rate for concatenated codes</summary>
+<p>Type: Interactive MicroSim
+Plots the logical error rate <span class="arithmatex">\(p_L\)</span> as a function of the physical error rate <span class="arithmatex">\(p\)</span> for multiple levels of concatenation (<span class="arithmatex">\(l = 1, 2, 3, 4\)</span>). The threshold <span class="arithmatex">\(p_\text{th}\)</span> is marked as a vertical line. Below threshold, curves plunge toward zero; above threshold, they rise. The user can adjust the threshold value and the code parameters to explore how different codes compare. A second panel shows the qubit overhead <span class="arithmatex">\(n^l\)</span> vs. target logical error rate.
+Implementation: p5.js with real-time plotting and interactive sliders.</p>
+</details>
+<h2 id="summary-of-the-error-correction-hierarchy">Summary of the Error Correction Hierarchy</h2>
+<p>The concepts developed in this chapter form a logical hierarchy from noise models to fault-tolerant computation:</p>
+<ol>
+<li>
+<p><strong>Noise characterization</strong>: Quantum noise channels, Kraus operators, and the specific error types (bit-flip, phase-flip, bit-phase flip, depolarizing, amplitude damping) provide the mathematical language for describing how physical qubits fail.</p>
+</li>
+<li>
+<p><strong>Code construction</strong>: The quantum repetition code demonstrates the basic principle of redundant encoding and syndrome measurement. Shor's nine-qubit code and the Steane code show how to correct arbitrary single-qubit errors.</p>
+</li>
+<li>
+<p><strong>General theory</strong>: The Knill-Laflamme conditions give necessary and sufficient criteria for error correctability, and the stabilizer formalism provides an efficient algebraic framework for describing codes and their properties.</p>
+</li>
+<li>
+<p><strong>Practical codes</strong>: The surface code combines high threshold, local connectivity, and efficient decoding, making it the leading candidate for near-term fault-tolerant quantum computing.</p>
+</li>
+<li>
+<p><strong>Scalability</strong>: The fault-tolerant threshold theorem guarantees that quantum computation can be scaled to arbitrary length, provided physical error rates are below a critical value.</p>
+</li>
+</ol>
+<p>The path from theoretical quantum error correction to practical fault-tolerant quantum computing remains one of the central challenges of the field, requiring advances in qubit coherence, gate fidelity, classical decoding algorithms, and system-level integration. The mathematical framework developed in this chapter provides the foundation for understanding and evaluating progress toward this goal.</p>
+<h4 id="diagram-quantum-error-correction-concept-map">Diagram: Quantum Error Correction Concept Map</h4>
+<iframe src="../../sims/qec-concept-map/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Dependency graph of quantum error correction concepts</summary>
+<p>Type: Concept Map Diagram
+Displays all 15 concepts from this chapter as nodes in a directed graph, with edges showing prerequisite dependencies. Nodes are color-coded by category: noise models (red), error types (orange), codes (blue), theory (green), and architecture (purple). The user can click on any concept node to highlight its prerequisites and dependents.
+Implementation: p5.js force-directed graph layout with interactive highlighting.</p>
+</details>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../10-quantum-algorithms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 10. Quantum Algorithms">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                10. Quantum Algorithms
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../12-quantum-hardware/" class="md-footer__link md-footer__link--next" aria-label="Next: 12. Quantum Hardware">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                12. Quantum Hardware
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,201 @@
+ConceptID,ConceptLabel,Dependencies,TaxonomyID
+1,Complex Numbers,,MATH
+2,Complex Conjugate,1,MATH
+3,Euler's Formula,1,MATH
+4,Vector Spaces,,MATH
+5,Linear Independence,4,MATH
+6,Inner Product,4,MATH
+7,Outer Product,4|8,MATH
+8,Matrix Multiplication,4,MATH
+9,Eigenvalues,8,MATH
+10,Eigenvectors,8|9,MATH
+11,Unitary Matrices,8|1,MATH
+12,Hermitian Matrices,8|1,MATH
+13,Tensor Product,4|8,MATH
+14,Spectral Decomposition,9|10|12,MATH
+15,Probability Theory,,MATH
+16,Thermodynamic Entropy,15,PLIM
+17,Boltzmann Constant,16,PLIM
+18,Landauer's Principle,16|17,PLIM
+19,Maxwell's Demon,16|18,PLIM
+20,Szilard Engine,19,PLIM
+21,Minimum Energy Per Operation,18,PLIM
+22,Moore's Law,,PLIM
+23,Dennard Scaling,22,PLIM
+24,End Of Dennard Scaling,23,PLIM
+25,Power Density Wall,24|46,PLIM
+26,Margolus-Levitin Theorem,21,PLIM
+27,Bremermann's Limit,26,PLIM
+28,Bekenstein Bound,27,PLIM
+29,Shannon Entropy,15,INFO
+30,Joint Entropy,29,INFO
+31,Conditional Entropy,29|30,INFO
+32,Mutual Information,29|31,INFO
+33,Relative Entropy,29,INFO
+34,Data Processing Inequality,32,INFO
+35,Source Coding Theorem,29,INFO
+36,Channel Capacity,35|37,INFO
+37,Noisy Channel Coding Theorem,35|38,INFO
+38,Binary Symmetric Channel,15|41,INFO
+39,Kolmogorov Complexity,52,INFO
+40,Algorithmic Randomness,39,INFO
+41,Hamming Distance,,INFO
+42,Boolean Algebra,,CLAS
+43,Logic Gates,42,CLAS
+44,CMOS Transistor Physics,43,CLAS
+45,MOSFET Operation,44,CLAS
+46,Dynamic Power Dissipation,44|45,CLAS
+47,Static Power Dissipation,44|45,CLAS
+48,Subthreshold Leakage,47,CLAS
+49,Gate Oxide Leakage,47,CLAS
+50,Boltzmann Tyranny,47|17,CLAS
+51,Threshold Voltage Scaling,50,CLAS
+52,Computational Complexity,42,CLAS
+53,Church-Turing Thesis,52,CLAS
+54,Spintronics,44,BCMOS
+55,Spin Transfer Torque,54,BCMOS
+56,Spin-Orbit Coupling,54,BCMOS
+57,Memristor,44,BCMOS
+58,Resistive Switching,57,BCMOS
+59,Tunnel Field-Effect Transistor,44|60,BCMOS
+60,Band-To-Band Tunneling,44,BCMOS
+61,Negative Capacitance FET,44|62,BCMOS
+62,Landau-Ginzburg Theory,44,BCMOS
+63,Ferroelectric Materials,62,BCMOS
+64,Logical Reversibility,42|43,RVRSE
+65,Physical Reversibility,64|18,RVRSE
+66,Bennett's Proof,64|65,RVRSE
+67,Toffoli Gate,43|64,RVRSE
+68,Fredkin Gate,43|64,RVRSE
+69,Controlled-SWAP Operation,68,RVRSE
+70,Adiabatic Computing,65|71,RVRSE
+71,Energy Recovery Logic,64,RVRSE
+72,Reversible Instruction Set,64|67,RVRSE
+73,Garbage Bits,66,RVRSE
+74,Wave-Particle Duality,,QMECH
+75,De Broglie Wavelength,74,QMECH
+76,Superposition Principle,74,QMECH
+77,Dirac Notation,4|1,QMECH
+78,Hilbert Space,4|6,QMECH
+79,State Vector,77|78,QMECH
+80,Quantum Measurement,79|15,QMECH
+81,Born Rule,80|15,QMECH
+82,Wave Function Collapse,80,QMECH
+83,Heisenberg Uncertainty,84,QMECH
+84,Commutator Relations,8|77,QMECH
+85,Density Matrix,8|79|15,QMECH
+86,Pure And Mixed States,85,QMECH
+87,Time Evolution Operator,11|88,QMECH
+88,Schrodinger Equation,78|79,QMECH
+89,No-Cloning Theorem,76|80,QMECH
+90,Qubit,76|79,QSTATE
+91,Computational Basis States,90,QSTATE
+92,Bloch Sphere,90|1,QSTATE
+93,Global Phase,90,QSTATE
+94,Relative Phase,90,QSTATE
+95,Qubit State Tomography,90|85,QSTATE
+96,Multi-Qubit Systems,90|13,QSTATE
+97,Quantum Entanglement,96,QSTATE
+98,Bell States,97|107|111,QSTATE
+99,EPR Paradox,97,QSTATE
+100,Bell's Inequality,99,QSTATE
+101,Schmidt Decomposition,97|14,QSTATE
+102,Partial Trace,85|96,QSTATE
+103,Reduced Density Matrix,102|85,QSTATE
+104,Pauli-X Gate,90|8,QGATE
+105,Pauli-Y Gate,90|8|1,QGATE
+106,Pauli-Z Gate,90|8,QGATE
+107,Hadamard Gate,90|76,QGATE
+108,Phase Gate,106,QGATE
+109,T Gate,108,QGATE
+110,Rotation Operators,3|90,QGATE
+111,CNOT Gate,90|104,QGATE
+112,Controlled-Z Gate,90|106,QGATE
+113,SWAP Gate,111,QGATE
+114,Toffoli Gate In Quantum,67|111,QGATE
+115,Universal Gate Set,104|107|111|109,QGATE
+116,Gate Decomposition,115,QGATE
+117,Solovay-Kitaev Theorem,116,QGATE
+118,Magic State Distillation,109|116,QGATE
+119,Quantum Circuit Model,90|111|107,QGATE
+120,Quantum Parallelism,76|119,QALG
+121,Quantum Oracle,119,QALG
+122,Deutsch's Algorithm,121|107,QALG
+123,Deutsch-Jozsa Algorithm,122,QALG
+124,Bernstein-Vazirani Algorithm,123,QALG
+125,Simon's Algorithm,124,QALG
+126,Quantum Fourier Transform,8|119,QALG
+127,Phase Kickback,106|121,QALG
+128,Quantum Phase Estimation,126|127,QALG
+129,Order Finding,128,QALG
+130,Shor's Algorithm,129|131|132,QALG
+131,Modular Exponentiation,8,QALG
+132,Continued Fractions,8,QALG
+133,Grover's Algorithm,121|134,QALG
+134,Amplitude Amplification,120,QALG
+135,Grover Diffusion Operator,107|134,QALG
+136,Quadratic Speedup,133,QALG
+137,Quantum Walk,119,QALG
+138,Quantum Noise Channels,90|85,QERR
+139,Depolarizing Channel,138,QERR
+140,Amplitude Damping Channel,138,QERR
+141,Kraus Operators,138|8,QERR
+142,Bit-Flip Error,138,QERR
+143,Phase-Flip Error,138,QERR
+144,Bit-Phase Flip Error,142|143,QERR
+145,Quantum Repetition Code,142|91,QERR
+146,Shor Nine-Qubit Code,145|143,QERR
+147,Steane Code,145|149,QERR
+148,Knill-Laflamme Conditions,141,QERR
+149,Stabilizer Formalism,106|141,QERR
+150,Surface Code,149,QERR
+151,Logical Qubit,145|150,QERR
+152,Fault-Tolerant Threshold,150|151,QERR
+153,Superconducting Qubit,90,QHWRE
+154,Josephson Junction,153,QHWRE
+155,Transmon Qubit,154,QHWRE
+156,Qubit Coherence Time,153,QHWRE
+157,Trapped Ion Qubit,90,QHWRE
+158,Paul Trap,157,QHWRE
+159,Rabi Oscillations,157|88,QHWRE
+160,Molmer-Sorensen Gate,159|111,QHWRE
+161,Photonic Qubit,90|74,QHWRE
+162,KLM Scheme,161,QHWRE
+163,Linear Optical Quantum,162,QHWRE
+164,Topological Qubit,90,QHWRE
+165,Quantum Dot Qubit,90,QHWRE
+166,Dilution Refrigerator,153,QHWRE
+167,Stochastic Number Encoding,15,STOCH
+168,Stochastic Bit Stream,167,STOCH
+169,Stochastic Multiplication,168|43,STOCH
+170,Stochastic Addition,168|43,STOCH
+171,Mux-Based Stochastic Logic,170,STOCH
+172,Variance In Stochastic Systems,167|15,STOCH
+173,Correlation Effects,172,STOCH
+174,Decorrelation Techniques,173,STOCH
+175,Stochastic Error Tolerance,172|189,STOCH
+176,Stochastic Image Processing,169|170,STOCH
+177,Variational Principle,9|12,HYBRID
+178,Variational Quantum Eigensolver,177|119,HYBRID
+179,QAOA Algorithm,119|177,HYBRID
+180,Parameterized Quantum Circuit,119|110,HYBRID
+181,Classical Optimizer Loop,178,HYBRID
+182,Barren Plateaus,180,HYBRID
+183,NISQ Era Constraints,138|152,HYBRID
+184,Quantum Error Mitigation,138|183,HYBRID
+185,Zero-Noise Extrapolation,184,HYBRID
+186,Measurement Overhead,178|15,HYBRID
+187,Neuromorphic Computing,43,ENRGY
+188,Spiking Neural Networks,187,ENRGY
+189,Approximate Computing,43|52,ENRGY
+190,In-Memory Computing,57|8,ENRGY
+191,Thermodynamic Computing,18|15,ENRGY
+192,Compute-Near-Memory,190,ENRGY
+193,Analog Neural Accelerator,190|188,ENRGY
+194,Energy-Delay Product,46|47,ENRGY
+195,Quantum Supremacy Experiment,119|52,FUTRE
+196,Quantum Advantage,195,FUTRE
+197,Cross-Entropy Benchmarking,195|15,FUTRE
+198,Quantum Volume,153|157,FUTRE
+199,Quantum Resource Estimation,152|130,FUTRE
+200,Post-Moore Landscape,196|189|191,FUTRE

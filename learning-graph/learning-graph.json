@@ -1,0 +1,2328 @@
+{
+  "metadata": {
+    "title": "EE 5340: Introduction to Quantum Computing and Physical Basics of Computing",
+    "description": "Learning graph for EE 5340 covering physical limits of computing, information theory, beyond-CMOS devices, reversible computing, quantum computing, and stochastic computing.",
+    "creator": "Sharat B",
+    "date": "2026-02-09",
+    "version": "1.0",
+    "format": "Learning Graph JSON v1.0",
+    "schema": "https://raw.githubusercontent.com/dmccreary/learning-graphs/refs/heads/main/src/schema/learning-graph-schema.json",
+    "license": "CC BY-NC-SA 4.0 DEED",
+    "conceptCount": 200,
+    "edgeCount": 299
+  },
+  "groups": {
+    "MATH": {
+      "classifierName": "Mathematical Foundations",
+      "color": "LightCoral",
+      "font": {
+        "color": "black"
+      }
+    },
+    "PLIM": {
+      "classifierName": "Physical Limits",
+      "color": "PeachPuff",
+      "font": {
+        "color": "black"
+      }
+    },
+    "INFO": {
+      "classifierName": "Information Theory",
+      "color": "PowderBlue",
+      "font": {
+        "color": "black"
+      }
+    },
+    "CLAS": {
+      "classifierName": "Classical Computing",
+      "color": "LightPink",
+      "font": {
+        "color": "black"
+      }
+    },
+    "BCMOS": {
+      "classifierName": "Beyond-CMOS Devices",
+      "color": "PaleTurquoise",
+      "font": {
+        "color": "black"
+      }
+    },
+    "RVRSE": {
+      "classifierName": "Reversible Computing",
+      "color": "Thistle",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QMECH": {
+      "classifierName": "Quantum Mechanics",
+      "color": "PaleGreen",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QSTATE": {
+      "classifierName": "Qubits and States",
+      "color": "LightSteelBlue",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QGATE": {
+      "classifierName": "Quantum Gates",
+      "color": "LightYellow",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QALG": {
+      "classifierName": "Quantum Algorithms",
+      "color": "Plum",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QERR": {
+      "classifierName": "Error Correction",
+      "color": "MistyRose",
+      "font": {
+        "color": "black"
+      }
+    },
+    "QHWRE": {
+      "classifierName": "Quantum Hardware",
+      "color": "Aquamarine",
+      "font": {
+        "color": "black"
+      }
+    },
+    "STOCH": {
+      "classifierName": "Stochastic Computing",
+      "color": "Honeydew",
+      "font": {
+        "color": "black"
+      }
+    },
+    "HYBRID": {
+      "classifierName": "Hybrid Computing",
+      "color": "Lavender",
+      "font": {
+        "color": "black"
+      }
+    },
+    "ENRGY": {
+      "classifierName": "Energy-Efficient Computing",
+      "color": "LavenderBlush",
+      "font": {
+        "color": "black"
+      }
+    },
+    "FUTRE": {
+      "classifierName": "Future of Computing",
+      "color": "Gainsboro",
+      "font": {
+        "color": "black"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "label": "Complex Numbers",
+      "group": "MATH"
+    },
+    {
+      "id": 2,
+      "label": "Complex Conjugate",
+      "group": "MATH"
+    },
+    {
+      "id": 3,
+      "label": "Euler's Formula",
+      "group": "MATH"
+    },
+    {
+      "id": 4,
+      "label": "Vector Spaces",
+      "group": "MATH"
+    },
+    {
+      "id": 5,
+      "label": "Linear Independence",
+      "group": "MATH"
+    },
+    {
+      "id": 6,
+      "label": "Inner Product",
+      "group": "MATH"
+    },
+    {
+      "id": 7,
+      "label": "Outer Product",
+      "group": "MATH"
+    },
+    {
+      "id": 8,
+      "label": "Matrix Multiplication",
+      "group": "MATH"
+    },
+    {
+      "id": 9,
+      "label": "Eigenvalues",
+      "group": "MATH"
+    },
+    {
+      "id": 10,
+      "label": "Eigenvectors",
+      "group": "MATH"
+    },
+    {
+      "id": 11,
+      "label": "Unitary Matrices",
+      "group": "MATH"
+    },
+    {
+      "id": 12,
+      "label": "Hermitian Matrices",
+      "group": "MATH"
+    },
+    {
+      "id": 13,
+      "label": "Tensor Product",
+      "group": "MATH"
+    },
+    {
+      "id": 14,
+      "label": "Spectral Decomposition",
+      "group": "MATH"
+    },
+    {
+      "id": 15,
+      "label": "Probability Theory",
+      "group": "MATH"
+    },
+    {
+      "id": 16,
+      "label": "Thermodynamic Entropy",
+      "group": "PLIM"
+    },
+    {
+      "id": 17,
+      "label": "Boltzmann Constant",
+      "group": "PLIM"
+    },
+    {
+      "id": 18,
+      "label": "Landauer's Principle",
+      "group": "PLIM"
+    },
+    {
+      "id": 19,
+      "label": "Maxwell's Demon",
+      "group": "PLIM"
+    },
+    {
+      "id": 20,
+      "label": "Szilard Engine",
+      "group": "PLIM"
+    },
+    {
+      "id": 21,
+      "label": "Minimum Energy Per Operation",
+      "group": "PLIM"
+    },
+    {
+      "id": 22,
+      "label": "Moore's Law",
+      "group": "PLIM"
+    },
+    {
+      "id": 23,
+      "label": "Dennard Scaling",
+      "group": "PLIM"
+    },
+    {
+      "id": 24,
+      "label": "End Of Dennard Scaling",
+      "group": "PLIM"
+    },
+    {
+      "id": 25,
+      "label": "Power Density Wall",
+      "group": "PLIM"
+    },
+    {
+      "id": 26,
+      "label": "Margolus-Levitin Theorem",
+      "group": "PLIM"
+    },
+    {
+      "id": 27,
+      "label": "Bremermann's Limit",
+      "group": "PLIM"
+    },
+    {
+      "id": 28,
+      "label": "Bekenstein Bound",
+      "group": "PLIM"
+    },
+    {
+      "id": 29,
+      "label": "Shannon Entropy",
+      "group": "INFO"
+    },
+    {
+      "id": 30,
+      "label": "Joint Entropy",
+      "group": "INFO"
+    },
+    {
+      "id": 31,
+      "label": "Conditional Entropy",
+      "group": "INFO"
+    },
+    {
+      "id": 32,
+      "label": "Mutual Information",
+      "group": "INFO"
+    },
+    {
+      "id": 33,
+      "label": "Relative Entropy",
+      "group": "INFO"
+    },
+    {
+      "id": 34,
+      "label": "Data Processing Inequality",
+      "group": "INFO"
+    },
+    {
+      "id": 35,
+      "label": "Source Coding Theorem",
+      "group": "INFO"
+    },
+    {
+      "id": 36,
+      "label": "Channel Capacity",
+      "group": "INFO"
+    },
+    {
+      "id": 37,
+      "label": "Noisy Channel Coding Theorem",
+      "group": "INFO"
+    },
+    {
+      "id": 38,
+      "label": "Binary Symmetric Channel",
+      "group": "INFO"
+    },
+    {
+      "id": 39,
+      "label": "Kolmogorov Complexity",
+      "group": "INFO"
+    },
+    {
+      "id": 40,
+      "label": "Algorithmic Randomness",
+      "group": "INFO"
+    },
+    {
+      "id": 41,
+      "label": "Hamming Distance",
+      "group": "INFO"
+    },
+    {
+      "id": 42,
+      "label": "Boolean Algebra",
+      "group": "CLAS"
+    },
+    {
+      "id": 43,
+      "label": "Logic Gates",
+      "group": "CLAS"
+    },
+    {
+      "id": 44,
+      "label": "CMOS Transistor Physics",
+      "group": "CLAS"
+    },
+    {
+      "id": 45,
+      "label": "MOSFET Operation",
+      "group": "CLAS"
+    },
+    {
+      "id": 46,
+      "label": "Dynamic Power Dissipation",
+      "group": "CLAS"
+    },
+    {
+      "id": 47,
+      "label": "Static Power Dissipation",
+      "group": "CLAS"
+    },
+    {
+      "id": 48,
+      "label": "Subthreshold Leakage",
+      "group": "CLAS"
+    },
+    {
+      "id": 49,
+      "label": "Gate Oxide Leakage",
+      "group": "CLAS"
+    },
+    {
+      "id": 50,
+      "label": "Boltzmann Tyranny",
+      "group": "CLAS"
+    },
+    {
+      "id": 51,
+      "label": "Threshold Voltage Scaling",
+      "group": "CLAS"
+    },
+    {
+      "id": 52,
+      "label": "Computational Complexity",
+      "group": "CLAS"
+    },
+    {
+      "id": 53,
+      "label": "Church-Turing Thesis",
+      "group": "CLAS"
+    },
+    {
+      "id": 54,
+      "label": "Spintronics",
+      "group": "BCMOS"
+    },
+    {
+      "id": 55,
+      "label": "Spin Transfer Torque",
+      "group": "BCMOS"
+    },
+    {
+      "id": 56,
+      "label": "Spin-Orbit Coupling",
+      "group": "BCMOS"
+    },
+    {
+      "id": 57,
+      "label": "Memristor",
+      "group": "BCMOS"
+    },
+    {
+      "id": 58,
+      "label": "Resistive Switching",
+      "group": "BCMOS"
+    },
+    {
+      "id": 59,
+      "label": "Tunnel Field-Effect Transistor",
+      "group": "BCMOS"
+    },
+    {
+      "id": 60,
+      "label": "Band-To-Band Tunneling",
+      "group": "BCMOS"
+    },
+    {
+      "id": 61,
+      "label": "Negative Capacitance FET",
+      "group": "BCMOS"
+    },
+    {
+      "id": 62,
+      "label": "Landau-Ginzburg Theory",
+      "group": "BCMOS"
+    },
+    {
+      "id": 63,
+      "label": "Ferroelectric Materials",
+      "group": "BCMOS"
+    },
+    {
+      "id": 64,
+      "label": "Logical Reversibility",
+      "group": "RVRSE"
+    },
+    {
+      "id": 65,
+      "label": "Physical Reversibility",
+      "group": "RVRSE"
+    },
+    {
+      "id": 66,
+      "label": "Bennett's Proof",
+      "group": "RVRSE"
+    },
+    {
+      "id": 67,
+      "label": "Toffoli Gate",
+      "group": "RVRSE"
+    },
+    {
+      "id": 68,
+      "label": "Fredkin Gate",
+      "group": "RVRSE"
+    },
+    {
+      "id": 69,
+      "label": "Controlled-SWAP Operation",
+      "group": "RVRSE"
+    },
+    {
+      "id": 70,
+      "label": "Adiabatic Computing",
+      "group": "RVRSE"
+    },
+    {
+      "id": 71,
+      "label": "Energy Recovery Logic",
+      "group": "RVRSE"
+    },
+    {
+      "id": 72,
+      "label": "Reversible Instruction Set",
+      "group": "RVRSE"
+    },
+    {
+      "id": 73,
+      "label": "Garbage Bits",
+      "group": "RVRSE"
+    },
+    {
+      "id": 74,
+      "label": "Wave-Particle Duality",
+      "group": "QMECH"
+    },
+    {
+      "id": 75,
+      "label": "De Broglie Wavelength",
+      "group": "QMECH"
+    },
+    {
+      "id": 76,
+      "label": "Superposition Principle",
+      "group": "QMECH"
+    },
+    {
+      "id": 77,
+      "label": "Dirac Notation",
+      "group": "QMECH"
+    },
+    {
+      "id": 78,
+      "label": "Hilbert Space",
+      "group": "QMECH"
+    },
+    {
+      "id": 79,
+      "label": "State Vector",
+      "group": "QMECH"
+    },
+    {
+      "id": 80,
+      "label": "Quantum Measurement",
+      "group": "QMECH"
+    },
+    {
+      "id": 81,
+      "label": "Born Rule",
+      "group": "QMECH"
+    },
+    {
+      "id": 82,
+      "label": "Wave Function Collapse",
+      "group": "QMECH"
+    },
+    {
+      "id": 83,
+      "label": "Heisenberg Uncertainty",
+      "group": "QMECH"
+    },
+    {
+      "id": 84,
+      "label": "Commutator Relations",
+      "group": "QMECH"
+    },
+    {
+      "id": 85,
+      "label": "Density Matrix",
+      "group": "QMECH"
+    },
+    {
+      "id": 86,
+      "label": "Pure And Mixed States",
+      "group": "QMECH"
+    },
+    {
+      "id": 87,
+      "label": "Time Evolution Operator",
+      "group": "QMECH"
+    },
+    {
+      "id": 88,
+      "label": "Schrodinger Equation",
+      "group": "QMECH"
+    },
+    {
+      "id": 89,
+      "label": "No-Cloning Theorem",
+      "group": "QMECH"
+    },
+    {
+      "id": 90,
+      "label": "Qubit",
+      "group": "QSTATE"
+    },
+    {
+      "id": 91,
+      "label": "Computational Basis States",
+      "group": "QSTATE"
+    },
+    {
+      "id": 92,
+      "label": "Bloch Sphere",
+      "group": "QSTATE"
+    },
+    {
+      "id": 93,
+      "label": "Global Phase",
+      "group": "QSTATE"
+    },
+    {
+      "id": 94,
+      "label": "Relative Phase",
+      "group": "QSTATE"
+    },
+    {
+      "id": 95,
+      "label": "Qubit State Tomography",
+      "group": "QSTATE"
+    },
+    {
+      "id": 96,
+      "label": "Multi-Qubit Systems",
+      "group": "QSTATE"
+    },
+    {
+      "id": 97,
+      "label": "Quantum Entanglement",
+      "group": "QSTATE"
+    },
+    {
+      "id": 98,
+      "label": "Bell States",
+      "group": "QSTATE"
+    },
+    {
+      "id": 99,
+      "label": "EPR Paradox",
+      "group": "QSTATE"
+    },
+    {
+      "id": 100,
+      "label": "Bell's Inequality",
+      "group": "QSTATE"
+    },
+    {
+      "id": 101,
+      "label": "Schmidt Decomposition",
+      "group": "QSTATE"
+    },
+    {
+      "id": 102,
+      "label": "Partial Trace",
+      "group": "QSTATE"
+    },
+    {
+      "id": 103,
+      "label": "Reduced Density Matrix",
+      "group": "QSTATE"
+    },
+    {
+      "id": 104,
+      "label": "Pauli-X Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 105,
+      "label": "Pauli-Y Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 106,
+      "label": "Pauli-Z Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 107,
+      "label": "Hadamard Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 108,
+      "label": "Phase Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 109,
+      "label": "T Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 110,
+      "label": "Rotation Operators",
+      "group": "QGATE"
+    },
+    {
+      "id": 111,
+      "label": "CNOT Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 112,
+      "label": "Controlled-Z Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 113,
+      "label": "SWAP Gate",
+      "group": "QGATE"
+    },
+    {
+      "id": 114,
+      "label": "Toffoli Gate In Quantum",
+      "group": "QGATE"
+    },
+    {
+      "id": 115,
+      "label": "Universal Gate Set",
+      "group": "QGATE"
+    },
+    {
+      "id": 116,
+      "label": "Gate Decomposition",
+      "group": "QGATE"
+    },
+    {
+      "id": 117,
+      "label": "Solovay-Kitaev Theorem",
+      "group": "QGATE"
+    },
+    {
+      "id": 118,
+      "label": "Magic State Distillation",
+      "group": "QGATE"
+    },
+    {
+      "id": 119,
+      "label": "Quantum Circuit Model",
+      "group": "QGATE"
+    },
+    {
+      "id": 120,
+      "label": "Quantum Parallelism",
+      "group": "QALG"
+    },
+    {
+      "id": 121,
+      "label": "Quantum Oracle",
+      "group": "QALG"
+    },
+    {
+      "id": 122,
+      "label": "Deutsch's Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 123,
+      "label": "Deutsch-Jozsa Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 124,
+      "label": "Bernstein-Vazirani Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 125,
+      "label": "Simon's Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 126,
+      "label": "Quantum Fourier Transform",
+      "group": "QALG"
+    },
+    {
+      "id": 127,
+      "label": "Phase Kickback",
+      "group": "QALG"
+    },
+    {
+      "id": 128,
+      "label": "Quantum Phase Estimation",
+      "group": "QALG"
+    },
+    {
+      "id": 129,
+      "label": "Order Finding",
+      "group": "QALG"
+    },
+    {
+      "id": 130,
+      "label": "Shor's Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 131,
+      "label": "Modular Exponentiation",
+      "group": "QALG"
+    },
+    {
+      "id": 132,
+      "label": "Continued Fractions",
+      "group": "QALG"
+    },
+    {
+      "id": 133,
+      "label": "Grover's Algorithm",
+      "group": "QALG"
+    },
+    {
+      "id": 134,
+      "label": "Amplitude Amplification",
+      "group": "QALG"
+    },
+    {
+      "id": 135,
+      "label": "Grover Diffusion Operator",
+      "group": "QALG"
+    },
+    {
+      "id": 136,
+      "label": "Quadratic Speedup",
+      "group": "QALG"
+    },
+    {
+      "id": 137,
+      "label": "Quantum Walk",
+      "group": "QALG"
+    },
+    {
+      "id": 138,
+      "label": "Quantum Noise Channels",
+      "group": "QERR"
+    },
+    {
+      "id": 139,
+      "label": "Depolarizing Channel",
+      "group": "QERR"
+    },
+    {
+      "id": 140,
+      "label": "Amplitude Damping Channel",
+      "group": "QERR"
+    },
+    {
+      "id": 141,
+      "label": "Kraus Operators",
+      "group": "QERR"
+    },
+    {
+      "id": 142,
+      "label": "Bit-Flip Error",
+      "group": "QERR"
+    },
+    {
+      "id": 143,
+      "label": "Phase-Flip Error",
+      "group": "QERR"
+    },
+    {
+      "id": 144,
+      "label": "Bit-Phase Flip Error",
+      "group": "QERR"
+    },
+    {
+      "id": 145,
+      "label": "Quantum Repetition Code",
+      "group": "QERR"
+    },
+    {
+      "id": 146,
+      "label": "Shor Nine-Qubit Code",
+      "group": "QERR"
+    },
+    {
+      "id": 147,
+      "label": "Steane Code",
+      "group": "QERR"
+    },
+    {
+      "id": 148,
+      "label": "Knill-Laflamme Conditions",
+      "group": "QERR"
+    },
+    {
+      "id": 149,
+      "label": "Stabilizer Formalism",
+      "group": "QERR"
+    },
+    {
+      "id": 150,
+      "label": "Surface Code",
+      "group": "QERR"
+    },
+    {
+      "id": 151,
+      "label": "Logical Qubit",
+      "group": "QERR"
+    },
+    {
+      "id": 152,
+      "label": "Fault-Tolerant Threshold",
+      "group": "QERR"
+    },
+    {
+      "id": 153,
+      "label": "Superconducting Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 154,
+      "label": "Josephson Junction",
+      "group": "QHWRE"
+    },
+    {
+      "id": 155,
+      "label": "Transmon Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 156,
+      "label": "Qubit Coherence Time",
+      "group": "QHWRE"
+    },
+    {
+      "id": 157,
+      "label": "Trapped Ion Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 158,
+      "label": "Paul Trap",
+      "group": "QHWRE"
+    },
+    {
+      "id": 159,
+      "label": "Rabi Oscillations",
+      "group": "QHWRE"
+    },
+    {
+      "id": 160,
+      "label": "Molmer-Sorensen Gate",
+      "group": "QHWRE"
+    },
+    {
+      "id": 161,
+      "label": "Photonic Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 162,
+      "label": "KLM Scheme",
+      "group": "QHWRE"
+    },
+    {
+      "id": 163,
+      "label": "Linear Optical Quantum",
+      "group": "QHWRE"
+    },
+    {
+      "id": 164,
+      "label": "Topological Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 165,
+      "label": "Quantum Dot Qubit",
+      "group": "QHWRE"
+    },
+    {
+      "id": 166,
+      "label": "Dilution Refrigerator",
+      "group": "QHWRE"
+    },
+    {
+      "id": 167,
+      "label": "Stochastic Number Encoding",
+      "group": "STOCH"
+    },
+    {
+      "id": 168,
+      "label": "Stochastic Bit Stream",
+      "group": "STOCH"
+    },
+    {
+      "id": 169,
+      "label": "Stochastic Multiplication",
+      "group": "STOCH"
+    },
+    {
+      "id": 170,
+      "label": "Stochastic Addition",
+      "group": "STOCH"
+    },
+    {
+      "id": 171,
+      "label": "Mux-Based Stochastic Logic",
+      "group": "STOCH"
+    },
+    {
+      "id": 172,
+      "label": "Variance In Stochastic Systems",
+      "group": "STOCH"
+    },
+    {
+      "id": 173,
+      "label": "Correlation Effects",
+      "group": "STOCH"
+    },
+    {
+      "id": 174,
+      "label": "Decorrelation Techniques",
+      "group": "STOCH"
+    },
+    {
+      "id": 175,
+      "label": "Stochastic Error Tolerance",
+      "group": "STOCH"
+    },
+    {
+      "id": 176,
+      "label": "Stochastic Image Processing",
+      "group": "STOCH"
+    },
+    {
+      "id": 177,
+      "label": "Variational Principle",
+      "group": "HYBRID"
+    },
+    {
+      "id": 178,
+      "label": "Variational Quantum Eigensolver",
+      "group": "HYBRID"
+    },
+    {
+      "id": 179,
+      "label": "QAOA Algorithm",
+      "group": "HYBRID"
+    },
+    {
+      "id": 180,
+      "label": "Parameterized Quantum Circuit",
+      "group": "HYBRID"
+    },
+    {
+      "id": 181,
+      "label": "Classical Optimizer Loop",
+      "group": "HYBRID"
+    },
+    {
+      "id": 182,
+      "label": "Barren Plateaus",
+      "group": "HYBRID"
+    },
+    {
+      "id": 183,
+      "label": "NISQ Era Constraints",
+      "group": "HYBRID"
+    },
+    {
+      "id": 184,
+      "label": "Quantum Error Mitigation",
+      "group": "HYBRID"
+    },
+    {
+      "id": 185,
+      "label": "Zero-Noise Extrapolation",
+      "group": "HYBRID"
+    },
+    {
+      "id": 186,
+      "label": "Measurement Overhead",
+      "group": "HYBRID"
+    },
+    {
+      "id": 187,
+      "label": "Neuromorphic Computing",
+      "group": "ENRGY"
+    },
+    {
+      "id": 188,
+      "label": "Spiking Neural Networks",
+      "group": "ENRGY"
+    },
+    {
+      "id": 189,
+      "label": "Approximate Computing",
+      "group": "ENRGY"
+    },
+    {
+      "id": 190,
+      "label": "In-Memory Computing",
+      "group": "ENRGY"
+    },
+    {
+      "id": 191,
+      "label": "Thermodynamic Computing",
+      "group": "ENRGY"
+    },
+    {
+      "id": 192,
+      "label": "Compute-Near-Memory",
+      "group": "ENRGY"
+    },
+    {
+      "id": 193,
+      "label": "Analog Neural Accelerator",
+      "group": "ENRGY"
+    },
+    {
+      "id": 194,
+      "label": "Energy-Delay Product",
+      "group": "ENRGY"
+    },
+    {
+      "id": 195,
+      "label": "Quantum Supremacy Experiment",
+      "group": "FUTRE"
+    },
+    {
+      "id": 196,
+      "label": "Quantum Advantage",
+      "group": "FUTRE"
+    },
+    {
+      "id": 197,
+      "label": "Cross-Entropy Benchmarking",
+      "group": "FUTRE"
+    },
+    {
+      "id": 198,
+      "label": "Quantum Volume",
+      "group": "FUTRE"
+    },
+    {
+      "id": 199,
+      "label": "Quantum Resource Estimation",
+      "group": "FUTRE"
+    },
+    {
+      "id": 200,
+      "label": "Post-Moore Landscape",
+      "group": "FUTRE"
+    }
+  ],
+  "edges": [
+    {
+      "from": 1,
+      "to": 2
+    },
+    {
+      "from": 1,
+      "to": 3
+    },
+    {
+      "from": 4,
+      "to": 5
+    },
+    {
+      "from": 4,
+      "to": 6
+    },
+    {
+      "from": 4,
+      "to": 7
+    },
+    {
+      "from": 8,
+      "to": 7
+    },
+    {
+      "from": 4,
+      "to": 8
+    },
+    {
+      "from": 8,
+      "to": 9
+    },
+    {
+      "from": 8,
+      "to": 10
+    },
+    {
+      "from": 9,
+      "to": 10
+    },
+    {
+      "from": 8,
+      "to": 11
+    },
+    {
+      "from": 1,
+      "to": 11
+    },
+    {
+      "from": 8,
+      "to": 12
+    },
+    {
+      "from": 1,
+      "to": 12
+    },
+    {
+      "from": 4,
+      "to": 13
+    },
+    {
+      "from": 8,
+      "to": 13
+    },
+    {
+      "from": 9,
+      "to": 14
+    },
+    {
+      "from": 10,
+      "to": 14
+    },
+    {
+      "from": 12,
+      "to": 14
+    },
+    {
+      "from": 15,
+      "to": 16
+    },
+    {
+      "from": 16,
+      "to": 17
+    },
+    {
+      "from": 16,
+      "to": 18
+    },
+    {
+      "from": 17,
+      "to": 18
+    },
+    {
+      "from": 16,
+      "to": 19
+    },
+    {
+      "from": 18,
+      "to": 19
+    },
+    {
+      "from": 19,
+      "to": 20
+    },
+    {
+      "from": 18,
+      "to": 21
+    },
+    {
+      "from": 22,
+      "to": 23
+    },
+    {
+      "from": 23,
+      "to": 24
+    },
+    {
+      "from": 24,
+      "to": 25
+    },
+    {
+      "from": 46,
+      "to": 25
+    },
+    {
+      "from": 21,
+      "to": 26
+    },
+    {
+      "from": 26,
+      "to": 27
+    },
+    {
+      "from": 27,
+      "to": 28
+    },
+    {
+      "from": 15,
+      "to": 29
+    },
+    {
+      "from": 29,
+      "to": 30
+    },
+    {
+      "from": 29,
+      "to": 31
+    },
+    {
+      "from": 30,
+      "to": 31
+    },
+    {
+      "from": 29,
+      "to": 32
+    },
+    {
+      "from": 31,
+      "to": 32
+    },
+    {
+      "from": 29,
+      "to": 33
+    },
+    {
+      "from": 32,
+      "to": 34
+    },
+    {
+      "from": 29,
+      "to": 35
+    },
+    {
+      "from": 35,
+      "to": 36
+    },
+    {
+      "from": 37,
+      "to": 36
+    },
+    {
+      "from": 35,
+      "to": 37
+    },
+    {
+      "from": 38,
+      "to": 37
+    },
+    {
+      "from": 15,
+      "to": 38
+    },
+    {
+      "from": 41,
+      "to": 38
+    },
+    {
+      "from": 52,
+      "to": 39
+    },
+    {
+      "from": 39,
+      "to": 40
+    },
+    {
+      "from": 42,
+      "to": 43
+    },
+    {
+      "from": 43,
+      "to": 44
+    },
+    {
+      "from": 44,
+      "to": 45
+    },
+    {
+      "from": 44,
+      "to": 46
+    },
+    {
+      "from": 45,
+      "to": 46
+    },
+    {
+      "from": 44,
+      "to": 47
+    },
+    {
+      "from": 45,
+      "to": 47
+    },
+    {
+      "from": 47,
+      "to": 48
+    },
+    {
+      "from": 47,
+      "to": 49
+    },
+    {
+      "from": 47,
+      "to": 50
+    },
+    {
+      "from": 17,
+      "to": 50
+    },
+    {
+      "from": 50,
+      "to": 51
+    },
+    {
+      "from": 42,
+      "to": 52
+    },
+    {
+      "from": 52,
+      "to": 53
+    },
+    {
+      "from": 44,
+      "to": 54
+    },
+    {
+      "from": 54,
+      "to": 55
+    },
+    {
+      "from": 54,
+      "to": 56
+    },
+    {
+      "from": 44,
+      "to": 57
+    },
+    {
+      "from": 57,
+      "to": 58
+    },
+    {
+      "from": 44,
+      "to": 59
+    },
+    {
+      "from": 60,
+      "to": 59
+    },
+    {
+      "from": 44,
+      "to": 60
+    },
+    {
+      "from": 44,
+      "to": 61
+    },
+    {
+      "from": 62,
+      "to": 61
+    },
+    {
+      "from": 44,
+      "to": 62
+    },
+    {
+      "from": 62,
+      "to": 63
+    },
+    {
+      "from": 42,
+      "to": 64
+    },
+    {
+      "from": 43,
+      "to": 64
+    },
+    {
+      "from": 64,
+      "to": 65
+    },
+    {
+      "from": 18,
+      "to": 65
+    },
+    {
+      "from": 64,
+      "to": 66
+    },
+    {
+      "from": 65,
+      "to": 66
+    },
+    {
+      "from": 43,
+      "to": 67
+    },
+    {
+      "from": 64,
+      "to": 67
+    },
+    {
+      "from": 43,
+      "to": 68
+    },
+    {
+      "from": 64,
+      "to": 68
+    },
+    {
+      "from": 68,
+      "to": 69
+    },
+    {
+      "from": 65,
+      "to": 70
+    },
+    {
+      "from": 71,
+      "to": 70
+    },
+    {
+      "from": 64,
+      "to": 71
+    },
+    {
+      "from": 64,
+      "to": 72
+    },
+    {
+      "from": 67,
+      "to": 72
+    },
+    {
+      "from": 66,
+      "to": 73
+    },
+    {
+      "from": 74,
+      "to": 75
+    },
+    {
+      "from": 74,
+      "to": 76
+    },
+    {
+      "from": 4,
+      "to": 77
+    },
+    {
+      "from": 1,
+      "to": 77
+    },
+    {
+      "from": 4,
+      "to": 78
+    },
+    {
+      "from": 6,
+      "to": 78
+    },
+    {
+      "from": 77,
+      "to": 79
+    },
+    {
+      "from": 78,
+      "to": 79
+    },
+    {
+      "from": 79,
+      "to": 80
+    },
+    {
+      "from": 15,
+      "to": 80
+    },
+    {
+      "from": 80,
+      "to": 81
+    },
+    {
+      "from": 15,
+      "to": 81
+    },
+    {
+      "from": 80,
+      "to": 82
+    },
+    {
+      "from": 84,
+      "to": 83
+    },
+    {
+      "from": 8,
+      "to": 84
+    },
+    {
+      "from": 77,
+      "to": 84
+    },
+    {
+      "from": 8,
+      "to": 85
+    },
+    {
+      "from": 79,
+      "to": 85
+    },
+    {
+      "from": 15,
+      "to": 85
+    },
+    {
+      "from": 85,
+      "to": 86
+    },
+    {
+      "from": 11,
+      "to": 87
+    },
+    {
+      "from": 88,
+      "to": 87
+    },
+    {
+      "from": 78,
+      "to": 88
+    },
+    {
+      "from": 79,
+      "to": 88
+    },
+    {
+      "from": 76,
+      "to": 89
+    },
+    {
+      "from": 80,
+      "to": 89
+    },
+    {
+      "from": 76,
+      "to": 90
+    },
+    {
+      "from": 79,
+      "to": 90
+    },
+    {
+      "from": 90,
+      "to": 91
+    },
+    {
+      "from": 90,
+      "to": 92
+    },
+    {
+      "from": 1,
+      "to": 92
+    },
+    {
+      "from": 90,
+      "to": 93
+    },
+    {
+      "from": 90,
+      "to": 94
+    },
+    {
+      "from": 90,
+      "to": 95
+    },
+    {
+      "from": 85,
+      "to": 95
+    },
+    {
+      "from": 90,
+      "to": 96
+    },
+    {
+      "from": 13,
+      "to": 96
+    },
+    {
+      "from": 96,
+      "to": 97
+    },
+    {
+      "from": 97,
+      "to": 98
+    },
+    {
+      "from": 107,
+      "to": 98
+    },
+    {
+      "from": 111,
+      "to": 98
+    },
+    {
+      "from": 97,
+      "to": 99
+    },
+    {
+      "from": 99,
+      "to": 100
+    },
+    {
+      "from": 97,
+      "to": 101
+    },
+    {
+      "from": 14,
+      "to": 101
+    },
+    {
+      "from": 85,
+      "to": 102
+    },
+    {
+      "from": 96,
+      "to": 102
+    },
+    {
+      "from": 102,
+      "to": 103
+    },
+    {
+      "from": 85,
+      "to": 103
+    },
+    {
+      "from": 90,
+      "to": 104
+    },
+    {
+      "from": 8,
+      "to": 104
+    },
+    {
+      "from": 90,
+      "to": 105
+    },
+    {
+      "from": 8,
+      "to": 105
+    },
+    {
+      "from": 1,
+      "to": 105
+    },
+    {
+      "from": 90,
+      "to": 106
+    },
+    {
+      "from": 8,
+      "to": 106
+    },
+    {
+      "from": 90,
+      "to": 107
+    },
+    {
+      "from": 76,
+      "to": 107
+    },
+    {
+      "from": 106,
+      "to": 108
+    },
+    {
+      "from": 108,
+      "to": 109
+    },
+    {
+      "from": 3,
+      "to": 110
+    },
+    {
+      "from": 90,
+      "to": 110
+    },
+    {
+      "from": 90,
+      "to": 111
+    },
+    {
+      "from": 104,
+      "to": 111
+    },
+    {
+      "from": 90,
+      "to": 112
+    },
+    {
+      "from": 106,
+      "to": 112
+    },
+    {
+      "from": 111,
+      "to": 113
+    },
+    {
+      "from": 67,
+      "to": 114
+    },
+    {
+      "from": 111,
+      "to": 114
+    },
+    {
+      "from": 104,
+      "to": 115
+    },
+    {
+      "from": 107,
+      "to": 115
+    },
+    {
+      "from": 111,
+      "to": 115
+    },
+    {
+      "from": 109,
+      "to": 115
+    },
+    {
+      "from": 115,
+      "to": 116
+    },
+    {
+      "from": 116,
+      "to": 117
+    },
+    {
+      "from": 109,
+      "to": 118
+    },
+    {
+      "from": 116,
+      "to": 118
+    },
+    {
+      "from": 90,
+      "to": 119
+    },
+    {
+      "from": 111,
+      "to": 119
+    },
+    {
+      "from": 107,
+      "to": 119
+    },
+    {
+      "from": 76,
+      "to": 120
+    },
+    {
+      "from": 119,
+      "to": 120
+    },
+    {
+      "from": 119,
+      "to": 121
+    },
+    {
+      "from": 121,
+      "to": 122
+    },
+    {
+      "from": 107,
+      "to": 122
+    },
+    {
+      "from": 122,
+      "to": 123
+    },
+    {
+      "from": 123,
+      "to": 124
+    },
+    {
+      "from": 124,
+      "to": 125
+    },
+    {
+      "from": 8,
+      "to": 126
+    },
+    {
+      "from": 119,
+      "to": 126
+    },
+    {
+      "from": 106,
+      "to": 127
+    },
+    {
+      "from": 121,
+      "to": 127
+    },
+    {
+      "from": 126,
+      "to": 128
+    },
+    {
+      "from": 127,
+      "to": 128
+    },
+    {
+      "from": 128,
+      "to": 129
+    },
+    {
+      "from": 129,
+      "to": 130
+    },
+    {
+      "from": 131,
+      "to": 130
+    },
+    {
+      "from": 132,
+      "to": 130
+    },
+    {
+      "from": 8,
+      "to": 131
+    },
+    {
+      "from": 8,
+      "to": 132
+    },
+    {
+      "from": 121,
+      "to": 133
+    },
+    {
+      "from": 134,
+      "to": 133
+    },
+    {
+      "from": 120,
+      "to": 134
+    },
+    {
+      "from": 107,
+      "to": 135
+    },
+    {
+      "from": 134,
+      "to": 135
+    },
+    {
+      "from": 133,
+      "to": 136
+    },
+    {
+      "from": 119,
+      "to": 137
+    },
+    {
+      "from": 90,
+      "to": 138
+    },
+    {
+      "from": 85,
+      "to": 138
+    },
+    {
+      "from": 138,
+      "to": 139
+    },
+    {
+      "from": 138,
+      "to": 140
+    },
+    {
+      "from": 138,
+      "to": 141
+    },
+    {
+      "from": 8,
+      "to": 141
+    },
+    {
+      "from": 138,
+      "to": 142
+    },
+    {
+      "from": 138,
+      "to": 143
+    },
+    {
+      "from": 142,
+      "to": 144
+    },
+    {
+      "from": 143,
+      "to": 144
+    },
+    {
+      "from": 142,
+      "to": 145
+    },
+    {
+      "from": 91,
+      "to": 145
+    },
+    {
+      "from": 145,
+      "to": 146
+    },
+    {
+      "from": 143,
+      "to": 146
+    },
+    {
+      "from": 145,
+      "to": 147
+    },
+    {
+      "from": 149,
+      "to": 147
+    },
+    {
+      "from": 141,
+      "to": 148
+    },
+    {
+      "from": 106,
+      "to": 149
+    },
+    {
+      "from": 141,
+      "to": 149
+    },
+    {
+      "from": 149,
+      "to": 150
+    },
+    {
+      "from": 145,
+      "to": 151
+    },
+    {
+      "from": 150,
+      "to": 151
+    },
+    {
+      "from": 150,
+      "to": 152
+    },
+    {
+      "from": 151,
+      "to": 152
+    },
+    {
+      "from": 90,
+      "to": 153
+    },
+    {
+      "from": 153,
+      "to": 154
+    },
+    {
+      "from": 154,
+      "to": 155
+    },
+    {
+      "from": 153,
+      "to": 156
+    },
+    {
+      "from": 90,
+      "to": 157
+    },
+    {
+      "from": 157,
+      "to": 158
+    },
+    {
+      "from": 157,
+      "to": 159
+    },
+    {
+      "from": 88,
+      "to": 159
+    },
+    {
+      "from": 159,
+      "to": 160
+    },
+    {
+      "from": 111,
+      "to": 160
+    },
+    {
+      "from": 90,
+      "to": 161
+    },
+    {
+      "from": 74,
+      "to": 161
+    },
+    {
+      "from": 161,
+      "to": 162
+    },
+    {
+      "from": 162,
+      "to": 163
+    },
+    {
+      "from": 90,
+      "to": 164
+    },
+    {
+      "from": 90,
+      "to": 165
+    },
+    {
+      "from": 153,
+      "to": 166
+    },
+    {
+      "from": 15,
+      "to": 167
+    },
+    {
+      "from": 167,
+      "to": 168
+    },
+    {
+      "from": 168,
+      "to": 169
+    },
+    {
+      "from": 43,
+      "to": 169
+    },
+    {
+      "from": 168,
+      "to": 170
+    },
+    {
+      "from": 43,
+      "to": 170
+    },
+    {
+      "from": 170,
+      "to": 171
+    },
+    {
+      "from": 167,
+      "to": 172
+    },
+    {
+      "from": 15,
+      "to": 172
+    },
+    {
+      "from": 172,
+      "to": 173
+    },
+    {
+      "from": 173,
+      "to": 174
+    },
+    {
+      "from": 172,
+      "to": 175
+    },
+    {
+      "from": 189,
+      "to": 175
+    },
+    {
+      "from": 169,
+      "to": 176
+    },
+    {
+      "from": 170,
+      "to": 176
+    },
+    {
+      "from": 9,
+      "to": 177
+    },
+    {
+      "from": 12,
+      "to": 177
+    },
+    {
+      "from": 177,
+      "to": 178
+    },
+    {
+      "from": 119,
+      "to": 178
+    },
+    {
+      "from": 181,
+      "to": 178
+    },
+    {
+      "from": 119,
+      "to": 179
+    },
+    {
+      "from": 177,
+      "to": 179
+    },
+    {
+      "from": 119,
+      "to": 180
+    },
+    {
+      "from": 110,
+      "to": 180
+    },
+    {
+      "from": 180,
+      "to": 182
+    },
+    {
+      "from": 138,
+      "to": 183
+    },
+    {
+      "from": 152,
+      "to": 183
+    },
+    {
+      "from": 138,
+      "to": 184
+    },
+    {
+      "from": 183,
+      "to": 184
+    },
+    {
+      "from": 184,
+      "to": 185
+    },
+    {
+      "from": 178,
+      "to": 186
+    },
+    {
+      "from": 15,
+      "to": 186
+    },
+    {
+      "from": 43,
+      "to": 187
+    },
+    {
+      "from": 187,
+      "to": 188
+    },
+    {
+      "from": 43,
+      "to": 189
+    },
+    {
+      "from": 52,
+      "to": 189
+    },
+    {
+      "from": 57,
+      "to": 190
+    },
+    {
+      "from": 8,
+      "to": 190
+    },
+    {
+      "from": 18,
+      "to": 191
+    },
+    {
+      "from": 15,
+      "to": 191
+    },
+    {
+      "from": 190,
+      "to": 192
+    },
+    {
+      "from": 190,
+      "to": 193
+    },
+    {
+      "from": 188,
+      "to": 193
+    },
+    {
+      "from": 46,
+      "to": 194
+    },
+    {
+      "from": 47,
+      "to": 194
+    },
+    {
+      "from": 119,
+      "to": 195
+    },
+    {
+      "from": 52,
+      "to": 195
+    },
+    {
+      "from": 195,
+      "to": 196
+    },
+    {
+      "from": 195,
+      "to": 197
+    },
+    {
+      "from": 15,
+      "to": 197
+    },
+    {
+      "from": 153,
+      "to": 198
+    },
+    {
+      "from": 157,
+      "to": 198
+    },
+    {
+      "from": 152,
+      "to": 199
+    },
+    {
+      "from": 130,
+      "to": 199
+    },
+    {
+      "from": 196,
+      "to": 200
+    },
+    {
+      "from": 189,
+      "to": 200
+    },
+    {
+      "from": 191,
+      "to": 200
+    }
+  ]
+}

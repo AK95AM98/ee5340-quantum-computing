@@ -1,0 +1,2852 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Essential mathematical tools for quantum computing including complex numbers, linear algebra, and probability">
+      
+      
+        <meta name="author" content="Sharat B">
+      
+      
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/chapters/01-mathematical-foundations/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../02-physical-limits/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Mathematical Foundations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mathematical-foundations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EE 5340 - Quantum Computing and Physical Basics of Computing
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mathematical Foundations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo">
+
+    </a>
+    EE 5340 - Quantum Computing and Physical Basics of Computing
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AK95AM98/ee5340-quantum-computing" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub Repo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course-description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mathematical Foundations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-complex-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Complex Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Complex Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-a-complex-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of a Complex Number
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-complex-plane-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Complex Plane Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-complex-conjugate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Complex Conjugate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Complex Conjugate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complex-conjugate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complex Conjugate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-eulers-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Euler's Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Euler&#39;s Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eulers-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Euler's Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-eulers-formula-on-the-unit-circle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Euler's Formula on the Unit Circle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vector-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Vector Spaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-linear-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Linear Independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-inner-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Inner Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Inner Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product (Dirac Notation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-inner-product-and-orthogonality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Inner Product and Orthogonality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-outer-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Outer Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Outer Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outer-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeness-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completeness Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-matrix-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Matrix Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Matrix Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matrix-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-eigenvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Eigenvalues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Eigenvalues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eigenvalue-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eigenvalue Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristic-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristic Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-eigenvectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Eigenvectors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Eigenvectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-eigenvalues-and-eigenvectors-of-pauli-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Eigenvalues and Eigenvectors of Pauli Matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-unitary-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Unitary Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Unitary Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unitarity-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unitarity Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-hermitian-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Hermitian Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Hermitian Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hermiticity-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hermiticity Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-tensor-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Tensor Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Tensor Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensor-product-of-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor Product of Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-tensor-product-and-entanglement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Tensor Product and Entanglement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-spectral-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Spectral Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Spectral Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spectral-decomposition-hermitian-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral Decomposition (Hermitian Case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spectral-decomposition-unitary-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral Decomposition (Unitary Case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-probability-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Probability Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Probability Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-measurement-probability-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Measurement Probability Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chapter-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chapter Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-physical-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Physical Limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-information-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-classical-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Classical Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-beyond-cmos-devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Beyond-CMOS Devices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-reversible-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Reversible Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-quantum-mechanics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Quantum Mechanics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-qubits-and-states/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Qubits and States
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-quantum-gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Quantum Gates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-quantum-algorithms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Quantum Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-quantum-error-correction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Error Correction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-quantum-hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Quantum Hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-stochastic-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Stochastic Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-hybrid-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Hybrid Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-energy-efficient-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Energy-Efficient Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-future-of-computing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Future of Computing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../learning-graph/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Graph
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../sims/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MicroSims
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-covered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts Covered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-complex-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Complex Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Complex Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-a-complex-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition of a Complex Number
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-complex-plane-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Complex Plane Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-complex-conjugate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Complex Conjugate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Complex Conjugate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complex-conjugate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complex Conjugate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-eulers-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Euler's Formula
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Euler&#39;s Formula">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eulers-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Euler's Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-eulers-formula-on-the-unit-circle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Euler's Formula on the Unit Circle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vector-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Vector Spaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-linear-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Linear Independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-inner-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Inner Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Inner Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-product-dirac-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inner Product (Dirac Notation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-inner-product-and-orthogonality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Inner Product and Orthogonality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-outer-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Outer Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Outer Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outer-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeness-relation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completeness Relation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-matrix-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Matrix Multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Matrix Multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matrix-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-eigenvalues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Eigenvalues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Eigenvalues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eigenvalue-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eigenvalue Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characteristic-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characteristic Equation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-eigenvectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Eigenvectors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Eigenvectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagram-eigenvalues-and-eigenvectors-of-pauli-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Eigenvalues and Eigenvectors of Pauli Matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-unitary-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Unitary Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Unitary Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unitarity-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unitarity Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-hermitian-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Hermitian Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Hermitian Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hermiticity-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hermiticity Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-tensor-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Tensor Product
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Tensor Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensor-product-of-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor Product of Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-tensor-product-and-entanglement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Tensor Product and Entanglement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-spectral-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Spectral Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Spectral Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spectral-decomposition-hermitian-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral Decomposition (Hermitian Case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spectral-decomposition-unitary-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral Decomposition (Unitary Case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-probability-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Probability Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Probability Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normalization-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization Condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expectation-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagram-measurement-probability-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagram: Measurement Probability Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chapter-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chapter Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Chapters
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/chapters/01-mathematical-foundations/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="mathematical-foundations">Mathematical Foundations</h1>
+<h2 id="summary">Summary</h2>
+<p>This chapter reviews the essential mathematical tools used throughout the course. Topics include complex number arithmetic, vector spaces and linear algebra, matrix operations, eigenvalue decomposition, tensor products, and probability theory. Mastering these foundations is critical for understanding quantum mechanics, information theory, and all computing paradigms covered in later chapters.</p>
+<h2 id="concepts-covered">Concepts Covered</h2>
+<p>This chapter covers the following 15 concepts:</p>
+<ol>
+<li>Complex Numbers</li>
+<li>Complex Conjugate</li>
+<li>Euler's Formula</li>
+<li>Vector Spaces</li>
+<li>Linear Independence</li>
+<li>Inner Product</li>
+<li>Outer Product</li>
+<li>Matrix Multiplication</li>
+<li>Eigenvalues</li>
+<li>Eigenvectors</li>
+<li>Unitary Matrices</li>
+<li>Hermitian Matrices</li>
+<li>Tensor Product</li>
+<li>Spectral Decomposition</li>
+<li>Probability Theory</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This chapter assumes only the prerequisites listed in the <a href="../../course-description/">course description</a>.</p>
+<hr />
+<h2 id="1-complex-numbers">1. Complex Numbers</h2>
+<p>Quantum computing is built upon the algebra of complex numbers. Unlike classical bits that take values in <span class="arithmatex">\(\{0, 1\}\)</span>, the amplitudes describing quantum states are complex-valued, and interference between these amplitudes is the source of quantum computational advantage. A thorough command of complex arithmetic is therefore the first prerequisite for everything that follows.</p>
+<h4 id="definition-of-a-complex-number">Definition of a Complex Number</h4>
+<div class="arithmatex">\[z = a + bi\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(a \in \mathbb{R}\)</span> is the <strong>real part</strong>, written <span class="arithmatex">\(\operatorname{Re}(z)\)</span></li>
+<li><span class="arithmatex">\(b \in \mathbb{R}\)</span> is the <strong>imaginary part</strong>, written <span class="arithmatex">\(\operatorname{Im}(z)\)</span></li>
+<li><span class="arithmatex">\(i\)</span> is the <strong>imaginary unit</strong> satisfying <span class="arithmatex">\(i^2 = -1\)</span></li>
+</ul>
+<p>The set of all complex numbers is denoted <span class="arithmatex">\(\mathbb{C}\)</span>. Every complex number <span class="arithmatex">\(z\)</span> can be represented as a point <span class="arithmatex">\((a, b)\)</span> in the two-dimensional <strong>complex plane</strong> (also called the Argand plane), where the horizontal axis represents the real part and the vertical axis represents the imaginary part.</p>
+<p>Complex numbers support the standard field operations of addition and multiplication:</p>
+<ul>
+<li><strong>Addition:</strong> <span class="arithmatex">\((a + bi) + (c + di) = (a+c) + (b+d)i\)</span></li>
+<li><strong>Multiplication:</strong> <span class="arithmatex">\((a + bi)(c + di) = (ac - bd) + (ad + bc)i\)</span></li>
+</ul>
+<p>The <strong>modulus</strong> (or absolute value) of a complex number is defined as <span class="arithmatex">\(|z| = \sqrt{a^2 + b^2}\)</span>, which gives the Euclidean distance from the origin in the complex plane. In quantum mechanics, the modulus squared <span class="arithmatex">\(|z|^2 = a^2 + b^2\)</span> appears as the probability of a measurement outcome, a connection we will develop formally in later chapters.</p>
+<h4 id="diagram-complex-plane-visualization">Diagram: Complex Plane Visualization</h4>
+<iframe src="../../sims/complex-plane/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive complex number visualization on the Argand plane</summary>
+<p>Type: MicroSim
+Learning objective: Students can identify the real part, imaginary part, modulus, and argument of a complex number from its position in the complex plane (Bloom: Understand).
+Visual elements: A 2D coordinate grid representing the complex plane. A draggable point representing a complex number <span class="arithmatex">\(z\)</span>. Dashed lines project from the point to the real and imaginary axes. The modulus is shown as a line segment from the origin to the point, with its length displayed. The argument (angle with the positive real axis) is shown with an arc.
+Controls: Click and drag to reposition <span class="arithmatex">\(z\)</span>. A readout panel displays <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(|z|\)</span>, and <span class="arithmatex">\(\arg(z)\)</span> in real time.
+Behavior: As the user drags the point, all derived quantities update live.
+Implementation: p5.js canvas with interactive drag handling.</p>
+</details>
+<h2 id="2-complex-conjugate">2. Complex Conjugate</h2>
+<p>Given a complex number <span class="arithmatex">\(z = a + bi\)</span>, its <strong>complex conjugate</strong> is obtained by negating the imaginary part.</p>
+<h4 id="complex-conjugate">Complex Conjugate</h4>
+<div class="arithmatex">\[z^* = a - bi\]</div>
+<p>where:</p>
+<ul>
+<li>$z^* $ (also written <span class="arithmatex">\(\bar{z}\)</span>) denotes the complex conjugate of <span class="arithmatex">\(z\)</span></li>
+<li>The geometric effect is a reflection of <span class="arithmatex">\(z\)</span> across the real axis in the complex plane</li>
+</ul>
+<p>The complex conjugate satisfies several essential algebraic identities that appear repeatedly in quantum computing:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Involution</td>
+<td><span class="arithmatex">\((z^*)^* = z\)</span></td>
+</tr>
+<tr>
+<td>Modulus squared</td>
+<td><span class="arithmatex">\(z \, z^* = \lvert z \rvert^2 \in \mathbb{R}\)</span></td>
+</tr>
+<tr>
+<td>Addition</td>
+<td><span class="arithmatex">\((z_1 + z_2)^* = z_1^* + z_2^*\)</span></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><span class="arithmatex">\((z_1 \, z_2)^* = z_1^* \, z_2^*\)</span></td>
+</tr>
+<tr>
+<td>Real test</td>
+<td><span class="arithmatex">\(z = z^*\)</span> if and only if <span class="arithmatex">\(z \in \mathbb{R}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The identity <span class="arithmatex">\(z \, z^* = |z|^2\)</span> is particularly important: it provides the bridge between complex amplitudes and real-valued probabilities in quantum mechanics. Whenever we compute the probability of measuring a quantum state and finding a particular outcome, we multiply the corresponding amplitude by its conjugate.</p>
+<h2 id="3-eulers-formula">3. Euler's Formula</h2>
+<p>Euler's formula provides the deep connection between the complex exponential function and trigonometry, and it underlies the polar representation of complex numbers that is pervasive in quantum computing.</p>
+<h4 id="eulers-formula">Euler's Formula</h4>
+<div class="arithmatex">\[e^{i\theta} = \cos\theta + i\sin\theta\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\theta \in \mathbb{R}\)</span> is the <strong>argument</strong> (or phase angle) measured in radians</li>
+<li><span class="arithmatex">\(e^{i\theta}\)</span> lies on the <strong>unit circle</strong> <span class="arithmatex">\(|z| = 1\)</span> in the complex plane</li>
+</ul>
+<p>Using Euler's formula, any complex number <span class="arithmatex">\(z\)</span> can be written in <strong>polar form</strong>:</p>
+<div class="arithmatex">\[z = r \, e^{i\theta}\]</div>
+<p>where <span class="arithmatex">\(r = |z|\)</span> is the modulus and <span class="arithmatex">\(\theta = \arg(z)\)</span> is the argument. This representation is invaluable in quantum computing because quantum gate operations frequently amount to rotations in the complex plane -- that is, multiplications by factors of the form <span class="arithmatex">\(e^{i\theta}\)</span>.</p>
+<p>Two notable special cases follow immediately from Euler's formula:</p>
+<ul>
+<li>Setting <span class="arithmatex">\(\theta = \pi\)</span> yields <strong>Euler's identity</strong>: <span class="arithmatex">\(e^{i\pi} + 1 = 0\)</span></li>
+<li>Setting <span class="arithmatex">\(\theta = \pi/2\)</span> yields <span class="arithmatex">\(e^{i\pi/2} = i\)</span></li>
+</ul>
+<p>The polar form also simplifies multiplication of complex numbers: if <span class="arithmatex">\(z_1 = r_1 e^{i\theta_1}\)</span> and <span class="arithmatex">\(z_2 = r_2 e^{i\theta_2}\)</span>, then <span class="arithmatex">\(z_1 z_2 = r_1 r_2 \, e^{i(\theta_1 + \theta_2)}\)</span>. That is, moduli multiply and arguments add. In the language of quantum computing, composing two phase gates amounts to adding their phase angles.</p>
+<h4 id="diagram-eulers-formula-on-the-unit-circle">Diagram: Euler's Formula on the Unit Circle</h4>
+<iframe src="../../sims/euler-formula/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive visualization of Euler's formula as rotation on the unit circle</summary>
+<p>Type: MicroSim
+Learning objective: Students can relate the angle <span class="arithmatex">\(\theta\)</span> to the real and imaginary parts <span class="arithmatex">\(\cos\theta\)</span> and <span class="arithmatex">\(\sin\theta\)</span> on the unit circle, and understand phase as rotation (Bloom: Apply).
+Visual elements: A unit circle in the complex plane with axes labeled Re and Im. A point <span class="arithmatex">\(e^{i\theta}\)</span> moves along the circle. Dashed projections show <span class="arithmatex">\(\cos\theta\)</span> on the real axis and <span class="arithmatex">\(\sin\theta\)</span> on the imaginary axis. The angle <span class="arithmatex">\(\theta\)</span> is displayed as an arc from the positive real axis.
+Controls: A slider for <span class="arithmatex">\(\theta\)</span> ranging from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(2\pi\)</span>. An animation toggle button to sweep <span class="arithmatex">\(\theta\)</span> continuously.
+Behavior: Moving the slider (or running the animation) updates the point position, projections, and numerical readouts in real time.
+Implementation: p5.js canvas with slider input.</p>
+</details>
+<h2 id="4-vector-spaces">4. Vector Spaces</h2>
+<p>Linear algebra -- the study of vector spaces and linear maps -- is the mathematical language of quantum mechanics. A <strong>quantum state</strong> is a vector in a complex vector space, and every quantum operation is a linear transformation on that space.</p>
+<p>A <strong>vector space</strong> <span class="arithmatex">\(V\)</span> over the field <span class="arithmatex">\(\mathbb{C}\)</span> is a set equipped with two operations -- vector addition and scalar multiplication -- satisfying the following axioms:</p>
+<ul>
+<li><strong>Closure under addition:</strong> For all <span class="arithmatex">\(\mathbf{u}, \mathbf{v} \in V\)</span>, we have <span class="arithmatex">\(\mathbf{u} + \mathbf{v} \in V\)</span>.</li>
+<li><strong>Closure under scalar multiplication:</strong> For all <span class="arithmatex">\(\alpha \in \mathbb{C}\)</span> and <span class="arithmatex">\(\mathbf{v} \in V\)</span>, we have <span class="arithmatex">\(\alpha \mathbf{v} \in V\)</span>.</li>
+<li><strong>Additive identity:</strong> There exists a zero vector <span class="arithmatex">\(\mathbf{0} \in V\)</span> such that <span class="arithmatex">\(\mathbf{v} + \mathbf{0} = \mathbf{v}\)</span> for all <span class="arithmatex">\(\mathbf{v}\)</span>.</li>
+<li><strong>Additive inverse:</strong> For every <span class="arithmatex">\(\mathbf{v} \in V\)</span>, there exists <span class="arithmatex">\(-\mathbf{v} \in V\)</span> such that <span class="arithmatex">\(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}\)</span>.</li>
+<li><strong>Associativity, commutativity of addition</strong>, and <strong>distributivity of scalar multiplication</strong> over addition hold in the usual manner.</li>
+</ul>
+<p>The primary vector space in quantum computing is <span class="arithmatex">\(\mathbb{C}^n\)</span>, the space of <span class="arithmatex">\(n\)</span>-dimensional column vectors with complex entries. For a single qubit, the state space is <span class="arithmatex">\(\mathbb{C}^2\)</span>; for <span class="arithmatex">\(n\)</span> qubits, it is <span class="arithmatex">\(\mathbb{C}^{2^n}\)</span>. In <strong>Dirac notation</strong>, column vectors are written as <strong>kets</strong> <span class="arithmatex">\(|\psi\rangle\)</span>, and their conjugate transposes (row vectors) are written as <strong>bras</strong> <span class="arithmatex">\(\langle\psi|\)</span>. The standard computational basis for <span class="arithmatex">\(\mathbb{C}^2\)</span> is:</p>
+<div class="arithmatex">\[|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \qquad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}\]</div>
+<p>An arbitrary single-qubit state can be written as a <strong>superposition</strong> <span class="arithmatex">\(|\psi\rangle = \alpha |0\rangle + \beta |1\rangle\)</span> where <span class="arithmatex">\(\alpha, \beta \in \mathbb{C}\)</span> and <span class="arithmatex">\(|\alpha|^2 + |\beta|^2 = 1\)</span>.</p>
+<h2 id="5-linear-independence">5. Linear Independence</h2>
+<p>A set of vectors <span class="arithmatex">\(\{|\mathbf{v}_1\rangle, |\mathbf{v}_2\rangle, \ldots, |\mathbf{v}_k\rangle\}\)</span> in a vector space <span class="arithmatex">\(V\)</span> is <strong>linearly independent</strong> if the only solution to the equation</p>
+<div class="arithmatex">\[c_1 |\mathbf{v}_1\rangle + c_2 |\mathbf{v}_2\rangle + \cdots + c_k |\mathbf{v}_k\rangle = \mathbf{0}\]</div>
+<p>is the trivial solution <span class="arithmatex">\(c_1 = c_2 = \cdots = c_k = 0\)</span>. If a non-trivial solution exists, the vectors are <strong>linearly dependent</strong>, meaning at least one vector can be expressed as a linear combination of the others.</p>
+<p>The maximum number of linearly independent vectors in a vector space <span class="arithmatex">\(V\)</span> is called the <strong>dimension</strong> of <span class="arithmatex">\(V\)</span>, written <span class="arithmatex">\(\dim(V)\)</span>. A set of <span class="arithmatex">\(\dim(V)\)</span> linearly independent vectors that spans <span class="arithmatex">\(V\)</span> is called a <strong>basis</strong> for <span class="arithmatex">\(V\)</span>. For the qubit state space <span class="arithmatex">\(\mathbb{C}^2\)</span>, the computational basis <span class="arithmatex">\(\{|0\rangle, |1\rangle\}\)</span> is one possible basis, but infinitely many other bases exist. For example, the <strong>Hadamard basis</strong> (also called the <span class="arithmatex">\(\pm\)</span> basis) consists of:</p>
+<div class="arithmatex">\[|+\rangle = \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle), \qquad |-\rangle = \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\]</div>
+<p>The freedom to choose different bases is central to quantum computing: different measurement bases reveal different information about a quantum state, and many quantum algorithms exploit basis changes to create constructive or destructive interference.</p>
+<h2 id="6-inner-product">6. Inner Product</h2>
+<p>The <strong>inner product</strong> endows a vector space with geometric structure, enabling us to define notions of length, angle, and orthogonality. For vectors in <span class="arithmatex">\(\mathbb{C}^n\)</span>, the standard inner product is the following.</p>
+<h4 id="inner-product-dirac-notation">Inner Product (Dirac Notation)</h4>
+<div class="arithmatex">\[\langle \phi | \psi \rangle = \sum_{j=1}^{n} \phi_j^* \, \psi_j\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|\psi\rangle = (\psi_1, \psi_2, \ldots, \psi_n)^T\)</span> and <span class="arithmatex">\(|\phi\rangle = (\phi_1, \phi_2, \ldots, \phi_n)^T\)</span> are column vectors in <span class="arithmatex">\(\mathbb{C}^n\)</span></li>
+<li><span class="arithmatex">\(\phi_j^*\)</span> is the complex conjugate of the <span class="arithmatex">\(j\)</span>-th component of <span class="arithmatex">\(|\phi\rangle\)</span></li>
+<li><span class="arithmatex">\(\langle \phi |\)</span> is the conjugate transpose (bra) of <span class="arithmatex">\(|\phi\rangle\)</span></li>
+</ul>
+<p>The inner product satisfies three fundamental properties:</p>
+<ol>
+<li><strong>Conjugate symmetry:</strong> <span class="arithmatex">\(\langle \phi | \psi \rangle = \langle \psi | \phi \rangle^*\)</span></li>
+<li><strong>Linearity in the second argument:</strong> <span class="arithmatex">\(\langle \phi | (\alpha |\psi_1\rangle + \beta |\psi_2\rangle) = \alpha \langle \phi | \psi_1 \rangle + \beta \langle \phi | \psi_2 \rangle\)</span></li>
+<li><strong>Positive definiteness:</strong> <span class="arithmatex">\(\langle \psi | \psi \rangle \geq 0\)</span>, with equality if and only if <span class="arithmatex">\(|\psi\rangle = \mathbf{0}\)</span></li>
+</ol>
+<p>The <strong>norm</strong> of a vector is defined as <span class="arithmatex">\(\| |\psi\rangle \| = \sqrt{\langle \psi | \psi \rangle}\)</span>. In quantum mechanics, physical states are <strong>normalized</strong>: <span class="arithmatex">\(\langle \psi | \psi \rangle = 1\)</span>. Two vectors are <strong>orthogonal</strong> if <span class="arithmatex">\(\langle \phi | \psi \rangle = 0\)</span>. An <strong>orthonormal basis</strong> is a basis in which every pair of distinct vectors is orthogonal and every vector has unit norm. The computational basis <span class="arithmatex">\(\{|0\rangle, |1\rangle\}\)</span> satisfies <span class="arithmatex">\(\langle 0 | 0 \rangle = \langle 1 | 1 \rangle = 1\)</span> and <span class="arithmatex">\(\langle 0 | 1 \rangle = \langle 1 | 0 \rangle = 0\)</span>, and is therefore orthonormal.</p>
+<p>The inner product <span class="arithmatex">\(\langle \phi | \psi \rangle\)</span> gives the <strong>probability amplitude</strong> for transitioning from state <span class="arithmatex">\(|\psi\rangle\)</span> to state <span class="arithmatex">\(|\phi\rangle\)</span>, and the corresponding <strong>transition probability</strong> is <span class="arithmatex">\(|\langle \phi | \psi \rangle|^2\)</span>. This is the mathematical content of the <strong>Born rule</strong>, which is the fundamental probabilistic postulate of quantum mechanics.</p>
+<h4 id="diagram-inner-product-and-orthogonality">Diagram: Inner Product and Orthogonality</h4>
+<iframe src="../../sims/inner-product/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive visualization of inner product, norm, and orthogonality in two dimensions</summary>
+<p>Type: MicroSim
+Learning objective: Students can compute the inner product of two vectors and determine whether they are orthogonal (Bloom: Apply).
+Visual elements: A 2D plane showing two vectors <span class="arithmatex">\(|\phi\rangle\)</span> and <span class="arithmatex">\(|\psi\rangle\)</span> as arrows from the origin. The projection of one vector onto the other is displayed as a dashed line. Numerical readouts show <span class="arithmatex">\(\langle \phi | \psi \rangle\)</span>, <span class="arithmatex">\(\||\phi\rangle\|\)</span>, <span class="arithmatex">\(\||\psi\rangle\|\)</span>, and the angle between the vectors.
+Controls: Each vector can be dragged to change its direction and magnitude. A toggle switches between real and complex coefficient mode.
+Behavior: All readouts update live as vectors are repositioned.
+Implementation: p5.js canvas with vector drag interaction.</p>
+</details>
+<h2 id="7-outer-product">7. Outer Product</h2>
+<p>While the inner product maps two vectors to a scalar, the <strong>outer product</strong> maps two vectors to a matrix (a linear operator). Given a ket <span class="arithmatex">\(|\psi\rangle \in \mathbb{C}^n\)</span> and a bra <span class="arithmatex">\(\langle \phi | \in \mathbb{C}^{m}\)</span>, their outer product is the <span class="arithmatex">\(n \times m\)</span> matrix:</p>
+<h4 id="outer-product">Outer Product</h4>
+<div class="arithmatex">\[|\psi\rangle \langle \phi| = \begin{pmatrix} \psi_1 \\ \psi_2 \\ \vdots \\ \psi_n \end{pmatrix} \begin{pmatrix} \phi_1^* &amp; \phi_2^* &amp; \cdots &amp; \phi_m^* \end{pmatrix} = \begin{pmatrix} \psi_1 \phi_1^* &amp; \psi_1 \phi_2^* &amp; \cdots &amp; \psi_1 \phi_m^* \\ \psi_2 \phi_1^* &amp; \psi_2 \phi_2^* &amp; \cdots &amp; \psi_2 \phi_m^* \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \psi_n \phi_1^* &amp; \psi_n \phi_2^* &amp; \cdots &amp; \psi_n \phi_m^* \end{pmatrix}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|\psi\rangle\langle\phi|\)</span> is an <span class="arithmatex">\(n \times m\)</span> matrix</li>
+<li>The <span class="arithmatex">\((j,k)\)</span> entry is <span class="arithmatex">\(\psi_j \phi_k^*\)</span></li>
+</ul>
+<p>The outer product is essential in quantum computing for constructing <strong>projection operators</strong>. If <span class="arithmatex">\(|\psi\rangle\)</span> is a normalized vector, then <span class="arithmatex">\(P = |\psi\rangle\langle\psi|\)</span> is the projector onto the one-dimensional subspace spanned by <span class="arithmatex">\(|\psi\rangle\)</span>. This projector satisfies <span class="arithmatex">\(P^2 = P\)</span> (idempotence) and <span class="arithmatex">\(P^\dagger = P\)</span> (Hermiticity). In the computational basis, the projectors onto <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span> are:</p>
+<div class="arithmatex">\[|0\rangle\langle 0| = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 0 \end{pmatrix}, \qquad |1\rangle\langle 1| = \begin{pmatrix} 0 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\]</div>
+<p>These projectors sum to the identity matrix: <span class="arithmatex">\(|0\rangle\langle 0| + |1\rangle\langle 1| = I\)</span>. This is an instance of the <strong>completeness relation</strong> (or resolution of the identity), which states that for any orthonormal basis <span class="arithmatex">\(\{|e_j\rangle\}\)</span> of a vector space:</p>
+<h4 id="completeness-relation">Completeness Relation</h4>
+<div class="arithmatex">\[\sum_{j=1}^{n} |e_j\rangle\langle e_j| = I\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\{|e_j\rangle\}_{j=1}^{n}\)</span> is an orthonormal basis for <span class="arithmatex">\(\mathbb{C}^n\)</span></li>
+<li><span class="arithmatex">\(I\)</span> is the <span class="arithmatex">\(n \times n\)</span> identity matrix</li>
+</ul>
+<p>The completeness relation is one of the most frequently used identities in quantum mechanics: it allows us to insert a basis decomposition at any point in a calculation.</p>
+<h2 id="8-matrix-multiplication">8. Matrix Multiplication</h2>
+<p>Quantum gates are represented as matrices, and the composition of gates corresponds to matrix multiplication. Given an <span class="arithmatex">\(m \times n\)</span> matrix <span class="arithmatex">\(A\)</span> and an <span class="arithmatex">\(n \times p\)</span> matrix <span class="arithmatex">\(B\)</span>, their product <span class="arithmatex">\(C = AB\)</span> is the <span class="arithmatex">\(m \times p\)</span> matrix defined by:</p>
+<h4 id="matrix-product">Matrix Product</h4>
+<div class="arithmatex">\[(AB)_{jk} = \sum_{\ell=1}^{n} A_{j\ell} \, B_{\ell k}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A_{j\ell}\)</span> is the entry in row <span class="arithmatex">\(j\)</span>, column <span class="arithmatex">\(\ell\)</span> of <span class="arithmatex">\(A\)</span></li>
+<li><span class="arithmatex">\(B_{\ell k}\)</span> is the entry in row <span class="arithmatex">\(\ell\)</span>, column <span class="arithmatex">\(k\)</span> of <span class="arithmatex">\(B\)</span></li>
+<li>The inner dimension <span class="arithmatex">\(n\)</span> must match: <span class="arithmatex">\(A\)</span> has <span class="arithmatex">\(n\)</span> columns and <span class="arithmatex">\(B\)</span> has <span class="arithmatex">\(n\)</span> rows</li>
+</ul>
+<p>Key properties of matrix multiplication include:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Associativity</td>
+<td><span class="arithmatex">\((AB)C = A(BC)\)</span></td>
+</tr>
+<tr>
+<td>Distributivity</td>
+<td><span class="arithmatex">\(A(B + C) = AB + AC\)</span></td>
+</tr>
+<tr>
+<td>Non-commutativity</td>
+<td>In general, <span class="arithmatex">\(AB \neq BA\)</span></td>
+</tr>
+<tr>
+<td>Transpose of product</td>
+<td><span class="arithmatex">\((AB)^T = B^T A^T\)</span></td>
+</tr>
+<tr>
+<td>Conjugate transpose</td>
+<td><span class="arithmatex">\((AB)^\dagger = B^\dagger A^\dagger\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The non-commutativity of matrix multiplication has profound physical consequences in quantum mechanics. Two quantum observables <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> can be simultaneously measured with perfect precision if and only if they commute, i.e., <span class="arithmatex">\(AB = BA\)</span>. The <strong>commutator</strong> <span class="arithmatex">\([A, B] = AB - BA\)</span> quantifies the extent to which two operators fail to commute and is intimately related to the Heisenberg uncertainty principle.</p>
+<p>For quantum computing specifically, applying gate <span class="arithmatex">\(U_1\)</span> followed by gate <span class="arithmatex">\(U_2\)</span> to a state <span class="arithmatex">\(|\psi\rangle\)</span> produces <span class="arithmatex">\(U_2 U_1 |\psi\rangle\)</span>. Note the right-to-left ordering: the first gate applied is the rightmost matrix in the product, since matrix multiplication acts on column vectors from the left.</p>
+<h2 id="9-eigenvalues">9. Eigenvalues</h2>
+<p>The concept of eigenvalues is central to quantum measurement theory: when a physical observable (represented by a Hermitian matrix) is measured, the possible outcomes are precisely its eigenvalues. A scalar <span class="arithmatex">\(\lambda \in \mathbb{C}\)</span> is an <strong>eigenvalue</strong> of a square matrix <span class="arithmatex">\(A\)</span> if there exists a nonzero vector <span class="arithmatex">\(|\mathbf{v}\rangle\)</span> satisfying the following equation.</p>
+<h4 id="eigenvalue-equation">Eigenvalue Equation</h4>
+<div class="arithmatex">\[A |\mathbf{v}\rangle = \lambda |\mathbf{v}\rangle\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A\)</span> is an <span class="arithmatex">\(n \times n\)</span> matrix</li>
+<li><span class="arithmatex">\(|\mathbf{v}\rangle \neq \mathbf{0}\)</span> is the corresponding <strong>eigenvector</strong></li>
+<li><span class="arithmatex">\(\lambda\)</span> is the eigenvalue associated with <span class="arithmatex">\(|\mathbf{v}\rangle\)</span></li>
+</ul>
+<p>To find the eigenvalues, we rewrite the equation as <span class="arithmatex">\((A - \lambda I)|\mathbf{v}\rangle = \mathbf{0}\)</span>. For a nontrivial solution to exist, the matrix <span class="arithmatex">\(A - \lambda I\)</span> must be singular, which requires:</p>
+<h4 id="characteristic-equation">Characteristic Equation</h4>
+<div class="arithmatex">\[\det(A - \lambda I) = 0\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\det(\cdot)\)</span> denotes the determinant</li>
+<li>The left-hand side, expanded, is a degree-<span class="arithmatex">\(n\)</span> polynomial in <span class="arithmatex">\(\lambda\)</span> called the <strong>characteristic polynomial</strong></li>
+</ul>
+<p>For example, consider the Pauli-<span class="arithmatex">\(Z\)</span> matrix, one of the fundamental single-qubit operators:</p>
+<div class="arithmatex">\[Z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\]</div>
+<p>The characteristic equation is <span class="arithmatex">\((1 - \lambda)(-1 - \lambda) = 0\)</span>, yielding eigenvalues <span class="arithmatex">\(\lambda_1 = 1\)</span> and <span class="arithmatex">\(\lambda_2 = -1\)</span> with corresponding eigenvectors <span class="arithmatex">\(|0\rangle\)</span> and <span class="arithmatex">\(|1\rangle\)</span>. These eigenvalues represent the possible measurement outcomes when measuring a qubit in the computational basis.</p>
+<h2 id="10-eigenvectors">10. Eigenvectors</h2>
+<p>An <strong>eigenvector</strong> of a matrix <span class="arithmatex">\(A\)</span> corresponding to eigenvalue <span class="arithmatex">\(\lambda\)</span> is any nonzero vector <span class="arithmatex">\(|\mathbf{v}\rangle\)</span> satisfying <span class="arithmatex">\(A|\mathbf{v}\rangle = \lambda |\mathbf{v}\rangle\)</span>. The set of all eigenvectors corresponding to a particular eigenvalue <span class="arithmatex">\(\lambda\)</span>, together with the zero vector, forms a subspace called the <strong>eigenspace</strong> of <span class="arithmatex">\(\lambda\)</span>. The dimension of this eigenspace is the <strong>geometric multiplicity</strong> of <span class="arithmatex">\(\lambda\)</span>.</p>
+<p>Key properties of eigenvectors include:</p>
+<ul>
+<li>Eigenvectors corresponding to <strong>distinct</strong> eigenvalues of any matrix are linearly independent.</li>
+<li>For <strong>Hermitian</strong> (self-adjoint) matrices, eigenvectors corresponding to distinct eigenvalues are not merely linearly independent but <strong>orthogonal</strong>.</li>
+<li>If a matrix is <strong>normal</strong> (i.e., <span class="arithmatex">\(A^\dagger A = A A^\dagger\)</span>), then it possesses a complete orthonormal basis of eigenvectors (by the spectral theorem).</li>
+</ul>
+<p>As an illustrative example, consider the Pauli-<span class="arithmatex">\(X\)</span> matrix (the quantum NOT gate):</p>
+<div class="arithmatex">\[X = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\]</div>
+<p>The characteristic equation <span class="arithmatex">\(\lambda^2 - 1 = 0\)</span> gives eigenvalues <span class="arithmatex">\(\lambda = \pm 1\)</span>. The corresponding normalized eigenvectors are:</p>
+<div class="arithmatex">\[\lambda = +1: \quad |+\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \end{pmatrix}, \qquad \lambda = -1: \quad |-\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ -1 \end{pmatrix}\]</div>
+<p>These are precisely the Hadamard basis states. The fact that <span class="arithmatex">\(X\)</span> has eigenvalues <span class="arithmatex">\(\pm 1\)</span> means that measuring the observable corresponding to <span class="arithmatex">\(X\)</span> (a measurement in the <span class="arithmatex">\(|+\rangle / |-\rangle\)</span> basis) yields outcomes <span class="arithmatex">\(+1\)</span> or <span class="arithmatex">\(-1\)</span>, each with a probability determined by the Born rule.</p>
+<h4 id="diagram-eigenvalues-and-eigenvectors-of-pauli-matrices">Diagram: Eigenvalues and Eigenvectors of Pauli Matrices</h4>
+<iframe src="../../sims/pauli-eigen/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive exploration of eigenvalues and eigenvectors for the three Pauli matrices</summary>
+<p>Type: MicroSim
+Learning objective: Students can compute the eigenvalues and eigenvectors of the Pauli matrices and verify the eigenvalue equation (Bloom: Analyze).
+Visual elements: Three tabs, one for each Pauli matrix (<span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span>). Each tab displays the matrix, its characteristic equation, eigenvalues, and eigenvectors as arrows on the Bloch sphere. An animation shows how the matrix action preserves the direction of eigenvectors (scaling them by the eigenvalue).
+Controls: Tab selector for the Pauli matrix. A slider to blend an arbitrary input vector, showing how the matrix action distorts non-eigenvectors but preserves eigenvectors.
+Behavior: Selecting a Pauli matrix updates all displayed quantities. The slider smoothly interpolates between an eigenvector and a general vector, illustrating the geometric meaning of the eigenvalue equation.
+Implementation: p5.js with 3D Bloch sphere rendering and matrix arithmetic.</p>
+</details>
+<h2 id="11-unitary-matrices">11. Unitary Matrices</h2>
+<p>In quantum computing, all reversible operations on quantum states are represented by <strong>unitary matrices</strong>. A square matrix <span class="arithmatex">\(U\)</span> is unitary if its conjugate transpose is also its inverse.</p>
+<h4 id="unitarity-condition">Unitarity Condition</h4>
+<div class="arithmatex">\[U^\dagger U = U U^\dagger = I\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U^\dagger = (\overline{U})^T\)</span> is the conjugate transpose of <span class="arithmatex">\(U\)</span> (also written <span class="arithmatex">\(U^*\)</span> in some texts)</li>
+<li><span class="arithmatex">\(I\)</span> is the identity matrix</li>
+</ul>
+<p>Unitarity has several equivalent characterizations and consequences:</p>
+<ul>
+<li>The columns of <span class="arithmatex">\(U\)</span> form an orthonormal basis for <span class="arithmatex">\(\mathbb{C}^n\)</span>, and likewise the rows.</li>
+<li><span class="arithmatex">\(U\)</span> <strong>preserves inner products</strong>: <span class="arithmatex">\(\langle U\phi | U\psi \rangle = \langle \phi | \psi \rangle\)</span> for all vectors <span class="arithmatex">\(|\phi\rangle, |\psi\rangle\)</span>.</li>
+<li>In particular, <span class="arithmatex">\(U\)</span> <strong>preserves norms</strong>: <span class="arithmatex">\(\| U|\psi\rangle \| = \| |\psi\rangle \|\)</span>. This ensures that applying a unitary gate to a normalized quantum state produces another normalized quantum state, preserving the total probability.</li>
+<li>All eigenvalues of a unitary matrix have modulus 1: <span class="arithmatex">\(|\lambda| = 1\)</span>, so each eigenvalue can be written as <span class="arithmatex">\(\lambda = e^{i\theta}\)</span> for some real <span class="arithmatex">\(\theta\)</span>.</li>
+</ul>
+<p>Every quantum gate is a unitary matrix. The single-qubit gates encountered most often in quantum computing include:</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Matrix</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pauli-<span class="arithmatex">\(X\)</span></td>
+<td><span class="arithmatex">\(\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\)</span></td>
+<td>Bit flip (quantum NOT)</td>
+</tr>
+<tr>
+<td>Pauli-<span class="arithmatex">\(Y\)</span></td>
+<td><span class="arithmatex">\(\begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\)</span></td>
+<td>Bit and phase flip</td>
+</tr>
+<tr>
+<td>Pauli-<span class="arithmatex">\(Z\)</span></td>
+<td><span class="arithmatex">\(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\)</span></td>
+<td>Phase flip</td>
+</tr>
+<tr>
+<td>Hadamard <span class="arithmatex">\(H\)</span></td>
+<td><span class="arithmatex">\(\frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}\)</span></td>
+<td>Creates superposition</td>
+</tr>
+<tr>
+<td>Phase <span class="arithmatex">\(S\)</span></td>
+<td><span class="arithmatex">\(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; i \end{pmatrix}\)</span></td>
+<td>Quarter-turn phase</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(T\)</span> gate</td>
+<td><span class="arithmatex">\(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\pi/4} \end{pmatrix}\)</span></td>
+<td>Eighth-turn phase</td>
+</tr>
+</tbody>
+</table>
+<p>The requirement that quantum gates be unitary is the mathematical expression of the reversibility of quantum mechanics: if <span class="arithmatex">\(U\)</span> sends <span class="arithmatex">\(|\psi\rangle\)</span> to <span class="arithmatex">\(|\psi'\rangle = U|\psi\rangle\)</span>, then <span class="arithmatex">\(U^\dagger\)</span> recovers the original state <span class="arithmatex">\(|\psi\rangle = U^\dagger |\psi'\rangle\)</span>. No information is lost, in contrast to classical irreversible gates such as AND and OR.</p>
+<h2 id="12-hermitian-matrices">12. Hermitian Matrices</h2>
+<p>While unitary matrices represent quantum dynamics (gates), <strong>Hermitian matrices</strong> represent quantum observables (measurable physical quantities). A square matrix <span class="arithmatex">\(A\)</span> is Hermitian (or self-adjoint) if it equals its own conjugate transpose.</p>
+<h4 id="hermiticity-condition">Hermiticity Condition</h4>
+<div class="arithmatex">\[A = A^\dagger\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(A^\dagger\)</span> is the conjugate transpose of <span class="arithmatex">\(A\)</span></li>
+<li>Equivalently, <span class="arithmatex">\(A_{jk} = A_{kj}^*\)</span> for all entries</li>
+</ul>
+<p>Hermitian matrices have the following crucial properties for quantum mechanics:</p>
+<ol>
+<li><strong>All eigenvalues are real.</strong> This is physically necessary because eigenvalues of an observable correspond to measurement outcomes, which must be real numbers.</li>
+<li><strong>Eigenvectors corresponding to distinct eigenvalues are orthogonal.</strong> This ensures that distinct measurement outcomes are distinguishable.</li>
+<li><strong>The spectral theorem guarantees a complete orthonormal eigenbasis.</strong> This means that any Hermitian matrix can be diagonalized by a unitary change of basis.</li>
+</ol>
+<p>The relationship between Hermitian and unitary matrices is deep and bidirectional. Given a Hermitian matrix <span class="arithmatex">\(H\)</span>, the matrix exponential <span class="arithmatex">\(U = e^{iH}\)</span> is unitary. Conversely, any unitary matrix <span class="arithmatex">\(U\)</span> can be written as <span class="arithmatex">\(U = e^{iH}\)</span> for some Hermitian <span class="arithmatex">\(H\)</span>. In quantum mechanics, the time evolution of a closed system is governed by the Schrodinger equation, which states that the Hamiltonian (a Hermitian operator representing the total energy) generates unitary time evolution via <span class="arithmatex">\(U(t) = e^{-iHt/\hbar}\)</span>.</p>
+<p>The Pauli matrices <span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(Y\)</span>, <span class="arithmatex">\(Z\)</span> are both Hermitian and unitary (they are their own inverses). Together with the identity <span class="arithmatex">\(I\)</span>, they form a basis for the vector space of all <span class="arithmatex">\(2 \times 2\)</span> Hermitian matrices. Any <span class="arithmatex">\(2 \times 2\)</span> Hermitian matrix can be written as:</p>
+<div class="arithmatex">\[A = a_0 I + a_1 X + a_2 Y + a_3 Z\]</div>
+<p>where <span class="arithmatex">\(a_0, a_1, a_2, a_3 \in \mathbb{R}\)</span>. This decomposition is the mathematical foundation of the <strong>Bloch sphere representation</strong> of single-qubit states and operations.</p>
+<h2 id="13-tensor-product">13. Tensor Product</h2>
+<p>The <strong>tensor product</strong> is the mathematical operation that combines the state spaces of individual quantum systems into a joint state space for composite systems. If system <span class="arithmatex">\(A\)</span> has state space <span class="arithmatex">\(\mathbb{C}^m\)</span> and system <span class="arithmatex">\(B\)</span> has state space <span class="arithmatex">\(\mathbb{C}^n\)</span>, the composite system <span class="arithmatex">\(AB\)</span> has state space <span class="arithmatex">\(\mathbb{C}^m \otimes \mathbb{C}^n \cong \mathbb{C}^{mn}\)</span>.</p>
+<h4 id="tensor-product-of-vectors">Tensor Product of Vectors</h4>
+<div class="arithmatex">\[|\psi\rangle \otimes |\phi\rangle = \begin{pmatrix} \psi_1 \\ \psi_2 \\ \vdots \\ \psi_m \end{pmatrix} \otimes \begin{pmatrix} \phi_1 \\ \phi_2 \\ \vdots \\ \phi_n \end{pmatrix} = \begin{pmatrix} \psi_1 \phi_1 \\ \psi_1 \phi_2 \\ \vdots \\ \psi_1 \phi_n \\ \psi_2 \phi_1 \\ \vdots \\ \psi_m \phi_n \end{pmatrix}\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(|\psi\rangle \in \mathbb{C}^m\)</span> and <span class="arithmatex">\(|\phi\rangle \in \mathbb{C}^n\)</span></li>
+<li>The result <span class="arithmatex">\(|\psi\rangle \otimes |\phi\rangle \in \mathbb{C}^{mn}\)</span> (also written <span class="arithmatex">\(|\psi\rangle|\phi\rangle\)</span> or <span class="arithmatex">\(|\psi, \phi\rangle\)</span> or <span class="arithmatex">\(|\psi\phi\rangle\)</span>)</li>
+</ul>
+<p>For matrices, the tensor product (also called the <strong>Kronecker product</strong>) of an <span class="arithmatex">\(m \times n\)</span> matrix <span class="arithmatex">\(A\)</span> and a <span class="arithmatex">\(p \times q\)</span> matrix <span class="arithmatex">\(B\)</span> is the <span class="arithmatex">\(mp \times nq\)</span> block matrix:</p>
+<div class="arithmatex">\[(A \otimes B) = \begin{pmatrix} A_{11}B &amp; A_{12}B &amp; \cdots &amp; A_{1n}B \\ A_{21}B &amp; A_{22}B &amp; \cdots &amp; A_{2n}B \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ A_{m1}B &amp; A_{m2}B &amp; \cdots &amp; A_{mn}B \end{pmatrix}\]</div>
+<p>The tensor product satisfies several important algebraic properties:</p>
+<ul>
+<li><strong>Bilinearity:</strong> <span class="arithmatex">\(|\psi\rangle \otimes (\alpha |\phi_1\rangle + \beta |\phi_2\rangle) = \alpha (|\psi\rangle \otimes |\phi_1\rangle) + \beta (|\psi\rangle \otimes |\phi_2\rangle)\)</span></li>
+<li><strong>Associativity:</strong> <span class="arithmatex">\((|\psi\rangle \otimes |\phi\rangle) \otimes |\chi\rangle = |\psi\rangle \otimes (|\phi\rangle \otimes |\chi\rangle)\)</span></li>
+<li><strong>Mixed product property:</strong> <span class="arithmatex">\((A \otimes B)(C \otimes D) = (AC) \otimes (BD)\)</span>, provided the matrix dimensions are compatible</li>
+</ul>
+<p>The computational basis for a two-qubit system is:</p>
+<div class="arithmatex">\[|00\rangle = |0\rangle \otimes |0\rangle, \quad |01\rangle = |0\rangle \otimes |1\rangle, \quad |10\rangle = |1\rangle \otimes |0\rangle, \quad |11\rangle = |1\rangle \otimes |1\rangle\]</div>
+<p>A state that <strong>cannot</strong> be written as a tensor product of individual qubit states is called an <strong>entangled state</strong>. The canonical example is the Bell state:</p>
+<div class="arithmatex">\[|\Phi^+\rangle = \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\]</div>
+<p>This state has no decomposition of the form <span class="arithmatex">\(|\psi\rangle \otimes |\phi\rangle\)</span>, reflecting the deeply non-classical correlations of quantum entanglement. For an <span class="arithmatex">\(n\)</span>-qubit system, the state space has dimension <span class="arithmatex">\(2^n\)</span>, and the exponential growth of this dimension is both the source of quantum computational power and the reason classical simulation of quantum systems is intractable.</p>
+<h4 id="diagram-tensor-product-and-entanglement">Diagram: Tensor Product and Entanglement</h4>
+<iframe src="../../sims/tensor-product/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive demonstration of tensor products for two-qubit states and entanglement</summary>
+<p>Type: MicroSim
+Learning objective: Students can construct product states using the tensor product and distinguish product states from entangled states (Bloom: Analyze).
+Visual elements: Two single-qubit Bloch spheres on the left, each with a draggable state vector. On the right, the four-component state vector of the two-qubit system is displayed as a bar chart of amplitudes (<span class="arithmatex">\(|00\rangle\)</span>, <span class="arithmatex">\(|01\rangle\)</span>, <span class="arithmatex">\(|10\rangle\)</span>, <span class="arithmatex">\(|11\rangle\)</span>). A panel below tests separability by attempting to factor the state. A toggle allows switching to predefined entangled states (Bell states).
+Controls: Drag qubit states on each Bloch sphere. Buttons to load Bell states <span class="arithmatex">\(|\Phi^+\rangle\)</span>, <span class="arithmatex">\(|\Phi^-\rangle\)</span>, <span class="arithmatex">\(|\Psi^+\rangle\)</span>, <span class="arithmatex">\(|\Psi^-\rangle\)</span>.
+Behavior: For product states, the factorization panel shows the successful decomposition. For entangled states, it shows that no decomposition exists and highlights the non-classical correlations.
+Implementation: p5.js with two 3D Bloch sphere renderings and amplitude bar chart.</p>
+</details>
+<h2 id="14-spectral-decomposition">14. Spectral Decomposition</h2>
+<p>The <strong>spectral theorem</strong> is one of the most powerful results in linear algebra and underpins the entire measurement theory of quantum mechanics. It states that any normal matrix (and in particular, any Hermitian or unitary matrix) can be decomposed in terms of its eigenvalues and eigenvectors.</p>
+<h4 id="spectral-decomposition-hermitian-case">Spectral Decomposition (Hermitian Case)</h4>
+<div class="arithmatex">\[A = \sum_{j=1}^{n} \lambda_j \, |e_j\rangle \langle e_j|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\lambda_j \in \mathbb{R}\)</span> are the eigenvalues of the Hermitian matrix <span class="arithmatex">\(A\)</span></li>
+<li><span class="arithmatex">\(\{|e_j\rangle\}_{j=1}^{n}\)</span> is a complete orthonormal set of eigenvectors</li>
+<li><span class="arithmatex">\(|e_j\rangle\langle e_j|\)</span> is the projection operator onto the eigenspace of <span class="arithmatex">\(\lambda_j\)</span></li>
+</ul>
+<p>This decomposition expresses the matrix <span class="arithmatex">\(A\)</span> as a weighted sum of projection operators, with the eigenvalues as weights. The spectral decomposition has immediate physical significance: it tells us that a measurement of the observable <span class="arithmatex">\(A\)</span> yields outcome <span class="arithmatex">\(\lambda_j\)</span> with probability <span class="arithmatex">\(p_j = |\langle e_j | \psi \rangle|^2\)</span>, and after the measurement the system is left in the eigenstate <span class="arithmatex">\(|e_j\rangle\)</span>. This is the mathematical formulation of the <strong>projection postulate</strong> of quantum mechanics.</p>
+<p>The spectral decomposition also provides the natural way to define <strong>functions of matrices</strong>. If <span class="arithmatex">\(f : \mathbb{R} \to \mathbb{C}\)</span> is any function, we define:</p>
+<div class="arithmatex">\[f(A) = \sum_{j=1}^{n} f(\lambda_j) \, |e_j\rangle \langle e_j|\]</div>
+<p>For example, the matrix exponential <span class="arithmatex">\(e^{iA} = \sum_j e^{i\lambda_j} |e_j\rangle\langle e_j|\)</span>, which, as noted earlier, is unitary when <span class="arithmatex">\(A\)</span> is Hermitian. Similarly, the square root of a positive semi-definite matrix is <span class="arithmatex">\(\sqrt{A} = \sum_j \sqrt{\lambda_j} |e_j\rangle\langle e_j|\)</span>.</p>
+<p>For the unitary case, the spectral decomposition takes the same form but with eigenvalues on the unit circle:</p>
+<h4 id="spectral-decomposition-unitary-case">Spectral Decomposition (Unitary Case)</h4>
+<div class="arithmatex">\[U = \sum_{j=1}^{n} e^{i\theta_j} \, |e_j\rangle \langle e_j|\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(e^{i\theta_j}\)</span> are the eigenvalues of the unitary matrix <span class="arithmatex">\(U\)</span>, each with unit modulus</li>
+<li><span class="arithmatex">\(\{|e_j\rangle\}\)</span> is an orthonormal eigenbasis</li>
+</ul>
+<p>This decomposition reveals that every unitary operation is a collection of phase rotations applied to orthogonal subspaces, a perspective that is central to understanding quantum algorithms such as quantum phase estimation.</p>
+<h2 id="15-probability-theory">15. Probability Theory</h2>
+<p>Quantum mechanics is fundamentally probabilistic: even with complete knowledge of a quantum state, measurement outcomes are generally random. The mathematical framework of probability theory therefore plays a dual role in quantum computing -- it describes both classical uncertainty (our ignorance about the state of a system) and quantum uncertainty (the intrinsic randomness of measurement outcomes).</p>
+<p>A <strong>probability distribution</strong> over a discrete set of outcomes <span class="arithmatex">\(\{x_1, x_2, \ldots, x_n\}\)</span> is a function <span class="arithmatex">\(p\)</span> assigning a non-negative real number <span class="arithmatex">\(p(x_j)\)</span> to each outcome, such that:</p>
+<h4 id="normalization-condition">Normalization Condition</h4>
+<div class="arithmatex">\[\sum_{j=1}^{n} p(x_j) = 1\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(p(x_j) \geq 0\)</span> for all <span class="arithmatex">\(j\)</span></li>
+<li>The sum extends over all possible outcomes</li>
+</ul>
+<p>The <strong>expectation value</strong> (or mean) of a random variable <span class="arithmatex">\(X\)</span> that takes value <span class="arithmatex">\(x_j\)</span> with probability <span class="arithmatex">\(p(x_j)\)</span> is:</p>
+<h4 id="expectation-value">Expectation Value</h4>
+<div class="arithmatex">\[\langle X \rangle = \mathbb{E}[X] = \sum_{j=1}^{n} x_j \, p(x_j)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\langle X \rangle\)</span> denotes the expectation value (borrowing Dirac notation)</li>
+<li><span class="arithmatex">\(\mathbb{E}[X]\)</span> is the standard probability-theory notation for expectation</li>
+</ul>
+<p>The <strong>variance</strong> measures the spread of outcomes around the mean:</p>
+<div class="arithmatex">\[\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2\]</div>
+<p>In quantum mechanics, if the system is in state <span class="arithmatex">\(|\psi\rangle\)</span> and we measure the observable <span class="arithmatex">\(A\)</span> (a Hermitian matrix), the expectation value of the measurement outcome is:</p>
+<div class="arithmatex">\[\langle A \rangle_\psi = \langle \psi | A | \psi \rangle\]</div>
+<p>and the variance is:</p>
+<div class="arithmatex">\[(\Delta A)^2 = \langle \psi | A^2 | \psi \rangle - \langle \psi | A | \psi \rangle^2\]</div>
+<p>The <strong>Heisenberg uncertainty principle</strong> provides a fundamental lower bound on the product of the variances of two observables:</p>
+<div class="arithmatex">\[\Delta A \cdot \Delta B \geq \frac{1}{2} |\langle [A, B] \rangle|\]</div>
+<p>This inequality states that for any pair of non-commuting observables, it is impossible to simultaneously know both with arbitrary precision -- a statement with no classical analogue.</p>
+<h4 id="diagram-measurement-probability-distribution">Diagram: Measurement Probability Distribution</h4>
+<iframe src="../../sims/measurement-probability/main.html" width="100%" height="500xp" scrolling="no"></iframe>
+<details>
+<summary>Interactive simulation of quantum measurement outcomes and probability distributions</summary>
+<p>Type: MicroSim
+Learning objective: Students can predict measurement outcome probabilities from a given quantum state using the Born rule, and verify predictions through simulated repeated measurements (Bloom: Apply).
+Visual elements: A Bloch sphere on the left showing the current qubit state <span class="arithmatex">\(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\)</span>. On the right, a bar chart showing the theoretical probabilities <span class="arithmatex">\(|\alpha|^2\)</span> and <span class="arithmatex">\(|\beta|^2\)</span> alongside a histogram of simulated measurement outcomes that builds up over repeated trials.
+Controls: A draggable point on the Bloch sphere to set the state. A "Measure" button to perform a single measurement. A "Run N Measurements" button with a slider for <span class="arithmatex">\(N\)</span> (10 to 10000). A reset button to clear the histogram. A dropdown to select measurement basis (computational, Hadamard, or custom).
+Behavior: Each measurement collapses the state to <span class="arithmatex">\(|0\rangle\)</span> or <span class="arithmatex">\(|1\rangle\)</span> with the appropriate probabilities, and the histogram accumulates. As <span class="arithmatex">\(N\)</span> grows, the histogram converges to the theoretical distribution, illustrating the law of large numbers.
+Implementation: p5.js with 3D Bloch sphere rendering, pseudorandom sampling, and dynamic histogram.</p>
+</details>
+<p><strong>Conditional probability</strong> and <strong>Bayes' theorem</strong> also appear in quantum information. The conditional probability of event <span class="arithmatex">\(A\)</span> given event <span class="arithmatex">\(B\)</span> is:</p>
+<div class="arithmatex">\[P(A | B) = \frac{P(A \cap B)}{P(B)}\]</div>
+<p>provided <span class="arithmatex">\(P(B) &gt; 0\)</span>. Bayes' theorem follows immediately:</p>
+<div class="arithmatex">\[P(A | B) = \frac{P(B | A) \, P(A)}{P(B)}\]</div>
+<p>In quantum computing, these classical probability concepts arise in the context of mixed states and partial measurements. A <strong>mixed state</strong>, represented by a <strong>density matrix</strong> <span class="arithmatex">\(\rho\)</span>, describes a system about which we have incomplete classical information. The density matrix formalism unifies quantum and classical uncertainty: a pure state <span class="arithmatex">\(|\psi\rangle\)</span> corresponds to <span class="arithmatex">\(\rho = |\psi\rangle\langle\psi|\)</span> (rank 1), while a classical probabilistic mixture of states <span class="arithmatex">\(\{p_j, |\psi_j\rangle\}\)</span> is described by:</p>
+<div class="arithmatex">\[\rho = \sum_j p_j \, |\psi_j\rangle \langle \psi_j|\]</div>
+<p>The density matrix satisfies three properties: (i) <span class="arithmatex">\(\rho = \rho^\dagger\)</span> (Hermiticity), (ii) <span class="arithmatex">\(\rho \geq 0\)</span> (positive semi-definiteness), and (iii) <span class="arithmatex">\(\operatorname{Tr}(\rho) = 1\)</span> (unit trace, reflecting normalization). Measurement expectation values generalize to <span class="arithmatex">\(\langle A \rangle = \operatorname{Tr}(\rho A)\)</span>. The density matrix formalism is the proper mathematical framework for describing open quantum systems, decoherence, and quantum noise -- all essential topics for understanding real quantum hardware.</p>
+<h2 id="chapter-summary">Chapter Summary</h2>
+<p>The mathematical foundations presented in this chapter -- complex numbers and their conjugates, Euler's formula, vector spaces and linear independence, inner and outer products, matrix multiplication, eigenvalues and eigenvectors, unitary and Hermitian matrices, tensor products, spectral decomposition, and probability theory -- constitute the essential toolkit for quantum computing. The following table summarizes the role each concept plays in the quantum formalism:</p>
+<table>
+<thead>
+<tr>
+<th>Mathematical Concept</th>
+<th>Role in Quantum Computing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Complex numbers</td>
+<td>Quantum amplitudes</td>
+</tr>
+<tr>
+<td>Complex conjugate</td>
+<td>Probability computation via <span class="arithmatex">\(\lvert\alpha\rvert^2 = \alpha^* \alpha\)</span></td>
+</tr>
+<tr>
+<td>Euler's formula</td>
+<td>Phase representation of quantum gates</td>
+</tr>
+<tr>
+<td>Vector spaces</td>
+<td>State spaces of quantum systems</td>
+</tr>
+<tr>
+<td>Linear independence</td>
+<td>Basis construction, dimensionality</td>
+</tr>
+<tr>
+<td>Inner product</td>
+<td>Transition amplitudes, Born rule</td>
+</tr>
+<tr>
+<td>Outer product</td>
+<td>Projection operators, density matrices</td>
+</tr>
+<tr>
+<td>Matrix multiplication</td>
+<td>Gate composition, time evolution</td>
+</tr>
+<tr>
+<td>Eigenvalues</td>
+<td>Measurement outcomes</td>
+</tr>
+<tr>
+<td>Eigenvectors</td>
+<td>Post-measurement states</td>
+</tr>
+<tr>
+<td>Unitary matrices</td>
+<td>Quantum gates (reversible evolution)</td>
+</tr>
+<tr>
+<td>Hermitian matrices</td>
+<td>Observable quantities</td>
+</tr>
+<tr>
+<td>Tensor product</td>
+<td>Composite quantum systems, entanglement</td>
+</tr>
+<tr>
+<td>Spectral decomposition</td>
+<td>Measurement formalism, matrix functions</td>
+</tr>
+<tr>
+<td>Probability theory</td>
+<td>Measurement statistics, mixed states</td>
+</tr>
+</tbody>
+</table>
+<p>Each subsequent chapter builds on these foundations. Chapter 2 (Physical Limits) will use information theory and thermodynamics to explore fundamental bounds on computation, while Chapter 7 (Quantum Mechanics) will recast the mathematical tools developed here as the formal postulates of quantum theory. A solid command of this material will ensure that the transition from mathematics to physics -- and from physics to quantum algorithms -- is as seamless as possible.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapters">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Chapters
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02-physical-limits/" class="md-footer__link md-footer__link--next" aria-label="Next: 2. Physical Limits">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                2. Physical Limits
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
