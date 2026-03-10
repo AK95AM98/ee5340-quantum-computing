@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Interactive 3D Bloch sphere showing single-qubit quantum states and the effect of X, Y, Z, H, S, and T quantum gates on the state vector.">
+        <meta name="description" content="Step-through visualization of Grover's quantum search algorithm showing how probability amplitudes are amplified for the marked state over successive oracle and diffusion iterations.">
       
       
         <meta name="author" content="Sharat B">
       
       
-        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/single-qubit-gate-bloch/">
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/grover-amplitude-evolution/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../single-qubit-gate-bloch/">
       
       
-        <link rel="next" href="../grover-amplitude-evolution/">
+        <link rel="next" href="../../prompts/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Bloch Sphere Visualizer - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+        <title>Grover's Algorithm — Amplitude Evolution - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bloch-sphere-visualizer" class="md-skip">
+        <a href="#grovers-algorithm-amplitude-evolution" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bloch Sphere Visualizer
+              Grover's Algorithm — Amplitude Evolution
             
           </span>
         </div>
@@ -505,6 +505,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../single-qubit-gate-bloch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloch Sphere Visualizer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -524,7 +552,7 @@
   <span class="md-ellipsis">
     
   
-    Bloch Sphere Visualizer
+    Grover's Algorithm
   
 
     
@@ -542,7 +570,7 @@
   <span class="md-ellipsis">
     
   
-    Bloch Sphere Visualizer
+    Grover's Algorithm
   
 
     
@@ -615,34 +643,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../grover-amplitude-evolution/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Grover's Algorithm
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -844,7 +844,7 @@
 
 
   
-    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/single-qubit-gate-bloch/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/grover-amplitude-evolution/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -852,95 +852,88 @@
   
 
 
-<h1 id="bloch-sphere-visualizer">Bloch Sphere Visualizer</h1>
-<iframe src="main.html" height="622px" width="100%" scrolling="no"></iframe>
+<h1 id="grovers-algorithm-amplitude-evolution">Grover's Algorithm — Amplitude Evolution</h1>
+<iframe src="main.html" height="542px" width="100%" scrolling="no"></iframe>
 
 <p><a class="md-button md-button--primary" href="main.html">Run Fullscreen</a></p>
 <h2 id="description">Description</h2>
-<p>The Bloch sphere is the standard geometric representation of a single-qubit quantum state. Every pure qubit state</p>
-<div class="arithmatex">\[|\psi\rangle = \cos\!\left(\tfrac{\theta}{2}\right)|0\rangle + e^{i\varphi}\sin\!\left(\tfrac{\theta}{2}\right)|1\rangle\]</div>
-<p>maps to a unique point on the unit sphere with Bloch vector coordinates:</p>
-<div class="arithmatex">\[x = \sin\theta\cos\varphi, \quad y = \sin\theta\sin\varphi, \quad z = \cos\theta\]</div>
-<p>The <strong>orange arrow</strong> shows the current state vector. The <strong>Z axis</strong> (blue) points from |1⟩ (south pole) to |0⟩ (north pole). Dashed circles show the equatorial plane and the prime meridian.</p>
-<p><strong>Interactions:</strong></p>
-<ul>
-<li><strong>θ slider</strong> — sets the polar angle (0 = |0⟩, π = |1⟩)</li>
-<li><strong>φ slider</strong> — sets the azimuthal angle (0 to 2π)</li>
-<li><strong>Gate buttons</strong> — apply X, Y, Z, H, S, or T gate to the current state</li>
-<li><strong>Drag</strong> inside the sphere to rotate the view</li>
-</ul>
-<p><strong>Gate effects on Bloch vector:</strong></p>
+<p>Grover's algorithm provides a quadratic speedup for unstructured search: finding a marked item among N = 2ⁿ items in O(√N) steps rather than O(N) classically.</p>
+<p><strong>State representation:</strong>
+Each iteration works on an equal superposition of all N = 2ⁿ basis states. The probability amplitude of each state |i⟩ is shown as a bar — positive amplitudes extend upward, negative downward.</p>
+<p><strong>Each Grover iteration has two steps:</strong></p>
+<ol>
+<li>
+<p><strong>Oracle</strong> — flips the sign of the marked (target) state amplitude:
+$<span class="arithmatex">\(\alpha_{\text{target}} \rightarrow -\alpha_{\text{target}}\)</span>$</p>
+</li>
+<li>
+<p><strong>Grover Diffusion</strong> — reflects all amplitudes about their mean ⟨α⟩:
+$<span class="arithmatex">\(\alpha_i \rightarrow 2\langle\alpha\rangle - \alpha_i\)</span>$</p>
+</li>
+</ol>
+<p>This combination constructively amplifies the target and destructively interferes with all other states.</p>
+<p><strong>Optimal iterations:</strong>
+$<span class="arithmatex">\(k_\text{opt} = \left\lfloor \frac{\pi}{4}\sqrt{N} \right\rfloor\)</span>$</p>
+<p>After <span class="arithmatex">\(k_\text{opt}\)</span> steps, the probability of measuring the target state is near 1. Stepping <strong>beyond</strong> <span class="arithmatex">\(k_\text{opt}\)</span> causes <em>over-rotation</em> — the probability decreases again.</p>
+<p><strong>Controls:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Gate</th>
-<th>Rotation</th>
-<th>Bloch vector (x, y, z) →</th>
+<th>Control</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>X (Pauli-X)</td>
-<td>π around X axis</td>
-<td>(x, −y, −z)</td>
+<td>▶ Step</td>
+<td>Apply one Grover iteration (oracle + diffusion)</td>
 </tr>
 <tr>
-<td>Y (Pauli-Y)</td>
-<td>π around Y axis</td>
-<td>(−x, y, −z)</td>
+<td>↺ Reset</td>
+<td>Return to uniform superposition</td>
 </tr>
 <tr>
-<td>Z (Pauli-Z)</td>
-<td>π around Z axis</td>
-<td>(−x, −y, z)</td>
+<td>Qubits n</td>
+<td>Set number of qubits (2→4 states, 3→8 states, 4→16 states)</td>
 </tr>
 <tr>
-<td>H (Hadamard)</td>
-<td>π around (X+Z)/√2</td>
-<td>(z, −y, x)</td>
-</tr>
-<tr>
-<td>S (Phase)</td>
-<td>π/2 around Z axis</td>
-<td>rotated 90° in XY</td>
-</tr>
-<tr>
-<td>T (T gate)</td>
-<td>π/4 around Z axis</td>
-<td>rotated 45° in XY</td>
+<td>Target state</td>
+<td>Choose which state</td>
 </tr>
 </tbody>
 </table>
+<p>The <strong>orange bar</strong> is the marked target state. The <strong>dashed orange line</strong> shows the mean amplitude ⟨α⟩. The info box shows current iteration, optimal iteration count, and success probability.</p>
 <h2 id="embed-this-microsim">Embed This MicroSim</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://AK95AM98.github.io/ee5340-quantum-computing/sims/single-qubit-gate-bloch/main.html&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;622px&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://AK95AM98.github.io/ee5340-quantum-computing/sims/grover-amplitude-evolution/main.html&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;542px&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="lesson-plan">Lesson Plan</h2>
-<p><strong>Subject:</strong> Quantum Computing — Single-Qubit Gates
+<p><strong>Subject:</strong> Quantum Algorithms — Grover's Search
 <strong>Level:</strong> Graduate (EE 5340)
-<strong>Duration:</strong> 10–15 minutes
-<strong>Prerequisites:</strong> Complex numbers, linear algebra basics, Dirac notation</p>
+<strong>Duration:</strong> 15–20 minutes
+<strong>Prerequisites:</strong> Superposition, quantum measurement, amplitude basics</p>
 <p><strong>Learning Objective:</strong>
-Students will be able to <strong>apply</strong> single-qubit quantum gates (X, Y, Z, H, S, T) and <strong>observe</strong> their geometric effect as rotations of the Bloch sphere state vector.</p>
+Students will be able to <strong>analyze</strong> how Grover's algorithm amplifies a target state's amplitude through repeated oracle and diffusion operations, and explain why exactly <span class="arithmatex">\(k_\text{opt}\)</span> iterations maximizes success probability.</p>
 <p><strong>Guided Activities:</strong></p>
 <ol>
-<li><strong>Start at |0⟩</strong> — θ = 0, state vector points to north pole. Apply H gate. Where does the vector go? (Answer: equator, |+⟩ state)</li>
-<li><strong>Apply H twice</strong> — verify H² = I (vector returns to |0⟩)</li>
-<li><strong>Apply X gate</strong> to |0⟩ — vector flips to south pole (|1⟩)</li>
-<li><strong>Explore the equator</strong> — set θ = π/2, vary φ with slider. Observe how Z gate flips φ by π</li>
-<li><strong>Build S and T intuition</strong> — from |+⟩ state, apply S repeatedly. Count how many S gates return to start (4 applications = full rotation)</li>
+<li><strong>Start with n=3 (N=8), target=3.</strong> Press Step once. Which bar flipped sign? (Answer: |3⟩) Why does the mean line shift?</li>
+<li><strong>Press Step until the green "✓ max!" appears.</strong> Count how many steps it took. Compare to <span class="arithmatex">\(\lfloor\pi\sqrt{8}/4\rfloor = 2\)</span>.</li>
+<li><strong>Keep stepping past optimal.</strong> Observe over-rotation — P(target) decreases. What does this imply for a real quantum circuit?</li>
+<li><strong>Change to n=4 (N=16).</strong> How many optimal iterations now? Verify with the formula.</li>
+<li><strong>Change target state mid-experiment.</strong> Reset and compare different targets — does the choice of target affect convergence speed?</li>
 </ol>
 <p><strong>Assessment Questions:</strong></p>
 <ul>
-<li>What is the Bloch sphere representation of the |+⟩ state?</li>
-<li>If a state is on the equator, what does applying Z gate do geometrically?</li>
-<li>Why does H swap the X and Z poles of the Bloch sphere?</li>
+<li>For N=8, what is the probability of success after exactly 2 iterations?</li>
+<li>Classically, how many queries does a search of N=8 items require on average?</li>
+<li>Why does the diffusion operator (reflection about mean) amplify the target state?</li>
+<li>What happens to the non-target states' amplitudes after each Grover step?</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
-<li>Nielsen &amp; Chuang, <em>Quantum Computation and Quantum Information</em>, Cambridge University Press, Ch. 1</li>
-<li>Bloch, F. (1946). Nuclear Induction. <em>Physical Review</em>, 70(7-8), 460.</li>
-<li><a href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere — Wikipedia</a></li>
-<li><a href="https://p5js.org/reference/">p5.js Reference</a></li>
+<li>Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. <em>STOC '96</em>, 212–219.</li>
+<li>Nielsen, M. &amp; Chuang, I. (2010). <em>Quantum Computation and Quantum Information</em>, Ch. 6. Cambridge University Press.</li>
+<li><a href="https://en.wikipedia.org/wiki/Grover%27s_algorithm">Grover's algorithm — Wikipedia</a></li>
+<li><a href="https://quantumalgorithmzoo.org/">Quantum Algorithm Zoo</a></li>
 </ul>
 
 
@@ -980,7 +973,7 @@ Students will be able to <strong>apply</strong> single-qubit quantum gates (X, Y
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Interactive Simulations">
+          <a href="../single-qubit-gate-bloch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Bloch Sphere Visualizer">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -990,20 +983,20 @@ Students will be able to <strong>apply</strong> single-qubit quantum gates (X, Y
                 Previous
               </span>
               <div class="md-ellipsis">
-                Interactive Simulations
+                Bloch Sphere Visualizer
               </div>
             </div>
           </a>
         
         
           
-          <a href="../grover-amplitude-evolution/" class="md-footer__link md-footer__link--next" aria-label="Next: Grover&#39;s Algorithm">
+          <a href="../../prompts/" class="md-footer__link md-footer__link--next" aria-label="Next: Prompts">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Grover's Algorithm
+                Prompts
               </div>
             </div>
             <div class="md-footer__button md-icon">

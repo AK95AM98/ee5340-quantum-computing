@@ -155,11 +155,11 @@ function project3D(x, y, z) {
   let z1 = z;
 
   // Rotate around X axis by rotEl (elevation tilt)
-  let el = rotEl;
-  let x2 =  x1;
-  let sy = -(y1 * cos(el) - z1 * sin(el));   // screen y (negated: up = negative y)
+  // z2 is the "up" component in view space; screen_y = -z2 (world Z up = screen up)
+  let z2 = -y1 * sin(rotEl) + z1 * cos(rotEl);
+  let sy = -z2;
 
-  return { x: x2 * sphereRadius, y: sy * sphereRadius };
+  return { x: x1 * sphereRadius, y: sy * sphereRadius };
 }
 
 // ─────────────────────────────────────────────

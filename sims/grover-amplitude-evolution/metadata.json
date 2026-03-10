@@ -1,0 +1,50 @@
+{
+  "title": "Grover's Algorithm — Amplitude Evolution",
+  "creator": "EE 5340 Course Team, UMN",
+  "subject": ["Quantum Computing", "Quantum Algorithms", "Grover's Search", "Amplitude Amplification"],
+  "description": "Step-through bar chart visualization of Grover's quantum search algorithm. Shows probability amplitudes for N=2^n states evolving over Grover iterations. Oracle flips sign of target state; diffusion reflects about mean. Users can adjust number of qubits (2-4), choose target state, and step through iterations to observe amplitude amplification and over-rotation.",
+  "date": "2026-03-09",
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY 4.0",
+  "schema": "https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1",
+  "education": {
+    "gradeLevel": "Graduate",
+    "subjectArea": "Quantum Computing",
+    "topic": "Grover's Search Algorithm",
+    "bloomsLevel": ["Understand", "Analyze"],
+    "learningObjectives": [
+      "Observe how oracle and diffusion steps amplify the target state amplitude",
+      "Predict the optimal number of Grover iterations for N states",
+      "Explain why over-rotation reduces success probability",
+      "Connect amplitude amplification to quadratic speedup"
+    ],
+    "duration": "15–20 minutes",
+    "prerequisites": ["Quantum superposition", "Probability amplitudes", "Quantum measurement"]
+  },
+  "technical": {
+    "framework": "p5.js 1.11.10",
+    "canvasDimensions": "responsive × 540px",
+    "responsive": true,
+    "dependencies": ["p5.js CDN (jsdelivr.net)"],
+    "accessibility": "ARIA describe() label, keyboard-accessible sliders and buttons"
+  },
+  "controls": [
+    { "type": "button", "label": "▶ Step", "description": "Apply one Grover iteration (oracle + diffusion operator)" },
+    { "type": "button", "label": "↺ Reset", "description": "Reset to uniform superposition (iteration 0)" },
+    { "type": "slider", "label": "Qubits n", "range": [2, 4], "default": 3, "description": "Number of qubits; N = 2^n states (4, 8, or 16)" },
+    { "type": "slider", "label": "Target state", "range": [0, "N-1"], "default": 3, "description": "Index of the marked state to search for" }
+  ],
+  "model": {
+    "type": "Mathematical",
+    "equations": [
+      "Initial: α_i = 1/√N  for all i",
+      "Oracle: α_target → −α_target",
+      "Diffusion: α_i → 2⟨α⟩ − α_i  where ⟨α⟩ = (1/N)Σα_i",
+      "Optimal iterations: k_opt = floor(π/4 · √N)"
+    ],
+    "assumptions": ["Pure states only", "Exact oracle (no noise)", "Integer qubit counts"],
+    "limitations": ["No decoherence or noise modeling", "N limited to 2-4 qubits for visualization clarity"]
+  }
+}
