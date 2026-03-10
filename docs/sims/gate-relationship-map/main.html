@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="schema" content="https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1">
+  <title>Quantum Gate Relationship Map — EE 5340</title>
+
+  <!-- vis-network CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/dist/vis-network.min.js"></script>
+  <link  href="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/dist/vis-network.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="page-wrapper">
+
+  <!-- Header -->
+  <div id="header">
+    <h2>Quantum Gate Relationship Map</h2>
+    <p>Click any gate node to see its matrix, properties, and role in quantum computation.</p>
+  </div>
+
+  <!-- Main area: network + right panel -->
+  <div id="main-area">
+    <div id="network"></div>
+
+    <div id="info-panel">
+      <div id="info-title">Click a node</div>
+
+      <div class="info-label">Matrix</div>
+      <pre id="info-matrix">—</pre>
+
+      <div class="info-label">Description</div>
+      <p id="info-desc">Click any gate node in the graph to see its matrix, properties, and role in quantum computing.</p>
+
+      <div class="info-label">Key Properties</div>
+      <ul id="info-props"></ul>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div id="legend">
+    <span class="leg-item"><span class="leg-dot" style="background:#4a148c;"></span>Root</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#1565c0;"></span>Category</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#b71c1c;"></span>Pauli Gates</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#7b1fa2;"></span>Hadamard</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#004d40;"></span>Phase Gates</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#1b5e20;"></span>Multi-Qubit</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#e65100;"></span>Universal Set</span>
+    <span class="leg-item"><span class="leg-line solid"></span>is-a / includes</span>
+    <span class="leg-item"><span class="leg-line dashed"></span>equivalence</span>
+  </div>
+
+</div>
+
+<script src="gate-relationship-map.js"></script>
+</body>
+</html>

@@ -36,6 +36,14 @@ nav:
     - Taxonomy Distribution: learning-graph/taxonomy-distribution.md
   - MicroSims:
     - sims/index.md
+    - Bloch Sphere Visualizer: sims/single-qubit-gate-bloch/index.md
+    - Grover's Algorithm: sims/grover-amplitude-evolution/index.md
+    - Gate Relationship Map: sims/gate-relationship-map/index.md
+    - Multi-Qubit Gate Composer: sims/multi-qubit-gate-composer/index.md
+    - Deutsch-Jozsa Circuit: sims/deutsch-jozsa-circuit/index.md
+    - Quantum Walk Comparison: sims/quantum-walk-comparison/index.md
+    - Algorithm Speedup Landscape: sims/algorithm-speedup-landscape/index.md
+    - Phase Estimation Circuit: sims/phase-estimation-circuit/index.md
   - Prompts:
     - prompts/index.md
 
