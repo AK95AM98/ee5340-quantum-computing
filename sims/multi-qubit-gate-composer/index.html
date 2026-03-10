@@ -6,37 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An intelligent textbook for UMN EE 5340: Introduction to Quantum Computing and Physical Basics of Computing. Covers physical limits of computing, information theory, beyond-CMOS devices, reversible computing, quantum computing, and stochastic computing.">
+        <meta name="description" content="Interactive truth-table explorer for CNOT, CZ, SWAP, and Toffoli gates. Click any input row to see how each gate transforms the qubit state, with a live circuit diagram and key properties.">
       
       
         <meta name="author" content="Sharat B">
       
       
-        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/">
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/multi-qubit-gate-composer/">
       
       
-        <link rel="prev" href="../learning-graph/taxonomy-distribution/">
+        <link rel="prev" href="../gate-relationship-map/">
       
       
-        <link rel="next" href="single-qubit-gate-bloch/">
+        <link rel="next" href="../deutsch-jozsa-circuit/">
       
       
         
       
       
-      <link rel="icon" href="../img/favicon.ico">
+      <link rel="icon" href="../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Interactive Simulations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+        <title>Multi-Qubit Gate Composer - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../css/extra.css">
+      <link rel="stylesheet" href="../../css/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interactive-simulations" class="md-skip">
+        <a href="#multi-qubit-gate-composer" class="md-skip">
           Skip to content
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Interactive Simulations
+              Multi-Qubit Gate Composer
             
           </span>
         </div>
@@ -205,9 +205,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     EE 5340 - Quantum Computing and Physical Basics of Computing
@@ -234,7 +234,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../course-description/" class="md-nav__link">
+      <a href="../../course-description/" class="md-nav__link">
         
   
   
@@ -341,7 +341,7 @@
   
   
   
-    <a href="../chapters/" class="md-nav__link">
+    <a href="../../chapters/" class="md-nav__link">
       
   
   
@@ -405,7 +405,7 @@
   
   
   
-    <a href="../learning-graph/" class="md-nav__link">
+    <a href="../../learning-graph/" class="md-nav__link">
       
   
   
@@ -476,7 +476,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -494,7 +494,7 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -520,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="single-qubit-gate-bloch/" class="md-nav__link">
+      <a href="../single-qubit-gate-bloch/" class="md-nav__link">
         
   
   
@@ -548,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grover-amplitude-evolution/" class="md-nav__link">
+      <a href="../grover-amplitude-evolution/" class="md-nav__link">
         
   
   
@@ -576,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="gate-relationship-map/" class="md-nav__link">
+      <a href="../gate-relationship-map/" class="md-nav__link">
         
   
   
@@ -601,10 +601,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="multi-qubit-gate-composer/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Qubit Gate Composer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -620,6 +647,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -632,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="deutsch-jozsa-circuit/" class="md-nav__link">
+      <a href="../deutsch-jozsa-circuit/" class="md-nav__link">
         
   
   
@@ -660,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quantum-walk-comparison/" class="md-nav__link">
+      <a href="../quantum-walk-comparison/" class="md-nav__link">
         
   
   
@@ -688,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithm-speedup-landscape/" class="md-nav__link">
+      <a href="../algorithm-speedup-landscape/" class="md-nav__link">
         
   
   
@@ -716,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="phase-estimation-circuit/" class="md-nav__link">
+      <a href="../phase-estimation-circuit/" class="md-nav__link">
         
   
   
@@ -772,7 +863,7 @@
   
   
   
-    <a href="../prompts/" class="md-nav__link">
+    <a href="../../prompts/" class="md-nav__link">
       
   
   
@@ -818,6 +909,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -841,7 +984,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -859,7 +1002,7 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
     MicroSims
@@ -881,7 +1024,7 @@
 
 
   
-    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/multi-qubit-gate-composer/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -889,14 +1032,96 @@
   
 
 
-<h1 id="interactive-simulations">Interactive Simulations</h1>
-<p>This section contains MicroSims - interactive educational simulations that help visualize key concepts in quantum computing and physical basics of computing.</p>
+<h1 id="multi-qubit-gate-composer">Multi-Qubit Gate Composer</h1>
+<iframe src="main.html" height="492px" width="100%" scrolling="no"></iframe>
+
+<p><a class="md-button md-button--primary" href="main.html">Run Fullscreen</a></p>
+<h2 id="description">Description</h2>
+<p>This simulator lets you explore the four most important multi-qubit quantum gates by examining their complete truth tables:</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Qubits</th>
+<th>Key Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CNOT</strong></td>
+<td>2</td>
+<td>Flips target (q₁) when control (q₀) = |1⟩</td>
+</tr>
+<tr>
+<td><strong>CZ</strong></td>
+<td>2</td>
+<td>Phase-flips (×−1) the |11⟩ component</td>
+</tr>
+<tr>
+<td><strong>SWAP</strong></td>
+<td>2</td>
+<td>Exchanges the values of q₀ and q₁</td>
+</tr>
+<tr>
+<td><strong>Toffoli</strong></td>
+<td>3</td>
+<td>Flips target (q₂) when both controls (q₀, q₁) = |1⟩</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to use:</strong></p>
+<ol>
+<li>Click a gate button (CNOT, CZ, SWAP, Toffoli)</li>
+<li>Click any row in the truth table to highlight it</li>
+<li>The right panel shows the circuit diagram for that gate and the selected state's transformation</li>
+</ol>
+<p>Note that for <strong>CZ</strong>, the output bit values look identical to the input — only the <em>phase</em> changes (shown as a − sign). This phase difference is invisible in classical measurements but crucial for quantum interference.</p>
+<h2 id="embed-this-microsim">Embed This MicroSim</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://AK95AM98.github.io/ee5340-quantum-computing/sims/multi-qubit-gate-composer/main.html&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;492px&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="lesson-plan">Lesson Plan</h2>
+<p><strong>Subject:</strong> Multi-Qubit Quantum Gates
+<strong>Level:</strong> Graduate (EE 5340)
+<strong>Duration:</strong> 15–20 minutes
+<strong>Prerequisites:</strong> Single-qubit gates, Dirac notation, computational basis states</p>
+<p><strong>Learning Objectives:</strong></p>
+<ol>
+<li><strong>Explain</strong> how CNOT, CZ, SWAP, and Toffoli gates transform two- and three-qubit basis states</li>
+<li><strong>Distinguish</strong> between a bit flip (CNOT, SWAP, Toffoli) and a phase flip (CZ)</li>
+<li><strong>Identify</strong> which multi-qubit gate can create entanglement</li>
+<li><strong>Predict</strong> the output of a gate given a specific computational basis input</li>
+</ol>
+<p><strong>Guided Activities:</strong></p>
+<ol>
+<li><strong>CNOT truth table:</strong> Select CNOT. Click each row. Which rows change? Only those where q₀ = |1⟩. Why?</li>
+<li><strong>CZ comparison:</strong> Switch to CZ. Compare to CNOT — bits unchanged, only phase (− sign) on |11⟩. Why is this difference invisible to classical measurement?</li>
+<li><strong>SWAP verification:</strong> Select SWAP. Verify: |01⟩ → |10⟩ and |10⟩ → |01⟩. What happens to |00⟩ and |11⟩?</li>
+<li><strong>Toffoli and classical computing:</strong> Select Toffoli. When does the target qubit flip? This is equivalent to a classical AND gate — what does that imply for classical universality?</li>
+<li><strong>Bell state construction:</strong> CNOT applied after H to |0⟩|0⟩ creates a Bell state. The CNOT maps |+⟩|0⟩ → (|00⟩+|11⟩)/√2. Which CNOT row corresponds to the |10⟩ input?</li>
+</ol>
+<p><strong>Assessment Questions:</strong></p>
+<ul>
+<li>For CNOT with control q₀ and target q₁, what is the output for input |10⟩?</li>
+<li>Why is CZ symmetric (control and target are interchangeable) while CNOT is not?</li>
+<li>How many CNOT gates does it take to implement a SWAP gate?</li>
+<li>The Toffoli gate is classically universal. What does this mean for reversible computing?</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Nielsen, M. &amp; Chuang, I. (2010). <em>Quantum Computation and Quantum Information</em>, Ch. 4. Cambridge.</li>
+<li><a href="https://en.wikipedia.org/wiki/Controlled_NOT_gate">CNOT gate — Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Toffoli_gate">Toffoli gate — Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">Quantum logic gate — Wikipedia</a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -926,7 +1151,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../learning-graph/taxonomy-distribution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Taxonomy Distribution">
+          <a href="../gate-relationship-map/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gate Relationship Map">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -936,20 +1161,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Taxonomy Distribution
+                Gate Relationship Map
               </div>
             </div>
           </a>
         
         
           
-          <a href="single-qubit-gate-bloch/" class="md-footer__link md-footer__link--next" aria-label="Next: Bloch Sphere Visualizer">
+          <a href="../deutsch-jozsa-circuit/" class="md-footer__link md-footer__link--next" aria-label="Next: Deutsch-Jozsa Circuit">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Bloch Sphere Visualizer
+                Deutsch-Jozsa Circuit
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -986,10 +1211,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

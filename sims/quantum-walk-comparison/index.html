@@ -6,37 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An intelligent textbook for UMN EE 5340: Introduction to Quantum Computing and Physical Basics of Computing. Covers physical limits of computing, information theory, beyond-CMOS devices, reversible computing, quantum computing, and stochastic computing.">
+        <meta name="description" content="Side-by-side comparison of classical random walk (Gaussian spread) and discrete-time quantum walk (Hadamard coin, bimodal spread) on a 1D line. Slider controls the number of steps from 1 to 50.">
       
       
         <meta name="author" content="Sharat B">
       
       
-        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/">
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/quantum-walk-comparison/">
       
       
-        <link rel="prev" href="../learning-graph/taxonomy-distribution/">
+        <link rel="prev" href="../deutsch-jozsa-circuit/">
       
       
-        <link rel="next" href="single-qubit-gate-bloch/">
+        <link rel="next" href="../algorithm-speedup-landscape/">
       
       
         
       
       
-      <link rel="icon" href="../img/favicon.ico">
+      <link rel="icon" href="../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Interactive Simulations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+        <title>Classical vs Quantum Walk Comparison - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../css/extra.css">
+      <link rel="stylesheet" href="../../css/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interactive-simulations" class="md-skip">
+        <a href="#classical-vs-quantum-walk-comparison" class="md-skip">
           Skip to content
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Interactive Simulations
+              Classical vs Quantum Walk Comparison
             
           </span>
         </div>
@@ -205,9 +205,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     EE 5340 - Quantum Computing and Physical Basics of Computing
@@ -234,7 +234,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../course-description/" class="md-nav__link">
+      <a href="../../course-description/" class="md-nav__link">
         
   
   
@@ -341,7 +341,7 @@
   
   
   
-    <a href="../chapters/" class="md-nav__link">
+    <a href="../../chapters/" class="md-nav__link">
       
   
   
@@ -405,7 +405,7 @@
   
   
   
-    <a href="../learning-graph/" class="md-nav__link">
+    <a href="../../learning-graph/" class="md-nav__link">
       
   
   
@@ -476,7 +476,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -494,7 +494,7 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -520,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="single-qubit-gate-bloch/" class="md-nav__link">
+      <a href="../single-qubit-gate-bloch/" class="md-nav__link">
         
   
   
@@ -548,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grover-amplitude-evolution/" class="md-nav__link">
+      <a href="../grover-amplitude-evolution/" class="md-nav__link">
         
   
   
@@ -576,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="gate-relationship-map/" class="md-nav__link">
+      <a href="../gate-relationship-map/" class="md-nav__link">
         
   
   
@@ -604,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="multi-qubit-gate-composer/" class="md-nav__link">
+      <a href="../multi-qubit-gate-composer/" class="md-nav__link">
         
   
   
@@ -632,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="deutsch-jozsa-circuit/" class="md-nav__link">
+      <a href="../deutsch-jozsa-circuit/" class="md-nav__link">
         
   
   
@@ -657,10 +657,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="quantum-walk-comparison/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quantum Walk Comparison
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -676,6 +703,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -688,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithm-speedup-landscape/" class="md-nav__link">
+      <a href="../algorithm-speedup-landscape/" class="md-nav__link">
         
   
   
@@ -716,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="phase-estimation-circuit/" class="md-nav__link">
+      <a href="../phase-estimation-circuit/" class="md-nav__link">
         
   
   
@@ -772,7 +863,7 @@
   
   
   
-    <a href="../prompts/" class="md-nav__link">
+    <a href="../../prompts/" class="md-nav__link">
       
   
   
@@ -818,6 +909,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -841,7 +984,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -859,7 +1002,7 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
     MicroSims
@@ -881,7 +1024,7 @@
 
 
   
-    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/quantum-walk-comparison/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -889,14 +1032,53 @@
   
 
 
-<h1 id="interactive-simulations">Interactive Simulations</h1>
-<p>This section contains MicroSims - interactive educational simulations that help visualize key concepts in quantum computing and physical basics of computing.</p>
+<h1 id="classical-vs-quantum-walk-comparison">Classical vs Quantum Walk Comparison</h1>
+<iframe src="main.html" height="522px" width="100%" scrolling="no"></iframe>
+
+<p><a class="md-button md-button--primary" href="main.html">Run Fullscreen</a></p>
+<h2 id="description">Description</h2>
+<p>A <strong>random walk</strong> models a particle taking random left/right steps. After <span class="arithmatex">\(t\)</span> steps:</p>
+<ul>
+<li><strong>Classical</strong> (coin flip): position distributes as Binomial(<span class="arithmatex">\(t\)</span>, ½) — Gaussian shape, spread <span class="arithmatex">\(\sigma \approx \sqrt{t}\)</span></li>
+<li><strong>Quantum</strong> (Hadamard coin): amplitudes interfere constructively at the edges, producing a <strong>bimodal</strong> distribution with spread <span class="arithmatex">\(\sim 0.7t\)</span></li>
+</ul>
+<p>This quadratic difference in spread (<span class="arithmatex">\(O(\sqrt{t})\)</span> vs <span class="arithmatex">\(O(t)\)</span>) is a key resource exploited by quantum walk-based algorithms.</p>
+<p><strong>Use the steps slider</strong> to see how both distributions evolve. Notice that the quantum walk's two peaks race away from the origin faster than the classical walk's single Gaussian peak.</p>
+<h2 id="embed-this-microsim">Embed This MicroSim</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://AK95AM98.github.io/ee5340-quantum-computing/sims/quantum-walk-comparison/main.html&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;522px&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="lesson-plan">Lesson Plan</h2>
+<p><strong>Subject:</strong> Quantum Walk vs Classical Random Walk
+<strong>Level:</strong> Graduate (EE 5340)
+<strong>Duration:</strong> 10–15 minutes</p>
+<p><strong>Learning Objectives:</strong></p>
+<ol>
+<li><strong>Compare</strong> the spreading rates of classical and quantum walks</li>
+<li><strong>Explain</strong> why quantum interference produces a bimodal distribution</li>
+<li><strong>Identify</strong> how the quadratic speedup in spreading relates to Grover speedup</li>
+</ol>
+<p><strong>Guided Activities:</strong></p>
+<ol>
+<li>Set steps = 5. Where is the classical peak? Where are the quantum peaks?</li>
+<li>Increase to steps = 20. Compare the classical σ ≈ √20 ≈ 4.5 to quantum spread ≈ 0.7×20 = 14.</li>
+<li>At steps = 50, the quantum walk reaches ±35, while classical σ ≈ 7. What is the ratio?</li>
+<li>Why does the quantum walk have two peaks, not one? (Hint: the Hadamard coin creates superposition.)</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>Aharonov, Y., Davidovich, L., &amp; Zagury, N. (1993). Quantum random walks. <em>Phys. Rev. A</em>, 48, 1687.</li>
+<li>Childs, A. (2010). On the relationship between continuous-time and discrete-time quantum walks. <em>Commun. Math. Phys.</em>, 294, 581–603.</li>
+<li><a href="https://en.wikipedia.org/wiki/Quantum_walk">Quantum walk — Wikipedia</a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -926,7 +1108,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../learning-graph/taxonomy-distribution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Taxonomy Distribution">
+          <a href="../deutsch-jozsa-circuit/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deutsch-Jozsa Circuit">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -936,20 +1118,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Taxonomy Distribution
+                Deutsch-Jozsa Circuit
               </div>
             </div>
           </a>
         
         
           
-          <a href="single-qubit-gate-bloch/" class="md-footer__link md-footer__link--next" aria-label="Next: Bloch Sphere Visualizer">
+          <a href="../algorithm-speedup-landscape/" class="md-footer__link md-footer__link--next" aria-label="Next: Algorithm Speedup Landscape">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Bloch Sphere Visualizer
+                Algorithm Speedup Landscape
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -986,10 +1168,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

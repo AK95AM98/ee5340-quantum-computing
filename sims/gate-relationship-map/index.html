@@ -6,37 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="An intelligent textbook for UMN EE 5340: Introduction to Quantum Computing and Physical Basics of Computing. Covers physical limits of computing, information theory, beyond-CMOS devices, reversible computing, quantum computing, and stochastic computing.">
+        <meta name="description" content="Interactive concept map of quantum gate families and their relationships. Click any node to see the gate's matrix, key properties, and role in quantum computation.">
       
       
         <meta name="author" content="Sharat B">
       
       
-        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/">
+        <link rel="canonical" href="https://AK95AM98.github.io/ee5340-quantum-computing/sims/gate-relationship-map/">
       
       
-        <link rel="prev" href="../learning-graph/taxonomy-distribution/">
+        <link rel="prev" href="../grover-amplitude-evolution/">
       
       
-        <link rel="next" href="single-qubit-gate-bloch/">
+        <link rel="next" href="../multi-qubit-gate-composer/">
       
       
         
       
       
-      <link rel="icon" href="../img/favicon.ico">
+      <link rel="icon" href="../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Interactive Simulations - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
+        <title>Quantum Gate Relationship Map - EE 5340 - Quantum Computing and Physical Basics of Computing</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../css/extra.css">
+      <link rel="stylesheet" href="../../css/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#interactive-simulations" class="md-skip">
+        <a href="#quantum-gate-relationship-map" class="md-skip">
           Skip to content
         </a>
       
@@ -96,9 +96,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-header__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Interactive Simulations
+              Quantum Gate Relationship Map
             
           </span>
         </div>
@@ -205,9 +205,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
+    <a href="../.." title="EE 5340 - Quantum Computing and Physical Basics of Computing" class="md-nav__button md-logo" aria-label="EE 5340 - Quantum Computing and Physical Basics of Computing" data-md-component="logo">
       
-  <img src="../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     EE 5340 - Quantum Computing and Physical Basics of Computing
@@ -234,7 +234,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../course-description/" class="md-nav__link">
+      <a href="../../course-description/" class="md-nav__link">
         
   
   
@@ -341,7 +341,7 @@
   
   
   
-    <a href="../chapters/" class="md-nav__link">
+    <a href="../../chapters/" class="md-nav__link">
       
   
   
@@ -405,7 +405,7 @@
   
   
   
-    <a href="../learning-graph/" class="md-nav__link">
+    <a href="../../learning-graph/" class="md-nav__link">
       
   
   
@@ -476,7 +476,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -494,7 +494,7 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -520,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="single-qubit-gate-bloch/" class="md-nav__link">
+      <a href="../single-qubit-gate-bloch/" class="md-nav__link">
         
   
   
@@ -548,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="grover-amplitude-evolution/" class="md-nav__link">
+      <a href="../grover-amplitude-evolution/" class="md-nav__link">
         
   
   
@@ -573,10 +573,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="gate-relationship-map/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gate Relationship Map
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -592,6 +619,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-taxonomy-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this taxonomy matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -604,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="multi-qubit-gate-composer/" class="md-nav__link">
+      <a href="../multi-qubit-gate-composer/" class="md-nav__link">
         
   
   
@@ -632,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="deutsch-jozsa-circuit/" class="md-nav__link">
+      <a href="../deutsch-jozsa-circuit/" class="md-nav__link">
         
   
   
@@ -660,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="quantum-walk-comparison/" class="md-nav__link">
+      <a href="../quantum-walk-comparison/" class="md-nav__link">
         
   
   
@@ -688,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithm-speedup-landscape/" class="md-nav__link">
+      <a href="../algorithm-speedup-landscape/" class="md-nav__link">
         
   
   
@@ -716,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="phase-estimation-circuit/" class="md-nav__link">
+      <a href="../phase-estimation-circuit/" class="md-nav__link">
         
   
   
@@ -772,7 +880,7 @@
   
   
   
-    <a href="../prompts/" class="md-nav__link">
+    <a href="../../prompts/" class="md-nav__link">
       
   
   
@@ -818,6 +926,75 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-taxonomy-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this taxonomy matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embed-this-microsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed This MicroSim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lesson-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lesson Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -841,7 +1018,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -859,7 +1036,7 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
     MicroSims
@@ -881,7 +1058,7 @@
 
 
   
-    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/AK95AM98/ee5340-quantum-computing/blob/main/docs/sims/gate-relationship-map/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -889,14 +1066,111 @@
   
 
 
-<h1 id="interactive-simulations">Interactive Simulations</h1>
-<p>This section contains MicroSims - interactive educational simulations that help visualize key concepts in quantum computing and physical basics of computing.</p>
+<h1 id="quantum-gate-relationship-map">Quantum Gate Relationship Map</h1>
+<iframe src="main.html" height="582px" width="100%" scrolling="no"></iframe>
+
+<p><a class="md-button md-button--primary" href="main.html">Run Fullscreen</a></p>
+<h2 id="description">Description</h2>
+<p>This concept map shows the <strong>taxonomy and relationships</strong> of the key quantum gates covered in Chapter 9.</p>
+<p><strong>Node color codes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Color</th>
+<th>Family</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purple (dark)</td>
+<td>Root — all quantum gates</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>Category — single-qubit or multi-qubit</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>Pauli Gates (X, Y, Z)</td>
+</tr>
+<tr>
+<td>Violet</td>
+<td>Hadamard Gate (H)</td>
+</tr>
+<tr>
+<td>Teal</td>
+<td>Phase Gates (Z, S, T)</td>
+</tr>
+<tr>
+<td>Green</td>
+<td>Multi-Qubit Gates (CNOT, CZ, Toffoli)</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td CNOT="CNOT" H_="H," T_="T,">Universal Gate Set</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Edge types:</strong></p>
+<ul>
+<li><strong>Solid arrow</strong> — taxonomic relationship ("is a type of", "includes")</li>
+<li><strong>Dashed arrow</strong> — mathematical equivalence (e.g., S² = Z, T² = S, CNOT ↔ CZ via Hadamard)</li>
+</ul>
+<p><strong>Clicking a node</strong> displays the gate's matrix representation, a plain-language description, and its key algebraic properties in the right panel.</p>
+<h3 id="why-this-taxonomy-matters">Why this taxonomy matters</h3>
+<p>Every quantum algorithm is built from gates. Understanding <em>which families</em> gates belong to — Pauli, Phase, Clifford, non-Clifford — determines:</p>
+<ul>
+<li>Whether a gate is <strong>fault-tolerant</strong> to implement (Clifford gates are; T is not directly)</li>
+<li>Whether a set of gates is <strong>universal</strong> (can approximate any unitary)</li>
+<li>Which gates create <strong>entanglement</strong> (multi-qubit gates only)</li>
+</ul>
+<h2 id="embed-this-microsim">Embed This MicroSim</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://AK95AM98.github.io/ee5340-quantum-computing/sims/gate-relationship-map/main.html&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;582px&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="lesson-plan">Lesson Plan</h2>
+<p><strong>Subject:</strong> Quantum Gates — Taxonomy and Relationships
+<strong>Level:</strong> Graduate (EE 5340)
+<strong>Duration:</strong> 15–20 minutes
+<strong>Prerequisites:</strong> Linear algebra, unitary matrices, Dirac notation</p>
+<p><strong>Learning Objectives:</strong></p>
+<p>Students will be able to:</p>
+<ol>
+<li><strong>Classify</strong> quantum gates by family (Pauli, Phase, Hadamard, multi-qubit)</li>
+<li><strong>Explain</strong> the mathematical relationships between Z, S, and T gates (S² = Z, T² = S)</li>
+<li><strong>Identify</strong> why {H, T, CNOT} form a universal gate set</li>
+<li><strong>Distinguish</strong> Clifford from non-Clifford gates and their fault-tolerance implications</li>
+</ol>
+<p><strong>Guided Activities:</strong></p>
+<ol>
+<li><strong>Start at the root node.</strong> Click "Quantum Gates." What does "unitary" mean in this context? (U†U = I)</li>
+<li><strong>Click the Pauli Gates category.</strong> What do X, Y, Z have in common? (Self-inverse: G² = I; π rotations)</li>
+<li><strong>Click Z, then S, then T.</strong> Follow the dashed arrows. Verify: T² = S, S² = Z algebraically.</li>
+<li><strong>Click CNOT, then the dashed arrow to CZ.</strong> How do Hadamard gates turn CNOT into CZ?</li>
+<li><strong>Click Universal Gate Set.</strong> Which gate in {H, T, CNOT} is non-Clifford, and why is that necessary?</li>
+</ol>
+<p><strong>Assessment Questions:</strong></p>
+<ul>
+<li>Why is the T gate essential for universal quantum computing while H and CNOT alone are not?</li>
+<li>What does it mean for a gate to be self-inverse? Give two examples from the Pauli family.</li>
+<li>How would you implement a CZ gate on a system that only supports CNOT natively?</li>
+<li>The Toffoli gate is "classically universal." What does this mean, and why does it matter?</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>Nielsen, M. &amp; Chuang, I. (2010). <em>Quantum Computation and Quantum Information</em>, Ch. 4. Cambridge.</li>
+<li>Gottesman, D. (1997). Stabilizer codes and the Clifford group. <em>Caltech PhD Thesis</em>.</li>
+<li><a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">Quantum logic gate — Wikipedia</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Solovay%E2%80%93Kitaev_theorem">Solovay–Kitaev theorem — Wikipedia</a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -926,7 +1200,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../learning-graph/taxonomy-distribution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Taxonomy Distribution">
+          <a href="../grover-amplitude-evolution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Grover&#39;s Algorithm">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -936,20 +1210,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Taxonomy Distribution
+                Grover's Algorithm
               </div>
             </div>
           </a>
         
         
           
-          <a href="single-qubit-gate-bloch/" class="md-footer__link md-footer__link--next" aria-label="Next: Bloch Sphere Visualizer">
+          <a href="../multi-qubit-gate-composer/" class="md-footer__link md-footer__link--next" aria-label="Next: Multi-Qubit Gate Composer">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Bloch Sphere Visualizer
+                Multi-Qubit Gate Composer
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -986,10 +1260,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.follow", "navigation.top", "navigation.footer", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       

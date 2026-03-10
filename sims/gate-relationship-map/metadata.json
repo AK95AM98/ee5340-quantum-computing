@@ -1,0 +1,46 @@
+{
+  "title": "Quantum Gate Relationship Map",
+  "creator": "EE 5340 Course Team, UMN",
+  "subject": ["Quantum Computing", "Quantum Gates", "Gate Taxonomy", "Pauli Gates", "Universal Gate Sets"],
+  "description": "Interactive vis-network concept map of quantum gate families and their relationships. Nodes represent gate categories (Pauli, Phase, Hadamard, Multi-Qubit, Universal Set) and individual gates (X, Y, Z, H, S, T, CNOT, CZ, Toffoli). Solid edges indicate is-a/includes relationships; dashed edges show mathematical equivalences (S²=Z, T²=S, CNOT↔CZ). Clicking a node displays the gate's matrix, description, and key algebraic properties.",
+  "date": "2026-03-09",
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY 4.0",
+  "schema": "https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1",
+  "education": {
+    "gradeLevel": "Graduate",
+    "subjectArea": "Quantum Computing",
+    "topic": "Quantum Gate Taxonomy and Relationships",
+    "bloomsLevel": ["Understand", "Analyze"],
+    "learningObjectives": [
+      "Classify quantum gates by family (Pauli, Phase, Hadamard, multi-qubit)",
+      "Explain the algebraic relationships S²=Z and T²=S",
+      "Identify why {H, T, CNOT} form a universal gate set",
+      "Distinguish Clifford from non-Clifford gates"
+    ],
+    "duration": "15–20 minutes",
+    "prerequisites": ["Unitary matrices", "Dirac notation", "Quantum superposition"]
+  },
+  "technical": {
+    "framework": "vis-network 9.1.9",
+    "canvasDimensions": "responsive × 580px",
+    "responsive": true,
+    "dependencies": ["vis-network CDN (jsdelivr.net)"],
+    "accessibility": "Click-to-reveal info panel, legend with color codes"
+  },
+  "controls": [
+    { "type": "click", "label": "Node click", "description": "Click any node to show its matrix, description, and key properties in the right panel" },
+    { "type": "click", "label": "Background click", "description": "Click the background to deselect and return to default message" }
+  ],
+  "model": {
+    "type": "Taxonomic / Relational",
+    "relationships": [
+      "is-a / includes (solid arrow)",
+      "mathematical equivalence (dashed arrow): S²=Z, T²=S, CNOT↔CZ via Hadamard"
+    ],
+    "nodes": 15,
+    "edges": 20
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Multi-Qubit Gate Composer",
+  "creator": "EE 5340 Course Team, UMN",
+  "subject": ["Quantum Computing", "Quantum Gates", "CNOT", "CZ Gate", "SWAP Gate", "Toffoli Gate", "Multi-Qubit Gates"],
+  "description": "Interactive truth-table explorer for CNOT, CZ, SWAP, and Toffoli gates. Users select a gate and click rows in the complete input-to-output truth table. The right panel shows the circuit diagram, gate description, and key algebraic properties. CZ phase flip is explicitly labeled. Toffoli uses 3 qubits (8 rows).",
+  "date": "2026-03-09",
+  "type": "Interactive Simulation",
+  "format": "text/html",
+  "language": "en",
+  "rights": "CC BY 4.0",
+  "schema": "https://dmccreary.github.io/intelligent-textbooks/ns/microsim/v1",
+  "education": {
+    "gradeLevel": "Graduate",
+    "subjectArea": "Quantum Computing",
+    "topic": "Multi-Qubit Quantum Gates",
+    "bloomsLevel": ["Understand", "Analyze"],
+    "learningObjectives": [
+      "Explain how CNOT, CZ, SWAP, and Toffoli transform basis states",
+      "Distinguish bit-flip from phase-flip operations",
+      "Identify which gates create entanglement",
+      "Predict gate output from a given computational basis input"
+    ],
+    "duration": "15–20 minutes",
+    "prerequisites": ["Single-qubit gates", "Dirac notation", "Computational basis states"]
+  },
+  "technical": {
+    "framework": "p5.js 1.11.10",
+    "canvasDimensions": "responsive × 490px",
+    "responsive": true,
+    "dependencies": ["p5.js CDN (jsdelivr.net)"],
+    "accessibility": "Clickable truth table rows, hover highlight, circuit diagram with labels"
+  },
+  "controls": [
+    { "type": "button", "label": "CNOT / CZ / SWAP / Toffoli", "description": "Select the gate to display" },
+    { "type": "click", "label": "Truth table row", "description": "Click to select and highlight an input state" }
+  ],
+  "model": {
+    "type": "Boolean / Phase",
+    "gates": ["CNOT (2-qubit)", "CZ (2-qubit)", "SWAP (2-qubit)", "Toffoli (3-qubit)"],
+    "stateSpace": "Computational basis states (no superposition)"
+  }
+}
